@@ -18,10 +18,8 @@
 
   <ItemGroup>
     <Folder Include="Dev_Ben\" />
-    <Folder Include="Dev_Chantel\" />
     <Folder Include="Dev_Travis\" />
     <Folder Include="Dev_Dina\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="Models\ViewModels\" />
   </ItemGroup>
 

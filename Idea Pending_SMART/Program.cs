@@ -1,4 +1,5 @@
 using Idea_Pending_SMART.Data;
+using Idea_Pending_SMART.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -39,6 +40,9 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(
+    name: "Classrooms",
+    pattern: "{controller=Classrooms}/{action=ClassroomsView}/{id?}");
 app.MapRazorPages();
 
 app.Run();
