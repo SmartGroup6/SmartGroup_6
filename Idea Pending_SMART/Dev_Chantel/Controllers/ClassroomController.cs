@@ -1,12 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Idea_Pending_SMART.Dev_Chantel.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Idea_Pending_SMART.Dev_Chantel.Controllers
 {
     public class ClassroomController : Controller
     {
-        public IActionResult ClassroomList()
+        private IClassroomRepository _classroomRepository;
+        public ClassroomController(IClassroomRepository classroomRepository)
         {
-            return View();
+            _classroomRepository = classroomRepository;
         }
+
+        public IActionResult ClassroomList() => View(_classroomRepository.Classrooms);
+
+
+   //     public IActionResult ClassroomList()
+   //     {
+   //         return View();
+   //     }
     }
 }
