@@ -4,6 +4,7 @@ using Idea_Pending_SMART.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Idea_Pending_SMART.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221031205027_data1")]
+    partial class data1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,7 +94,7 @@ namespace Idea_Pending_SMART.Data.Migrations
                     b.ToTable("Enrollments");
                 });
 
-            modelBuilder.Entity("Idea_Pending_SMART.Dev_Chantel.Models.Student", b =>
+            modelBuilder.Entity("Idea_Pending_SMART.Models.Student", b =>
                 {
                     b.Property<int?>("StudentID")
                         .ValueGeneratedOnAdd()

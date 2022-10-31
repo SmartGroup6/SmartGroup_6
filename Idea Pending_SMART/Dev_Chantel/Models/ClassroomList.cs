@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Idea_Pending_SMART.Dev_Chantel.Models
 {
-    public class Classroom
+    public class ClassroomList
     {
+        [Key]
         public int? ClassroomID { get; set; }
 
         public int UserID { get; set; }

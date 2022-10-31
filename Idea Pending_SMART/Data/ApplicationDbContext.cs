@@ -10,6 +10,14 @@ namespace Idea_Pending_SMART.Data
             : base(options)
         {}
 
-        public DbSet<Classroom> Classroom => Set<Classroom>();
+        public DbSet<ClassroomList> Classroom => Set<ClassroomList>();
+
+        public DbSet<ClassTime> ClassTimes => Set<ClassTime>();
+
+        public DbSet<Enrollment> Enrollments => Set<Enrollment>();
+
+        public DbSet<Student> AddStudents => Set<Student>();
+
+
     }
 }

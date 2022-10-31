@@ -1,5 +1,6 @@
 using Idea_Pending_SMART.Data;
 using Idea_Pending_SMART.Dev_Chantel.Models;
+using Idea_Pending_SMART.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,7 +11,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-builder.Services.AddScoped<IClassroomRepository, EFClassroomRepository>();
+builder.Services.AddScoped<IRepository, EFRepository>();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
@@ -40,9 +41,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapControllerRoute(
-    name: "Classrooms",
-    pattern: "{controller=Classrooms}/{action=ClassroomsView}/{id?}");
+
 app.MapRazorPages();
-SeedClassrooms.EnsurePopulated(app);
+SeedData.EnsurePopulated(app);
 app.Run();
