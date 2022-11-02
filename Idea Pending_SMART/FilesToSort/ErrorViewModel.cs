@@ -1,4 +1,4 @@
-namespace Idea_Pending_SMART.Models
+namespace Idea_Pending_SMART.FilesToSort
 {
     public class ErrorViewModel
     {

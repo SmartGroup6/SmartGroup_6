@@ -20,7 +20,7 @@ namespace Idea_Pending_SMART.Models
                 context.Classroom.AddRange(
                     new ClassroomList
                     {
-                        UserID = 123,
+                        //UserID = 123,
                         ClassDescription = "An english 1 class",
                         StudentCount = 15,
                         CourseID = 275,
@@ -29,7 +29,7 @@ namespace Idea_Pending_SMART.Models
                     },
                     new ClassroomList
                     {
-                        UserID = 777,
+                        //UserID = 777,
                         ClassDescription = "An english 3 class",
                         StudentCount = 10,
                         CourseID = 375,
@@ -38,7 +38,7 @@ namespace Idea_Pending_SMART.Models
                     },
                     new ClassroomList
                     {
-                        UserID = 727,
+                        //UserID = 727,
                         ClassDescription = "A computer 3 class",
                         StudentCount = 1,
                         CourseID = 1,
@@ -52,19 +52,19 @@ namespace Idea_Pending_SMART.Models
                 context.ClassTimes.AddRange(
                     new ClassTime
                     {
-                        ClassTimeID = 1,
+                        //ClassTimeID = 1,
                         Day = "Monday",
                         TimeStart = DateTime.Parse("9:00")
                     },
                     new ClassTime
                     {
-                        ClassTimeID = 2,
+                        //ClassTimeID = 2,
                         Day = "Tuesday",
                         TimeStart = DateTime.Parse("11:00")
                     },
                     new ClassTime
                     {
-                        ClassTimeID = 3,
+                        //ClassTimeID = 3,
                         Day = "Wednesday",
                         TimeStart = DateTime.Parse("15:00")
                     }
@@ -75,18 +75,19 @@ namespace Idea_Pending_SMART.Models
                 context.Enrollments.AddRange(
                     new Enrollment
                     {
-                        EnrollmentID = 1,
+                        //EnrollmentID = 1,
                         ClassID = 1,
                         StudentID = 1
                     },
                     new Enrollment
                     {
-                        EnrollmentID = 2,
+                        //EnrollmentID = 2,
                         ClassID = 2,
                         StudentID = 2
                     },
                     new Enrollment
-                    {EnrollmentID = 3,
+                    {
+                        //EnrollmentID = 3,
                         ClassID = 3,
                         StudentID = 3
                     }

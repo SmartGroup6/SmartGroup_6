@@ -1,4 +1,4 @@
-﻿using Idea_Pending_SMART.Models;
+﻿using Idea_Pending_SMART.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 

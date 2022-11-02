@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Idea_Pending_SMART.Models
+namespace Idea_Pending_SMART.FilesToSort
 {
     public class RegistrationRequest
     {
@@ -11,7 +11,7 @@ namespace Idea_Pending_SMART.Models
         public string? Name { get; set; }
         [Required(ErrorMessage = "Please enter your email address")]
         [EmailAddress]
-        public string? Email { get; set; } 
+        public string? Email { get; set; }
 
 
     }

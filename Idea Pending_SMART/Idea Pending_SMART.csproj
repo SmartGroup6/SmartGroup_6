@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -9,6 +9,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Dev_Ben\**" />
+    <Compile Remove="Dev_Dina\**" />
+    <Compile Remove="Dev_Travis\**" />
+    <Compile Remove="Models\ViewModels\**" />
+    <Content Remove="Dev_Ben\**" />
+    <Content Remove="Dev_Dina\**" />
+    <Content Remove="Dev_Travis\**" />
+    <Content Remove="Models\ViewModels\**" />
+    <EmbeddedResource Remove="Dev_Ben\**" />
+    <EmbeddedResource Remove="Dev_Dina\**" />
+    <EmbeddedResource Remove="Dev_Travis\**" />
+    <EmbeddedResource Remove="Models\ViewModels\**" />
+    <None Remove="Dev_Ben\**" />
+    <None Remove="Dev_Dina\**" />
+    <None Remove="Dev_Travis\**" />
+    <None Remove="Models\ViewModels\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.10" />
@@ -17,11 +36,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Dev_Ben\" />
-    <Folder Include="Dev_Travis\" />
-    <Folder Include="Dev_Dina\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Models\ViewModels\" />
+    <Folder Include="Areas\Admin\" />
+    <Folder Include="Areas\NewFolder\" />
   </ItemGroup>
 
 </Project>
