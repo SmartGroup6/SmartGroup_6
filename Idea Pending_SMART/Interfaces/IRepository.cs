@@ -1,4 +1,5 @@
 ﻿using Idea_Pending_SMART.Dev_Chantel.Models;
+using Idea_Pending_SMART.Models;
 
 namespace Idea_Pending_SMART.Interfaces
 {

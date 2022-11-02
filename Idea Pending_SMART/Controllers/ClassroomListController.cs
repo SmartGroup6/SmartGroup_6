@@ -1,7 +1,7 @@
 ﻿using Idea_Pending_SMART.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Idea_Pending_SMART.Dev_Chantel.Controllers
+namespace Idea_Pending_SMART.Controllers
 {
     public class ClassroomListController : Controller
     {

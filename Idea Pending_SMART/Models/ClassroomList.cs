@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Idea_Pending_SMART.Dev_Chantel.Models
+namespace Idea_Pending_SMART.Models
 {
     public class ClassroomList
     {
@@ -11,7 +11,7 @@ namespace Idea_Pending_SMART.Dev_Chantel.Models
 
         public int UserID { get; set; }
 
-        public string ClassDescription { get; set; } = String.Empty;
+        public string ClassDescription { get; set; } = string.Empty;
 
         public int StudentCount { get; set; }
 

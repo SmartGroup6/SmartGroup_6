@@ -1,11 +1,18 @@
 ﻿using Idea_Pending_SMART.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
-namespace Idea_Pending_SMART.Dev_Chantel.Controllers
+namespace Idea_Pending_SMART.Controllers
 {
-    public class AddStudentController : Controller
+    public class AddStudentController
     {
+        /*
+            +checkCoursePrereq(CourseID)
+            +checkStudentAvailable(StudentID)
+            +checkClassSpace(ClassID)
+            +canStudentBeAdded : bool
+            +AddStudent(StudentID)
+         */
+
         private IRepository _addStudentRepository;
         public AddStudentController(IRepository addStudentRepository)
         {
@@ -13,8 +20,5 @@ namespace Idea_Pending_SMART.Dev_Chantel.Controllers
         }
 
         public IActionResult AddStudent() => View(_addStudentRepository.Students);
-
-
-
     }
 }
