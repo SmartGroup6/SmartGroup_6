@@ -1,12 +1,13 @@
 ﻿using Humanizer;
 using Idea_Pending_SMART.Data;
-using Idea_Pending_SMART.Dev_Chantel.Models;
+using Idea_Pending_SMART.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Idea_Pending_SMART.Models
 {
     public class SeedData
     {
+        /*
         public static void EnsurePopulated(IApplicationBuilder app)
         {
             ApplicationDbContext context = app.ApplicationServices
@@ -123,7 +124,9 @@ namespace Idea_Pending_SMART.Models
 
                     ); context.SaveChanges();
             }
-        }
+        
+        } */
+
     }
 }
 

@@ -1,5 +1,4 @@
-﻿using Idea_Pending_SMART.Dev_Chantel.Models;
-using Idea_Pending_SMART.Models;
+﻿using Idea_Pending_SMART.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

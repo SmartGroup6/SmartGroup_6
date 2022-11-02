@@ -1,7 +1,6 @@
 ﻿using Idea_Pending_SMART.Data;
-using Idea_Pending_SMART.Dev_Chantel.Models;
-using Idea_Pending_SMART.Interfaces;
 using Idea_Pending_SMART.Models;
+using Idea_Pending_SMART.Interfaces;
 
 namespace Idea_Pending_SMART.FilesToSort
 {

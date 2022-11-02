@@ -1,8 +1,7 @@
 using Idea_Pending_SMART.Data;
-using Idea_Pending_SMART.Dev_Chantel.Models;
+using Idea_Pending_SMART.Models;
 using Idea_Pending_SMART.FilesToSort;
 using Idea_Pending_SMART.Interfaces;
-using Idea_Pending_SMART.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -45,5 +44,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
-SeedData.EnsurePopulated(app);
+//SeedData.EnsurePopulated(app);
 app.Run();

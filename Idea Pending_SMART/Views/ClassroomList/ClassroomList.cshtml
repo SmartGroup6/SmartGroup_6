@@ -1,4 +1,5 @@
-﻿@    using Idea_Pending_SMART.Dev_Chantel.Models
+﻿@using Idea_Pending_SMART.Models
+
 @model IQueryable<ClassroomList>
 <!DOCTYPE html>
 <html>
@@ -17,12 +18,12 @@
         @foreach (var p in Model ?? Enumerable.Empty<ClassroomList>())
         {
             <div>
-
-                <span class="badge rounded-pill bg-primary text-white"
-                  style="float:inline-end">
-                    <div class="list-group list-group-flush">
+                                            <div class="list-group list-group-flush">
                         <a class="list-group-item list-group-item-action" asp-controller="AddStudent" asp-action="AddStudent">Add Student</a>
                     </div>
+                <span class="badge rounded-pill bg-primary text-white"
+                  style="float:inline-end">
+
                     <small>@p.CourseID</small>
                     <small>Time:@p.ClassTimeID</small>
                     <small>@p.ClassDescription</small>

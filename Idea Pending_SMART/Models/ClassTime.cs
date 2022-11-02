@@ -4,7 +4,7 @@ using System.Xml.Linq;
 
 namespace Idea_Pending_SMART.Models
 {
-    public class Classtime
+    public class ClassTime
     {
         [Key]
         public int ClassTimeID { get; set; }

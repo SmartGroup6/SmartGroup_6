@@ -24,7 +24,7 @@ namespace Idea_Pending_SMART.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Idea_Pending_SMART.Dev_Chantel.Models.Classroom", b =>
+            modelBuilder.Entity("Idea_Pending_SMART..Models.Classroom", b =>
                 {
                     b.Property<int?>("ClassroomID")
                         .ValueGeneratedOnAdd()

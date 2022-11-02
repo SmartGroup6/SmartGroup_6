@@ -1,4 +1,4 @@
-﻿@model RegistrationRequest
+﻿@model Idea_Pending_SMART.FilesToSort.RegistrationRequest
 @{
     Layout = null;
 }
@@ -13,7 +13,7 @@
 <body>
     <h5 class="bg-primary text-white text-center m-2 p-2">RSVP</h5>
     <form asp-action="RsvpForm" method="post" class="m-2">
-        <div asp-validation-summary="All"></div>
+        <div asp-validation-summary="All">
         <div class="form-group">
             <label asp-for="Name" class="form-label">Your name:</label>
             <input asp-for="Name" class="form-control" />

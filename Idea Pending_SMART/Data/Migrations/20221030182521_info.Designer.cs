@@ -24,7 +24,7 @@ namespace Idea_Pending_SMART.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Idea_Pending_SMART.Dev_Chantel.Models.ClassroomList", b =>
+            modelBuilder.Entity("Idea_Pending_SMART..Models.ClassroomList", b =>
                 {
                     b.Property<int?>("ClassroomID")
                         .ValueGeneratedOnAdd()
@@ -56,7 +56,7 @@ namespace Idea_Pending_SMART.Data.Migrations
                     b.ToTable("Classroom");
                 });
 
-            modelBuilder.Entity("Idea_Pending_SMART.Dev_Chantel.Models.ClassTime", b =>
+            modelBuilder.Entity("Idea_Pending_SMART..Models.ClassTime", b =>
                 {
                     b.Property<int>("ClassTimeID")
                         .ValueGeneratedOnAdd()
@@ -76,7 +76,7 @@ namespace Idea_Pending_SMART.Data.Migrations
                     b.ToTable("classTimes");
                 });
 
-            modelBuilder.Entity("Idea_Pending_SMART.Dev_Chantel.Models.Enrollment", b =>
+            modelBuilder.Entity("Idea_Pending_SMART..Models.Enrollment", b =>
                 {
                     b.Property<int>("ClassID")
                         .HasColumnType("int");

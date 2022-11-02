@@ -22,7 +22,7 @@ namespace Idea_Pending_SMART.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Idea_Pending_SMART.Dev_Chantel.Models.ClassroomList", b =>
+            modelBuilder.Entity("Idea_Pending_SMART.Models.ClassroomList", b =>
                 {
                     b.Property<int?>("ClassroomID")
                         .ValueGeneratedOnAdd()
@@ -54,7 +54,7 @@ namespace Idea_Pending_SMART.Data.Migrations
                     b.ToTable("Classroom");
                 });
 
-            modelBuilder.Entity("Idea_Pending_SMART.Dev_Chantel.Models.ClassTime", b =>
+            modelBuilder.Entity("Idea_Pending_SMART.Models.ClassTime", b =>
                 {
                     b.Property<int>("ClassTimeID")
                         .ValueGeneratedOnAdd()
@@ -63,9 +63,11 @@ namespace Idea_Pending_SMART.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClassTimeID"), 1L, 1);
 
                     b.Property<string>("Day")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("TimeStart")
+                    b.Property<DateTime?>("TimeStart")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.HasKey("ClassTimeID");
@@ -73,7 +75,7 @@ namespace Idea_Pending_SMART.Data.Migrations
                     b.ToTable("ClassTimes");
                 });
 
-            modelBuilder.Entity("Idea_Pending_SMART.Dev_Chantel.Models.Enrollment", b =>
+            modelBuilder.Entity("Idea_Pending_SMART.Models.Enrollment", b =>
                 {
                     b.Property<int>("EnrollmentID")
                         .ValueGeneratedOnAdd()
@@ -92,13 +94,13 @@ namespace Idea_Pending_SMART.Data.Migrations
                     b.ToTable("Enrollments");
                 });
 
-            modelBuilder.Entity("Idea_Pending_SMART.Dev_Chantel.Models.Student", b =>
+            modelBuilder.Entity("Idea_Pending_SMART.Models.Student", b =>
                 {
-                    b.Property<int?>("StudentID")
+                    b.Property<int>("StudentID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("StudentID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StudentID"), 1L, 1);
 
                     b.Property<int>("ApplicationID")
                         .HasColumnType("int");
@@ -107,10 +109,11 @@ namespace Idea_Pending_SMART.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(1)");
 
-                    b.Property<int>("SponsorID")
+                    b.Property<int?>("SponsorID")
                         .HasColumnType("int");
 
-                    b.Property<bool>("timeAvailable")
+                    b.Property<bool?>("timeAvailable")
+                        .IsRequired()
                         .HasColumnType("bit");
 
                     b.HasKey("StudentID");

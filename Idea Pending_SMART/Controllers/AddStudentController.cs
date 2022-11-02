@@ -19,6 +19,6 @@ namespace Idea_Pending_SMART.Controllers
             _addStudentRepository = addStudentRepository;
         }
 
-        public IActionResult AddStudent() => View(_addStudentRepository.Students);
+        //public IActionResult AddStudent() => View(_addStudentRepository.Students);
     }
 }
