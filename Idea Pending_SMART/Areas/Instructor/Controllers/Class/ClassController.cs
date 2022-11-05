@@ -21,12 +21,12 @@ public class ClassController : Controller
        +getCourseDetails(CourseID)
    */
     private IRepository _classroomRepository;
-    public ClassController(IRepository classroomRepository)
+    /*public ClassController(IRepository classroomRepository)
     {
         _classroomRepository = classroomRepository;
-    }
+    }*/
 
-    public IActionResult ClassroomList() => View(_classroomRepository.Classrooms);
+    public IActionResult ClassroomList() => View();
 }
 
 

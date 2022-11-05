@@ -14,11 +14,11 @@ namespace Idea_Pending_SMART.Areas.Instructor.Controllers.AddStudent
          */
 
         private IRepository _addStudentRepository;
-        public AddStudentController(IRepository addStudentRepository)
+    /*    public AddStudentController(IRepository addStudentRepository)
         {
             _addStudentRepository = addStudentRepository;
-        }
+        }*/
 
-       public IActionResult AddStudent() => View(_addStudentRepository.Students);
+       public IActionResult AddStudent() => View();
     }
 }

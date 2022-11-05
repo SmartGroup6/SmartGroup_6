@@ -1,6 +1,6 @@
 using Idea_Pending_SMART.Data;
-using Idea_Pending_SMART.Dev_Chantel.Models;
 using Idea_Pending_SMART.Models;
+using Idea_Pending_SMART.FilesToSort;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,7 +11,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-builder.Services.AddScoped<IRepository, EFRepository>();
+//builder.Services.AddScoped<IRepository, EFRepository>(); used for chantel to test class room and student population
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();

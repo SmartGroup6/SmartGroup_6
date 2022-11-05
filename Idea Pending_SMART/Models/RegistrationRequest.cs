@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Idea_Pending_SMART.FilesToSort
+namespace Idea_Pending_SMART.Models
 {
     public class RegistrationRequest
     {
