@@ -39,6 +39,11 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
+    name: "Instructor",
+    pattern: "{area:exists}/{controller=Class}/{action=ClassroomList}/{id?}");
+
+
+app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
