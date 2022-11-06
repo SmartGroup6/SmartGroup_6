@@ -36,6 +36,7 @@
             <span class="navbar-brand ml-2">DASHBOARD</></span>
         </div>
     </header>
+<<<<<<< Updated upstream
     <div class="container">
 
         <main role="main" class="pb-3">
@@ -55,6 +56,47 @@
                 <a href="#" class="list-group-item list-group-item-action bg-light">Semester Management</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">Staff Management</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">Messages</a>
+=======
+    <div class="container-fluid px-0">
+        <div class="row flex-nowrap">
+            <!--Travis attemping to make a sidebar-->
+            <div class="col min-width-300-md">
+                <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+                    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+                        <span class="fs-4">Areas</span>
+                    </a>
+                    <hr>
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="Home" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="Application" asp-controller="Semester" asp-action="Index">Applications</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="Section" asp-controller="Section" asp-action="ClassroomList">Class Management</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="Student" asp-controller="Student" asp-action="Index">Students</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="Staff" asp-controller="Staff" asp-action="Index">Staff</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="Semester" asp-controller="Semester" asp-action="Index">Semesters</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="Meeting" asp-controller="Meeting" asp-action="Index">Meetings Center</a>
+                    </ul>
+                    <hr>
+                </div>
+            </div>
+            <div class="col-10">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+>>>>>>> Stashed changes
             </div>
         </div>
     </div>

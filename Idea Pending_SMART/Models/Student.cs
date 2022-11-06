@@ -20,7 +20,11 @@ namespace Idea_Pending_SMART.Models
         public int? SponsorID { get; set; }
 
         [Required]
+<<<<<<< Updated upstream
         [ForeignKey("Applicant")]
+=======
+        [ForeignKey("Applicantion")]
+>>>>>>> Stashed changes
         public int ApplicationID { get; set; }
 
 

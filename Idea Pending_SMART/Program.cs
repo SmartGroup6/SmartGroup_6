@@ -42,11 +42,15 @@ app.MapControllerRoute(
     name: "Instructor",
     pattern: "{area:exists}/{controller=Class}/{action=ClassroomList}/{id?}");
 
+<<<<<<< Updated upstream
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
+=======
+//SeedData.InitSemester(app); //Travis is using this to test his semester stuff without seeding the entire db
+>>>>>>> Stashed changes
 SeedData.EnsurePopulated(app);
 app.Run();
