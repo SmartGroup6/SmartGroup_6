@@ -12,14 +12,8 @@ namespace Idea_Pending_SMART.Models
         [Required]
         public string? AppStatus { get; set; }
 
-        [Required]
-<<<<<<< Updated upstream
-        [ForeignKey("Student")]
-        public int? StudentID { get; set; }
 
         [Required]
-=======
->>>>>>> Stashed changes
         [ForeignKey("Application")]
         public int ApplicationID { get; set; }
 
