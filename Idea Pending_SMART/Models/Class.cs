@@ -10,13 +10,6 @@ namespace Idea_Pending_SMART.Models
         public int ClassID { get; set; }
 
         [Required]
-<<<<<<< Updated upstream
-        [ForeignKey("Student")]
-        public int? StudentID { get; set; }
-
-        [Required]
-=======
->>>>>>> Stashed changes
         public string? ClassDescription { get; set; }
 
         [Required]
