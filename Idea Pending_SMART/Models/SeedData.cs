@@ -15,29 +15,6 @@ namespace Idea_Pending_SMART.Models
 {
     public class SeedData
     {
-<<<<<<< Updated upstream
-=======
-        //      public static void InitSemester(IApplicationBuilder app)
-        //      {
-        //ApplicationDbContext context = app.ApplicationServices
-        //.CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>();
-        //if (context.Database.GetPendingMigrations().Any())
-        //{
-        //    context.Database.Migrate();
-        //}
-        //context.Semester.AddRange(
-        //    new Semester
-        //    {
-        //        SemesterName = "Fall 2020",
-        //        StartDate = DateTime.Now,
-        //        EndDate = DateTime.Now,
-        //        IsActiveSemester = false,
-        //        IsArchived = false,
-        //        MaxStudentCount = 3000,
-        //        SchoolId = 0
-        //    });
-        //       }
->>>>>>> Stashed changes
         public static void EnsurePopulated(IApplicationBuilder app)
         {
             ApplicationDbContext context = app.ApplicationServices
@@ -46,70 +23,23 @@ namespace Idea_Pending_SMART.Models
             {
                 context.Database.Migrate();
             }
-<<<<<<< Updated upstream
-            if (!context.Classroom.Any())
-            {
-                context.Classroom.AddRange(
-                    new ClassroomList
-                    {
-                        UserID = 123,
-                        ClassDescription = "An english 1 class",
-                        StudentCount = 15,
-                        CourseID = 275,
-                        ClassTimeID = 2,
-                        SemesterID = 12
-                    },
-                    new ClassroomList
-                    {
-                        UserID = 777,
-                        ClassDescription = "An english 3 class",
-                        StudentCount = 10,
-                        CourseID = 375,
-                        ClassTimeID = 1,
-                        SemesterID = 12
-                    },
-                    new ClassroomList
-                    {
-                        UserID = 727,
-                        ClassDescription = "A computer 3 class",
-                        StudentCount = 1,
-                        CourseID = 1,
-                        ClassTimeID = 1,
-                        SemesterID = 2
-                    }
-            ); context.SaveChanges();
-            }
-=======
- 
->>>>>>> Stashed changes
+           
             if (!context.ClassTimes.Any())
             {
                 context.ClassTimes.AddRange(
                     new ClassTime
                     {
-<<<<<<< Updated upstream
-                        ClassTimeID = 1,
-=======
->>>>>>> Stashed changes
                         Day = "Monday",
                         TimeStart = DateTime.Parse("9:00")
                     },
                     new ClassTime
                     {
-<<<<<<< Updated upstream
-                        ClassTimeID = 2,
-=======
->>>>>>> Stashed changes
                         Day = "Tuesday",
                         TimeStart = DateTime.Parse("11:00")
                     },
                     new ClassTime
                     {
-<<<<<<< Updated upstream
-                        ClassTimeID = 3,
-                        Day = "Wednesday",
-                        TimeStart = DateTime.Parse("15:00")
-=======
+
                         Day = "Tuesday",
                         TimeStart = DateTime.Parse("8:00")
                     },
@@ -122,7 +52,6 @@ namespace Idea_Pending_SMART.Models
                     {
                         Day = "Friday",
                         TimeStart = DateTime.Parse("12:00")
->>>>>>> Stashed changes
                     }
                     ); context.SaveChanges();
             }
@@ -131,26 +60,20 @@ namespace Idea_Pending_SMART.Models
                 context.Enrollments.AddRange(
                     new Enrollment
                     {
-<<<<<<< Updated upstream
-                        EnrollmentID = 1,
-=======
->>>>>>> Stashed changes
                         ClassID = 1,
                         StudentID = 1
                     },
                     new Enrollment
                     {
-<<<<<<< Updated upstream
                         EnrollmentID = 2,
                         ClassID = 2,
                         StudentID = 2
                     },
                     new Enrollment
-                    {EnrollmentID = 3,
+                    {
                         ClassID = 3,
                         StudentID = 3
                     }
-=======
                         ClassID = 1,
                         StudentID = 2
                     },
@@ -169,7 +92,6 @@ namespace Idea_Pending_SMART.Models
                        ClassID = 3,
                        StudentID = 4
                    }
->>>>>>> Stashed changes
                     ); context.SaveChanges();
             }
             if (!context.Students.Any())
@@ -218,12 +140,9 @@ namespace Idea_Pending_SMART.Models
 
                     ); context.SaveChanges();
             }
-<<<<<<< Updated upstream
         }
     }
 }
-=======
-
             if (!context.Applicant.Any())
             {
                 context.Applicant.AddRange(
@@ -746,6 +665,4 @@ namespace Idea_Pending_SMART.Models
 
     }
 }
-
->>>>>>> Stashed changes
 
