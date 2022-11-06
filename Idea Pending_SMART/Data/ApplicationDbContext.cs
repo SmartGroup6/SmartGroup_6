@@ -18,6 +18,13 @@ namespace Idea_Pending_SMART.Data
 
         public DbSet<Student> AddStudents => Set<Student>();
 
+        public DbSet<Course> AddCourse => Set<Course>();
+
+        public DbSet<Semester> Semester { get; set; }
+
+
+
+
 
     }
 }

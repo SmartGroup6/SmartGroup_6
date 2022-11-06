@@ -4,6 +4,8 @@ using Idea_Pending_SMART.Interfaces;
 
 namespace Idea_Pending_SMART.FilesToSort
 {
+    //What is this for? -Travis
+    /*
     public class EFRepository : IRepository
     {
         private ApplicationDbContext context;
@@ -18,4 +20,5 @@ namespace Idea_Pending_SMART.FilesToSort
         public IQueryable<Student> Students => context.AddStudents;
 
     }
+    */
 }

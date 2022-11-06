@@ -7,7 +7,26 @@ namespace Idea_Pending_SMART.Models
 {
     public class SeedData
     {
-        /*
+        public static void InitSemester(IApplicationBuilder app)
+        {
+            ApplicationDbContext context = app.ApplicationServices
+            .CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            if (context.Database.GetPendingMigrations().Any())
+            {
+                context.Database.Migrate();
+            }
+            context.Semester.AddRange(
+                new Semester
+                {
+                    SemesterName = "Fall 2020",
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    IsActiveSemester = false,
+                    IsArchived = false,
+                    MaxStudentCount = 3000,
+                    SchoolId = 0
+                });
+        }
         public static void EnsurePopulated(IApplicationBuilder app)
         {
             ApplicationDbContext context = app.ApplicationServices
@@ -16,6 +35,19 @@ namespace Idea_Pending_SMART.Models
             {
                 context.Database.Migrate();
             }
+            context.Semester.AddRange(
+                new Semester
+                {
+                    SemesterName = "Fall 2020",
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    IsActiveSemester = false,
+                    IsArchived = false,
+                    MaxStudentCount = 3000,
+                    SchoolId = 0
+                }
+                ); 
+            /*
             if (!context.Classroom.Any())
             {
                 context.Classroom.AddRange(
@@ -123,10 +155,10 @@ namespace Idea_Pending_SMART.Models
                     }
 
                     ); context.SaveChanges();
-            }
-        
-        } */
+            */
+        }
 
-    }
-}
+    } 
+
+ }
 

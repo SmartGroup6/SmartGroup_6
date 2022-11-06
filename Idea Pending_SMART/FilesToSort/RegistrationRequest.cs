@@ -2,6 +2,7 @@
 
 namespace Idea_Pending_SMART.FilesToSort
 {
+    //We can probably ignore registration until Dr. Fry teaches us it, I think sometime during the week of November 7th
     public class RegistrationRequest
     {
         [Key]
