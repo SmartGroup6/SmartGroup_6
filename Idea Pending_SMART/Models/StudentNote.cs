@@ -15,13 +15,9 @@ namespace Idea_Pending_SMART.Models
         [Required]
         public DateTime DateCreated { get; set; }
 
-<<<<<<< Updated upstream
-=======
         [Required]
         [ForeignKey ("Student")]
         public int StudentID { get; set; }
-
->>>>>>> Stashed changes
 
     }
 
