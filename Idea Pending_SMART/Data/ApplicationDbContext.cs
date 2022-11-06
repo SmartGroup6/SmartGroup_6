@@ -21,18 +21,6 @@ namespace Idea_Pending_SMART.Data
         public DbSet<Class> Class => Set<Class>();
         public DbSet<Enrollment> Enrollments => Set<Enrollment>();
         public DbSet<Attendance> Attendance => Set<Attendance>();
-
-<<<<<<< Updated upstream
-        public DbSet<Enrollment> Enrollments => Set<Enrollment>();
-=======
-        public DbSet<Permissions> Permissions => Set<Permissions>();
-        public DbSet<Role> Role => Set<Role>();
->>>>>>> Stashed changes
-
-        public DbSet<StudentNote> StudentNote => Set<StudentNote>();
-
-<<<<<<< Updated upstream
-=======
         public DbSet<User> User => Set<User>();
 
         /*   public DbSet<Semester> Semester { get; set; }
@@ -65,10 +53,6 @@ namespace Idea_Pending_SMART.Data
 
            public DbSet<User> User { get; set; }//user*/
 
-
-
-
->>>>>>> Stashed changes
 
     }
 }
