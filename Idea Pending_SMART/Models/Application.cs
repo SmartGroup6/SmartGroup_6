@@ -20,13 +20,6 @@ namespace Idea_Pending_SMART.Models
         [Required]
         public string? ApplicationNameLast { get; set; }
 
-
-
-        [Required]
-        public float AcademicScore { get; set; }
-
-        [Required]
-        public string? DateOfBirth { get; set; }
         [Required]
         public string? Financials { get; set; }
         

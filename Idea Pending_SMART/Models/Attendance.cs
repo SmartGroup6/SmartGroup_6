@@ -20,7 +20,7 @@ namespace Idea_Pending_SMART.Models
 
         [Required]
         [ForeignKey("Enrollment")]
-        public int? EnrollmentID { get; set; }
+        public int EnrollmentID { get; set; }
 
     }
 

@@ -1,14 +1,10 @@
-<<<<<<< Updated upstream
-﻿using Humanizer;
+using Humanizer;
 using Idea_Pending_SMART.Data;
-<<<<<<< Updated upstream
+
 using Idea_Pending_SMART.Models;
-=======
-using Idea_Pending_SMART.Dev_Chantel.Models;
-=======
+
 ﻿using Idea_Pending_SMART.Data;
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+
 using Microsoft.EntityFrameworkCore;
 
 namespace Idea_Pending_SMART.Models
@@ -65,7 +61,6 @@ namespace Idea_Pending_SMART.Models
                     },
                     new Enrollment
                     {
-                        EnrollmentID = 2,
                         ClassID = 2,
                         StudentID = 2
                     },
@@ -73,9 +68,6 @@ namespace Idea_Pending_SMART.Models
                     {
                         ClassID = 3,
                         StudentID = 3
-                    }
-                        ClassID = 1,
-                        StudentID = 2
                     },
                     new Enrollment
                     {
@@ -103,7 +95,7 @@ namespace Idea_Pending_SMART.Models
                         timeAvailable = true,
                         CurrentGrade = 'B',
                         SponsorID =  1,
-                        ApplicationID = 1
+                        ApplicantID = 1
                     },
                     new Student
                     {
@@ -111,7 +103,7 @@ namespace Idea_Pending_SMART.Models
                         timeAvailable = true,
                         CurrentGrade = 'A',
                         SponsorID = 1,
-                        ApplicationID = 2
+                        ApplicantID = 2
                     },
                     new Student
                     {
@@ -119,7 +111,7 @@ namespace Idea_Pending_SMART.Models
                         timeAvailable = false,
                         CurrentGrade = 'B',
                         SponsorID = 0,
-                        ApplicationID = 3
+                        ApplicantID = 3
                     },
                     new Student
                     {
@@ -127,7 +119,7 @@ namespace Idea_Pending_SMART.Models
                         timeAvailable = false,
                         CurrentGrade = 'C',
                         SponsorID = 0,
-                        ApplicationID = 4
+                        ApplicantID = 4
                     },
                     new Student
                     {
@@ -135,14 +127,11 @@ namespace Idea_Pending_SMART.Models
                         timeAvailable = true,
                         CurrentGrade = 'B',
                         SponsorID = 3,
-                        ApplicationID = 5
+                        ApplicantID = 5
                     }
 
                     ); context.SaveChanges();
             }
-        }
-    }
-}
             if (!context.Applicant.Any())
             {
                 context.Applicant.AddRange(
@@ -358,7 +347,7 @@ namespace Idea_Pending_SMART.Models
                         EnrollmentID = 5,
                         Date = DateTime.Now,
                         MealProvided = true,
-                        MealEaten= 'N'
+                        MealEaten = 'N'
                     }
 
                     ); context.SaveChanges();
@@ -622,7 +611,7 @@ namespace Idea_Pending_SMART.Models
 
                         DateCreated = DateTime.Now,
                         Text = "abc xyz",
-                        StudentID= 2
+                        StudentID = 2
                     },
                     new StudentNote
                     {
@@ -665,4 +654,5 @@ namespace Idea_Pending_SMART.Models
 
     }
 }
+                    
 

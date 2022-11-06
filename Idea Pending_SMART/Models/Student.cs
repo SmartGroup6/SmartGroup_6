@@ -21,6 +21,7 @@ namespace Idea_Pending_SMART.Models
 
         [Required]
         [ForeignKey("Applicant")]
+        public int ApplicantID { get; set; }
 
 
 

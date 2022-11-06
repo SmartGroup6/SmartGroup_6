@@ -22,6 +22,9 @@ namespace Idea_Pending_SMART.Data
         public DbSet<Enrollment> Enrollments => Set<Enrollment>();
         public DbSet<Attendance> Attendance => Set<Attendance>();
         public DbSet<User> User => Set<User>();
+        public DbSet<Permissions> Permissions => Set<Permissions>();
+        public DbSet<Role> Role => Set<Role>();
+        public DbSet<StudentNote> StudentNote => Set<StudentNote>();
 
         /*   public DbSet<Semester> Semester { get; set; }
 
