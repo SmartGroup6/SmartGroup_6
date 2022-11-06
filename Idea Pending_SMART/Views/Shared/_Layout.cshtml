@@ -16,7 +16,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <p>To do: replace this navbar :)</p>
+                
                 <div class="collapse navbar-collapse" id="navbarColor02">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
@@ -38,13 +38,14 @@
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
+                <p>To do: replace this navbar :)</p>
             </div>
         </nav>
     </header>
     <div class="container-fluid px-0">
-        <div class="row">
+        <div class="row flex-nowrap">
             <!--Travis attemping to make a sidebar-->
-            <div class="col">
+            <div class="col min-width-300-md">
                 <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
                     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                         <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
@@ -79,7 +80,7 @@
                     <hr>
                 </div>
             </div>
-            <div class="col">
+            <div class="col-10">
                 <main role="main" class="pb-3">
                     @RenderBody()
                 </main>
