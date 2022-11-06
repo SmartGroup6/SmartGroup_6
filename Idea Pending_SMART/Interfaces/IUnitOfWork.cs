@@ -1,11 +1,12 @@
-﻿namespace Idea_Pending_SMART.Interfaces
+﻿using Idea_Pending_SMART.Models;
+
+namespace Idea_Pending_SMART.Interfaces
 {
     public interface IUnitOfWork
     {
         //Data Accessors
-        //public IRepository<Category> Category { get; }
-        //public IRepository<FoodType> FoodType { get; }
-
+        public IRepository<Semester> Semester { get; }
+       
         //save changes to data source
         void Commit();
         //same but an Asynchronous Commit

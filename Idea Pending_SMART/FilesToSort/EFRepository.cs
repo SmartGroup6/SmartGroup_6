@@ -4,6 +4,8 @@ using Idea_Pending_SMART.Interfaces;
 
 namespace Idea_Pending_SMART.FilesToSort
 {
+    //What is this for? -Travis
+    /*
     public class EFRepository : IRepository
     {
         private ApplicationDbContext context;
@@ -13,14 +15,10 @@ namespace Idea_Pending_SMART.FilesToSort
             this.context = context;
         }
 
-        //throws to remove errors until IQueryable is implemented
-        public IQueryable<ClassroomList> Classrooms => throw new NotImplementedException();
-
-        public IQueryable<Student> Students => throw new NotImplementedException();
-
-        //  public IQueryable<ClassroomList> Classrooms => context.Classroom;
-        //   public IQueryable<Enrollment> Enrollments => context.Enrollments;
-        //    public IQueryable<Student> Students => context.AddStudents;
+        public IQueryable<ClassroomList> Classrooms => context.Classroom;
+        public IQueryable<Enrollment> Enrollments => context.Enrollments;
+        public IQueryable<Student> Students => context.AddStudents;
 
     }
+    */
 }

@@ -1,20 +1,24 @@
 using Idea_Pending_SMART.Data;
+using Idea_Pending_SMART.Interfaces;
 using Idea_Pending_SMART.Models;
-using Idea_Pending_SMART.FilesToSort;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-//builder.Services.AddScoped<IRepository, EFRepository>(); used for chantel to test class room and student population
+
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 
@@ -39,14 +43,9 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
-    name: "Instructor",
-    pattern: "{area:exists}/{controller=Class}/{action=ClassroomList}/{id?}");
-
-
-app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-
+    pattern: "{area=Home}/{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
+
 SeedData.EnsurePopulated(app);
 app.Run();
