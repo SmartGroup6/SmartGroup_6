@@ -10,12 +10,11 @@ namespace Idea_Pending_SMART.Models
         public int ApplicationID { get; set; }
 
         [Required]
-<<<<<<< Updated upstream
         public float AcademicScore { get; set; }
 
         [Required]
-        public DateTime DateOfBirth { get; set; }
-=======
+        public string? DateOfBirth { get; set; }
+
         public string? ApplicationNameFirst { get; set; }
 
         [Required]
@@ -28,8 +27,6 @@ namespace Idea_Pending_SMART.Models
 
         [Required]
         public string? DateOfBirth { get; set; }
->>>>>>> Stashed changes
-
         [Required]
         public string? Financials { get; set; }
         
@@ -52,11 +49,8 @@ namespace Idea_Pending_SMART.Models
         public int? TotalScore { get; set; }
 
         [Required]
-<<<<<<< Updated upstream
-        public DateTime? SubmissionDate { get; set; }
-=======
         public string? SubmissionDate { get; set; }
->>>>>>> Stashed changes
+
 
         [Required]
         public bool? ChoppaTransportNeeded { get; set; }
@@ -68,12 +62,10 @@ namespace Idea_Pending_SMART.Models
         [ForeignKey("Applicant")]
         public int ApplicantID { get; set; }
 
-<<<<<<< Updated upstream
-=======
         [ForeignKey("Person")] //required for the guardian if applicable and gets address from guardian
         public int PersonID { get; set; }
 
->>>>>>> Stashed changes
+
 
     }
 
