@@ -1,7 +1,7 @@
 ﻿using Idea_Pending_SMART.Interfaces;
 using Idea_Pending_SMART.Models;
 using Microsoft.AspNetCore.Mvc;
-
+using System.Dynamic;
 
 [Area("Section")]
 public class SectionController : Controller
@@ -33,6 +33,16 @@ public class SectionController : Controller
     {
         IEnumerable<Class> obj = _unitOfWork.Class.GetAll();
         return View(obj);
+    }
+
+
+
+
+    [HttpGet]
+    public IActionResult Open(int? id)
+    {
+            IEnumerable<Enrollment> obj = _unitOfWork.Enrollment.GetAll(c => c.ClassID == id);
+       return View(obj);
     }
 
     

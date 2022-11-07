@@ -7,9 +7,11 @@ namespace Idea_Pending_SMART.Models
     public class Enrollment
     {
         [Key]
+        [Display(Name = "EnrollmentID")]
         public int EnrollmentID { get; set; }
 
         [Required]
+        [Display(Name = "ClassID")]
         [ForeignKey("Class")]
         public int ClassID { get; set; }
 

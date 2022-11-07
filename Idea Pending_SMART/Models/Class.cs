@@ -13,7 +13,7 @@ namespace Idea_Pending_SMART.Models
         [Display(Name = "Class Description")]
         public string? ClassDescription { get; set; }
 
-        [Display(Name = "Students in Class")]
+        [Display(Name = "Student Count:")]
         [Required]
         public int? Studentcount { get; set; }
 
