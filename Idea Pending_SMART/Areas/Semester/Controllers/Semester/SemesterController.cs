@@ -24,11 +24,11 @@ public class SemesterController : Controller
     //ctrl+k+c to comment, ctrl+k+u to uncomment
     public ViewResult Index()
     {
-        IEnumerable<Semester> objList = _unitOfWork.Semester.GetAll();
-        return View(objList);
-        //return View();
-    }
+        IEnumerable<Semester> objSemesterList = _unitOfWork.Semester.GetAll();
+        
+        return View(objSemesterList);
 
+    }
 
     ////Unsure of usage
     //[HttpGet]

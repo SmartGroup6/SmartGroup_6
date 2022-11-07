@@ -10,6 +10,7 @@ namespace Idea_Pending_SMART.Models
         public int SemesterID { get; set; }
 
         [Required]
+
         public string? SemesterName { get; set; }
 
         [Required]

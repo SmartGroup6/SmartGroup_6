@@ -27,14 +27,15 @@ public class SectionController : Controller
     {
         _unitOfWork = unitOfWork;
     }
-
+ 
     //ctrl+k+c to comment, ctrl+k+u to uncomment
-    public ViewResult ClassroomList()
+    public ViewResult Index()
     {
-        //IEnumerable<Semester> objList = _unitOfWork.Semester.GetAll();
-        //return View(objList);
-        return View();
+        IEnumerable<Class> obj = _unitOfWork.Class.GetAll();
+        return View(obj);
     }
+
+    
 
 
     ////Unsure of usage

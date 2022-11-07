@@ -361,7 +361,8 @@ namespace Idea_Pending_SMART.Models
                         ClassTimeID = 1,
                         CourseID = 4,
                         SemesterID = 1,
-                        Studentcount = 15
+                        Studentcount = 15,
+                        UserID = 1
                     },
                     new Class
                     {
@@ -369,7 +370,8 @@ namespace Idea_Pending_SMART.Models
                         ClassTimeID = 2,
                         CourseID = 2,
                         SemesterID = 1,
-                        Studentcount = 10
+                        Studentcount = 10,
+                        UserID = 2
                     },
                     new Class
                     {
@@ -377,7 +379,8 @@ namespace Idea_Pending_SMART.Models
                         ClassTimeID = 3,
                         CourseID = 1,
                         SemesterID = 2,
-                        Studentcount = 12
+                        Studentcount = 12,
+                        UserID = 1
                     },
                     new Class
                     {
@@ -385,7 +388,8 @@ namespace Idea_Pending_SMART.Models
                         ClassTimeID = 4,
                         CourseID = 5,
                         SemesterID = 2,
-                        Studentcount = 20
+                        Studentcount = 20,
+                        UserID = 2
                     }
 
                     ); context.SaveChanges();

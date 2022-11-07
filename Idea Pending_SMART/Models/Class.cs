@@ -10,8 +10,10 @@ namespace Idea_Pending_SMART.Models
         public int ClassID { get; set; }
 
         [Required]
+        [Display(Name = "Class Description")]
         public string? ClassDescription { get; set; }
 
+        [Display(Name = "Students in Class")]
         [Required]
         public int? Studentcount { get; set; }
 
@@ -26,6 +28,10 @@ namespace Idea_Pending_SMART.Models
         [Required]
         [ForeignKey("Semester")]
         public int SemesterID { get; set; }
+
+        [Display(Name = "UserID")]
+        [ForeignKey("User")]
+        public int? UserID { get; set; }
     }
 
 }

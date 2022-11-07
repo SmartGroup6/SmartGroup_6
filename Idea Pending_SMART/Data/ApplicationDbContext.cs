@@ -10,7 +10,8 @@ namespace Idea_Pending_SMART.Data
             : base(options)
         {}
         public DbSet<School> School => Set<School>();
-        public DbSet<Semester> Semester => Set<Semester>();
+     //  public DbSet<Semester> Semester => Set<Semester>();
+     public DbSet<Semester> Semester { get; set; }
         public DbSet<Course> Course => Set<Course>();
         public DbSet<Person> Person => Set<Person>();
         public DbSet<Sponsor> Sponsor => Set<Sponsor>();

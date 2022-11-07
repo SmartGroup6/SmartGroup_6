@@ -6,6 +6,7 @@ namespace Idea_Pending_SMART.Interfaces
     {
         //Data Accessors
         public IRepository<Semester> Semester { get; }
+        public IRepository<Class> Class { get; }
        
         //save changes to data source
         void Commit();

@@ -1,10 +1,50 @@
-﻿
-
-@{
-    ViewData["Title"] = "Semester";
+﻿@{
+    ViewData["Title"] = "Class Description";
+    ViewData["Title"] = "Students in Class";
+    ViewData["Title"] = "UserID";
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SMART System</title>
+    <link href="/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+</head>
 
-<div class="container p-3">
-    <h4>TODO:</h4>
-    <p>Like, everything</p>
-</div>
+<body>
+    <div class="bg-dark text-white p-2">
+        <span class="navbar-brand ml-2">Your classes</></span>
+    </div>
+    <div class="flex-lg-column">
+        @foreach (var obj in Model)
+        {
+            @if (obj.UserID == 1){
+                <a class="btn" style="background-color:transparent" href="#" role="button">
+
+
+                    <span class="badge bg-secondary bg-dark .rounded-lg mb-xxl-2">
+                        <tr>
+                            <th width="80%">
+                            <td>
+                                <h3>@obj.ClassDescription</h3>
+                                <h4>Need Enrollment Count here / @obj.Studentcount</h4>
+                                <h4>Instructor: @obj.UserID</h4>
+                            </td>
+
+                        </tr>
+                        <td>
+                        </td>
+                    </span>
+                </a>
+            }            
+        }
+       
+
+
+    </div>
+
+
+
+</body>
+</html>
+
