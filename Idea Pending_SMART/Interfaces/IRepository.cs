@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Linq.Expressions;
 
 namespace Idea_Pending_SMART.Interfaces
 {
@@ -43,6 +44,7 @@ namespace Idea_Pending_SMART.Interfaces
 
         // Updates all changes to an object
         void Update(T entity);
+
 
     }
 }

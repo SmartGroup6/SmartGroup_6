@@ -9,6 +9,7 @@ namespace Idea_Pending_SMART.Interfaces
         public IRepository<Class> Class { get; }
         
         public IRepository<Enrollment> Enrollment { get; }
+        public IRepository<Student> Student { get; }
        
         //save changes to data source
         void Commit();

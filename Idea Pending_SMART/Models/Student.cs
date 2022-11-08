@@ -7,6 +7,7 @@ namespace Idea_Pending_SMART.Models
     public class Student
     {
         [Key]
+        [Display (Name ="StudentID")]
         public int StudentID { get; set; }
 
         [Required]
@@ -25,6 +26,7 @@ namespace Idea_Pending_SMART.Models
         [Required]
         public string? DateOfBirth { get; set; }
 
+        [Display(Name = "First")]
         public string? ApplicationNameFirst { get; set; }
 
         [Required]

@@ -16,6 +16,7 @@ namespace Idea_Pending_SMART.Data
         private IRepository<Semester> _Semester;
         private IRepository<Class> _Class;
         private IRepository<Enrollment> _Enrollment;
+        private IRepository<Student> _Student;
 
         public IRepository<Semester> Semester
         {
@@ -45,6 +46,15 @@ namespace Idea_Pending_SMART.Data
             }
         }
 
+        public IRepository<Student> Student
+        {
+            get
+            {
+
+                _Student ??= new Repository<Student>(_dbContext);
+                return _Student;
+            }
+        }
 
 
 

@@ -1,15 +1,17 @@
 ﻿using Idea_Pending_SMART.Interfaces;
 using Idea_Pending_SMART.Models;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using System.Dynamic;
+using System.Reflection.Metadata.Ecma335;
 
 [Area("Section")]
 public class SectionController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
     private string defaultAction = "Index";
-    List<Student> students;
-    List<Enrollment> enrollments;
+
     /*
         +getClassDetails(ClassID)
         +checkClassSpace(ClassID)
@@ -24,7 +26,7 @@ public class SectionController : Controller
         +changeStudentMax(ClassID, StudentCount)
         +getCourseDetails(CourseID)
     */
-
+    
     public SectionController(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
@@ -43,12 +45,12 @@ public class SectionController : Controller
     [HttpGet]
     public IActionResult Open(int? id)
     {
+        //     IEnumerable<Enrollment> obj = _unitOfWork.Enrollment.GetAll(c => c.ClassID == id);
+        var student = _unitOfWork.Student;
         IEnumerable<Enrollment> obj = _unitOfWork.Enrollment.GetAll(c => c.ClassID == id);
-
         return View(obj);
     }
 
-    
 
 
     ////Unsure of usage
@@ -62,7 +64,7 @@ public class SectionController : Controller
     //[ValidateAntiForgeryToken]
     //public IActionResult Create(Semester obj)
     //{
-        
+
     //    if (ModelState.IsValid)
     //    {
     //        _unitOfWork.Semester.Add(obj); //internal add

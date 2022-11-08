@@ -1,5 +1,7 @@
 ﻿@{
     ViewData["Title"] = "EnrollmentID";
+    ViewData["Title"] = "Name";
+    ViewData["Titl"] = "StudentID";
 
 }
 
@@ -17,8 +19,9 @@
     </div>
     @foreach (var obj in Model)
     {
-
+        
         <h3>@obj.EnrollmentID</h3>
+        <h3>@obj.First</h3>
 
         }
     }
