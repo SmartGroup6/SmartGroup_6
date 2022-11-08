@@ -8,6 +8,8 @@ public class SectionController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
     private string defaultAction = "Index";
+    List<Student> students;
+    List<Enrollment> enrollments;
     /*
         +getClassDetails(ClassID)
         +checkClassSpace(ClassID)
@@ -41,8 +43,9 @@ public class SectionController : Controller
     [HttpGet]
     public IActionResult Open(int? id)
     {
-            IEnumerable<Enrollment> obj = _unitOfWork.Enrollment.GetAll(c => c.ClassID == id);
-       return View(obj);
+        IEnumerable<Enrollment> obj = _unitOfWork.Enrollment.GetAll(c => c.ClassID == id);
+
+        return View(obj);
     }
 
     

@@ -15,7 +15,6 @@ namespace Idea_Pending_SMART.Data
         public DbSet<Course> Course => Set<Course>();
         public DbSet<Person> Person => Set<Person>();
         public DbSet<Sponsor> Sponsor => Set<Sponsor>();
-        public DbSet<Application> Application => Set<Application>();
         public DbSet<ClassTime> ClassTimes => Set<ClassTime>();
         public DbSet<Applicant> Applicant => Set<Applicant>();
         public DbSet<Student> Students => Set<Student>();

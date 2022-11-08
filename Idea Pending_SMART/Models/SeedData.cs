@@ -95,80 +95,6 @@ namespace Idea_Pending_SMART.Models
                         timeAvailable = true,
                         CurrentGrade = 'B',
                         SponsorID =  1,
-                        ApplicantID = 1
-                    },
-                    new Student
-                    {
-
-                        timeAvailable = true,
-                        CurrentGrade = 'A',
-                        SponsorID = 1,
-                        ApplicantID = 2
-                    },
-                    new Student
-                    {
-
-                        timeAvailable = false,
-                        CurrentGrade = 'B',
-                        SponsorID = 0,
-                        ApplicantID = 3
-                    },
-                    new Student
-                    {
-
-                        timeAvailable = false,
-                        CurrentGrade = 'C',
-                        SponsorID = 0,
-                        ApplicantID = 4
-                    },
-                    new Student
-                    {
-
-                        timeAvailable = true,
-                        CurrentGrade = 'B',
-                        SponsorID = 3,
-                        ApplicantID = 5
-                    }
-
-                    ); context.SaveChanges();
-            }
-            if (!context.Applicant.Any())
-            {
-                context.Applicant.AddRange(
-                    new Applicant
-                    {
-                        AppStatus = "Active",
-                        ApplicationID = 1
-                    },
-                    new Applicant
-                    {
-                        AppStatus = "Active",
-                        ApplicationID = 2
-                    },
-                    new Applicant
-                    {
-                        AppStatus = "Not Active",
-                        ApplicationID = 3
-                    },
-                    new Applicant
-                    {
-                        AppStatus = "Active",
-                        ApplicationID = 4
-                    },
-                    new Applicant
-                    {
-                        AppStatus = "Active",
-                        ApplicationID = 5
-                    }
-
-                    ); context.SaveChanges();
-            }
-
-            if (!context.Application.Any())
-            {
-                context.Application.AddRange(
-                    new Application
-                    {
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "One",
                         AcademicScore = 25,
@@ -185,8 +111,12 @@ namespace Idea_Pending_SMART.Models
                         MealsNeeded = true,
                         ApplicantID = 1
                     },
-                    new Application
+                    new Student
                     {
+
+                        timeAvailable = true,
+                        CurrentGrade = 'A',
+                        SponsorID = 1,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Two",
                         AcademicScore = 25,
@@ -203,8 +133,12 @@ namespace Idea_Pending_SMART.Models
                         MealsNeeded = true,
                         ApplicantID = 2
                     },
-                    new Application
+                    new Student
                     {
+
+                        timeAvailable = false,
+                        CurrentGrade = 'B',
+                        SponsorID = 0,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Three",
                         AcademicScore = 0,
@@ -221,8 +155,12 @@ namespace Idea_Pending_SMART.Models
                         MealsNeeded = true,
                         ApplicantID = 3
                     },
-                    new Application
+                    new Student
                     {
+
+                        timeAvailable = false,
+                        CurrentGrade = 'C',
+                        SponsorID = 0,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Four",
                         AcademicScore = 5,
@@ -239,8 +177,12 @@ namespace Idea_Pending_SMART.Models
                         MealsNeeded = true,
                         ApplicantID = 4
                     },
-                    new Application
+                    new Student
                     {
+
+                        timeAvailable = true,
+                        CurrentGrade = 'B',
+                        SponsorID = 3,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Five",
                         AcademicScore = 20,
@@ -260,6 +202,33 @@ namespace Idea_Pending_SMART.Models
 
                     ); context.SaveChanges();
             }
+            if (!context.Applicant.Any())
+            {
+                context.Applicant.AddRange(
+                    new Applicant
+                    {
+                        AppStatus = "Active"
+                    },
+                    new Applicant
+                    {
+                        AppStatus = "Active"
+                    },
+                    new Applicant
+                    {
+                        AppStatus = "Not Active"
+                    },
+                    new Applicant
+                    {
+                        AppStatus = "Active"
+                    },
+                    new Applicant
+                    {
+                        AppStatus = "Active"
+                    }
+
+                    ); context.SaveChanges();
+            }
+
             if (!context.Course.Any())
             {
                 context.Course.AddRange(

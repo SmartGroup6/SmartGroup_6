@@ -13,11 +13,6 @@ namespace Idea_Pending_SMART.Models
         public string? AppStatus { get; set; }
 
 
-        [Required]
-        [ForeignKey("Application")]
-        public int ApplicationID { get; set; }
-
-
     }
 
 }
