@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Xml.Linq;
 
 namespace Idea_Pending_SMART.Models
 {
@@ -13,7 +12,7 @@ namespace Idea_Pending_SMART.Models
         public string? CompanyName { get; set; }
         //NOT required
         public string? DonationTotal { get; set; }
-        
+
 
         [Required]
         [ForeignKey("Person")]

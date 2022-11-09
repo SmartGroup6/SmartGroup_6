@@ -1,5 +1,4 @@
 ﻿using Idea_Pending_SMART.Interfaces;
-using Idea_Pending_SMART.Models;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -58,7 +57,7 @@ public class ApplicationController : Controller
     //[ValidateAntiForgeryToken]
     //public IActionResult Create(Semester obj)
     //{
-        
+
     //    if (ModelState.IsValid)
     //    {
     //        _unitOfWork.Semester.Add(obj); //internal add

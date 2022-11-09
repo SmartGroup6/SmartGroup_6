@@ -1,5 +1,4 @@
 ﻿using Idea_Pending_SMART.Interfaces;
-using Idea_Pending_SMART.Models;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -8,13 +7,13 @@ public class AdminController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
     private string defaultAction = "Index";
-/*
-    +CreateGrade(GradeID, StudentID, LetterGrade, Percent, Pass)
-    +UpdateGrade(StudentID,LetterGrade)
-    +AddAttendance
-    +AddNotes
-    +Meals
-    * */
+    /*
+        +CreateGrade(GradeID, StudentID, LetterGrade, Percent, Pass)
+        +UpdateGrade(StudentID,LetterGrade)
+        +AddAttendance
+        +AddNotes
+        +Meals
+        * */
 
     public AdminController(IUnitOfWork unitOfWork)
     {
@@ -41,7 +40,7 @@ public class AdminController : Controller
     //[ValidateAntiForgeryToken]
     //public IActionResult Create(Semester obj)
     //{
-        
+
     //    if (ModelState.IsValid)
     //    {
     //        _unitOfWork.Semester.Add(obj); //internal add

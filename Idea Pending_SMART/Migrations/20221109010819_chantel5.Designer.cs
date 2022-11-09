@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Idea_Pending_SMART.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221106210531_chanteel1")]
-    partial class chanteel1
+    [Migration("20221109010819_chantel5")]
+    partial class chantel5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,85 +36,9 @@ namespace Idea_Pending_SMART.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ApplicationID")
-                        .HasColumnType("int");
-
                     b.HasKey("ApplicantID");
 
                     b.ToTable("Applicant");
-                });
-
-            modelBuilder.Entity("Idea_Pending_SMART.Models.Application", b =>
-                {
-                    b.Property<int>("ApplicationID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ApplicationID"), 1L, 1);
-
-                    b.Property<float>("AcademicScore")
-                        .HasColumnType("real");
-
-                    b.Property<int?>("AdminScore")
-                        .IsRequired()
-                        .HasColumnType("int");
-
-                    b.Property<int>("ApplicantID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ApplicationNameFirst")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ApplicationNameLast")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("ChoppaTransportNeeded")
-                        .IsRequired()
-                        .HasColumnType("bit");
-
-                    b.Property<string>("DateOfBirth")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DeterminationNote")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DistanceNote")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Financials")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("InstructorScore")
-                        .IsRequired()
-                        .HasColumnType("int");
-
-                    b.Property<bool?>("MealsNeeded")
-                        .IsRequired()
-                        .HasColumnType("bit");
-
-                    b.Property<int>("PersonID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SocialWorkerScore")
-                        .IsRequired()
-                        .HasColumnType("int");
-
-                    b.Property<string>("SubmissionDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("TotalScore")
-                        .IsRequired()
-                        .HasColumnType("int");
-
-                    b.HasKey("ApplicationID");
-
-                    b.ToTable("Application");
                 });
 
             modelBuilder.Entity("Idea_Pending_SMART.Models.Attendance", b =>
@@ -170,6 +94,9 @@ namespace Idea_Pending_SMART.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
+                    b.Property<int?>("UserID")
+                        .HasColumnType("int");
+
                     b.HasKey("ClassID");
 
                     b.ToTable("Class");
@@ -222,19 +149,18 @@ namespace Idea_Pending_SMART.Migrations
 
             modelBuilder.Entity("Idea_Pending_SMART.Models.Enrollment", b =>
                 {
-                    b.Property<int>("EnrollmentID")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("StudentID")
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EnrollmentID"), 1L, 1);
 
                     b.Property<int>("ClassID")
                         .HasColumnType("int");
 
-                    b.Property<int>("StudentID")
+                    b.Property<int>("EnrollmentID")
                         .HasColumnType("int");
 
-                    b.HasKey("EnrollmentID");
+                    b.HasKey("StudentID", "ClassID");
+
+                    b.HasIndex("ClassID");
 
                     b.ToTable("Enrollments");
                 });
@@ -413,14 +339,71 @@ namespace Idea_Pending_SMART.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StudentID"), 1L, 1);
 
+                    b.Property<float>("AcademicScore")
+                        .HasColumnType("real");
+
+                    b.Property<int?>("AdminScore")
+                        .IsRequired()
+                        .HasColumnType("int");
+
                     b.Property<int>("ApplicantID")
                         .HasColumnType("int");
+
+                    b.Property<string>("ApplicationNameFirst")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ApplicationNameLast")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("ChoppaTransportNeeded")
+                        .IsRequired()
+                        .HasColumnType("bit");
 
                     b.Property<string>("CurrentGrade")
                         .IsRequired()
                         .HasColumnType("nvarchar(1)");
 
+                    b.Property<string>("DateOfBirth")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DeterminationNote")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DistanceNote")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Financials")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("InstructorScore")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("MealsNeeded")
+                        .IsRequired()
+                        .HasColumnType("bit");
+
+                    b.Property<int>("PersonID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SocialWorkerScore")
+                        .IsRequired()
+                        .HasColumnType("int");
+
                     b.Property<int?>("SponsorID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SubmissionDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TotalScore")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<bool?>("timeAvailable")
@@ -685,6 +668,25 @@ namespace Idea_Pending_SMART.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Idea_Pending_SMART.Models.Enrollment", b =>
+                {
+                    b.HasOne("Idea_Pending_SMART.Models.Class", "Class")
+                        .WithMany("Enrollments")
+                        .HasForeignKey("ClassID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Idea_Pending_SMART.Models.Student", "Student")
+                        .WithMany("Enrollments")
+                        .HasForeignKey("StudentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Class");
+
+                    b.Navigation("Student");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -734,6 +736,16 @@ namespace Idea_Pending_SMART.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Idea_Pending_SMART.Models.Class", b =>
+                {
+                    b.Navigation("Enrollments");
+                });
+
+            modelBuilder.Entity("Idea_Pending_SMART.Models.Student", b =>
+                {
+                    b.Navigation("Enrollments");
                 });
 #pragma warning restore 612, 618
         }

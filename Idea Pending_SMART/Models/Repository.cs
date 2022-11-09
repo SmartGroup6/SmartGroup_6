@@ -1,6 +1,6 @@
-using Microsoft.EntityFrameworkCore;
 using Idea_Pending_SMART.Data;
 using Idea_Pending_SMART.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace Idea_Pending_SMART.Models
@@ -13,12 +13,12 @@ namespace Idea_Pending_SMART.Models
         public Repository(ApplicationDbContext ctx)
         {
             db_context = ctx;
-          
+
             dbset = db_context.Set<T>();
 
         }
 
-        
+
         public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null)
         {
             IQueryable<T> query = dbset;

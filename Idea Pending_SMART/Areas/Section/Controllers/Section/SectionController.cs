@@ -1,10 +1,6 @@
 ﻿using Idea_Pending_SMART.Interfaces;
 using Idea_Pending_SMART.Models;
-using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
-using System.Dynamic;
-using System.Reflection.Metadata.Ecma335;
 
 [Area("Section")]
 public class SectionController : Controller
@@ -26,12 +22,12 @@ public class SectionController : Controller
         +changeStudentMax(ClassID, StudentCount)
         +getCourseDetails(CourseID)
     */
-    
+
     public SectionController(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
     }
- 
+
     //ctrl+k+c to comment, ctrl+k+u to uncomment
     public ViewResult Index()
     {
@@ -45,11 +41,12 @@ public class SectionController : Controller
     [HttpGet]
     public IActionResult Open(int? id)
     {
-        //     IEnumerable<Enrollment> obj = _unitOfWork.Enrollment.GetAll(c => c.ClassID == id);
-        var student = _unitOfWork.Student;
-        IEnumerable<Enrollment> obj = _unitOfWork.Enrollment.GetAll(c => c.ClassID == id);
+        IEnumerable<Enrollment> obj = _unitOfWork.Enrollment.List(c => c.ClassID == id, orderBy: c => c.ClassID, "Class,Student");
         return View(obj);
     }
+
+
+
 
 
 

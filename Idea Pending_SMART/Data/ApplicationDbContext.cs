@@ -8,25 +8,37 @@ namespace Idea_Pending_SMART.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
-        {}
+        { }
         public DbSet<School> School => Set<School>();
-     //  public DbSet<Semester> Semester => Set<Semester>();
-     public DbSet<Semester> Semester { get; set; }
+        //  public DbSet<Semester> Semester => Set<Semester>();
+        public DbSet<Semester> Semester { get; set; }
+        public DbSet<Student> Students { get; set; }//student
+        public DbSet<Class> Class { get; set; }
+
+        public DbSet<Enrollment> Enrollments { get; set; }//enrollment
         public DbSet<Course> Course => Set<Course>();
         public DbSet<Person> Person => Set<Person>();
         public DbSet<Sponsor> Sponsor => Set<Sponsor>();
         public DbSet<ClassTime> ClassTimes => Set<ClassTime>();
         public DbSet<Applicant> Applicant => Set<Applicant>();
-        public DbSet<Student> Students => Set<Student>();
-        public DbSet<Class> Class => Set<Class>();
-        public DbSet<Enrollment> Enrollments => Set<Enrollment>();
+        //  public DbSet<Student> Students => Set<Student>();
+        //   public DbSet<Class> Class => Set<Class>();
+        //  public DbSet<Enrollment> Enrollments => Set<Enrollment>();
         public DbSet<Attendance> Attendance => Set<Attendance>();
         public DbSet<User> User => Set<User>();
         public DbSet<Permissions> Permissions => Set<Permissions>();
         public DbSet<Role> Role => Set<Role>();
         public DbSet<StudentNote> StudentNote => Set<StudentNote>();
 
-        /*   public DbSet<Semester> Semester { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Enrollment>().HasKey(sc => new { sc.StudentID, sc.ClassID });
+            base.OnModelCreating(builder);
+        }
+
+
+        /* public DbSet<Semester> Semester { get; set; }
 
            public DbSet<Applicant> Applicant { get; set; }
 

@@ -1,13 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Xml.Linq;
 
 namespace Idea_Pending_SMART.Models
 {
     public class Student
     {
         [Key]
-        [Display (Name ="StudentID")]
+        [Display(Name = "StudentID")]
         public int StudentID { get; set; }
 
         [Required]
@@ -26,7 +25,7 @@ namespace Idea_Pending_SMART.Models
         [Required]
         public string? DateOfBirth { get; set; }
 
-        [Display(Name = "First")]
+        [Display(Name = "FirstName")]
         public string? ApplicationNameFirst { get; set; }
 
         [Required]
@@ -70,6 +69,9 @@ namespace Idea_Pending_SMART.Models
         [ForeignKey("Person")] //required for the guardian if applicable and gets address from guardian
         public int PersonID { get; set; }
 
+
+        //testing
+        public List<Enrollment> Enrollments { get; set; }
 
 
     }

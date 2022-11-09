@@ -4,7 +4,7 @@
 
 namespace Idea_Pending_SMART.Migrations
 {
-    public partial class chantel3 : Migration
+    public partial class chantel5 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -1,5 +1,4 @@
 ﻿using Idea_Pending_SMART.Interfaces;
-using Idea_Pending_SMART.Models;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -8,13 +7,13 @@ public class AssignmentController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
     private string defaultAction = "Index";
-    
-        /*
-            +CreateAssignment(AssignN,Due,Score)
-            +UpdateAssignment(AssignN,Score)
-            +RemoveAssignment(AssignN)
-            +getAssignmentDetlais(assignmentID)
-        */
+
+    /*
+        +CreateAssignment(AssignN,Due,Score)
+        +UpdateAssignment(AssignN,Score)
+        +RemoveAssignment(AssignN)
+        +getAssignmentDetlais(assignmentID)
+    */
 
     public AssignmentController(IUnitOfWork unitOfWork)
     {
@@ -41,7 +40,7 @@ public class AssignmentController : Controller
     //[ValidateAntiForgeryToken]
     //public IActionResult Create(Semester obj)
     //{
-        
+
     //    if (ModelState.IsValid)
     //    {
     //        _unitOfWork.Semester.Add(obj); //internal add

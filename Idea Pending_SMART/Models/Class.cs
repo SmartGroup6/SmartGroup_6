@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Xml.Linq;
 
 namespace Idea_Pending_SMART.Models
 {
@@ -23,6 +22,7 @@ namespace Idea_Pending_SMART.Models
 
         [Required]
         [ForeignKey("ClassTime")]
+        [Display(Name = "ClassTime")]
         public int ClassTimeID { get; set; }
 
         [Required]
@@ -32,6 +32,10 @@ namespace Idea_Pending_SMART.Models
         [Display(Name = "UserID")]
         [ForeignKey("User")]
         public int? UserID { get; set; }
+
+        //testing
+        public List<Enrollment> Enrollments { get; set; }
+
     }
 
 }

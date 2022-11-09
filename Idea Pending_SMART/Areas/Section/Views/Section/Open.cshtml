@@ -1,8 +1,8 @@
-﻿@{
+﻿@model IEnumerable<Enrollment>
+@{
     ViewData["Title"] = "EnrollmentID";
-    ViewData["Title"] = "Name";
-    ViewData["Titl"] = "StudentID";
-
+    ViewData["Title"] = "ClassTime";
+    ViewData["Title"] = "FirstName";
 }
 
 <!DOCTYPE html>
@@ -17,13 +17,21 @@
     <div class="bg-dark text-white p-2">
         <span class="navbar-brand ml-2">Your classes</></span>
     </div>
+
     @foreach (var obj in Model)
     {
-        
-        <h3>@obj.EnrollmentID</h3>
-        <h3>@obj.First</h3>
+       <td>
+            <h2>
+                Enrollment ID: @obj.EnrollmentID
+            </h2>
+             <h2> Student ID: @obj.Student.StudentID
+             </h2>
+            <h2>
+               Name: @obj.Student.ApplicationNameFirst
+            </h2>
+       </td>
 
-        }
     }
+
 </body>
 </html>

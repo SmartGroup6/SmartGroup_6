@@ -1,5 +1,4 @@
 ﻿using Idea_Pending_SMART.Interfaces;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Idea_Pending_SMART.Areas.Student.Controllers.Student
 {

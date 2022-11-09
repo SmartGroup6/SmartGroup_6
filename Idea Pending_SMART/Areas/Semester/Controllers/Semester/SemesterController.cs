@@ -8,13 +8,13 @@ public class SemesterController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
     private string defaultAction = "Index";
-/*
-    +CreateGrade(GradeID, StudentID, LetterGrade, Percent, Pass)
-    +UpdateGrade(StudentID,LetterGrade)
-    +AddAttendance
-    +AddNotes
-    +Meals
-    * */
+    /*
+        +CreateGrade(GradeID, StudentID, LetterGrade, Percent, Pass)
+        +UpdateGrade(StudentID,LetterGrade)
+        +AddAttendance
+        +AddNotes
+        +Meals
+        * */
 
     public SemesterController(IUnitOfWork unitOfWork)
     {
@@ -25,7 +25,7 @@ public class SemesterController : Controller
     public ViewResult Index()
     {
         IEnumerable<Semester> objSemesterList = _unitOfWork.Semester.GetAll();
-        
+
         return View(objSemesterList);
 
     }
@@ -41,7 +41,7 @@ public class SemesterController : Controller
     //[ValidateAntiForgeryToken]
     //public IActionResult Create(Semester obj)
     //{
-        
+
     //    if (ModelState.IsValid)
     //    {
     //        _unitOfWork.Semester.Add(obj); //internal add

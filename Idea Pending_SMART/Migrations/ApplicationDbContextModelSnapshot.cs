@@ -147,19 +147,18 @@ namespace Idea_Pending_SMART.Migrations
 
             modelBuilder.Entity("Idea_Pending_SMART.Models.Enrollment", b =>
                 {
-                    b.Property<int>("EnrollmentID")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("StudentID")
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EnrollmentID"), 1L, 1);
 
                     b.Property<int>("ClassID")
                         .HasColumnType("int");
 
-                    b.Property<int>("StudentID")
+                    b.Property<int>("EnrollmentID")
                         .HasColumnType("int");
 
-                    b.HasKey("EnrollmentID");
+                    b.HasKey("StudentID", "ClassID");
+
+                    b.HasIndex("ClassID");
 
                     b.ToTable("Enrollments");
                 });
@@ -667,6 +666,25 @@ namespace Idea_Pending_SMART.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Idea_Pending_SMART.Models.Enrollment", b =>
+                {
+                    b.HasOne("Idea_Pending_SMART.Models.Class", "Class")
+                        .WithMany("Enrollments")
+                        .HasForeignKey("ClassID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Idea_Pending_SMART.Models.Student", "Student")
+                        .WithMany("Enrollments")
+                        .HasForeignKey("StudentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Class");
+
+                    b.Navigation("Student");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -716,6 +734,16 @@ namespace Idea_Pending_SMART.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Idea_Pending_SMART.Models.Class", b =>
+                {
+                    b.Navigation("Enrollments");
+                });
+
+            modelBuilder.Entity("Idea_Pending_SMART.Models.Student", b =>
+                {
+                    b.Navigation("Enrollments");
                 });
 #pragma warning restore 612, 618
         }

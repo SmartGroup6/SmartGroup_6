@@ -1,9 +1,4 @@
-using Humanizer;
 using Idea_Pending_SMART.Data;
-
-using Idea_Pending_SMART.Models;
-
-﻿using Idea_Pending_SMART.Data;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -19,7 +14,7 @@ namespace Idea_Pending_SMART.Models
             {
                 context.Database.Migrate();
             }
-           
+
             if (!context.ClassTimes.Any())
             {
                 context.ClassTimes.AddRange(
@@ -51,41 +46,7 @@ namespace Idea_Pending_SMART.Models
                     }
                     ); context.SaveChanges();
             }
-            if (!context.Enrollments.Any())
-            {
-                context.Enrollments.AddRange(
-                    new Enrollment
-                    {
-                        ClassID = 1,
-                        StudentID = 1
-                    },
-                    new Enrollment
-                    {
-                        ClassID = 2,
-                        StudentID = 2
-                    },
-                    new Enrollment
-                    {
-                        ClassID = 3,
-                        StudentID = 3
-                    },
-                    new Enrollment
-                    {
-                        ClassID = 2,
-                        StudentID = 1
-                    },
-                   new Enrollment
-                   {
-                       ClassID = 3,
-                       StudentID = 3
-                   },
-                   new Enrollment
-                   {
-                       ClassID = 3,
-                       StudentID = 4
-                   }
-                    ); context.SaveChanges();
-            }
+
             if (!context.Students.Any())
             {
                 context.Students.AddRange(
@@ -94,7 +55,7 @@ namespace Idea_Pending_SMART.Models
 
                         timeAvailable = true,
                         CurrentGrade = 'B',
-                        SponsorID =  1,
+                        SponsorID = 1,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "One",
                         AcademicScore = 25,
@@ -363,6 +324,41 @@ namespace Idea_Pending_SMART.Models
 
                     ); context.SaveChanges();
             }
+            if (!context.Enrollments.Any())
+            {
+                context.Enrollments.AddRange(
+                    new Enrollment
+                    {
+                        ClassID = 1,
+                        StudentID = 1
+                    },
+                    new Enrollment
+                    {
+                        ClassID = 2,
+                        StudentID = 2
+                    },
+                    new Enrollment
+                    {
+                        ClassID = 3,
+                        StudentID = 3
+                    },
+                    new Enrollment
+                    {
+                        ClassID = 2,
+                        StudentID = 1
+                    },
+                   new Enrollment
+                   {
+                       ClassID = 3,
+                       StudentID = 3
+                   },
+                   new Enrollment
+                   {
+                       ClassID = 3,
+                       StudentID = 4
+                   }
+                    ); context.SaveChanges();
+            }
 
             if (!context.Permissions.Any())
             {
@@ -627,5 +623,5 @@ namespace Idea_Pending_SMART.Models
 
     }
 }
-                    
+
 
