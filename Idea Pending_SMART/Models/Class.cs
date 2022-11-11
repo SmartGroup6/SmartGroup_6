@@ -14,7 +14,7 @@ namespace Idea_Pending_SMART.Models
 
         [Display(Name = "Student Count:")]
         [Required]
-        public int? Studentcount { get; set; }
+        public int Studentcount { get; set; }
 
         [Required]
         [ForeignKey("Course")]

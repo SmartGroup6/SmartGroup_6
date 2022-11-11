@@ -1,6 +1,9 @@
 ﻿using Idea_Pending_SMART.Interfaces;
 using Idea_Pending_SMART.Models;
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 [Area("Section")]
 public class SectionController : Controller
@@ -44,6 +47,20 @@ public class SectionController : Controller
         IEnumerable<Enrollment> obj = _unitOfWork.Enrollment.List(c => c.ClassID == id, orderBy: c => c.ClassID, "Class,Student");
         return View(obj);
     }
+
+    [HttpGet]
+    public IActionResult ClassDescription(int? id)
+    {
+        Class ClassObj = new Class();
+        if(id != null)
+        {
+            ClassObj = _unitOfWork.Class.Get(c => c.ClassID == id);
+        }
+        
+            return View(ClassObj);
+    }
+   
+    
 
 
 
