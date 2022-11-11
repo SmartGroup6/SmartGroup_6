@@ -46,6 +46,26 @@ namespace Idea_Pending_SMART.Models
                     }
                     ); context.SaveChanges();
             }
+            if (!context.User.Any())
+            {
+                context.User.AddRange(
+                    new User
+                    {
+                        EmailAddress = "abc@gmail.com",
+                        Password = "password",
+                        PersonID = 6,
+                        RoleID = 2,
+                    },
+                    new User
+                    {
+                        EmailAddress = "abc@gmail.com",
+                        Password = "12345678",
+                        PersonID = 7,
+                        RoleID = 1,
+                    }
+
+                    ); context.SaveChanges();
+            }
 
             if (!context.Students.Any())
             {
@@ -324,7 +344,7 @@ namespace Idea_Pending_SMART.Models
 
                     ); context.SaveChanges();
             }
-            if (!context.Enrollments.Any())
+       /*     if (!context.Enrollments.Any())
             {
                 context.Enrollments.AddRange(
                     new Enrollment
@@ -358,7 +378,7 @@ namespace Idea_Pending_SMART.Models
                        StudentID = 4
                    }
                     ); context.SaveChanges();
-            }
+            }*/
 
             if (!context.Permissions.Any())
             {
@@ -599,26 +619,7 @@ namespace Idea_Pending_SMART.Models
 
                     ); context.SaveChanges();
             }
-            if (!context.User.Any())
-            {
-                context.User.AddRange(
-                    new User
-                    {
-                        EmailAddress = "abc@gmail.com",
-                        Password = "password",
-                        PersonID = 6,
-                        RoleID = 2,
-                    },
-                    new User
-                    {
-                        EmailAddress = "abc@gmail.com",
-                        Password = "12345678",
-                        PersonID = 7,
-                        RoleID = 1,
-                    }
 
-                    ); context.SaveChanges();
-            }
         }
 
     }

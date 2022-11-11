@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Idea_Pending_SMART.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221109010819_chantel5")]
-    partial class chantel5
+    [Migration("20221111171731_cryingbecauseitsucks")]
+    partial class cryingbecauseitsucks
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
