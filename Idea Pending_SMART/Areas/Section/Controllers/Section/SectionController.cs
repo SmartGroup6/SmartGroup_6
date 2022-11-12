@@ -1,13 +1,16 @@
 ﻿using Idea_Pending_SMART.Interfaces;
 using Idea_Pending_SMART.Models;
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 [Area("Section")]
 public class SectionController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
     private string defaultAction = "Index";
+
     /*
         +getClassDetails(ClassID)
         +checkClassSpace(ClassID)
@@ -29,12 +32,39 @@ public class SectionController : Controller
     }
 
     //ctrl+k+c to comment, ctrl+k+u to uncomment
-    public ViewResult ClassroomList()
+    public ViewResult Index()
     {
-        //IEnumerable<Semester> objList = _unitOfWork.Semester.GetAll();
-        //return View(objList);
-        return View();
+        IEnumerable<Class> obj = _unitOfWork.Class.GetAll();
+        return View(obj);
     }
+
+
+
+
+    [HttpGet]
+    public IActionResult Open(int? id)
+    {
+        IEnumerable<Enrollment> obj = _unitOfWork.Enrollment.List(c => c.ClassID == id, orderBy: c => c.ClassID, "Class,Student");
+        return View(obj);
+    }
+
+    [HttpGet]
+    public IActionResult ClassDescription(int? id)
+    {
+        Class ClassObj = new Class();
+        if (id != null)
+        {
+            ClassObj = _unitOfWork.Class.Get(c => c.ClassID == id);
+        }
+
+        return View(ClassObj);
+    }
+
+
+
+
+
+
 
 
     ////Unsure of usage
@@ -48,7 +78,7 @@ public class SectionController : Controller
     //[ValidateAntiForgeryToken]
     //public IActionResult Create(Semester obj)
     //{
-        
+
     //    if (ModelState.IsValid)
     //    {
     //        _unitOfWork.Semester.Add(obj); //internal add

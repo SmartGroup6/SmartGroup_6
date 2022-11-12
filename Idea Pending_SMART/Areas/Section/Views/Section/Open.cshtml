@@ -1,0 +1,111 @@
+﻿@model IEnumerable<Enrollment>
+@{
+    ViewData["Title"] = "EnrollmentID";
+    ViewData["Title"] = "ClassTime";
+    ViewData["Title"] = "FirstName";
+}
+@{
+    var enrollmentCount = 0;
+    var maxStudentsInClass = 0;
+    var holdClassID = 0;
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SMART System</title>
+    <link href="/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="row">
+        <div class="col">
+            @foreach (var obj in Model)
+    {
+        maxStudentsInClass = @obj.Class.Studentcount;
+        <td>
+            <h2>
+                Enrollment ID: @obj.EnrollmentID
+            </h2>
+             <h2> Student ID: @obj.Student.StudentID
+             </h2>
+            <h2>
+               Name: @obj.Student.ApplicationNameFirst @obj.Student.ApplicationNameLast
+                    
+            </h2>
+        </td>
+        enrollmentCount++;
+        holdClassID = obj.ClassID;
+        }</div>
+        <div class="col">
+            <div class="bg-dark text-white p-2">
+             Class Enrollment: @enrollmentCount/@maxStudentsInClass
+             </>
+            
+
+    </div>
+    <a asp-controller="Section" asp-action="ClassDescription" asp-route-id="@holdClassID"
+                class="btn" style="background-color:transparent" role="button">
+                    <span class="badge bg-secondary bg-dark .rounded-lg mb-xxl-2">
+                        <tr>
+
+                            <td>
+                                <h3>Get Class Details</h3>
+                            </td>
+                        </tr>
+                        <td>
+
+                </a>
+    @if (maxStudentsInClass <= enrollmentCount)
+            {
+                <span class="badge bg-secondary bg-dark .rounded-lg mb-xxl-2">
+                    <tr>
+                        <th width="80%">
+                        <td>
+                            <h3>Class Full</h3>
+
+                        </td>
+
+                    </tr>
+                    <td>
+                    </td>
+                </span>
+
+            }
+            @if (enrollmentCount < maxStudentsInClass)
+            {
+                <a asp-controller="Section" asp-action="Index" asp-route-id=""
+               class="btn" style="background-color:transparent" role="button">
+                    <span class="badge bg-secondary bg-dark .rounded-lg mb-xxl-2">
+                        <tr>
+                            <th width="80%">
+                            <td>
+                                <h3>Add Student to Course</h3>
+                            </td>
+
+                        </tr>
+                        <td>
+                        </td>
+                    </span>
+                </a>
+            }
+        </div>
+        </div>
+        <div class="w-100">
+            <div class="bg-dark text-white p-2" col>
+                <span class="navbar-brand ml-2"></></span>
+            </div>
+        </div>          
+    </div>
+
+
+
+    
+
+
+
+
+
+</body>
+</html>

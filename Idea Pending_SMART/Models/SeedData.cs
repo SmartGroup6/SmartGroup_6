@@ -1,9 +1,4 @@
-using Humanizer;
 using Idea_Pending_SMART.Data;
-
-using Idea_Pending_SMART.Models;
-
-﻿using Idea_Pending_SMART.Data;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -19,7 +14,7 @@ namespace Idea_Pending_SMART.Models
             {
                 context.Database.Migrate();
             }
-           
+
             if (!context.ClassTimes.Any())
             {
                 context.ClassTimes.AddRange(
@@ -51,41 +46,27 @@ namespace Idea_Pending_SMART.Models
                     }
                     ); context.SaveChanges();
             }
-            if (!context.Enrollments.Any())
+            if (!context.User.Any())
             {
-                context.Enrollments.AddRange(
-                    new Enrollment
+                context.User.AddRange(
+                    new User
                     {
-                        ClassID = 1,
-                        StudentID = 1
+                        EmailAddress = "abc@gmail.com",
+                        Password = "password",
+                        PersonID = 6,
+                        RoleID = 2,
                     },
-                    new Enrollment
+                    new User
                     {
-                        ClassID = 2,
-                        StudentID = 2
-                    },
-                    new Enrollment
-                    {
-                        ClassID = 3,
-                        StudentID = 3
-                    },
-                    new Enrollment
-                    {
-                        ClassID = 2,
-                        StudentID = 1
-                    },
-                   new Enrollment
-                   {
-                       ClassID = 3,
-                       StudentID = 3
-                   },
-                   new Enrollment
-                   {
-                       ClassID = 3,
-                       StudentID = 4
-                   }
+                        EmailAddress = "abc@gmail.com",
+                        Password = "12345678",
+                        PersonID = 7,
+                        RoleID = 1,
+                    }
+
                     ); context.SaveChanges();
             }
+
             if (!context.Students.Any())
             {
                 context.Students.AddRange(
@@ -94,81 +75,7 @@ namespace Idea_Pending_SMART.Models
 
                         timeAvailable = true,
                         CurrentGrade = 'B',
-                        SponsorID =  1,
-                        ApplicantID = 1
-                    },
-                    new Student
-                    {
-
-                        timeAvailable = true,
-                        CurrentGrade = 'A',
                         SponsorID = 1,
-                        ApplicantID = 2
-                    },
-                    new Student
-                    {
-
-                        timeAvailable = false,
-                        CurrentGrade = 'B',
-                        SponsorID = 0,
-                        ApplicantID = 3
-                    },
-                    new Student
-                    {
-
-                        timeAvailable = false,
-                        CurrentGrade = 'C',
-                        SponsorID = 0,
-                        ApplicantID = 4
-                    },
-                    new Student
-                    {
-
-                        timeAvailable = true,
-                        CurrentGrade = 'B',
-                        SponsorID = 3,
-                        ApplicantID = 5
-                    }
-
-                    ); context.SaveChanges();
-            }
-            if (!context.Applicant.Any())
-            {
-                context.Applicant.AddRange(
-                    new Applicant
-                    {
-                        AppStatus = "Active",
-                        ApplicationID = 1
-                    },
-                    new Applicant
-                    {
-                        AppStatus = "Active",
-                        ApplicationID = 2
-                    },
-                    new Applicant
-                    {
-                        AppStatus = "Not Active",
-                        ApplicationID = 3
-                    },
-                    new Applicant
-                    {
-                        AppStatus = "Active",
-                        ApplicationID = 4
-                    },
-                    new Applicant
-                    {
-                        AppStatus = "Active",
-                        ApplicationID = 5
-                    }
-
-                    ); context.SaveChanges();
-            }
-
-            if (!context.Application.Any())
-            {
-                context.Application.AddRange(
-                    new Application
-                    {
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "One",
                         AcademicScore = 25,
@@ -185,8 +92,12 @@ namespace Idea_Pending_SMART.Models
                         MealsNeeded = true,
                         ApplicantID = 1
                     },
-                    new Application
+                    new Student
                     {
+
+                        timeAvailable = true,
+                        CurrentGrade = 'A',
+                        SponsorID = 1,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Two",
                         AcademicScore = 25,
@@ -203,8 +114,12 @@ namespace Idea_Pending_SMART.Models
                         MealsNeeded = true,
                         ApplicantID = 2
                     },
-                    new Application
+                    new Student
                     {
+
+                        timeAvailable = false,
+                        CurrentGrade = 'B',
+                        SponsorID = 0,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Three",
                         AcademicScore = 0,
@@ -221,8 +136,12 @@ namespace Idea_Pending_SMART.Models
                         MealsNeeded = true,
                         ApplicantID = 3
                     },
-                    new Application
+                    new Student
                     {
+
+                        timeAvailable = false,
+                        CurrentGrade = 'C',
+                        SponsorID = 0,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Four",
                         AcademicScore = 5,
@@ -239,8 +158,12 @@ namespace Idea_Pending_SMART.Models
                         MealsNeeded = true,
                         ApplicantID = 4
                     },
-                    new Application
+                    new Student
                     {
+
+                        timeAvailable = true,
+                        CurrentGrade = 'B',
+                        SponsorID = 3,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Five",
                         AcademicScore = 20,
@@ -260,6 +183,33 @@ namespace Idea_Pending_SMART.Models
 
                     ); context.SaveChanges();
             }
+            if (!context.Applicant.Any())
+            {
+                context.Applicant.AddRange(
+                    new Applicant
+                    {
+                        AppStatus = "Active"
+                    },
+                    new Applicant
+                    {
+                        AppStatus = "Active"
+                    },
+                    new Applicant
+                    {
+                        AppStatus = "Not Active"
+                    },
+                    new Applicant
+                    {
+                        AppStatus = "Active"
+                    },
+                    new Applicant
+                    {
+                        AppStatus = "Active"
+                    }
+
+                    ); context.SaveChanges();
+            }
+
             if (!context.Course.Any())
             {
                 context.Course.AddRange(
@@ -361,7 +311,8 @@ namespace Idea_Pending_SMART.Models
                         ClassTimeID = 1,
                         CourseID = 4,
                         SemesterID = 1,
-                        Studentcount = 15
+                        Studentcount = 15,
+                        UserID = 1
                     },
                     new Class
                     {
@@ -369,7 +320,8 @@ namespace Idea_Pending_SMART.Models
                         ClassTimeID = 2,
                         CourseID = 2,
                         SemesterID = 1,
-                        Studentcount = 10
+                        Studentcount = 10,
+                        UserID = 2
                     },
                     new Class
                     {
@@ -377,7 +329,8 @@ namespace Idea_Pending_SMART.Models
                         ClassTimeID = 3,
                         CourseID = 1,
                         SemesterID = 2,
-                        Studentcount = 12
+                        Studentcount = 12,
+                        UserID = 1
                     },
                     new Class
                     {
@@ -385,11 +338,47 @@ namespace Idea_Pending_SMART.Models
                         ClassTimeID = 4,
                         CourseID = 5,
                         SemesterID = 2,
-                        Studentcount = 20
+                        Studentcount = 20,
+                        UserID = 2
                     }
 
                     ); context.SaveChanges();
             }
+            /*     if (!context.Enrollments.Any())
+                 {
+                     context.Enrollments.AddRange(
+                         new Enrollment
+                         {
+                             ClassID = 1,
+                             StudentID = 1
+                         },
+                         new Enrollment
+                         {
+                             ClassID = 2,
+                             StudentID = 2
+                         },
+                         new Enrollment
+                         {
+                             ClassID = 3,
+                             StudentID = 3
+                         },
+                         new Enrollment
+                         {
+                             ClassID = 2,
+                             StudentID = 1
+                         },
+                        new Enrollment
+                        {
+                            ClassID = 3,
+                            StudentID = 3
+                        },
+                        new Enrollment
+                        {
+                            ClassID = 3,
+                            StudentID = 4
+                        }
+                         ); context.SaveChanges();
+                 }*/
 
             if (!context.Permissions.Any())
             {
@@ -630,29 +619,8 @@ namespace Idea_Pending_SMART.Models
 
                     ); context.SaveChanges();
             }
-            if (!context.User.Any())
-            {
-                context.User.AddRange(
-                    new User
-                    {
-                        EmailAddress = "abc@gmail.com",
-                        Password = "password",
-                        PersonID = 6,
-                        RoleID = 2,
-                    },
-                    new User
-                    {
-                        EmailAddress = "abc@gmail.com",
-                        Password = "12345678",
-                        PersonID = 7,
-                        RoleID = 1,
-                    }
 
-                    ); context.SaveChanges();
-            }
         }
 
     }
 }
-                    
-

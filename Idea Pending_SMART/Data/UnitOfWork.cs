@@ -1,5 +1,5 @@
-﻿using Idea_Pending_SMART.Models;
-using Idea_Pending_SMART.Interfaces;
+﻿using Idea_Pending_SMART.Interfaces;
+using Idea_Pending_SMART.Models;
 
 namespace Idea_Pending_SMART.Data
 {
@@ -14,6 +14,9 @@ namespace Idea_Pending_SMART.Data
             _dbContext = dbContext;
         }
         private IRepository<Semester> _Semester;
+        private IRepository<Class> _Class;
+        private IRepository<Enrollment> _Enrollment;
+        private IRepository<Student> _Student;
 
         public IRepository<Semester> Semester
         {
@@ -24,7 +27,34 @@ namespace Idea_Pending_SMART.Data
                 return _Semester;
             }
         }
+        public IRepository<Class> Class
+        {
+            get
+            {
 
+                _Class ??= new Repository<Class>(_dbContext);
+                return _Class;
+            }
+        }
+        public IRepository<Enrollment> Enrollment
+        {
+            get
+            {
+
+                _Enrollment ??= new Repository<Enrollment>(_dbContext);
+                return _Enrollment;
+            }
+        }
+
+        public IRepository<Student> Student
+        {
+            get
+            {
+
+                _Student ??= new Repository<Student>(_dbContext);
+                return _Student;
+            }
+        }
 
 
 
@@ -43,4 +73,3 @@ namespace Idea_Pending_SMART.Data
         }
     }
 }
-

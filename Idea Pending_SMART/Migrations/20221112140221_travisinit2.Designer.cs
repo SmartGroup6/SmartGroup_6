@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Idea_Pending_SMART.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221106210531_chanteel1")]
-    partial class chanteel1
+    [Migration("20221112140221_travisinit2")]
+    partial class travisinit2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -42,79 +42,6 @@ namespace Idea_Pending_SMART.Migrations
                     b.HasKey("ApplicantID");
 
                     b.ToTable("Applicant");
-                });
-
-            modelBuilder.Entity("Idea_Pending_SMART.Models.Application", b =>
-                {
-                    b.Property<int>("ApplicationID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ApplicationID"), 1L, 1);
-
-                    b.Property<float>("AcademicScore")
-                        .HasColumnType("real");
-
-                    b.Property<int?>("AdminScore")
-                        .IsRequired()
-                        .HasColumnType("int");
-
-                    b.Property<int>("ApplicantID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ApplicationNameFirst")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ApplicationNameLast")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("ChoppaTransportNeeded")
-                        .IsRequired()
-                        .HasColumnType("bit");
-
-                    b.Property<string>("DateOfBirth")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DeterminationNote")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DistanceNote")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Financials")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("InstructorScore")
-                        .IsRequired()
-                        .HasColumnType("int");
-
-                    b.Property<bool?>("MealsNeeded")
-                        .IsRequired()
-                        .HasColumnType("bit");
-
-                    b.Property<int>("PersonID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SocialWorkerScore")
-                        .IsRequired()
-                        .HasColumnType("int");
-
-                    b.Property<string>("SubmissionDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("TotalScore")
-                        .IsRequired()
-                        .HasColumnType("int");
-
-                    b.HasKey("ApplicationID");
-
-                    b.ToTable("Application");
                 });
 
             modelBuilder.Entity("Idea_Pending_SMART.Models.Attendance", b =>
@@ -166,8 +93,10 @@ namespace Idea_Pending_SMART.Migrations
                     b.Property<int>("SemesterID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Studentcount")
-                        .IsRequired()
+                    b.Property<int>("Studentcount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserID")
                         .HasColumnType("int");
 
                     b.HasKey("ClassID");
@@ -235,6 +164,10 @@ namespace Idea_Pending_SMART.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("EnrollmentID");
+
+                    b.HasIndex("ClassID");
+
+                    b.HasIndex("StudentID");
 
                     b.ToTable("Enrollments");
                 });
@@ -352,19 +285,15 @@ namespace Idea_Pending_SMART.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SemesterID"), 1L, 1);
 
                     b.Property<DateTime?>("EndDate")
-                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<bool?>("IsActiveSemester")
-                        .IsRequired()
                         .HasColumnType("bit");
 
                     b.Property<bool?>("IsArchived")
-                        .IsRequired()
                         .HasColumnType("bit");
 
                     b.Property<int?>("MaxStudentCount")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int>("SchoolId")
@@ -375,10 +304,11 @@ namespace Idea_Pending_SMART.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("StartDate")
-                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.HasKey("SemesterID");
+
+                    b.HasIndex("SchoolId");
 
                     b.ToTable("Semester");
                 });
@@ -413,14 +343,71 @@ namespace Idea_Pending_SMART.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StudentID"), 1L, 1);
 
+                    b.Property<float>("AcademicScore")
+                        .HasColumnType("real");
+
+                    b.Property<int?>("AdminScore")
+                        .IsRequired()
+                        .HasColumnType("int");
+
                     b.Property<int>("ApplicantID")
                         .HasColumnType("int");
+
+                    b.Property<string>("ApplicationNameFirst")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ApplicationNameLast")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("ChoppaTransportNeeded")
+                        .IsRequired()
+                        .HasColumnType("bit");
 
                     b.Property<string>("CurrentGrade")
                         .IsRequired()
                         .HasColumnType("nvarchar(1)");
 
+                    b.Property<string>("DateOfBirth")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DeterminationNote")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DistanceNote")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Financials")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("InstructorScore")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("MealsNeeded")
+                        .IsRequired()
+                        .HasColumnType("bit");
+
+                    b.Property<int>("PersonID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SocialWorkerScore")
+                        .IsRequired()
+                        .HasColumnType("int");
+
                     b.Property<int?>("SponsorID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SubmissionDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TotalScore")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<bool?>("timeAvailable")
@@ -685,6 +672,36 @@ namespace Idea_Pending_SMART.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Idea_Pending_SMART.Models.Enrollment", b =>
+                {
+                    b.HasOne("Idea_Pending_SMART.Models.Class", "Class")
+                        .WithMany("Enrollments")
+                        .HasForeignKey("ClassID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Idea_Pending_SMART.Models.Student", "Student")
+                        .WithMany("Enrollments")
+                        .HasForeignKey("StudentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Class");
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("Idea_Pending_SMART.Models.Semester", b =>
+                {
+                    b.HasOne("Idea_Pending_SMART.Models.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("School");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -734,6 +751,16 @@ namespace Idea_Pending_SMART.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Idea_Pending_SMART.Models.Class", b =>
+                {
+                    b.Navigation("Enrollments");
+                });
+
+            modelBuilder.Entity("Idea_Pending_SMART.Models.Student", b =>
+                {
+                    b.Navigation("Enrollments");
                 });
 #pragma warning restore 612, 618
         }

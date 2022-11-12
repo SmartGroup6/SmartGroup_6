@@ -9,22 +9,26 @@ namespace Idea_Pending_SMART.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {}
-        public DbSet<School> School => Set<School>();
-        public DbSet<Semester> Semester => Set<Semester>();
-        public DbSet<Course> Course => Set<Course>();
-        public DbSet<Person> Person => Set<Person>();
-        public DbSet<Sponsor> Sponsor => Set<Sponsor>();
-        public DbSet<Application> Application => Set<Application>();
-        public DbSet<ClassTime> ClassTimes => Set<ClassTime>();
-        public DbSet<Applicant> Applicant => Set<Applicant>();
-        public DbSet<Student> Students => Set<Student>();
-        public DbSet<Class> Class => Set<Class>();
-        public DbSet<Enrollment> Enrollments => Set<Enrollment>();
-        public DbSet<Attendance> Attendance => Set<Attendance>();
-        public DbSet<User> User => Set<User>();
-        public DbSet<Permissions> Permissions => Set<Permissions>();
-        public DbSet<Role> Role => Set<Role>();
-        public DbSet<StudentNote> StudentNote => Set<StudentNote>();
+        public DbSet<School> School { get; set; }
+        //  public DbSet<Semester> Semester => Set<Semester>();
+        public DbSet<Semester> Semester { get; set; }
+        public DbSet<Student> Students { get; set; }//student
+        public DbSet<Class> Class { get; set; }
+
+        public DbSet<Enrollment> Enrollments { get; set; }//enrollment
+        public DbSet<Course> Course { get; set; }
+        public DbSet<Person> Person { get; set; }
+        public DbSet<Sponsor> Sponsor { get; set; }
+        public DbSet<ClassTime> ClassTimes { get; set; }
+        public DbSet<Applicant> Applicant { get; set; }
+        //  public DbSet<Student> Students => Set<Student>();
+        //   public DbSet<Class> Class => Set<Class>();
+        //  public DbSet<Enrollment> Enrollments => Set<Enrollment>();
+        public DbSet<Attendance> Attendance { get; set; }
+        public DbSet<User> User { get; set; }
+        public DbSet<Permissions> Permissions { get; set; }
+        public DbSet<Role> Role { get; set; }
+        public DbSet<StudentNote> StudentNote { get; set; }
 
         /*   public DbSet<Semester> Semester { get; set; }
 
