@@ -1,0 +1,658 @@
+using Humanizer;
+using Idea_Pending_SMART.Data;
+
+using Idea_Pending_SMART.Models;
+
+﻿using Idea_Pending_SMART.Data;
+
+using Microsoft.EntityFrameworkCore;
+
+namespace Idea_Pending_SMART.Models
+{
+    public class SeedData
+    {
+        public static void EnsurePopulated(IApplicationBuilder app)
+        {
+            ApplicationDbContext context = app.ApplicationServices
+                .CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            if (context.Database.GetPendingMigrations().Any())
+            {
+                context.Database.Migrate();
+            }
+           
+            if (!context.ClassTimes.Any())
+            {
+                context.ClassTimes.AddRange(
+                    new ClassTime
+                    {
+                        Day = "Monday",
+                        TimeStart = DateTime.Parse("9:00")
+                    },
+                    new ClassTime
+                    {
+                        Day = "Tuesday",
+                        TimeStart = DateTime.Parse("11:00")
+                    },
+                    new ClassTime
+                    {
+
+                        Day = "Tuesday",
+                        TimeStart = DateTime.Parse("8:00")
+                    },
+                    new ClassTime
+                    {
+                        Day = "Thursday",
+                        TimeStart = DateTime.Parse("13:00")
+                    },
+                    new ClassTime
+                    {
+                        Day = "Friday",
+                        TimeStart = DateTime.Parse("12:00")
+                    }
+                    ); context.SaveChanges();
+            }
+            if (!context.Enrollments.Any())
+            {
+                context.Enrollments.AddRange(
+                    new Enrollment
+                    {
+                        ClassID = 1,
+                        StudentID = 1
+                    },
+                    new Enrollment
+                    {
+                        ClassID = 2,
+                        StudentID = 2
+                    },
+                    new Enrollment
+                    {
+                        ClassID = 3,
+                        StudentID = 3
+                    },
+                    new Enrollment
+                    {
+                        ClassID = 2,
+                        StudentID = 1
+                    },
+                   new Enrollment
+                   {
+                       ClassID = 3,
+                       StudentID = 3
+                   },
+                   new Enrollment
+                   {
+                       ClassID = 3,
+                       StudentID = 4
+                   }
+                    ); context.SaveChanges();
+            }
+            if (!context.Students.Any())
+            {
+                context.Students.AddRange(
+                    new Student
+                    {
+
+                        timeAvailable = true,
+                        CurrentGrade = 'B',
+                        SponsorID =  1,
+                        ApplicantID = 1
+                    },
+                    new Student
+                    {
+
+                        timeAvailable = true,
+                        CurrentGrade = 'A',
+                        SponsorID = 1,
+                        ApplicantID = 2
+                    },
+                    new Student
+                    {
+
+                        timeAvailable = false,
+                        CurrentGrade = 'B',
+                        SponsorID = 0,
+                        ApplicantID = 3
+                    },
+                    new Student
+                    {
+
+                        timeAvailable = false,
+                        CurrentGrade = 'C',
+                        SponsorID = 0,
+                        ApplicantID = 4
+                    },
+                    new Student
+                    {
+
+                        timeAvailable = true,
+                        CurrentGrade = 'B',
+                        SponsorID = 3,
+                        ApplicantID = 5
+                    }
+
+                    ); context.SaveChanges();
+            }
+            if (!context.Applicant.Any())
+            {
+                context.Applicant.AddRange(
+                    new Applicant
+                    {
+                        AppStatus = "Active",
+                        ApplicationID = 1
+                    },
+                    new Applicant
+                    {
+                        AppStatus = "Active",
+                        ApplicationID = 2
+                    },
+                    new Applicant
+                    {
+                        AppStatus = "Not Active",
+                        ApplicationID = 3
+                    },
+                    new Applicant
+                    {
+                        AppStatus = "Active",
+                        ApplicationID = 4
+                    },
+                    new Applicant
+                    {
+                        AppStatus = "Active",
+                        ApplicationID = 5
+                    }
+
+                    ); context.SaveChanges();
+            }
+
+            if (!context.Application.Any())
+            {
+                context.Application.AddRange(
+                    new Application
+                    {
+                        ApplicationNameFirst = "Student",
+                        ApplicationNameLast = "One",
+                        AcademicScore = 25,
+                        DateOfBirth = "04/01/2008",
+                        Financials = "500",
+                        DeterminationNote = "very determined",
+                        DistanceNote = "lives far",
+                        AdminScore = 25,
+                        InstructorScore = 25,
+                        SocialWorkerScore = 25,
+                        TotalScore = 100,
+                        SubmissionDate = "11/06/2022",
+                        ChoppaTransportNeeded = true,
+                        MealsNeeded = true,
+                        ApplicantID = 1
+                    },
+                    new Application
+                    {
+                        ApplicationNameFirst = "Student",
+                        ApplicationNameLast = "Two",
+                        AcademicScore = 25,
+                        DateOfBirth = "04/01/2009",
+                        Financials = "5000",
+                        DeterminationNote = "",
+                        DistanceNote = "Lives close",
+                        AdminScore = 25,
+                        InstructorScore = 25,
+                        SocialWorkerScore = 25,
+                        TotalScore = 100,
+                        SubmissionDate = "11/06/2022",
+                        ChoppaTransportNeeded = false,
+                        MealsNeeded = true,
+                        ApplicantID = 2
+                    },
+                    new Application
+                    {
+                        ApplicationNameFirst = "Student",
+                        ApplicationNameLast = "Three",
+                        AcademicScore = 0,
+                        DateOfBirth = "04/01/2002",
+                        Financials = "800",
+                        DeterminationNote = "",
+                        DistanceNote = "",
+                        AdminScore = 0,
+                        InstructorScore = 0,
+                        SocialWorkerScore = 0,
+                        TotalScore = 0,
+                        SubmissionDate = "11/06/2022",
+                        ChoppaTransportNeeded = true,
+                        MealsNeeded = true,
+                        ApplicantID = 3
+                    },
+                    new Application
+                    {
+                        ApplicationNameFirst = "Student",
+                        ApplicationNameLast = "Four",
+                        AcademicScore = 5,
+                        DateOfBirth = "04/01/2008",
+                        Financials = "500",
+                        DeterminationNote = "",
+                        DistanceNote = "",
+                        AdminScore = 20,
+                        InstructorScore = 20,
+                        SocialWorkerScore = 20,
+                        TotalScore = 65,
+                        SubmissionDate = "11/06/2022",
+                        ChoppaTransportNeeded = true,
+                        MealsNeeded = true,
+                        ApplicantID = 4
+                    },
+                    new Application
+                    {
+                        ApplicationNameFirst = "Student",
+                        ApplicationNameLast = "Five",
+                        AcademicScore = 20,
+                        DateOfBirth = "04/01/2008",
+                        Financials = "500",
+                        DeterminationNote = "",
+                        DistanceNote = "",
+                        AdminScore = 20,
+                        InstructorScore = 20,
+                        SocialWorkerScore = 20,
+                        TotalScore = 80,
+                        SubmissionDate = "11/06/2022",
+                        ChoppaTransportNeeded = false,
+                        MealsNeeded = false,
+                        ApplicantID = 5
+                    }
+
+                    ); context.SaveChanges();
+            }
+            if (!context.Course.Any())
+            {
+                context.Course.AddRange(
+                    new Course
+                    {
+                        CourseDescription = "IT Level 1",
+                        SchoolId = 2,
+                        CourseName = "Intro to computers"
+
+                    },
+                    new Course
+                    {
+                        CourseDescription = "IT Level 1",
+                        SchoolId = 1,
+                        CourseName = "Intro to computers"
+
+                    },
+                    new Course
+                    {
+                        CourseDescription = "IT Level 3",
+                        SchoolId = 2,
+                        CourseName = "Advanced IT"
+
+                    },
+                    new Course
+                    {
+                        CourseDescription = "English Level 2",
+                        SchoolId = 1,
+                        CourseName = "Intermediate English"
+
+                    },
+                    new Course
+                    {
+                        CourseDescription = "English Level 2",
+                        SchoolId = 2,
+                        CourseName = "Intermediate English"
+
+                    }
+                    ); context.SaveChanges();
+            }
+            if (!context.Attendance.Any())
+            {
+                context.Attendance.AddRange(
+                    new Attendance
+                    {
+                        EnrollmentID = 1,
+                        Date = DateTime.Now,
+                        MealProvided = true,
+                        MealEaten = 'Y'
+
+                    },
+                    new Attendance
+                    {
+                        EnrollmentID = 1,
+                        Date = DateTime.Now,
+                        MealProvided = false,
+                        MealEaten = 'N'
+
+                    },
+                    new Attendance
+                    {
+                        EnrollmentID = 2,
+                        Date = DateTime.Now,
+                        MealProvided = false,
+                        MealEaten = 'N'
+
+                    },
+                    new Attendance
+                    {
+                        EnrollmentID = 3,
+                        Date = DateTime.Now,
+                        MealProvided = true,
+                        MealEaten = 'N'
+                    },
+                    new Attendance
+                    {
+                        EnrollmentID = 4,
+                        Date = DateTime.Now,
+                        MealProvided = true,
+                        MealEaten = 'Y'
+
+                    },
+                    new Attendance
+                    {
+                        EnrollmentID = 5,
+                        Date = DateTime.Now,
+                        MealProvided = true,
+                        MealEaten = 'N'
+                    }
+
+                    ); context.SaveChanges();
+            }
+            if (!context.Class.Any())
+            {
+                context.Class.AddRange(
+                    new Class
+                    {
+                        ClassDescription = "Instructor 1 Morning English",
+                        ClassTimeID = 1,
+                        CourseID = 4,
+                        SemesterID = 1,
+                        Studentcount = 15
+                    },
+                    new Class
+                    {
+                        ClassDescription = "Instructor 2 Afternoon IT",
+                        ClassTimeID = 2,
+                        CourseID = 2,
+                        SemesterID = 1,
+                        Studentcount = 10
+                    },
+                    new Class
+                    {
+                        ClassDescription = "Instructor 2 Morning IT",
+                        ClassTimeID = 3,
+                        CourseID = 1,
+                        SemesterID = 2,
+                        Studentcount = 12
+                    },
+                    new Class
+                    {
+                        ClassDescription = "Instructor 1 Late English",
+                        ClassTimeID = 4,
+                        CourseID = 5,
+                        SemesterID = 2,
+                        Studentcount = 20
+                    }
+
+                    ); context.SaveChanges();
+            }
+
+            if (!context.Permissions.Any())
+            {
+                context.Permissions.AddRange(
+                    new Permissions
+                    {
+                        PermissionsName = "Administrator"
+                    },
+                    new Permissions
+                    {
+                        PermissionsName = "Instructor"
+                    },
+                    new Permissions
+                    {
+                        PermissionsName = "Social Worker"
+                    }
+
+                    ); context.SaveChanges();
+            }
+            if (!context.Person.Any())
+            {
+                context.Person.AddRange(
+                    new Person
+                    {
+                        AddressCity = "",
+                        AddressGPSLatitude = "",
+                        AddressGPSLongitude = "",
+                        AddressState = "",
+                        ApartmentNum = "",
+                        StreetAddress = "",
+                        FirstName = "Guardian ",
+                        LastName = "One",
+                        Phone = ""
+
+                    },
+                    new Person
+                    {
+                        AddressCity = "",
+                        AddressGPSLatitude = "",
+                        AddressGPSLongitude = "",
+                        AddressState = "",
+                        ApartmentNum = "",
+                        StreetAddress = "",
+                        FirstName = "Guardian ",
+                        LastName = "Two",
+                        Phone = ""
+
+                    },
+                    new Person
+                    {
+                        AddressCity = "",
+                        AddressGPSLatitude = "",
+                        AddressGPSLongitude = "",
+                        AddressState = "",
+                        ApartmentNum = "",
+                        StreetAddress = "",
+                        FirstName = "Guardian ",
+                        LastName = "Three",
+                        Phone = ""
+
+                    },
+                    new Person
+                    {
+                        AddressCity = "",
+                        AddressGPSLatitude = "",
+                        AddressGPSLongitude = "",
+                        AddressState = "",
+                        ApartmentNum = "",
+                        StreetAddress = "",
+                        FirstName = "Guardian ",
+                        LastName = "Four",
+                        Phone = ""
+
+                    },
+                    new Person
+                    {
+                        AddressCity = "",
+                        AddressGPSLatitude = "",
+                        AddressGPSLongitude = "",
+                        AddressState = "",
+                        ApartmentNum = "",
+                        StreetAddress = "",
+                        FirstName = "Guardian ",
+                        LastName = "Five",
+                        Phone = ""
+
+                    },
+                    new Person
+                    {
+                        AddressCity = "",
+                        AddressGPSLatitude = "",
+                        AddressGPSLongitude = "",
+                        AddressState = "",
+                        ApartmentNum = "",
+                        StreetAddress = "",
+                        FirstName = "Instructor ",
+                        LastName = "One",
+                        Phone = ""
+
+                    },
+                    new Person
+                    {
+                        AddressCity = "",
+                        AddressGPSLatitude = "",
+                        AddressGPSLongitude = "",
+                        AddressState = "",
+                        ApartmentNum = "",
+                        StreetAddress = "",
+                        FirstName = "Admin ",
+                        LastName = "One",
+                        Phone = ""
+
+                    }
+
+                    ); context.SaveChanges();
+            }
+
+            if (!context.Role.Any())
+            {
+                context.Role.AddRange(
+                    new Role
+                    {
+                        PermissionsID = 1,
+                        RoleName = "Staff Admin"
+                    },
+                    new Role
+                    {
+                        PermissionsID = 2,
+                        RoleName = "Staff Instruct"
+                    },
+                    new Role
+                    {
+                        PermissionsID = 3,
+                        RoleName = "Staff SW"
+                    }
+                    ); context.SaveChanges();
+            }
+
+            if (!context.School.Any())
+            {
+                context.School.AddRange(
+                    new School
+                    {
+                        Phone = "",
+                        SchoolName = "School One"
+                    },
+                    new School
+                    {
+                        Phone = "",
+                        SchoolName = "School Two"
+                    }
+
+                    ); context.SaveChanges();
+            }
+            if (!context.Semester.Any())
+            {
+                context.Semester.AddRange(
+                    new Semester
+                    {
+                        IsActiveSemester = true,
+                        IsArchived = false,
+                        EndDate = DateTime.Now,
+                        MaxStudentCount = 200,
+                        SchoolId = 1,
+                        SemesterName = "2022 Winter",
+                        StartDate = DateTime.Now
+
+                    },
+                    new Semester
+                    {
+                        IsActiveSemester = true,
+                        IsArchived = false,
+                        EndDate = DateTime.Now,
+                        MaxStudentCount = 200,
+                        SchoolId = 2,
+                        SemesterName = "2022 Winter",
+                        StartDate = DateTime.Now
+
+                    }
+
+                    ); context.SaveChanges();
+            }
+            if (!context.Sponsor.Any())
+            {
+                context.Sponsor.AddRange(
+                    new Sponsor
+                    {
+                        CompanyName = "Guardian One",
+                        DonationTotal = "2,000",
+                        PersonID = 1
+                    },
+                    new Sponsor
+                    {
+                        CompanyName = "Guardian Four",
+                        DonationTotal = "200",
+                        PersonID = 4
+                    },
+                    new Sponsor
+                    {
+                        CompanyName = "Guardian Two",
+                        DonationTotal = "500",
+                        PersonID = 2
+                    }
+
+                    ); context.SaveChanges();
+            }
+            if (!context.StudentNote.Any())
+            {
+                context.StudentNote.AddRange(
+                    new StudentNote
+                    {
+
+                        DateCreated = DateTime.Now,
+                        Text = "abc xyz",
+                        StudentID = 1
+                    },
+                    new StudentNote
+                    {
+
+                        DateCreated = DateTime.Now,
+                        Text = "abc xyz",
+                        StudentID = 2
+                    },
+                    new StudentNote
+                    {
+
+                        DateCreated = DateTime.Now,
+                        Text = "abc xyz",
+                        StudentID = 1
+                    },
+                    new StudentNote
+                    {
+
+                        DateCreated = DateTime.Now,
+                        Text = "abc xyz",
+                        StudentID = 3
+                    }
+
+                    ); context.SaveChanges();
+            }
+            if (!context.User.Any())
+            {
+                context.User.AddRange(
+                    new User
+                    {
+                        EmailAddress = "abc@gmail.com",
+                        Password = "password",
+                        PersonID = 6,
+                        RoleID = 2,
+                    },
+                    new User
+                    {
+                        EmailAddress = "abc@gmail.com",
+                        Password = "12345678",
+                        PersonID = 7,
+                        RoleID = 1,
+                    }
+
+                    ); context.SaveChanges();
+            }
+        }
+
+    }
+}
+                    
+

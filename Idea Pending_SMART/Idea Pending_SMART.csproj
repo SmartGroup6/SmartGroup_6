@@ -1,0 +1,79 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-Idea_Pending_SMART-AF65FB75-D0B8-46A3-B611-BB2B2408D2DA</UserSecretsId>
+    <RootNamespace>Idea_Pending_SMART</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Dev_Ben\**" />
+    <Compile Remove="Dev_Dina\**" />
+    <Compile Remove="Dev_Travis\**" />
+    <Compile Remove="Models\ViewModels\**" />
+    <Content Remove="Dev_Ben\**" />
+    <Content Remove="Dev_Dina\**" />
+    <Content Remove="Dev_Travis\**" />
+    <Content Remove="Models\ViewModels\**" />
+    <EmbeddedResource Remove="Dev_Ben\**" />
+    <EmbeddedResource Remove="Dev_Dina\**" />
+    <EmbeddedResource Remove="Dev_Travis\**" />
+    <EmbeddedResource Remove="Models\ViewModels\**" />
+    <None Remove="Dev_Ben\**" />
+    <None Remove="Dev_Dina\**" />
+    <None Remove="Dev_Travis\**" />
+    <None Remove="Models\ViewModels\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+    <Folder Include="Views\MeetingNotes\" />
+    <Folder Include="Views\Application\" />
+    <Folder Include="Views\Student\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Areas\Admin\Views\Admin\Index.cshtml" />
+    <None Include="Areas\Admin\Views\_ViewImports.cshtml" />
+    <None Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <None Include="Areas\Application\Views\Application\Index.cshtml" />
+    <None Include="Areas\Application\Views\_ViewImports.cshtml" />
+    <None Include="Areas\Application\Views\_ViewStart.cshtml" />
+    <None Include="Areas\Assignment\Views\Sponsor\Index.cshtml" />
+    <None Include="Areas\Assignment\Views\_ViewImports.cshtml" />
+    <None Include="Areas\Assignment\Views\_ViewStart.cshtml" />
+    <None Include="Areas\Home\Views\Home\Index.cshtml" />
+    <None Include="Areas\Home\Views\Home\Privacy.cshtml" />
+    <None Include="Areas\Home\Views\Home\Registration.cshtml" />
+    <None Include="Areas\Home\Views\Home\RegistrationReceived.cshtml" />
+    <None Include="Areas\Home\_ViewImports.cshtml" />
+    <None Include="Areas\Home\_ViewStart.cshtml" />
+    <None Include="Areas\Role\Views\Role\Index.cshtml" />
+    <None Include="Areas\Role\Views\_ViewImports.cshtml" />
+    <None Include="Areas\Role\Views\_ViewStart.cshtml" />
+    <None Include="Areas\Semester\Views\Semester\Index.cshtml" />
+    <None Include="Areas\Semester\Views\_ViewImports.cshtml" />
+    <None Include="Areas\Semester\Views\_ViewStart.cshtml" />
+    <None Include="Areas\Sponsor\Views\Sponsor\Index.cshtml" />
+    <None Include="Areas\Sponsor\Views\_ViewImports.cshtml" />
+    <None Include="Areas\Sponsor\Views\_ViewStart.cshtml" />
+    <None Include="Areas\Student\Views\Student\AddStudent.cshtml" />
+    <None Include="Areas\Student\Views\Student\Index.cshtml" />
+    <None Include="Areas\Student\Views\_ViewImports.cshtml" />
+    <None Include="Areas\Student\Views\_ViewStart.cshtml" />
+    <None Include="Areas\User\Views\User\Index.cshtml" />
+    <None Include="Areas\User\Views\_ViewImports.cshtml" />
+    <None Include="Areas\User\Views\_ViewStart.cshtml" />
+  </ItemGroup>
+
+</Project>
