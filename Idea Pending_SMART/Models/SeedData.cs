@@ -14,7 +14,50 @@ namespace Idea_Pending_SMART.Models
             {
                 context.Database.Migrate();
             }
+            if (!context.School.Any())
+            {
+                context.School.AddRange(
+                    new School
+                    {
+                        Phone = "",
+                        SchoolName = "School One"
+                    },
+                    new School
+                    {
+                        Phone = "",
+                        SchoolName = "School Two"
+                    }
 
+                    ); context.SaveChanges();
+            }
+            if (!context.Semester.Any())
+            {
+                context.Semester.AddRange(
+                    new Semester
+                    {
+                        IsActiveSemester = true,
+                        IsArchived = false,
+                        EndDate = DateTime.Now,
+                        MaxStudentCount = 200,
+                        SchoolId = 1,
+                        SemesterName = "2022 Winter",
+                        StartDate = DateTime.Now
+
+                    },
+                    new Semester
+                    {
+                        IsActiveSemester = true,
+                        IsArchived = false,
+                        EndDate = DateTime.Now,
+                        MaxStudentCount = 200,
+                        SchoolId = 2,
+                        SemesterName = "2022 Winter",
+                        StartDate = DateTime.Now
+
+                    }
+
+                    ); context.SaveChanges();
+            }
             if (!context.ClassTimes.Any())
             {
                 context.ClassTimes.AddRange(
@@ -62,6 +105,103 @@ namespace Idea_Pending_SMART.Models
                         Password = "12345678",
                         PersonID = 7,
                         RoleID = 1,
+                    }
+
+                    ); context.SaveChanges();
+            }
+            if (!context.Person.Any())
+            {
+                context.Person.AddRange(
+                    new Person
+                    {
+                        AddressCity = "",
+                        AddressGPSLatitude = "",
+                        AddressGPSLongitude = "",
+                        AddressState = "",
+                        ApartmentNum = "",
+                        StreetAddress = "",
+                        FirstName = "Guardian ",
+                        LastName = "One",
+                        Phone = ""
+
+                    },
+                    new Person
+                    {
+                        AddressCity = "",
+                        AddressGPSLatitude = "",
+                        AddressGPSLongitude = "",
+                        AddressState = "",
+                        ApartmentNum = "",
+                        StreetAddress = "",
+                        FirstName = "Guardian ",
+                        LastName = "Two",
+                        Phone = ""
+
+                    },
+                    new Person
+                    {
+                        AddressCity = "",
+                        AddressGPSLatitude = "",
+                        AddressGPSLongitude = "",
+                        AddressState = "",
+                        ApartmentNum = "",
+                        StreetAddress = "",
+                        FirstName = "Guardian ",
+                        LastName = "Three",
+                        Phone = ""
+
+                    },
+                    new Person
+                    {
+                        AddressCity = "",
+                        AddressGPSLatitude = "",
+                        AddressGPSLongitude = "",
+                        AddressState = "",
+                        ApartmentNum = "",
+                        StreetAddress = "",
+                        FirstName = "Guardian ",
+                        LastName = "Four",
+                        Phone = ""
+
+                    },
+                    new Person
+                    {
+                        AddressCity = "",
+                        AddressGPSLatitude = "",
+                        AddressGPSLongitude = "",
+                        AddressState = "",
+                        ApartmentNum = "",
+                        StreetAddress = "",
+                        FirstName = "Guardian ",
+                        LastName = "Five",
+                        Phone = ""
+
+                    },
+                    new Person
+                    {
+                        AddressCity = "",
+                        AddressGPSLatitude = "",
+                        AddressGPSLongitude = "",
+                        AddressState = "",
+                        ApartmentNum = "",
+                        StreetAddress = "",
+                        FirstName = "Instructor ",
+                        LastName = "One",
+                        Phone = ""
+
+                    },
+                    new Person
+                    {
+                        AddressCity = "",
+                        AddressGPSLatitude = "",
+                        AddressGPSLongitude = "",
+                        AddressState = "",
+                        ApartmentNum = "",
+                        StreetAddress = "",
+                        FirstName = "Admin ",
+                        LastName = "One",
+                        Phone = ""
+
                     }
 
                     ); context.SaveChanges();
@@ -250,6 +390,84 @@ namespace Idea_Pending_SMART.Models
                     }
                     ); context.SaveChanges();
             }
+
+            if (!context.Class.Any())
+            {
+                context.Class.AddRange(
+                    new Class
+                    {
+                        ClassDescription = "Instructor 1 Morning English",
+                        ClassTimeID = 1,
+                        CourseID = 4,
+                        SemesterID = 1,
+                        Studentcount = 15,
+                        UserID = 1
+                    },
+                    new Class
+                    {
+                        ClassDescription = "Instructor 2 Afternoon IT",
+                        ClassTimeID = 2,
+                        CourseID = 2,
+                        SemesterID = 1,
+                        Studentcount = 10,
+                        UserID = 2
+                    },
+                    new Class
+                    {
+                        ClassDescription = "Instructor 2 Morning IT",
+                        ClassTimeID = 3,
+                        CourseID = 1,
+                        SemesterID = 2,
+                        Studentcount = 12,
+                        UserID = 1
+                    },
+                    new Class
+                    {
+                        ClassDescription = "Instructor 1 Late English",
+                        ClassTimeID = 4,
+                        CourseID = 5,
+                        SemesterID = 2,
+                        Studentcount = 20,
+                        UserID = 2
+                    }
+
+                    ); context.SaveChanges();
+            }
+            if (!context.Enrollments.Any())
+            {
+                context.Enrollments.AddRange(
+                    new Enrollment
+                    {
+                        ClassID = 1,
+                        StudentID = 1
+                    },
+                    new Enrollment
+                    {
+                        ClassID = 2,
+                        StudentID = 2
+                    },
+                    new Enrollment
+                    {
+                        ClassID = 3,
+                        StudentID = 3
+                    },
+                    new Enrollment
+                    {
+                        ClassID = 2,
+                        StudentID = 1
+                    },
+                   new Enrollment
+                   {
+                       ClassID = 3,
+                       StudentID = 3
+                   },
+                   new Enrollment
+                   {
+                       ClassID = 3,
+                       StudentID = 4
+                   }
+                    ); context.SaveChanges();
+            }
             if (!context.Attendance.Any())
             {
                 context.Attendance.AddRange(
@@ -302,83 +520,6 @@ namespace Idea_Pending_SMART.Models
 
                     ); context.SaveChanges();
             }
-            if (!context.Class.Any())
-            {
-                context.Class.AddRange(
-                    new Class
-                    {
-                        ClassDescription = "Instructor 1 Morning English",
-                        ClassTimeID = 1,
-                        CourseID = 4,
-                        SemesterID = 1,
-                        Studentcount = 15,
-                        UserID = 1
-                    },
-                    new Class
-                    {
-                        ClassDescription = "Instructor 2 Afternoon IT",
-                        ClassTimeID = 2,
-                        CourseID = 2,
-                        SemesterID = 1,
-                        Studentcount = 10,
-                        UserID = 2
-                    },
-                    new Class
-                    {
-                        ClassDescription = "Instructor 2 Morning IT",
-                        ClassTimeID = 3,
-                        CourseID = 1,
-                        SemesterID = 2,
-                        Studentcount = 12,
-                        UserID = 1
-                    },
-                    new Class
-                    {
-                        ClassDescription = "Instructor 1 Late English",
-                        ClassTimeID = 4,
-                        CourseID = 5,
-                        SemesterID = 2,
-                        Studentcount = 20,
-                        UserID = 2
-                    }
-
-                    ); context.SaveChanges();
-            }
-            /*     if (!context.Enrollments.Any())
-                 {
-                     context.Enrollments.AddRange(
-                         new Enrollment
-                         {
-                             ClassID = 1,
-                             StudentID = 1
-                         },
-                         new Enrollment
-                         {
-                             ClassID = 2,
-                             StudentID = 2
-                         },
-                         new Enrollment
-                         {
-                             ClassID = 3,
-                             StudentID = 3
-                         },
-                         new Enrollment
-                         {
-                             ClassID = 2,
-                             StudentID = 1
-                         },
-                        new Enrollment
-                        {
-                            ClassID = 3,
-                            StudentID = 3
-                        },
-                        new Enrollment
-                        {
-                            ClassID = 3,
-                            StudentID = 4
-                        }
-                         ); context.SaveChanges();
-                 }*/
 
             if (!context.Permissions.Any())
             {
@@ -398,103 +539,7 @@ namespace Idea_Pending_SMART.Models
 
                     ); context.SaveChanges();
             }
-            if (!context.Person.Any())
-            {
-                context.Person.AddRange(
-                    new Person
-                    {
-                        AddressCity = "",
-                        AddressGPSLatitude = "",
-                        AddressGPSLongitude = "",
-                        AddressState = "",
-                        ApartmentNum = "",
-                        StreetAddress = "",
-                        FirstName = "Guardian ",
-                        LastName = "One",
-                        Phone = ""
-
-                    },
-                    new Person
-                    {
-                        AddressCity = "",
-                        AddressGPSLatitude = "",
-                        AddressGPSLongitude = "",
-                        AddressState = "",
-                        ApartmentNum = "",
-                        StreetAddress = "",
-                        FirstName = "Guardian ",
-                        LastName = "Two",
-                        Phone = ""
-
-                    },
-                    new Person
-                    {
-                        AddressCity = "",
-                        AddressGPSLatitude = "",
-                        AddressGPSLongitude = "",
-                        AddressState = "",
-                        ApartmentNum = "",
-                        StreetAddress = "",
-                        FirstName = "Guardian ",
-                        LastName = "Three",
-                        Phone = ""
-
-                    },
-                    new Person
-                    {
-                        AddressCity = "",
-                        AddressGPSLatitude = "",
-                        AddressGPSLongitude = "",
-                        AddressState = "",
-                        ApartmentNum = "",
-                        StreetAddress = "",
-                        FirstName = "Guardian ",
-                        LastName = "Four",
-                        Phone = ""
-
-                    },
-                    new Person
-                    {
-                        AddressCity = "",
-                        AddressGPSLatitude = "",
-                        AddressGPSLongitude = "",
-                        AddressState = "",
-                        ApartmentNum = "",
-                        StreetAddress = "",
-                        FirstName = "Guardian ",
-                        LastName = "Five",
-                        Phone = ""
-
-                    },
-                    new Person
-                    {
-                        AddressCity = "",
-                        AddressGPSLatitude = "",
-                        AddressGPSLongitude = "",
-                        AddressState = "",
-                        ApartmentNum = "",
-                        StreetAddress = "",
-                        FirstName = "Instructor ",
-                        LastName = "One",
-                        Phone = ""
-
-                    },
-                    new Person
-                    {
-                        AddressCity = "",
-                        AddressGPSLatitude = "",
-                        AddressGPSLongitude = "",
-                        AddressState = "",
-                        ApartmentNum = "",
-                        StreetAddress = "",
-                        FirstName = "Admin ",
-                        LastName = "One",
-                        Phone = ""
-
-                    }
-
-                    ); context.SaveChanges();
-            }
+ 
 
             if (!context.Role.Any())
             {
@@ -517,50 +562,7 @@ namespace Idea_Pending_SMART.Models
                     ); context.SaveChanges();
             }
 
-            if (!context.School.Any())
-            {
-                context.School.AddRange(
-                    new School
-                    {
-                        Phone = "",
-                        SchoolName = "School One"
-                    },
-                    new School
-                    {
-                        Phone = "",
-                        SchoolName = "School Two"
-                    }
-
-                    ); context.SaveChanges();
-            }
-            if (!context.Semester.Any())
-            {
-                context.Semester.AddRange(
-                    new Semester
-                    {
-                        IsActiveSemester = true,
-                        IsArchived = false,
-                        EndDate = DateTime.Now,
-                        MaxStudentCount = 200,
-                        SchoolId = 1,
-                        SemesterName = "2022 Winter",
-                        StartDate = DateTime.Now
-
-                    },
-                    new Semester
-                    {
-                        IsActiveSemester = true,
-                        IsArchived = false,
-                        EndDate = DateTime.Now,
-                        MaxStudentCount = 200,
-                        SchoolId = 2,
-                        SemesterName = "2022 Winter",
-                        StartDate = DateTime.Now
-
-                    }
-
-                    ); context.SaveChanges();
-            }
+ 
             if (!context.Sponsor.Any())
             {
                 context.Sponsor.AddRange(
