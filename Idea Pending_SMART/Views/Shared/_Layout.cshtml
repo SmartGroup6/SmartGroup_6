@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - IdeaPending - SMART</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
     <link href="style.css" rel="stylesheet">
 
 </head>
@@ -25,43 +26,42 @@
             </div>
         </nav>
     </header>
-     <!--Travis attemping to make a sidebar-->
     <div class="container-fluid px-0">
         <div class="row flex-nowrap">
             <!--Travis attemping to make a sidebar-->
             <div class="col min-width-300-md">
-                    <div class="d-flex flex-column navbar-light fixed-left mask-custom shadow-0" style="width: 280px;">
-                    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-black text-decoration-none">
-                        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-                        <span class="fs-4">Areas</span>
+                <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px; background-color:darkslategray; 
+                            border-color:antiquewhite; border-width: 10px; border-style:double">
+                    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                        <svg class="bi me-2" width="40" height="65"><use xlink:href="#bootstrap"></use></svg>
+                        <span class="fs-4 text-light" >Areas</span>
                     </a>
-                    <hr>
+                    <hr style="height: 3px; color:floralwhite">
                     <ul class="nav nav-pills flex-column mb-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-black" asp-area="Home" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-light" asp-area="Home" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-black" asp-area="Application" asp-controller="Semester" asp-action="Index">Applications</a>
+                            <a class="nav-link text-light" asp-area="Application" asp-controller="Semester" asp-action="Index">Applications</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-black" asp-area="Section" asp-controller="Section" asp-action="Index">Class Management</a>
+                            <a class="nav-link text-light" asp-area="Section" asp-controller="Section" asp-action="Index">Class Management</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-black" asp-area="Student" asp-controller="Student" asp-action="Index">Students</a>
+                            <a class="nav-link text-light" asp-area="Student" asp-controller="Student" asp-action="Index">Students</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-black " asp-area="Staff" asp-controller="Staff" asp-action="Index">Staff</a>
+                            <a class="nav-link text-light" asp-area="Staff" asp-controller="Staff" asp-action="Index">Staff</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-black" asp-area="Semester" asp-controller="Semester" asp-action="Index">Semesters</a>
+                            <a class="nav-link text-light" asp-area="Semester" asp-controller="Semester" asp-action="Index">Semesters</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-black" asp-area="Meeting" asp-controller="Meeting" asp-action="Index">Meetings Center</a>
+                            <a class="nav-link text-light" asp-area="Meeting" asp-controller="Meeting" asp-action="Index">Meetings Center</a>
                     </ul>
-                    <hr>
+                  <hr style="height: 3px; color:floralwhite">
                 </div>
             </div>
-            <div class="col-10">
                 <main role="main" class="pb-3">
                     @RenderBody()
                 </main>

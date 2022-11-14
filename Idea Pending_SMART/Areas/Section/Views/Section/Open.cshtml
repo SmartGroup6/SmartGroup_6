@@ -46,10 +46,11 @@
             </div>
         <div class="col">
             <h6 class="bg-opacity-50 border-warning p-2 border-top border-bottom"> Enrolled Count: @enrollmentCount/@maxStudentsInClass</h6>
-            <div class="list-group">
+            <div class="list-group" style="align-content:center">
                 <a asp-controller="Section" asp-action="ClassDescription" asp-route-id="@holdClassID"
                    class="btn" style="background-color:transparent" role="button">
-                    <span class="badge bg-gradient bg-opacity-50 bg-warning text-black .rounded-lg mb-xxl-2">
+                    <span class="badge bg-gradient text-white .rounded-lg mb-xxl-2" style="background-color:darkslategray; 
+                                border-color:antiquewhite; border-width: 10px; border-style:double">
                         <tr>
 
                             <td>
@@ -60,7 +61,8 @@
                 </a>
                 @if (maxStudentsInClass <= enrollmentCount)
                 {
-                    <span class="badge bg-gradient bg-gradient bg-opacity-50 bg-warning text-black .rounded-lg mb-xxl-2">
+                    <span class="badge bg-gradient text-white .rounded-lg mb-xxl-2" style="background-color:darkslategray;
+                                border-color:antiquewhite; border-width: 10px; border-style:double">
                         <tr>
                             <th width="80%">
                             <td>
@@ -78,7 +80,8 @@
                 {
                     <a asp-controller="Section" asp-action="Index" asp-route-id=""
                    class="btn" style="background-color:transparent" role="button">
-                        <span class="badge bg-gradient bg-opacity-50 bg-warning text-black bg-warning .rounded-lg mb-xxl-2">
+                        <span class="badge bg-gradient text-white  .rounded-lg mb-xxl-2" style="background-color:darkslategray; 
+                                border-color:antiquewhite; border-width: 10px; border-style:double;">
                             <tr>
                                 <th width="80%">
                                 <td>
