@@ -12,19 +12,15 @@
 </head>
 
 <body>
-    <div class="bg-dark text-white p-2">
-        <span class="navbar-brand ml-2">Your classes</></span>
-    </div>
+       <h4 class="bg-opacity-50 border-warning p-2 border-top border-bottom">Students in Class</h4>
     <div class="flex-lg-column">
         @foreach (var obj in Model)
         {
             @if (obj.UserID == 2)
             {
                 <a asp-controller="Section" asp-action="Open" asp-route-id="@obj.ClassID"
-           class="btn" style="background-color:transparent" role="button">
-
-
-                    <span class="badge bg-secondary bg-dark .rounded-lg mb-xxl-2">
+           class="btn" style="background-color:transparent" role="button" >
+                    <span class="badge bg-gradient bg-opacity-50 bg-warning list-group-item-action px-3 border-warning">
                         <tr>
                             <th width="80%">
                             <td>
