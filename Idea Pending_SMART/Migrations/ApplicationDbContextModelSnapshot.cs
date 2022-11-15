@@ -99,6 +99,8 @@ namespace Idea_Pending_SMART.Migrations
 
                     b.HasKey("ClassID");
 
+                    b.HasIndex("ClassTimeID");
+
                     b.ToTable("Class");
                 });
 
@@ -114,9 +116,9 @@ namespace Idea_Pending_SMART.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("TimeStart")
+                    b.Property<string>("TimeStart")
                         .IsRequired()
-                        .HasColumnType("datetime2");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ClassTimeID");
 
@@ -671,6 +673,17 @@ namespace Idea_Pending_SMART.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("Idea_Pending_SMART.Models.Class", b =>
+                {
+                    b.HasOne("Idea_Pending_SMART.Models.ClassTime", "ClassTime")
+                        .WithMany()
+                        .HasForeignKey("ClassTimeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ClassTime");
                 });
 
             modelBuilder.Entity("Idea_Pending_SMART.Models.Enrollment", b =>

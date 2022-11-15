@@ -13,9 +13,7 @@ namespace Idea_Pending_SMART.Models
         public string? Day { get; set; }
 
         [Required]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
-        public DateTime? TimeStart { get; set; }
+        public string? TimeStart { get; set; }
 
 
     }

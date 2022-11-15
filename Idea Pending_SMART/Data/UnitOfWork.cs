@@ -20,6 +20,7 @@ namespace Idea_Pending_SMART.Data
 
         private IRepository<School> _School;
         private IRepository<Course> _Course;
+        private IRepository<ClassTime> _ClassTime;
 
         public IRepository<Course> Course
         {
@@ -75,6 +76,15 @@ namespace Idea_Pending_SMART.Data
 
                 _Student ??= new Repository<Student>(_dbContext);
                 return _Student;
+            }
+        }
+        public IRepository<ClassTime> ClassTime
+        {
+            get
+            {
+
+                _ClassTime ??= new Repository<ClassTime>(_dbContext);
+                return _ClassTime;
             }
         }
 

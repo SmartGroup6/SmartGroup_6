@@ -32,6 +32,8 @@ namespace Idea_Pending_SMART.Models
         [Display(Name = "UserID")]
         [ForeignKey("User")]
         public int? UserID { get; set; }
+        [ForeignKey("ClassTimeID")]
+        public virtual ClassTime? ClassTime { get; set; }
 
         //testing
         public List<Enrollment> Enrollments { get; set; }

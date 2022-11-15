@@ -1,4 +1,5 @@
-﻿using Idea_Pending_SMART.Interfaces;
+﻿using Idea_Pending_SMART.Areas.Section.ViewModels;
+using Idea_Pending_SMART.Interfaces;
 using Idea_Pending_SMART.Models;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
@@ -31,14 +32,16 @@ public class SectionController : Controller
         _unitOfWork = unitOfWork;
     }
 
-    //ctrl+k+c to comment, ctrl+k+u to uncomment
     public ViewResult Index()
     {
-        IEnumerable<Class> obj = _unitOfWork.Class.GetAll();
-        return View(obj);
+        IEnumerable<Class> objClasses = _unitOfWork.Class.GetAll();
+        ClasslistVM cvm = new ClasslistVM();
+
+        cvm.Class = _unitOfWork.Class.GetAll();
+        cvm.ClassTime = _unitOfWork.ClassTime.GetAll();
+
+        return View(cvm);
     }
-
-
 
 
     [HttpGet]
@@ -155,4 +158,3 @@ public class SectionController : Controller
     //    return RedirectToAction("Index");
     //}
 }
-

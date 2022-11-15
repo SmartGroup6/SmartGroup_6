@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Idea_Pending_SMART.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221112140221_travisinit2")]
-    partial class travisinit2
+    [Migration("20221115181755_ct1")]
+    partial class ct1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -101,6 +101,8 @@ namespace Idea_Pending_SMART.Migrations
 
                     b.HasKey("ClassID");
 
+                    b.HasIndex("ClassTimeID");
+
                     b.ToTable("Class");
                 });
 
@@ -116,9 +118,9 @@ namespace Idea_Pending_SMART.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("TimeStart")
+                    b.Property<string>("TimeStart")
                         .IsRequired()
-                        .HasColumnType("datetime2");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ClassTimeID");
 
@@ -263,6 +265,9 @@ namespace Idea_Pending_SMART.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SchoolID"), 1L, 1);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
@@ -670,6 +675,17 @@ namespace Idea_Pending_SMART.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("Idea_Pending_SMART.Models.Class", b =>
+                {
+                    b.HasOne("Idea_Pending_SMART.Models.ClassTime", "ClassTime")
+                        .WithMany()
+                        .HasForeignKey("ClassTimeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ClassTime");
                 });
 
             modelBuilder.Entity("Idea_Pending_SMART.Models.Enrollment", b =>

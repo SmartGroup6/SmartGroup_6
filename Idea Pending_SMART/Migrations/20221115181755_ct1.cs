@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Idea_Pending_SMART.Migrations
 {
-    public partial class travisinit2 : Migration
+    public partial class ct1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
+        /*    migrationBuilder.CreateTable(
                 name: "Applicant",
                 columns: table => new
                 {
@@ -79,31 +79,13 @@ namespace Idea_Pending_SMART.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Class",
-                columns: table => new
-                {
-                    ClassID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ClassDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Studentcount = table.Column<int>(type: "int", nullable: false),
-                    CourseID = table.Column<int>(type: "int", nullable: false),
-                    ClassTimeID = table.Column<int>(type: "int", nullable: false),
-                    SemesterID = table.Column<int>(type: "int", nullable: false),
-                    UserID = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Class", x => x.ClassID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ClassTimes",
                 columns: table => new
                 {
                     ClassTimeID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Day = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TimeStart = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    TimeStart = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -179,6 +161,7 @@ namespace Idea_Pending_SMART.Migrations
                 {
                     SchoolID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SchoolName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -371,6 +354,30 @@ namespace Idea_Pending_SMART.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Class",
+                columns: table => new
+                {
+                    ClassID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClassDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Studentcount = table.Column<int>(type: "int", nullable: false),
+                    CourseID = table.Column<int>(type: "int", nullable: false),
+                    ClassTimeID = table.Column<int>(type: "int", nullable: false),
+                    SemesterID = table.Column<int>(type: "int", nullable: false),
+                    UserID = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Class", x => x.ClassID);
+                    table.ForeignKey(
+                        name: "FK_Class_ClassTimes_ClassTimeID",
+                        column: x => x.ClassTimeID,
+                        principalTable: "ClassTimes",
+                        principalColumn: "ClassTimeID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Semester",
                 columns: table => new
                 {
@@ -461,6 +468,11 @@ namespace Idea_Pending_SMART.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Class_ClassTimeID",
+                table: "Class",
+                column: "ClassTimeID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Enrollments_ClassID",
                 table: "Enrollments",
                 column: "ClassID");
@@ -473,7 +485,7 @@ namespace Idea_Pending_SMART.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Semester_SchoolId",
                 table: "Semester",
-                column: "SchoolId");
+                column: "SchoolId");*/
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -498,9 +510,6 @@ namespace Idea_Pending_SMART.Migrations
 
             migrationBuilder.DropTable(
                 name: "Attendance");
-
-            migrationBuilder.DropTable(
-                name: "ClassTimes");
 
             migrationBuilder.DropTable(
                 name: "Course");
@@ -543,6 +552,9 @@ namespace Idea_Pending_SMART.Migrations
 
             migrationBuilder.DropTable(
                 name: "School");
+
+            migrationBuilder.DropTable(
+                name: "ClassTimes");
         }
     }
 }

@@ -64,28 +64,28 @@ namespace Idea_Pending_SMART.Models
                     new ClassTime
                     {
                         Day = "Monday",
-                        TimeStart = DateTime.Parse("9:00")
+                        TimeStart = "9:00"
                     },
                     new ClassTime
                     {
                         Day = "Tuesday",
-                        TimeStart = DateTime.Parse("11:00")
+                        TimeStart = "11:00"
                     },
                     new ClassTime
                     {
 
                         Day = "Tuesday",
-                        TimeStart = DateTime.Parse("8:00")
+                        TimeStart = "8:00"
                     },
                     new ClassTime
                     {
                         Day = "Thursday",
-                        TimeStart = DateTime.Parse("13:00")
+                        TimeStart = "13:00"
                     },
                     new ClassTime
                     {
                         Day = "Friday",
-                        TimeStart = DateTime.Parse("12:00")
+                        TimeStart = "12:00"
                     }
                     ); context.SaveChanges();
             }
