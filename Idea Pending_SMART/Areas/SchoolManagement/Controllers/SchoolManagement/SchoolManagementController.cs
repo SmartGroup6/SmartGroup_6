@@ -5,11 +5,10 @@ using Idea_Pending_SMART.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-[Area("Semester")]
-public class SemesterController : Controller
+[Area("SchoolManagement")]
+public class SchoolManagementController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
-    private string defaultAction = "Index";
     /*
         +CreateGrade(GradeID, StudentID, LetterGrade, Percent, Pass)
         +UpdateGrade(StudentID,LetterGrade)
@@ -18,7 +17,7 @@ public class SemesterController : Controller
         +Meals
         * */
 
-    public SemesterController(IUnitOfWork unitOfWork)
+    public SchoolManagementController(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
     }
