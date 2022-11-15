@@ -1,46 +1,98 @@
-﻿@model IEnumerable<Idea_Pending_SMART.Models.Semester>
+﻿@model Idea_Pending_SMART.Areas.Semester.ViewModels.ManageVM
+@*@model IEnumerable<ManageVM>*@
+
 @{
     ViewData["Title"] = "Semester";
 }
 
+
+<!-- School START -->
 <div class="container p-3">
     <a asp-controller="Semester" asp-action="Upsert" class="btn btn-primary">
-        <i class="bi bi-plus-circle"></i> &nbsp;Create New Semester
+        <i class="bi bi-plus-circle"></i> &nbsp;Create New School
     </a>
-    <h4>TODO:</h4>
-    <p>Like, everything</p>
+    <h4>Schools</h4>
+    <p>Setup upsert stuff for each model type</p>
 </div>
-
-
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.IsActiveSemester)
+                @Html.DisplayNameFor(model => model.School.First().SchoolName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SemesterName)
+                @Html.DisplayNameFor(model => model.School.First().Phone)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MaxStudentCount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.School)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SemesterID)
+                @Html.DisplayNameFor(model => model.School.First().Address)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.School)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SchoolName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                        <!-- asp-route-id is parameter, named id, that is passed to the action method, Upsert, with the value of item.SemesterName -->
+                        <a asp-controller="Semester" asp-action="Upsert" asp-route-id="@item.SchoolID"
+                       class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>
+                        <a asp-controller="Semester" asp-action="Delete" asp-route-id="@item.SchoolID"
+                       class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<!-- School END -->
+<!-- Semester START -->
+<div class="container p-3">
+    <a asp-controller="Semester" asp-action="Upsert" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> &nbsp;Create New Semester
+    </a>
+    <h4>Semester</h4>
+    <p>Like, everything</p>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Semester.First().IsActiveSemester)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Semester.First().SemesterName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Semester.First().StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Semester.First().EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Semester.First().MaxStudentCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Semester.First().School)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Semester.First().SemesterID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Semester)
         {
             <tr>
                 <td>
@@ -77,3 +129,54 @@
         }
     </tbody>
 </table>
+<!-- Semester END -->
+<!-- Course START -->
+<div class="container p-3">
+    <a asp-controller="Semester" asp-action="Upsert" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> &nbsp;Create New Course
+    </a>
+    <h4>Courses</h4>
+    <p>Setup upsert stuff for each model type</p>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Course.First().CourseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Course.First().CourseDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Course.First().SchoolId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Course)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SchoolId)
+                </td>
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                        <!-- asp-route-id is parameter, named id, that is passed to the action method, Upsert, with the value of item.SemesterName -->
+                        <a asp-controller="Semester" asp-action="Upsert" asp-route-id="@item.CourseID"
+                       class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>
+                        <a asp-controller="Semester" asp-action="Delete" asp-route-id="@item.CourseID"
+                       class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<!-- Course END -->
