@@ -1,4 +1,4 @@
-﻿using Idea_Pending_SMART.Models;
+using Idea_Pending_SMART.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,13 +8,13 @@ namespace Idea_Pending_SMART.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
-        { }
+        {}
         public DbSet<School> School { get; set; }
 
         public DbSet<Semester> Semester { get; set; }
         public DbSet<Student> Students { get; set; }//student
         public DbSet<Class> Class { get; set; }
-        public DbSet<Application> Applications { get; set; }
+
         public DbSet<Enrollment> Enrollments { get; set; }//enrollment
         public DbSet<Course> Course { get; set; }
         public DbSet<Person> Person { get; set; }
@@ -28,14 +28,14 @@ namespace Idea_Pending_SMART.Data
         public DbSet<Role> Role { get; set; }
         public DbSet<StudentNote> StudentNote { get; set; }
 
-        /*  Chantel may need this later...
-         *  protected override void OnModelCreating(ModelBuilder builder)
-           {
-               builder.Entity<Enrollment>().HasKey(sc => new { sc.StudentID, sc.ClassID });
-               base.OnModelCreating(builder);
+     /*  Chantel may need this later...
+      *  protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Enrollment>().HasKey(sc => new { sc.StudentID, sc.ClassID });
+            base.OnModelCreating(builder);
 
 
-           }*/
+        }*/
 
     }
 }
