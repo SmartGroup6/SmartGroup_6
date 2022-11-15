@@ -14,7 +14,7 @@ namespace Idea_Pending_SMART.Data
         public DbSet<Semester> Semester { get; set; }
         public DbSet<Student> Students { get; set; }//student
         public DbSet<Class> Class { get; set; }
-
+        public DbSet<Application> Applications { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }//enrollment
         public DbSet<Course> Course { get; set; }
         public DbSet<Person> Person { get; set; }
