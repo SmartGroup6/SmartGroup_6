@@ -14,9 +14,18 @@ html {
 }
 
 body {
-  margin-bottom: 30px;
+    margin-bottom: 30px;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
 }
 
 idtest{
     background-color:black;
+}
+
+
+div {
+    width: 100vw;
+    height: 100vh;
 }
