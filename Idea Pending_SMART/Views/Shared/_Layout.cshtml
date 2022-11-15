@@ -20,6 +20,26 @@
                 </button>
                 <div class="collapse navbar-collapse" >
 
+
+                <div class="collapse navbar-collapse" id="navbarColor02">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="Home" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Areas</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-area="SchoolManagement" asp-controller="SchoolManagement" asp-action="Index">School Management</a>
+                                <a class="dropdown-item" asp-area="Section" asp-controller="Section" asp-action="Index">Section</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="MenuItem" asp-action="Index">Menu Item</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" asp-area="Admin" asp-page="/Users/Index">Manage Users</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-page="/Roles/Index">Manage Roles</a>
+                            </div>
+                        </li>
+                    </ul>
                     <partial name="_LoginPartial" />
 
                 </div>
@@ -54,7 +74,9 @@
                             <a class="nav-link text-light" asp-area="Staff" asp-controller="Staff" asp-action="Index">Staff</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="Semester" asp-controller="Semester" asp-action="Index">Semesters</a>
+
+                            <a class="nav-link text-white" asp-area="SchoolManagement" asp-controller="SchoolManagement" asp-action="Index">School Management</a>
+
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="Meeting" asp-controller="Meeting" asp-action="Index">Meetings Center</a>

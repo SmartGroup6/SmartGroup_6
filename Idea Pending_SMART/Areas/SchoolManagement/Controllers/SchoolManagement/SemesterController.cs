@@ -3,11 +3,10 @@ using Idea_Pending_SMART.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-[Area("Semester")]
+[Area("SchoolManagement")]
 public class SemesterController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
-    private string defaultAction = "Index";
     /*
         +CreateGrade(GradeID, StudentID, LetterGrade, Percent, Pass)
         +UpdateGrade(StudentID,LetterGrade)
@@ -79,7 +78,7 @@ public class SemesterController : Controller
         }
 
         _unitOfWork.Commit();
-        return RedirectToAction("Index");
+        return RedirectToAction("Index", "SchoolManagement");
     }
 
     [HttpGet]
@@ -112,7 +111,6 @@ public class SemesterController : Controller
         _unitOfWork.Semester.Delete(objFromDB);
         _unitOfWork.Commit();
 
-        return RedirectToAction("Index");
+        return RedirectToAction("Index", "SchoolManagement");
     }
 }
-

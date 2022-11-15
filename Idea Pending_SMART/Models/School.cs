@@ -8,6 +8,8 @@ namespace Idea_Pending_SMART.Models
         [Key]
         public int SchoolID { get; set; }
 
+        public string? Address { get; set; }
+
         [Required]
         //[Display(Name = "Food Name")]
         public string? SchoolName { get; set; }

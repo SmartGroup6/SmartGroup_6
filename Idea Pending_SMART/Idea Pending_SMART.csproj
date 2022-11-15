@@ -36,6 +36,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\SchoolManagement\Controllers\Semester\" />
+    <Folder Include="Areas\SchoolManagement\Views\Shared\" />
     <Folder Include="Migrations\" />
     <Folder Include="Views\MeetingNotes\" />
     <Folder Include="Views\Application\" />
@@ -61,9 +63,9 @@
     <None Include="Areas\Role\Views\Role\Index.cshtml" />
     <None Include="Areas\Role\Views\_ViewImports.cshtml" />
     <None Include="Areas\Role\Views\_ViewStart.cshtml" />
-    <None Include="Areas\Semester\Views\Semester\Index.cshtml" />
-    <None Include="Areas\Semester\Views\_ViewImports.cshtml" />
-    <None Include="Areas\Semester\Views\_ViewStart.cshtml" />
+    <None Include="Areas\SchoolManagement\Views\SchoolManagement\Index.cshtml" />
+    <None Include="Areas\SchoolManagement\Views\_ViewImports.cshtml" />
+    <None Include="Areas\SchoolManagement\Views\_ViewStart.cshtml" />
     <None Include="Areas\Sponsor\Views\Sponsor\Index.cshtml" />
     <None Include="Areas\Sponsor\Views\_ViewImports.cshtml" />
     <None Include="Areas\Sponsor\Views\_ViewStart.cshtml" />
