@@ -323,6 +323,112 @@ namespace Idea_Pending_SMART.Models
 
                     ); context.SaveChanges();
             }
+            // test application seed data (for demonstration, same as student)
+            if (!context.Applications.Any())
+            {
+                context.Applications.AddRange(
+                    new Application
+                    {
+
+                        //SponsorID = 1,
+                        ApplicationNameFirst = "Student",
+                        ApplicationNameLast = "One",
+                        AcademicScore = 25,
+                        DateOfBirth = "04/01/2008",
+                        Financials = "500",
+                        DeterminationNote = "very determined",
+                        DistanceNote = "lives far",
+                        AdminScore = 25,
+                        InstructorScore = 25,
+                        SocialWorkerScore = 25,
+                        TotalScore = 100,
+                        SubmissionDate = "11/06/2022",
+                        ChoppaTransportNeeded = true,
+                        MealsNeeded = true,
+                        ApplicantID = 1
+                    },
+                    new Application
+                    {
+
+                        //SponsorID = 1,
+                        ApplicationNameFirst = "Student",
+                        ApplicationNameLast = "Two",
+                        AcademicScore = 25,
+                        DateOfBirth = "04/01/2009",
+                        Financials = "5000",
+                        DeterminationNote = "",
+                        DistanceNote = "Lives close",
+                        AdminScore = 25,
+                        InstructorScore = 25,
+                        SocialWorkerScore = 25,
+                        TotalScore = 100,
+                        SubmissionDate = "11/06/2022",
+                        ChoppaTransportNeeded = false,
+                        MealsNeeded = true,
+                        ApplicantID = 2
+                    },
+                    new Application
+                    {
+                       // SponsorID = 0,
+                        ApplicationNameFirst = "Student",
+                        ApplicationNameLast = "Three",
+                        AcademicScore = 0,
+                        DateOfBirth = "04/01/2002",
+                        Financials = "800",
+                        DeterminationNote = "",
+                        DistanceNote = "",
+                        AdminScore = 0,
+                        InstructorScore = 0,
+                        SocialWorkerScore = 0,
+                        TotalScore = 0,
+                        SubmissionDate = "11/06/2022",
+                        ChoppaTransportNeeded = true,
+                        MealsNeeded = true,
+                        ApplicantID = 3
+                    },
+                    new Application
+                    {
+
+                        //SponsorID = 0,
+                        ApplicationNameFirst = "Student",
+                        ApplicationNameLast = "Four",
+                        AcademicScore = 5,
+                        DateOfBirth = "04/01/2008",
+                        Financials = "500",
+                        DeterminationNote = "",
+                        DistanceNote = "",
+                        AdminScore = 20,
+                        InstructorScore = 20,
+                        SocialWorkerScore = 20,
+                        TotalScore = 65,
+                        SubmissionDate = "11/06/2022",
+                        ChoppaTransportNeeded = true,
+                        MealsNeeded = true,
+                        ApplicantID = 4
+                    },
+                    new Application
+                    {
+
+                        //SponsorID = 3,
+                        ApplicationNameFirst = "Student",
+                        ApplicationNameLast = "Five",
+                        AcademicScore = 20,
+                        DateOfBirth = "04/01/2008",
+                        Financials = "500",
+                        DeterminationNote = "",
+                        DistanceNote = "",
+                        AdminScore = 20,
+                        InstructorScore = 20,
+                        SocialWorkerScore = 20,
+                        TotalScore = 80,
+                        SubmissionDate = "11/06/2022",
+                        ChoppaTransportNeeded = false,
+                        MealsNeeded = false,
+                        ApplicantID = 5
+                    }
+
+                    ); context.SaveChanges();
+            }
             if (!context.Applicant.Any())
             {
                 context.Applicant.AddRange(
