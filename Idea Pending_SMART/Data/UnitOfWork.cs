@@ -17,7 +17,7 @@ namespace Idea_Pending_SMART.Data
         private IRepository<Class> _Class;
         private IRepository<Enrollment> _Enrollment;
         private IRepository<Student> _Student;
-
+        private IRepository<Application> _Application;
         private IRepository<School> _School;
         private IRepository<Course> _Course;
         private IRepository<ClassTime> _ClassTime;
@@ -88,6 +88,15 @@ namespace Idea_Pending_SMART.Data
             }
         }
 
+        public IRepository<Application> Application
+        {
+            get
+            {
+
+                _Application ??= new Repository<Application>(_dbContext);
+                return _Application;
+            }
+        }
 
 
         //TO NOT TOUCH BELOW
