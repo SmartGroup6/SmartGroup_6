@@ -8,13 +8,13 @@ public class AssignmentController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
     private string defaultAction = "Index";
-    
-        /*
-            +CreateAssignment(AssignN,Due,Score)
-            +UpdateAssignment(AssignN,Score)
-            +RemoveAssignment(AssignN)
-            +getAssignmentDetlais(assignmentID)
-        */
+
+    /*
+        +CreateAssignment(AssignN,Due,Score)
+        +UpdateAssignment(AssignN,Score)
+        +RemoveAssignment(AssignN)
+        +getAssignmentDetlais(assignmentID)
+    */
 
     public AssignmentController(IUnitOfWork unitOfWork)
     {
@@ -24,98 +24,95 @@ public class AssignmentController : Controller
     //ctrl+k+c to comment, ctrl+k+u to uncomment
     public ViewResult Index()
     {
-        //IEnumerable<Semester> objList = _unitOfWork.Semester.GetAll();
-        //return View(objList);
-        return View();
+        IEnumerable<Assignment> objAssignmentList = _unitOfWork.Assignment.GetAll();
+
+        return View(objAssignmentList);
+
+    }
+
+    /////////Upsert stuff
+    private readonly IWebHostEnvironment _hostEnvironment;
+
+    //Bind apparently solves some headaches by binding the model to our forum
+    [BindProperty]
+    public Assignment AssignmenObj { get; set; }
+
+
+    /*
+     * We aren't going to have a separate edit/delete mode. Just upsert.
+     * The id is optional, as you either pass it an id that gets edited, or you dont give it an id so it creates a new one.
+     * */
+    [HttpGet]
+    public IActionResult Upsert(int? id) //optional, indicates editing or creating
+    {
+        Assignment AssignmenObj = new Assignment();
+
+        //Get the semester we're editing, if it exists.
+        if (id != null)
+        {
+            AssignmenObj = _unitOfWork.Assignment.Get(s => s.AssignmentID == id);
+            if (AssignmenObj == null)
+            {
+                return NotFound();
+            }
+        }
+
+        return View(AssignmenObj);
     }
 
 
-    ////Unsure of usage
-    //[HttpGet]
-    //public ViewResult Create()
-    //{
-    //    return View();
-    //}
+    [HttpPost]
+    public IActionResult Upsert() //note the lack of paramters. The menu item from the form comes from the [BindProperty] declaration.
+    {
+        if (!ModelState.IsValid)
+        {
+            return View();
+        }
 
-    //[HttpPost]
-    //[ValidateAntiForgeryToken]
-    //public IActionResult Create(Semester obj)
-    //{
-        
-    //    if (ModelState.IsValid)
-    //    {
-    //        _unitOfWork.Semester.Add(obj); //internal add
-    //        _unitOfWork.Commit(); //physical commit to DB table
-    //        TempData["success"] = "Semester added to database Successfully";
-    //        return RedirectToAction(defaultAction);
-    //    }
-    //    return View(obj);
-    //}
+        if (AssignmenObj.AssignmentID == 0) //New semester
+        {
+            _unitOfWork.Assignment.Add(AssignmenObj);
+        }
+        else //Edit semester
+        {
+            _unitOfWork.Assignment.Update(AssignmenObj);
+        }
 
-    //[HttpGet]
-    //public IActionResult Edit(int? id)
-    //{
-    //    if (id == null || id == 0)
-    //        return NotFound();
+        _unitOfWork.Commit();
+        return RedirectToAction("Index");
+    }
 
-    //    //grab that Category from the DB itself
+    [HttpGet]
+    public IActionResult Delete(int? id)
+    {
+        if (id == null || id == 0)
+        {
+            return NotFound();
+        }
 
-    //    var objFromDb = _unitOfWork.Semester.Get(c => c.SemesterID == id);
+        var objFromDb = _unitOfWork.Assignment.Get(m => m.AssignmentID == id);
 
-    //    if (objFromDb == null)
-    //    {
-    //        return NotFound();
-    //    }
+        if (objFromDb == null)
+        {
+            return NotFound();
+        }
 
-    //    return View(objFromDb);
-    //}
-
-
-    //[HttpPost]
-    //[ValidateAntiForgeryToken]
-    //public IActionResult Edit(Semester obj)
-    //{
-    //    if (ModelState.IsValid)
-    //    {
-    //        _unitOfWork.Semester.Update(obj);
-    //        _unitOfWork.Commit();
-    //        TempData["success"] = "Semester updated successfully";
-    //        return RedirectToAction(defaultAction);
-    //    }
-    //    return View(obj);
-    //}
+        return View(objFromDb);
+    }
 
 
-    //[HttpGet]
-    //public IActionResult Delete(int? id)
-    //{
-    //    if (id == null || id == 0)
-    //    {
-    //        return NotFound();
-    //    }
+    [HttpPost, ActionName("Delete")]
+    public IActionResult DeletePost(int? id)
+    {
+        var objFromDB = _unitOfWork.Assignment.Get(m => m.AssignmentID == id);
+        if (objFromDB == null)
+        {
+            return NotFound();
+        }
+        _unitOfWork.Assignment.Delete(objFromDB);
+        _unitOfWork.Commit();
 
-    //    var objFromDb = _unitOfWork.Semester.Get(c => c.SemesterID == id);
-
-    //    if (objFromDb == null)
-    //    {
-    //        return NotFound();
-    //    }
-
-    //    return View(objFromDb);
-    //}
-
-    //[HttpPost, ActionName("Delete")]     //can change the method name and just map the button on the html page to this ActionName
-
-    //public IActionResult DeletePost(int? id)
-    //{
-    //    var obj = _unitOfWork.Semester.Get(c => c.SemesterID == id);
-    //    if (obj == null)
-    //    { return NotFound(); }
-
-    //    _unitOfWork.Semester.Delete(obj);
-    //    _unitOfWork.Commit();
-    //    TempData["success"] = "Semester was deleted Successfully";
-    //    return RedirectToAction("Index");
-    //}
+        return RedirectToAction("Index");
+    }
 }
 
