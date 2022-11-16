@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Classtime";
     var time = ViewBag.classtimes;
-    var studentIDHolder = 0;
+    var classID = ViewBag.classID;
 
 }
 
@@ -10,33 +10,35 @@
 <h3> classs time passed: @time</h3>
 @foreach (var obj in Model.Enrollment)
 {
-
-    if (@obj.Class.ClassTimeID == time  )
+    if(obj.Class.ClassID != 2 && obj.Student.timeAvailable == true)
     {
-        <h3>display enrollments with this time</h3>
-         <h3>ClassID: @obj.ClassID</h3>
-        <h3>get enrollment studentsID @obj.StudentID</h3>
+        <div class="col-md-10">
+            <span class="badge bg-gradient text-white  .rounded-lg mb-xxl-2" input-type="radio"
+    style="background-color:darkslategray; border-color:antiquewhite; border-width: 10px; border-style:double;">
+                    <ul>
+                        <tr>
+                            <th width="80%">
+                            <td>
+                             <div class="col-md-10">
+                                        <h3>Student ID: @obj.StudentID</h3>
+                                        <h3>Student Name: @obj.Student.ApplicationNameFirst @obj.Student.ApplicationNameLast</h3>
+                          <div class="w-75 btn-group" role="group">
+                         <a asp-controller="Section" asp-action="Add" asp-route-id="@obj.StudentID" asp-route-id="@obj.ClassID"
+                       class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Add</a>
+                                <a asp-controller="Student" asp-action="Info" asp-route-id="@obj.StudentID" 
+                       class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Details</a>
+                            </div>
+                            </div>
+                            </td>
 
-        studentIDHolder = obj.StudentID;
-        
+                        </tr>
+                        <td>
+                        </td>
+                    </ul>    
+                </span>
+                </div>
     }
-    if(obj.Student.timeAvailable == false || (obj.Student.StudentID == obj.StudentID && obj.Class.ClassTimeID == time))
-        {
-            <h3>STUDENT @obj.StudentID is unable to take class</h3>
-        }
-        else
-        {
-            <h3>STUDENT @obj.StudentID is able to take class</h3>
-        }
-<!--@foreach(var student in Model.Student)
-{
-    if(student.timeAvailable == false || student.StudentID == studentIDHolder)
-    {
-                <h3>student @student.StudentID is unable to take class</h3>
-            }
-            else 
-            {
-            <h3>student @student.StudentID is able to take class</h3>
-            }
-        }  -->
 }
+
+
+

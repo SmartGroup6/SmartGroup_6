@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Idea_Pending_SMART.Migrations
 {
-    public partial class ct1 : Migration
+    public partial class _1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-        /*    migrationBuilder.CreateTable(
+            migrationBuilder.CreateTable(
                 name: "Applicant",
                 columns: table => new
                 {
@@ -354,30 +354,6 @@ namespace Idea_Pending_SMART.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Class",
-                columns: table => new
-                {
-                    ClassID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ClassDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Studentcount = table.Column<int>(type: "int", nullable: false),
-                    CourseID = table.Column<int>(type: "int", nullable: false),
-                    ClassTimeID = table.Column<int>(type: "int", nullable: false),
-                    SemesterID = table.Column<int>(type: "int", nullable: false),
-                    UserID = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Class", x => x.ClassID);
-                    table.ForeignKey(
-                        name: "FK_Class_ClassTimes_ClassTimeID",
-                        column: x => x.ClassTimeID,
-                        principalTable: "ClassTimes",
-                        principalColumn: "ClassTimeID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Semester",
                 columns: table => new
                 {
@@ -399,6 +375,42 @@ namespace Idea_Pending_SMART.Migrations
                         column: x => x.SchoolId,
                         principalTable: "School",
                         principalColumn: "SchoolID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Class",
+                columns: table => new
+                {
+                    ClassID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClassDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Studentcount = table.Column<int>(type: "int", nullable: false),
+                    CourseID = table.Column<int>(type: "int", nullable: false),
+                    ClassTimeID = table.Column<int>(type: "int", nullable: false),
+                    SemesterID = table.Column<int>(type: "int", nullable: false),
+                    UserID = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Class", x => x.ClassID);
+                    table.ForeignKey(
+                        name: "FK_Class_ClassTimes_ClassTimeID",
+                        column: x => x.ClassTimeID,
+                        principalTable: "ClassTimes",
+                        principalColumn: "ClassTimeID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Class_Course_CourseID",
+                        column: x => x.CourseID,
+                        principalTable: "Course",
+                        principalColumn: "CourseID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Class_Semester_SemesterID",
+                        column: x => x.SemesterID,
+                        principalTable: "Semester",
+                        principalColumn: "SemesterID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -473,6 +485,16 @@ namespace Idea_Pending_SMART.Migrations
                 column: "ClassTimeID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Class_CourseID",
+                table: "Class",
+                column: "CourseID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Class_SemesterID",
+                table: "Class",
+                column: "SemesterID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Enrollments_ClassID",
                 table: "Enrollments",
                 column: "ClassID");
@@ -485,7 +507,7 @@ namespace Idea_Pending_SMART.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Semester_SchoolId",
                 table: "Semester",
-                column: "SchoolId");*/
+                column: "SchoolId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -512,9 +534,6 @@ namespace Idea_Pending_SMART.Migrations
                 name: "Attendance");
 
             migrationBuilder.DropTable(
-                name: "Course");
-
-            migrationBuilder.DropTable(
                 name: "Enrollments");
 
             migrationBuilder.DropTable(
@@ -525,9 +544,6 @@ namespace Idea_Pending_SMART.Migrations
 
             migrationBuilder.DropTable(
                 name: "Role");
-
-            migrationBuilder.DropTable(
-                name: "Semester");
 
             migrationBuilder.DropTable(
                 name: "Sponsor");
@@ -551,10 +567,16 @@ namespace Idea_Pending_SMART.Migrations
                 name: "Students");
 
             migrationBuilder.DropTable(
-                name: "School");
+                name: "ClassTimes");
 
             migrationBuilder.DropTable(
-                name: "ClassTimes");
+                name: "Course");
+
+            migrationBuilder.DropTable(
+                name: "Semester");
+
+            migrationBuilder.DropTable(
+                name: "School");
         }
     }
 }

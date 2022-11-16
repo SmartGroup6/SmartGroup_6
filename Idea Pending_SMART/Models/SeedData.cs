@@ -1,6 +1,7 @@
 using Idea_Pending_SMART.Data;
 
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace Idea_Pending_SMART.Models
 {
@@ -26,6 +27,12 @@ namespace Idea_Pending_SMART.Models
                     {
                         Phone = "",
                         SchoolName = "School Two"
+                    },
+                    new School
+                    {
+                        Phone = "",
+                        SchoolName = "Public School"
+
                     }
 
                     ); context.SaveChanges();
@@ -387,6 +394,12 @@ namespace Idea_Pending_SMART.Models
                         SchoolId = 2,
                         CourseName = "Intermediate English"
 
+                    },
+                    new Course
+                    {
+                        CourseDescription = "Public school, hours unavailable for student",
+                        SchoolId = 3,
+                        CourseName = "Public Class Block"
                     }
                     ); context.SaveChanges();
             }
@@ -429,45 +442,20 @@ namespace Idea_Pending_SMART.Models
                         SemesterID = 2,
                         Studentcount = 20,
                         UserID = 2
+                    },
+                    new Class
+                    {
+                        ClassDescription = "Public School",
+                        ClassTimeID = 2,
+                        CourseID = 6,
+                        SemesterID = 2,
+                        Studentcount = 200,
+                        UserID = null
                     }
 
                     ); context.SaveChanges();
             }
-            if (!context.Enrollments.Any())
-            {
-                context.Enrollments.AddRange(
-                    new Enrollment
-                    {
-                        ClassID = 1,
-                        StudentID = 1
-                    },
-                    new Enrollment
-                    {
-                        ClassID = 2,
-                        StudentID = 2
-                    },
-                    new Enrollment
-                    {
-                        ClassID = 3,
-                        StudentID = 3
-                    },
-                    new Enrollment
-                    {
-                        ClassID = 2,
-                        StudentID = 1
-                    },
-                   new Enrollment
-                   {
-                       ClassID = 3,
-                       StudentID = 3
-                   },
-                   new Enrollment
-                   {
-                       ClassID = 3,
-                       StudentID = 4
-                   }
-                    ); context.SaveChanges();
-            }
+ 
             if (!context.Attendance.Any())
             {
                 context.Attendance.AddRange(
@@ -619,6 +607,46 @@ namespace Idea_Pending_SMART.Models
                         StudentID = 3
                     }
 
+                    ); context.SaveChanges();
+            }
+            if (!context.Enrollments.Any())
+            {
+                context.Enrollments.AddRange(
+                    new Enrollment
+                    {
+                        ClassID = 1,
+                        StudentID = 1
+                    },
+                    new Enrollment
+                    {
+                        ClassID = 2,
+                        StudentID = 2
+                    },
+                    new Enrollment
+                    {
+                        ClassID = 3,
+                        StudentID = 3
+                    },
+                    new Enrollment
+                    {
+                        ClassID = 2,
+                        StudentID = 1
+                    },
+                   new Enrollment
+                   {
+                       ClassID = 2,
+                       StudentID = 3
+                   },
+                   new Enrollment
+                   {
+                       ClassID = 3,
+                       StudentID = 4
+                   },
+                   new Enrollment
+                   {
+                       ClassID = 5,
+                       StudentID = 5
+                   }
                     ); context.SaveChanges();
             }
 

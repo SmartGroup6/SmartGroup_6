@@ -16,16 +16,15 @@ namespace Idea_Pending_SMART.Models
         [Required]
         public int Studentcount { get; set; }
 
-        [Required]
+
         [ForeignKey("Course")]
         public int CourseID { get; set; }
 
-        [Required]
         [ForeignKey("ClassTime")]
         [Display(Name = "ClassTime")]
         public int ClassTimeID { get; set; }
 
-        [Required]
+
         [ForeignKey("Semester")]
         public int SemesterID { get; set; }
 
@@ -35,9 +34,9 @@ namespace Idea_Pending_SMART.Models
         [ForeignKey("ClassTimeID")]
         public virtual ClassTime? ClassTime { get; set; }
         [ForeignKey("SemesterID")]
-        public virtual ClassTime? Semester { get; set; }
+        public virtual Semester? Semester { get; set; }
         [ForeignKey("CourseID")]
-        public virtual ClassTime? Course { get; set; }
+        public virtual Course? Course { get; set; }
 
         //testing
         //  public List<Enrollment> Enrollments { get; set; }
