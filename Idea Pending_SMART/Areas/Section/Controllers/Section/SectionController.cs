@@ -65,18 +65,16 @@ public class SectionController : Controller
     }
 
     [HttpGet]
-    public IActionResult ListStudentsAdd(int? id, int? classtime)
+    public IActionResult ListStudentsAdd(int? id)
     {
 
 
         ListStudentsAdd lsa = new ListStudentsAdd();
         lsa.Class = _unitOfWork.Class.GetAll();
-        lsa.Enrollment = _unitOfWork.Enrollment.GetAll();
+        lsa.Enrollment = _unitOfWork.Enrollment.GetAll(e => e.ClassID != id);
         //remove students already in class
         lsa.Student = _unitOfWork.Student.GetAll();
         lsa.ClassTime = _unitOfWork.ClassTime.GetAll();
-
-        ViewBag.classtimes = classtime;
 
         return View(lsa);
     }
@@ -95,12 +93,11 @@ public class SectionController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Add(Enrollment obj)
     {
-
        if (ModelState.IsValid)
         {
             _unitOfWork.Enrollment.Add(obj); //internal add
             _unitOfWork.Commit(); //physical commit to DB table
-            TempData["success"] = "Semester added to database Successfully";
+            TempData["success"] = "Student added to database Successfully";
             return RedirectToAction(defaultAction);
         }
        return View(obj);

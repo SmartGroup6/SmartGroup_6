@@ -7,10 +7,11 @@
 }
 
 <!--        //studentID not in Enrollment where Class contains classtimeID-->
+
 <h3> classs time passed: @time</h3>
 @foreach (var obj in Model.Enrollment)
 {
-    if(obj.Class.ClassID != 2 && obj.Student.timeAvailable == true)
+    if(obj.Student.timeAvailable == true)
     {
         <div class="col-md-10">
             <span class="badge bg-gradient text-white  .rounded-lg mb-xxl-2" input-type="radio"

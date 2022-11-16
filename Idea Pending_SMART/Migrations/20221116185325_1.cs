@@ -418,8 +418,7 @@ namespace Idea_Pending_SMART.Migrations
                 name: "Enrollments",
                 columns: table => new
                 {
-                    EnrollmentID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EnrollmentID = table.Column<int>(type: "int", nullable: false),
                     ClassID = table.Column<int>(type: "int", nullable: false),
                     StudentID = table.Column<int>(type: "int", nullable: false)
                 },

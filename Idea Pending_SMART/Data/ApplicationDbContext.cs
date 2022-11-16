@@ -28,13 +28,13 @@ namespace Idea_Pending_SMART.Data
         public DbSet<Role> Role { get; set; }
         public DbSet<StudentNote> StudentNote { get; set; }
 
-     //  Chantel did need this later
-       protected override void OnModelCreating(ModelBuilder builder)
-        {
-            builder.Entity<Enrollment>().HasKey(sc => new { sc.StudentID, sc.ClassID });
-            base.OnModelCreating(builder);
+        //  Chantel did need this later
+     //   protected override void OnModelCreating(ModelBuilder builder)
+     //   {
+      //      builder.Entity<Enrollment>().HasKey(sc => new { sc.StudentID, sc.ClassID });
 
-        }
+          //  base.OnModelCreating(builder);
+        //}
 
     }
 }
