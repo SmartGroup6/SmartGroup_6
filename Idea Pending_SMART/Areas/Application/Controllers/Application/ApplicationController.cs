@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 public class ApplicationController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
-    private string defaultAction = "Index";
     /*
         +Float:academicScore
         +Date:DOB
@@ -43,15 +42,14 @@ public class ApplicationController : Controller
     {
         IEnumerable<Application> objList = _unitOfWork.Application.GetAll();
         return View(objList);
-        //return View();
     }
 
 
-    ////Unsure of usage
     [HttpGet]
     public ViewResult Create()
     {
         return View();
+
     }
 
     [HttpPost]
@@ -63,8 +61,8 @@ public class ApplicationController : Controller
         {
             _unitOfWork.Application.Add(obj); //internal add
             _unitOfWork.Commit(); //physical commit to DB table
-            TempData["success"] = "Application added to database Successfully";
-            return RedirectToAction(defaultAction);
+            //TempData["success"] = "Application added to database Successfully";
+            return RedirectToAction("Index");
         }
         return View(obj);
     }
@@ -96,8 +94,8 @@ public class ApplicationController : Controller
         {
             _unitOfWork.Application.Update(obj);
             _unitOfWork.Commit();
-            TempData["success"] = "Application updated successfully";
-            return RedirectToAction(defaultAction);
+           // TempData["success"] = "Application updated successfully";
+            return RedirectToAction("Index");
         }
         return View(obj);
     }
@@ -131,7 +129,7 @@ public class ApplicationController : Controller
 
         _unitOfWork.Application.Delete(obj);
         _unitOfWork.Commit();
-        TempData["success"] = "Application was deleted Successfully";
+        //TempData["success"] = "Application was deleted Successfully";
         return RedirectToAction("Index");
     }
 }
