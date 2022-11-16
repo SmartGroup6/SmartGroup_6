@@ -14,7 +14,7 @@ namespace Idea_Pending_SMART.Models
             {
                 context.Database.Migrate();
             }
-            if (!context.School.Any())
+        /*    if (!context.School.Any())
             {
                 context.School.AddRange(
                     new School
@@ -726,7 +726,7 @@ namespace Idea_Pending_SMART.Models
                     }
 
                     ); context.SaveChanges();
-            }
+            }  */
 
         }
 
