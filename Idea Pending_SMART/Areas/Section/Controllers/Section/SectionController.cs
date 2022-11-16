@@ -53,9 +53,7 @@ public class SectionController : Controller
         ListStudentsAdd lsa = new ListStudentsAdd();
         lsa.Class = _unitOfWork.Class.GetAll();
         lsa.Enrollment= _unitOfWork.Enrollment.GetAll();
-
         lsa.Student= _unitOfWork.Student.GetAll();
-
         lsa.ClassTime= _unitOfWork.ClassTime.GetAll();
         //studentID not in Enrollment where Class contains classtimeID
         ViewBag.classtimes = classtime;
