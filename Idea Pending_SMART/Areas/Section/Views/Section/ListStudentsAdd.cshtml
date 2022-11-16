@@ -1,0 +1,34 @@
+﻿@model Idea_Pending_SMART.Areas.Section.ViewModels.ListStudentsAdd
+@{
+    ViewBag.Title = "Classtime";
+    var time = ViewBag.classtimes;
+}
+
+<!--        //studentID not in Enrollment where Class contains classtimeID-->
+<h3> classs time passed: @time</h3>
+@foreach (var obj in Model.Enrollment)
+{
+  <!--if( obj.ClassID.Class  obj.Class.ClassTimeID == time)
+    {
+        
+    }-->  
+    if(@obj.StudentID != 2 )
+    {
+        <h2>after removing class id</h2>
+        <td>
+         <h3>ClassID: @obj.ClassID</h3>
+          <h3>Desc: @obj.Class.ClassDescription</h3>
+          <h3>ClasstimeID: @obj.Class.ClassTimeID</h3>
+           <h3>Day: @obj.Class.ClassTime.Day</h3>
+            </td>       
+    }
+}
+
+@foreach(var student in Model.Student)
+{
+    if(student.timeAvailable == false)
+    {
+        <h3>student @student.StudentID is unable to take class</h3>
+    }
+}
+

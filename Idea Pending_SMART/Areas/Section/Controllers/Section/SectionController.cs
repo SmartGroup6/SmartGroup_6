@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using System.Diagnostics.CodeAnalysis;
 
 [Area("Section")]
 public class SectionController : Controller
@@ -43,6 +44,24 @@ public class SectionController : Controller
         return View(cvm);
     }
 
+
+    [HttpGet]
+    public IActionResult ListStudentsAdd(int? id, int? classtime)
+    {
+
+
+        ListStudentsAdd lsa = new ListStudentsAdd();
+        lsa.Class = _unitOfWork.Class.GetAll();
+        lsa.Enrollment= _unitOfWork.Enrollment.GetAll();
+
+        lsa.Student= _unitOfWork.Student.GetAll();
+
+        lsa.ClassTime= _unitOfWork.ClassTime.GetAll();
+        //studentID not in Enrollment where Class contains classtimeID
+        ViewBag.classtimes = classtime;
+
+        return View(lsa);
+    }
 
     [HttpGet]
     public IActionResult Open(int? id)
