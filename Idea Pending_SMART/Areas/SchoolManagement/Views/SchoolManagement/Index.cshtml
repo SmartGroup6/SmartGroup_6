@@ -112,7 +112,11 @@
                     @Html.DisplayFor(modelItem => item.MaxStudentCount)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.SchoolId)
+                    @{
+                        var schoolName = Model.School.Where(c => c.SchoolID == item.SchoolId);
+                        var x = schoolName.First();
+                        @Html.DisplayFor(c => x.SchoolName)
+                    }
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.SemesterID)
@@ -166,7 +170,11 @@
                     @Html.DisplayFor(modelItem => item.CourseDescription)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.SchoolId)
+                    @{
+                        var holder = Model.School.Where(temp => temp.SchoolID == item.SchoolId);
+                        var school = holder.First();
+                        @Html.DisplayFor(temp => school.SchoolName)
+                    }
                 </td>
                 <td>
                     <div class="w-75 btn-group" role="group">
