@@ -174,6 +174,10 @@ namespace Idea_Pending_SMART.Migrations
 
                     b.HasIndex("ClassTimeID");
 
+                    b.HasIndex("CourseID");
+
+                    b.HasIndex("SemesterID");
+
                     b.ToTable("Class");
                 });
 
@@ -756,19 +760,35 @@ namespace Idea_Pending_SMART.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Idea_Pending_SMART.Models.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Idea_Pending_SMART.Models.Semester", "Semester")
+                        .WithMany()
+                        .HasForeignKey("SemesterID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("ClassTime");
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Semester");
                 });
 
             modelBuilder.Entity("Idea_Pending_SMART.Models.Enrollment", b =>
                 {
                     b.HasOne("Idea_Pending_SMART.Models.Class", "Class")
-                        .WithMany("Enrollments")
+                        .WithMany()
                         .HasForeignKey("ClassID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Idea_Pending_SMART.Models.Student", "Student")
-                        .WithMany("Enrollments")
+                        .WithMany()
                         .HasForeignKey("StudentID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -838,16 +858,6 @@ namespace Idea_Pending_SMART.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Idea_Pending_SMART.Models.Class", b =>
-                {
-                    b.Navigation("Enrollments");
-                });
-
-            modelBuilder.Entity("Idea_Pending_SMART.Models.Student", b =>
-                {
-                    b.Navigation("Enrollments");
                 });
 #pragma warning restore 612, 618
         }
