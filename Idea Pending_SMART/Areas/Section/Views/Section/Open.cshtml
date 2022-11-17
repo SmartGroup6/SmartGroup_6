@@ -24,8 +24,10 @@
         <div class="col">
             <h6 class="bg-opacity-50 border-warning p-2 border-top border-bottom">Students in Class (Click for Details)</h6>
             <div class="list-group">
+                
                 @foreach (var obj in Model)
             {
+                //lists students in classrooms
                     <a asp-controller="Student" asp-action="Info" asp-route-id="@obj.Student.StudentID" 
                     class="list-group-item bg-gradient bg-opacity-50 bg-warning list-group-item-action px-3 border-dark">
                          <td>

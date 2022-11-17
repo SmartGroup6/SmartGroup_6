@@ -10,6 +10,7 @@
 <h3> classs time passed: @time</h3>
 @foreach (var obj in Model.Enrollment)
 {
+    //gets students not in the class ID passed 
     if(obj.Student.timeAvailable == true )
     {
 

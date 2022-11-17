@@ -16,7 +16,8 @@
     <div class="flex-lg-column">
         @foreach (var obj in Model.Class)
         {
-            @if (obj.UserID == 2)
+            //need to grab user ID from login
+            @if (obj.UserID == 2) 
             {
                 <a asp-controller="Section" asp-action="Open" asp-route-id="@obj.ClassID"
            class="btn" style="background-color:transparent" role="button">

@@ -1,9 +1,5 @@
 ﻿using Idea_Pending_SMART.Models;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
-
-
-using Idea_Pending_SMART.Models;
 
 namespace Idea_Pending_SMART.Areas.Section.ViewModels
 {

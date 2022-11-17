@@ -2,6 +2,7 @@
 
 namespace Idea_Pending_SMART.Areas.Section.ViewModels
 {
+    //vm to show student lists
     public class ListStudentsAdd
     {
         public IEnumerable<Enrollment>? Enrollment { get; set; }
