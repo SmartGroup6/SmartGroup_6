@@ -18,22 +18,27 @@
     <table class="table table-bordered table-striped" style="width:100%">
         <thead>
             <tr>
-                <th>
-                    Application
-                </th>
-                <th></th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <!--<th>Status</th>-->
+                <th>Score</th>
+                <th>Submission Date</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var obj in Model)
             {
                 <tr>
-                    <td width="50%">
+                    <td>
                         @obj.ApplicationNameFirst
                     </td>
-                    <td width="50%">
+                    <td>
                         @obj.ApplicationNameLast
                     </td>
+                    <td>
+                        @obj.TotalScore
+                    </td>
+                    <td width="50%">@obj.SubmissionDate</td>
                     <td>
                         <div class="w-75 btn-group" role="group">
                             <a asp-controller="Application" asp-action="Edit" asp-route-id="@obj.ApplicationID"
