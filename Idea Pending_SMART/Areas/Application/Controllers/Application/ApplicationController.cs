@@ -40,66 +40,58 @@ public class ApplicationController : Controller
     //ctrl+k+c to comment, ctrl+k+u to uncomment
     public ViewResult Index()
     {
-        IEnumerable<Application> objList = _unitOfWork.Application.GetAll();
-        return View(objList);
+        IEnumerable<Application> objApplicationList = _unitOfWork.Application.GetAll();
+        return View(objApplicationList);
     }
 
+    /////////Upsert stuff
+    private readonly IWebHostEnvironment _hostEnvironment;
+    //Bind apparently solves some headaches by binding the model to our forum
+    [BindProperty]
+    public Application ApplicationObj { get; set; }
 
+    /*
+     * We aren't going to have a separate edit/delete mode. Just upsert.
+     * The id is optional, as you either pass it an id that gets edited, or you dont give it an id so it creates a new one.
+     * */
     [HttpGet]
-    public ViewResult Create()
+    public IActionResult Upsert(int? id) //optional, indicates editing or creating
     {
-        return View();
+        Application ApplicationObj = new Application();
 
-    }
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public IActionResult Create(Application obj)
-    {
-        if (ModelState.IsValid)
+        //Get the semester we're editing, if it exists.
+        if (id != null)
         {
-            _unitOfWork.Application.Add(obj); //internal add
-            _unitOfWork.Commit(); //physical commit to DB table
-            //TempData["success"] = "Application added to database Successfully";
-            return RedirectToAction("Index");
-        }
-        return View(obj);
-    }
-
-    [HttpGet]
-    public IActionResult Edit(int? id)
-    {
-        if (id == null || id == 0)
-        {
-            return NotFound();
-        }
-        //grab that Application from the DB itself
-
-        var objFromDb = _unitOfWork.Application.Get(a => a.ApplicationID == id);
-
-        if (objFromDb == null)
-        {
-            return NotFound();
+            ApplicationObj = _unitOfWork.Application.Get(s => s.ApplicationID == id);
+            if (ApplicationObj == null)
+            {
+                return NotFound();
+            }
         }
 
-        return View(objFromDb);
+        return View(ApplicationObj);
     }
 
 
     [HttpPost]
-    [ValidateAntiForgeryToken]
-    public IActionResult Edit(Application obj)
+    public IActionResult Upsert() //note the lack of paramters. The Application from the form comes from the [BindProperty] declaration.
     {
-        if (ModelState.IsValid)
+        if (!ModelState.IsValid)
         {
-                _unitOfWork.Application.Update(obj);
-                _unitOfWork.Commit();
-                // TempData["success"] = "Application updated successfully";
-                return RedirectToAction("Index");
-            
-            
+            return View();
         }
-        return View(obj);
+
+        if (ApplicationObj.ApplicationID == 0) //New semester
+        {
+            _unitOfWork.Application.Add(ApplicationObj);
+        }
+        else //Edit semester
+        {
+            _unitOfWork.Application.Update(ApplicationObj);
+        }
+
+        _unitOfWork.Commit();
+        return RedirectToAction("Index");
     }
 
 

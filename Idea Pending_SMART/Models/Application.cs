@@ -8,16 +8,14 @@ namespace Idea_Pending_SMART.Models
     {
         [Key]
         public int ApplicationID { get; set; }
-
-        
         public float AcademicScore { get; set; }
 
         public string? DateOfBirth { get; set; }
         
         [Display(Name = "Application")]
-        [ConcurrencyCheck]
+        [Required]
         public string? ApplicationNameFirst { get; set; }
-        [ConcurrencyCheck]
+        [Required]
         public string? ApplicationNameLast { get; set; }
 
         
@@ -36,11 +34,14 @@ namespace Idea_Pending_SMART.Models
 
         public int? AdminScore { get; set; }
 
-        
-        public int? TotalScore { get; set; }
 
-        public string? SubmissionDate { get; set; }
+        public int? TotalScore { get; set; } = 100;
 
+       // [DataType(DataType.Date)]
+       // [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+        //public DateTime? SubmissionDate { get; set; } = DateTime.Now;
+
+        public String? SubmissionDate { get; set; }
         public bool? ChoppaTransportNeeded { get; set; }
 
         public bool? MealsNeeded { get; set; }
