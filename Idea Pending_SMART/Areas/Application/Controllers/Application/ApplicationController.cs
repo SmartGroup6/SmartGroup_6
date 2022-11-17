@@ -1,4 +1,4 @@
-﻿using Idea_Pending_SMART.Interfaces;
+using Idea_Pending_SMART.Interfaces;
 using Idea_Pending_SMART.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -41,98 +41,97 @@ public class ApplicationController : Controller
     //ctrl+k+c to comment, ctrl+k+u to uncomment
     public ViewResult Index()
     {
-        //IEnumerable<Semester> objList = _unitOfWork.Semester.GetAll();
-        //return View(objList);
-        return View();
+        IEnumerable<Application> objList = _unitOfWork.Application.GetAll();
+        return View(objList);
+        //return View();
     }
 
 
     ////Unsure of usage
-    //[HttpGet]
-    //public ViewResult Create()
-    //{
-    //    return View();
-    //}
+    [HttpGet]
+    public ViewResult Create()
+    {
+        return View();
+    }
 
-    //[HttpPost]
-    //[ValidateAntiForgeryToken]
-    //public IActionResult Create(Semester obj)
-    //{
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Create(Application obj)
+    {
         
-    //    if (ModelState.IsValid)
-    //    {
-    //        _unitOfWork.Semester.Add(obj); //internal add
-    //        _unitOfWork.Commit(); //physical commit to DB table
-    //        TempData["success"] = "Semester added to database Successfully";
-    //        return RedirectToAction(defaultAction);
-    //    }
-    //    return View(obj);
-    //}
+        if (ModelState.IsValid)
+        {
+            _unitOfWork.Application.Add(obj); //internal add
+            _unitOfWork.Commit(); //physical commit to DB table
+            TempData["success"] = "Application added to database Successfully";
+            return RedirectToAction(defaultAction);
+        }
+        return View(obj);
+    }
 
-    //[HttpGet]
-    //public IActionResult Edit(int? id)
-    //{
-    //    if (id == null || id == 0)
-    //        return NotFound();
+    [HttpGet]
+    public IActionResult Edit(int? id)
+    {
+        if (id == null || id == 0)
+            return NotFound();
 
-    //    //grab that Category from the DB itself
+        //grab that Category from the DB itself
 
-    //    var objFromDb = _unitOfWork.Semester.Get(c => c.SemesterID == id);
+        var objFromDb = _unitOfWork.Application.Get(c => c.ApplicationID == id);
 
-    //    if (objFromDb == null)
-    //    {
-    //        return NotFound();
-    //    }
+        if (objFromDb == null)
+        {
+            return NotFound();
+        }
 
-    //    return View(objFromDb);
-    //}
-
-
-    //[HttpPost]
-    //[ValidateAntiForgeryToken]
-    //public IActionResult Edit(Semester obj)
-    //{
-    //    if (ModelState.IsValid)
-    //    {
-    //        _unitOfWork.Semester.Update(obj);
-    //        _unitOfWork.Commit();
-    //        TempData["success"] = "Semester updated successfully";
-    //        return RedirectToAction(defaultAction);
-    //    }
-    //    return View(obj);
-    //}
+        return View(objFromDb);
+    }
 
 
-    //[HttpGet]
-    //public IActionResult Delete(int? id)
-    //{
-    //    if (id == null || id == 0)
-    //    {
-    //        return NotFound();
-    //    }
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Edit(Application obj)
+    {
+        if (ModelState.IsValid)
+        {
+            _unitOfWork.Application.Update(obj);
+            _unitOfWork.Commit();
+            TempData["success"] = "Application updated successfully";
+            return RedirectToAction(defaultAction);
+        }
+        return View(obj);
+    }
 
-    //    var objFromDb = _unitOfWork.Semester.Get(c => c.SemesterID == id);
 
-    //    if (objFromDb == null)
-    //    {
-    //        return NotFound();
-    //    }
+    [HttpGet]
+    public IActionResult Delete(int? id)
+    {
+        if (id == null || id == 0)
+        {
+            return NotFound();
+        }
 
-    //    return View(objFromDb);
-    //}
+        var objFromDb = _unitOfWork.Application.Get(c => c.ApplicationID == id);
 
-    //[HttpPost, ActionName("Delete")]     //can change the method name and just map the button on the html page to this ActionName
+        if (objFromDb == null)
+        {
+            return NotFound();
+        }
 
-    //public IActionResult DeletePost(int? id)
-    //{
-    //    var obj = _unitOfWork.Semester.Get(c => c.SemesterID == id);
-    //    if (obj == null)
-    //    { return NotFound(); }
+        return View(objFromDb);
+    }
 
-    //    _unitOfWork.Semester.Delete(obj);
-    //    _unitOfWork.Commit();
-    //    TempData["success"] = "Semester was deleted Successfully";
-    //    return RedirectToAction("Index");
-    //}
+    [HttpPost, ActionName("Delete")]     //can change the method name and just map the button on the html page to this ActionName
+
+    public IActionResult DeletePost(int? id)
+    {
+        var obj = _unitOfWork.Application.Get(c => c.ApplicationID == id);
+        if (obj == null)
+        { return NotFound(); }
+
+        _unitOfWork.Application.Delete(obj);
+        _unitOfWork.Commit();
+        TempData["success"] = "Application was deleted Successfully";
+        return RedirectToAction("Index");
+    }
 }
-

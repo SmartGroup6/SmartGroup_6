@@ -1,4 +1,4 @@
-﻿@model Idea_Pending_SMART.Models.Semester
+﻿@model Idea_Pending_SMART.Models.School
 
 <form method="post">
     <div class="border p-3 mt-4">
@@ -7,16 +7,16 @@
             <hr />
         </div>
         <!--Needed because all other items are disabled-->
-        <input asp-for="SemesterID" hidden />
+        <input asp-for="SchoolID" hidden />
         @*<div asp-validation-summary="All"></div>*@
         <div class="mb-3">
-            <label asp-for="SemesterName"></label>
-            <input asp-for="SemesterName" disabled class="form-control" />
+            <label asp-for="SchoolName"></label>
+            <input asp-for="SchoolName" disabled class="form-control" />
 
         </div>
 
         <button type="submit" class="btn btn-danger" style="width:150px">Delete</button>
-        <a asp-controller="MenuItems" asp-action="Index" class="btn btn-secondary" style="width:150px">
+        <a asp-controller="SchoolManagement" asp-action="Index" class="btn btn-secondary" style="width:150px">
             Back to List
         </a>
     </div>
