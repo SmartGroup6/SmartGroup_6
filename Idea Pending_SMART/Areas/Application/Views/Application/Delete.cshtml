@@ -4,18 +4,61 @@
     <div class="border p-3 mt-4">
         <div class="row pb-2">
             <h2 class="text-primary">Delete Application</h2>
-            <hr>
+            <hr />
         </div>
         <!--Needed because all other items are disabled-->
-        <input asp-for="ApplicantID" hidden />
+        <input asp-for="ApplicationID" hidden />
         @*<div asp-validation-summary="All"></div>*@
         <div class="mb-3">
-            <label asp-for="ApplicationNameFirst"></label>
-            <input asp-for="ApplicationNameFirst" disabled class="form-control" />
+            <label asp-for="ApplicationNameFirst"> First Name</label>
+            <input asp-for="ApplicationNameFirst" class="form-control" />
+            <span asp-validation-for="ApplicationNameFirst" class="text-danger"></span>
         </div>
         <div class="mb-3">
-            <label asp-for="ApplicationNameLast"></label>
-            <input asp-for="ApplicationNameLast" disabled class="form-control" />
+            <label asp-for="ApplicationNameLast">Last Name</label>
+            <input asp-for="ApplicationNameLast" class="form-control" />
+            <span asp-validation-for="ApplicationNameLast" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="DateOfBirth">DOB</label>
+            <input asp-for="DateOfBirth" class="form-control" />
+            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Financials">Household Income</label>
+            <input asp-for="Financials" class="form-control" />
+            <span asp-validation-for="Financials" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ChoppaTransportNeeded">Choppa Assistance?</label>
+            <select asp-for="ChoppaTransportNeeded" class="form-select">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+            <span asp-validation-for="ChoppaTransportNeeded" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="MealsNeeded">Meals Assistance?</label>
+            <select asp-for="MealsNeeded" class="form-select">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+            <span asp-validation-for="MealsNeeded" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="DeterminationNote">Determination Note</label>
+            <input asp-for="DeterminationNote" class="form-control" rows="3" />
+            <span asp-validation-for="DeterminationNote" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="TotalScore">Application Score</label>
+            <input asp-for="TotalScore" class="form-control" />
+            <span asp-validation-for="TotalScore" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="SubmissionDate">Submission Date</label>
+            <input asp-for="SubmissionDate" class="form-control" />
+            <span asp-validation-for="SubmissionDate" class="text-danger"></span>
         </div>
         <button type="submit" class="btn btn-danger" style="width:150px">Delete</button>
         <a asp-controller="Application" asp-action="Index" class="btn btn-secondary" style="width:150px">
@@ -29,3 +72,4 @@
         <partial name="_ValidationScriptsPartial" />
     }
     }
+    

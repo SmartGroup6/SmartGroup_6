@@ -1,0 +1,58 @@
+﻿@model Student
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Create Application</h2>
+            <hr />
+        </div>
+        @*<div asp-validation-summary="All"></div>*@
+        <div class="mb-3">
+            <label asp-for="ApplicationNameFirst"> First Name</label>
+            <input asp-for="ApplicationNameFirst" class="form-control" />
+            <span asp-validation-for="ApplicationNameFirst" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ApplicationNameLast">Last Name</label>
+            <input asp-for="ApplicationNameLast" class="form-control" />
+            <span asp-validation-for="ApplicationNameLast" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="DateOfBirth">DOB</label>
+            <input asp-for="DateOfBirth" class="form-control" />
+            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="DateOfBirth">DOB</label>
+            <input asp-for="DateOfBirth" class="form-control" />
+            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ChoppaTransportNeeded">Choppa Assistance?</label>
+            <select asp-for="ChoppaTransportNeeded" class="form-select">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+            <span asp-validation-for="ChoppaTransportNeeded" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="MealsNeeded">Meals Assistance?</label>
+            <select asp-for="MealsNeeded" class="form-select">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+            <span asp-validation-for="MealsNeeded" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+        <a asp-controller="Application" asp-action="Index" class="btn btn-secondary" style="width:150px">
+            Back to List
+        </a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    }

@@ -352,7 +352,7 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = true,
                         MealsNeeded = true,
-                        ApplicantID = 1
+                        //ApplicantID = 1
                     },
                     new Application
                     {
@@ -372,7 +372,7 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = false,
                         MealsNeeded = true,
-                        ApplicantID = 2
+                        //ApplicantID = 2
                     },
                     new Application
                     {
@@ -391,7 +391,7 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = true,
                         MealsNeeded = true,
-                        ApplicantID = 3
+                       // ApplicantID = 3
                     },
                     new Application
                     {
@@ -411,7 +411,7 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = true,
                         MealsNeeded = true,
-                        ApplicantID = 4
+                       // ApplicantID = 4
                     },
                     new Application
                     {
@@ -431,7 +431,7 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = false,
                         MealsNeeded = false,
-                        ApplicantID = 5
+                        //ApplicantID = 5
                     }
 
                     ); context.SaveChanges();
@@ -715,7 +715,7 @@ namespace Idea_Pending_SMART.Models
 
                     ); context.SaveChanges();
 
-            }
+            }/*
             if (!context.Enrollments.Any())
             {
                 context.Enrollments.AddRange(
@@ -755,7 +755,7 @@ namespace Idea_Pending_SMART.Models
                        StudentID = 5
                    }
                     ); context.SaveChanges();
-            }
+            }*/
 
 
         }

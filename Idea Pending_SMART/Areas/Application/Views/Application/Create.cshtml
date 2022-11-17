@@ -23,9 +23,9 @@
             <span asp-validation-for="DateOfBirth" class="text-danger"></span>
         </div>
         <div class="mb-3">
-            <label asp-for="DateOfBirth">DOB</label>
-            <input asp-for="DateOfBirth" class="form-control" />
-            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+            <label asp-for="Financials">Household Income</label>
+            <input asp-for="Financials" class="form-control" />
+            <span asp-validation-for="Financials" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="ChoppaTransportNeeded">Choppa Assistance?</label>
@@ -43,7 +43,21 @@
             </select>
             <span asp-validation-for="MealsNeeded" class="text-danger"></span>
         </div>
-
+        <div class="mb-3">
+            <label asp-for="DeterminationNote">Determination Note</label>
+            <input asp-for="DeterminationNote" class="form-control" rows="3" />
+            <span asp-validation-for="DeterminationNote" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="TotalScore">Application Score</label>
+            <input asp-for="TotalScore" class="form-control" />
+            <span asp-validation-for="TotalScore" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="SubmissionDate">Submission Date</label>
+            <input asp-for="SubmissionDate" class="form-control" />
+            <span asp-validation-for="SubmissionDate" class="text-danger"></span>
+        </div>
         <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
         <a asp-controller="Application" asp-action="Index" class="btn btn-secondary" style="width:150px">
             Back to List
@@ -56,3 +70,4 @@
         <partial name="_ValidationScriptsPartial" />
     }
     }
+    

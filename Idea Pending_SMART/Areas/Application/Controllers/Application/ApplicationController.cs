@@ -1,7 +1,7 @@
 using Idea_Pending_SMART.Interfaces;
 using Idea_Pending_SMART.Models;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.EntityFrameworkCore;
 
 [Area("Application")]
 public class ApplicationController : Controller
@@ -56,7 +56,6 @@ public class ApplicationController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Create(Application obj)
     {
-        
         if (ModelState.IsValid)
         {
             _unitOfWork.Application.Add(obj); //internal add
@@ -71,11 +70,12 @@ public class ApplicationController : Controller
     public IActionResult Edit(int? id)
     {
         if (id == null || id == 0)
+        {
             return NotFound();
+        }
+        //grab that Application from the DB itself
 
-        //grab that Category from the DB itself
-
-        var objFromDb = _unitOfWork.Application.Get(c => c.ApplicationID == id);
+        var objFromDb = _unitOfWork.Application.Get(a => a.ApplicationID == id);
 
         if (objFromDb == null)
         {
@@ -92,10 +92,12 @@ public class ApplicationController : Controller
     {
         if (ModelState.IsValid)
         {
-            _unitOfWork.Application.Update(obj);
-            _unitOfWork.Commit();
-           // TempData["success"] = "Application updated successfully";
-            return RedirectToAction("Index");
+                _unitOfWork.Application.Update(obj);
+                _unitOfWork.Commit();
+                // TempData["success"] = "Application updated successfully";
+                return RedirectToAction("Index");
+            
+            
         }
         return View(obj);
     }
@@ -109,7 +111,7 @@ public class ApplicationController : Controller
             return NotFound();
         }
 
-        var objFromDb = _unitOfWork.Application.Get(c => c.ApplicationID == id);
+        var objFromDb = _unitOfWork.Application.Get(a => a.ApplicationID == id);
 
         if (objFromDb == null)
         {
@@ -123,7 +125,7 @@ public class ApplicationController : Controller
 
     public IActionResult DeletePost(int? id)
     {
-        var obj = _unitOfWork.Application.Get(c => c.ApplicationID == id);
+        var obj = _unitOfWork.Application.Get(a => a.ApplicationID == id);
         if (obj == null)
         { return NotFound(); }
 
