@@ -716,7 +716,7 @@ namespace Idea_Pending_SMART.Models
                     ); context.SaveChanges();
 
             }
-         /*   if (!context.Enrollments.Any())
+            if (!context.Enrollments.Any())
             {
                 context.Enrollments.AddRange(
                     new Enrollment
@@ -736,7 +736,7 @@ namespace Idea_Pending_SMART.Models
                     },
                     new Enrollment
                     {
-                        ClassID = 2,
+                        ClassID = 3,
                         StudentID = 1
                     },
                    new Enrollment
@@ -755,7 +755,7 @@ namespace Idea_Pending_SMART.Models
                        StudentID = 5
                    }
                     ); context.SaveChanges();
-            }*/
+            }
 
 
         }

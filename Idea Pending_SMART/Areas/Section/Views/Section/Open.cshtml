@@ -22,11 +22,12 @@
 <body>
     <div class="row">
         <div class="col">
-            <h6 class="bg-opacity-50 border-warning p-2 border-top border-bottom">Students in Class</h6>
+            <h6 class="bg-opacity-50 border-warning p-2 border-top border-bottom">Students in Class (Click for Details)</h6>
             <div class="list-group">
                 @foreach (var obj in Model)
             {
-                    <a href="#" class="list-group-item bg-gradient bg-opacity-50 bg-warning list-group-item-action px-3 border-dark">
+                    <a asp-controller="Student" asp-action="Info" asp-route-id="@obj.Student.StudentID" 
+                    class="list-group-item bg-gradient bg-opacity-50 bg-warning list-group-item-action px-3 border-dark">
                          <td>
                     <h5>
                      Enrollment ID: @obj.EnrollmentID
@@ -36,6 +37,7 @@
                      <h5>
                      Name: @obj.Student.ApplicationNameFirst @obj.Student.ApplicationNameLast
             </h5>
+                            
         </td>
                     </a>
                     maxStudentsInClass = @obj.Class.Studentcount;
@@ -45,6 +47,7 @@
                     holdClasstimeID = obj.Class.ClassTimeID;
                 }
             </div>
+           
             </div>
         <div class="col">
             <h6 class="bg-opacity-50 border-warning p-2 border-top border-bottom"> Enrolled Count: @enrollmentCount/@maxStudentsInClass</h6>

@@ -1,11 +1,8 @@
 ﻿using Idea_Pending_SMART.Areas.Section.ViewModels;
 using Idea_Pending_SMART.Interfaces;
 using Idea_Pending_SMART.Models;
-using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using System.Diagnostics.CodeAnalysis;
+
 
 [Area("Section")]
 public class SectionController : Controller
@@ -68,11 +65,15 @@ public class SectionController : Controller
     public IActionResult ListStudentsAdd(int? id)
     {
 
-
+        
         ListStudentsAdd lsa = new ListStudentsAdd();
         lsa.Class = _unitOfWork.Class.GetAll();
-        lsa.Enrollment = _unitOfWork.Enrollment.GetAll(e => e.ClassID != id);
+        //maybe use this to remove and enrollments with class times at 2
+       //  lsa.Enrollment = _unitOfWork.Enrollment.GetAll(e => e.ClassID != id && e.Class.ClassTimeID != 2);
+         lsa.Enrollment = _unitOfWork.Enrollment.GetAll(e => e.ClassID != id);
+
         //remove students already in class
+
         lsa.Student = _unitOfWork.Student.GetAll();
         lsa.ClassTime = _unitOfWork.ClassTime.GetAll();
 
