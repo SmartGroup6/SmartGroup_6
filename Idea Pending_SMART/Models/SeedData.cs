@@ -552,7 +552,7 @@ namespace Idea_Pending_SMART.Models
                     new Class
                     {
                         ClassDescription = "Public School",
-                        ClassTimeID = 2,
+                        ClassTimeID = 3,
                         CourseID = 6,
                         SemesterID = 2,
                         Studentcount = 200,
@@ -633,7 +633,18 @@ namespace Idea_Pending_SMART.Models
 
                     ); context.SaveChanges();
             }
- 
+            if(!context.Assignment.Any())
+            {
+                context.Assignment.AddRange(
+                    new Assignment
+                    {
+                        AssignmentName = "Quiz Week 1",
+                        AssignmentIssuetDate = DateTime.Now,
+                        AssignmentDueDate = DateTime.Today,
+                        AssignmentTotalMarks = 100,
+                    }
+                    ); context.SaveChanges() ;
+            }
 
             if (!context.Role.Any())
             {
@@ -715,14 +726,14 @@ namespace Idea_Pending_SMART.Models
 
                     ); context.SaveChanges();
 
-            }/*
+            }
             if (!context.Enrollments.Any())
             {
                 context.Enrollments.AddRange(
                     new Enrollment
                     {
-                        ClassID = 1,
-                        StudentID = 1
+                        ClassID = 4,
+                        StudentID = 3
                     },
                     new Enrollment
                     {
@@ -755,7 +766,7 @@ namespace Idea_Pending_SMART.Models
                        StudentID = 5
                    }
                     ); context.SaveChanges();
-            }*/
+            }
 
 
         }

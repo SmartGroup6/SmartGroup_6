@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Idea_Pending_SMART.Migrations
 {
-    public partial class _1 : Migration
+    public partial class alphademo1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,12 +15,37 @@ namespace Idea_Pending_SMART.Migrations
                 {
                     ApplicantID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AppStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ApplicationID = table.Column<int>(type: "int", nullable: false)
+                    AppStatus = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Applicant", x => x.ApplicantID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Applications",
+                columns: table => new
+                {
+                    ApplicationID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AcademicScore = table.Column<float>(type: "real", nullable: false),
+                    DateOfBirth = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ApplicationNameFirst = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ApplicationNameLast = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Financials = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeterminationNote = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DistanceNote = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InstructorScore = table.Column<int>(type: "int", nullable: true),
+                    SocialWorkerScore = table.Column<int>(type: "int", nullable: true),
+                    AdminScore = table.Column<int>(type: "int", nullable: true),
+                    TotalScore = table.Column<int>(type: "int", nullable: true),
+                    SubmissionDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ChoppaTransportNeeded = table.Column<bool>(type: "bit", nullable: true),
+                    MealsNeeded = table.Column<bool>(type: "bit", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Applications", x => x.ApplicationID);
                 });
 
             migrationBuilder.CreateTable(
@@ -60,6 +85,22 @@ namespace Idea_Pending_SMART.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Assignment",
+                columns: table => new
+                {
+                    AssignmentID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AssignmentName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AssignmentIssuetDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    AssignmentDueDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    AssignmentTotalMarks = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Assignment", x => x.AssignmentID);
                 });
 
             migrationBuilder.CreateTable(
@@ -418,13 +459,14 @@ namespace Idea_Pending_SMART.Migrations
                 name: "Enrollments",
                 columns: table => new
                 {
-                    EnrollmentID = table.Column<int>(type: "int", nullable: false),
                     ClassID = table.Column<int>(type: "int", nullable: false),
-                    StudentID = table.Column<int>(type: "int", nullable: false)
+                    StudentID = table.Column<int>(type: "int", nullable: false),
+                    EnrollmentID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Enrollments", x => x.EnrollmentID);
+                    table.PrimaryKey("PK_Enrollments", x => new { x.StudentID, x.ClassID });
                     table.ForeignKey(
                         name: "FK_Enrollments_Class_ClassID",
                         column: x => x.ClassID,
@@ -499,11 +541,6 @@ namespace Idea_Pending_SMART.Migrations
                 column: "ClassID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Enrollments_StudentID",
-                table: "Enrollments",
-                column: "StudentID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Semester_SchoolId",
                 table: "Semester",
                 column: "SchoolId");
@@ -513,6 +550,9 @@ namespace Idea_Pending_SMART.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Applicant");
+
+            migrationBuilder.DropTable(
+                name: "Applications");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
@@ -528,6 +568,9 @@ namespace Idea_Pending_SMART.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Assignment");
 
             migrationBuilder.DropTable(
                 name: "Attendance");

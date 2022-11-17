@@ -54,11 +54,8 @@ public class SectionController : Controller
         
         ListStudentsAdd lsa = new ListStudentsAdd();
         lsa.Class = _unitOfWork.Class.GetAll();
-        //maybe use this to remove and enrollments with class times at 2
-       //  lsa.Enrollment = _unitOfWork.Enrollment.GetAll(e => e.ClassID != id && e.Class.ClassTimeID != 2);
-         lsa.Enrollment = _unitOfWork.Enrollment.GetAll(e => e.ClassID != id);
 
-        //remove students already in class
+         lsa.Enrollment = _unitOfWork.Enrollment.GetAll(e => e.ClassID != id && e.Class.ClassTimeID != 2);
 
         lsa.Student = _unitOfWork.Student.GetAll();
         lsa.ClassTime = _unitOfWork.ClassTime.GetAll();

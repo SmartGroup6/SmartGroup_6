@@ -10,7 +10,7 @@ namespace Idea_Pending_SMART.Data
             : base(options)
         {}
         public DbSet<School> School { get; set; }
-    //    public DbSet<Assignment> Assignment { get; set; }
+        public DbSet<Assignment> Assignment { get; set; }
         public DbSet<Semester> Semester { get; set; }
         public DbSet<Student> Students { get; set; }//student
         public DbSet<Class> Class { get; set; }
@@ -28,12 +28,12 @@ namespace Idea_Pending_SMART.Data
         public DbSet<StudentNote> StudentNote { get; set; }
 
         //  Chantel did need this later
-        //   protected override void OnModelCreating(ModelBuilder builder)
-        //   {
-        //      builder.Entity<Enrollment>().HasKey(sc => new { sc.StudentID, sc.ClassID });
+           protected override void OnModelCreating(ModelBuilder builder)
+           {
+              builder.Entity<Enrollment>().HasKey(sc => new { sc.StudentID, sc.ClassID });
 
-        //  base.OnModelCreating(builder);
-        //}
+          base.OnModelCreating(builder);
+        }
 
     }
 }

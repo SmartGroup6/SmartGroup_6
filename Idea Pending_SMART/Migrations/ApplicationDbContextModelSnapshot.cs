@@ -34,9 +34,6 @@ namespace Idea_Pending_SMART.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ApplicationID")
-                        .HasColumnType("int");
-
                     b.HasKey("ApplicantID");
 
                     b.ToTable("Applicant");
@@ -54,65 +51,75 @@ namespace Idea_Pending_SMART.Migrations
                         .HasColumnType("real");
 
                     b.Property<int?>("AdminScore")
-                        .IsRequired()
-                        .HasColumnType("int");
-
-                    b.Property<int>("ApplicantID")
                         .HasColumnType("int");
 
                     b.Property<string>("ApplicationNameFirst")
+                        .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ApplicationNameLast")
-                        .IsRequired()
+                        .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("ChoppaTransportNeeded")
-                        .IsRequired()
                         .HasColumnType("bit");
 
                     b.Property<string>("DateOfBirth")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DeterminationNote")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DistanceNote")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Financials")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("InstructorScore")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<bool?>("MealsNeeded")
-                        .IsRequired()
                         .HasColumnType("bit");
 
-                    b.Property<int>("PersonID")
-                        .HasColumnType("int");
-
                     b.Property<int?>("SocialWorkerScore")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("SubmissionDate")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("TotalScore")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("ApplicationID");
 
                     b.ToTable("Applications");
+                });
+
+            modelBuilder.Entity("Idea_Pending_SMART.Models.Assignment", b =>
+                {
+                    b.Property<int>("AssignmentID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AssignmentID"), 1L, 1);
+
+                    b.Property<DateTime?>("AssignmentDueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("AssignmentIssuetDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("AssignmentName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("AssignmentTotalMarks")
+                        .HasColumnType("int");
+
+                    b.HasKey("AssignmentID");
+
+                    b.ToTable("Assignment");
                 });
 
             modelBuilder.Entity("Idea_Pending_SMART.Models.Attendance", b =>
@@ -228,23 +235,21 @@ namespace Idea_Pending_SMART.Migrations
 
             modelBuilder.Entity("Idea_Pending_SMART.Models.Enrollment", b =>
                 {
+                    b.Property<int>("StudentID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClassID")
+                        .HasColumnType("int");
+
                     b.Property<int>("EnrollmentID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EnrollmentID"), 1L, 1);
 
-                    b.Property<int>("ClassID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StudentID")
-                        .HasColumnType("int");
-
-                    b.HasKey("EnrollmentID");
+                    b.HasKey("StudentID", "ClassID");
 
                     b.HasIndex("ClassID");
-
-                    b.HasIndex("StudentID");
 
                     b.ToTable("Enrollments");
                 });
