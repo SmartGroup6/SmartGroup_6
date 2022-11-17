@@ -1,70 +1,39 @@
-﻿@model Idea_Pending_SMART.Models.Semester
+﻿@model Idea_Pending_SMART.Models.Course
 @{
 }
 <!-- anytime a form takes file uploads, you need the enctype to avoid security issues -->
-<form method="post" asp-controller="Semester" asp-action="Upsert" enctype="multipart/form-data">
+<form method="post" asp-controller="Course" asp-action="Upsert" enctype="multipart/form-data">
     <div class="container">
         <div class="row px-2 mx-2 backgroundWhite border">
             @* All for Model validation and HTML validation *@
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="col-12 px-3" style="border-bottom:1px solid #325d88">
-                <h2 class="text-primary">@(Model.SemesterID != 0 ? "Update" : "Create") Semester</h2>
-                <!-- ^^ there's a lambda here for an if-then-else. If semester id is not = 0, update. Otherwise, create -->
+                <h2 class="text-primary">@(Model.CourseID != 0 ? "Update" : "Create") Course</h2>
             </div>
             <div class="col-8 pt-3">
                 <div class="form-group row">
 
                     <div class="col-3">
-                        <label asp-for="SemesterName"></label>
+                        <label asp-for="CourseName"></label>
                     </div>
 
                     <div class="col-9">
-                        <input id="SemesterName" class="form-control" asp-for="SemesterName" />
-                        <span class="text-danger" asp-validation-for="SemesterName"></span>
+                        <input id="CourseName" class="form-control" asp-for="CourseName" />
+                        <span class="text-danger" asp-validation-for="CourseName"></span>
                     </div>
-                    @if (Model.SemesterID != 0)
+                    @if (Model.CourseID != 0)
                     {
-                        <input type="hidden" asp-for="SemesterID" />
-                        <!-- very important to hide the semester id. the id needs to be on the form,
-                        but the user doesn't need to see it. -->
+                        <input type="hidden" asp-for="CourseID" />
                     }
                 </div>
 
                 <div class="form-group row">
                     <div class="col-3">
-                        <label asp-for="StartDate" class="control-label"></label>
+                        <label asp-for="CourseDescription"></label>
                     </div>
                     <div class="col-9">
-                        <div class="form-group">
-                            
-                            <input asp-for="StartDate" id="datepicker" type="text" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")" />
-                            <span asp-validation-for="StartDate" class="text-danger"></span>
-                        </div>
-
-                    </div>
-                </div>
-
-               <div class="form-group row">
-                    <div class="col-3">
-                        <label asp-for="EndDate" class="control-label"></label>
-                    </div>
-                    <div class="col-9">
-                        <div class="form-group">
-                            
-                            <input asp-for="EndDate" id="datepicker2" type="text" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")" />
-                            <span asp-validation-for="EndDate" class="text-danger"></span>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <div class="col-3">
-                        <label asp-for="MaxStudentCount"></label>
-                    </div>
-                    <div class="col-9">
-                        <input id="MaxStudentCount" class="form-control" asp-for="MaxStudentCount" />
-                        <span class="text-danger" asp-validation-for="MaxStudentCount"></span>
+                        <input id="MaxStudentCount" class="form-control" asp-for="CourseDescription" />
+                        <span class="text-danger" asp-validation-for="CourseDescription"></span>
                     </div>
                 </div>
 
@@ -84,7 +53,7 @@
                     <div class="col-9 offset-3">
                         <div class="row">
                             <div class="col-6">
-                                @if (Model.SemesterID != 0)
+                                @if (Model.CourseID != 0)
                                 {
                                     <button type="submit" class="btn btn-primary form-control">Update</button>
                                 }
@@ -95,7 +64,7 @@
                                 }
                             </div>
                             <div class="col-6">
-                                <a asp-controller="Semester" asp-action="Index" class="btn btn-success form-control">Back to List</a>
+                                <a asp-controller="SchoolManagement" asp-action="Index" class="btn btn-success form-control">Back to List</a>
                             </div>
                         </div>
                     </div>
