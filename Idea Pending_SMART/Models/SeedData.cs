@@ -331,7 +331,7 @@ namespace Idea_Pending_SMART.Models
                     ); context.SaveChanges();
             }
             // test application seed data (for demonstration, same as student)
-            if (!context.Applications.Any())
+         /*   if (!context.Applications.Any())
             {
                 context.Applications.AddRange(
                     new Application
@@ -435,7 +435,7 @@ namespace Idea_Pending_SMART.Models
                     }
 
                     ); context.SaveChanges();
-            }
+            }*/
             if (!context.Applicant.Any())
             {
                 context.Applicant.AddRange(
@@ -515,7 +515,7 @@ namespace Idea_Pending_SMART.Models
                 context.Class.AddRange(
                     new Class
                     {
-                        ClassDescription = "Instructor 1 Morning English",
+                        ClassDescription = "Morning English Level 2",
                         ClassTimeID = 1,
                         CourseID = 4,
                         SemesterID = 1,
@@ -524,7 +524,7 @@ namespace Idea_Pending_SMART.Models
                     },
                     new Class
                     {
-                        ClassDescription = "Instructor 2 Afternoon IT",
+                        ClassDescription = "Afternoon IT Level 2",
                         ClassTimeID = 2,
                         CourseID = 2,
                         SemesterID = 1,
@@ -533,7 +533,7 @@ namespace Idea_Pending_SMART.Models
                     },
                     new Class
                     {
-                        ClassDescription = "Instructor 2 Morning IT",
+                        ClassDescription = "Morning IT Level 1",
                         ClassTimeID = 3,
                         CourseID = 1,
                         SemesterID = 2,
@@ -542,7 +542,7 @@ namespace Idea_Pending_SMART.Models
                     },
                     new Class
                     {
-                        ClassDescription = "Instructor 1 Late English",
+                        ClassDescription = "Late English Level 2",
                         ClassTimeID = 4,
                         CourseID = 5,
                         SemesterID = 2,

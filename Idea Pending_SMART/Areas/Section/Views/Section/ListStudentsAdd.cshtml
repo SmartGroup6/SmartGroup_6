@@ -3,44 +3,186 @@
     ViewBag.Title = "Classtime";
     var time = ViewBag.classtimes;
     var classID = ViewBag.classID;
-    var holder = 0;
+
 
 }
-
-<h3> classs time passed: @time</h3>
-@foreach (var obj in Model.Enrollment)
+<body>
+@foreach(var obj in Model.Class)
 {
-    //gets students not in the class ID passed 
-    if(obj.Student.timeAvailable == true )
-    {
 
-        <div class="col-md-10">
-            <span class="badge bg-gradient text-white  .rounded-lg mb-xxl-2" input-type="radio"
-                style="background-color:darkslategray; border-color:antiquewhite; border-width: 10px; border-style:double;">
-                    <ul>
-                        <tr>
-                            <th width="80%">
-                            <td>
-                             <div class="col-md-10">
-                              <h3>Student ID: @obj.StudentID</h3>
-                             <h3>Student Name: @obj.Student.ApplicationNameFirst @obj.Student.ApplicationNameLast</h3>
-                          <div class="w-75 btn-group" role="group">
-                         <a asp-controller="Section" asp-action="Add" asp-route-id="@obj.StudentID" asp-route-id="@obj.ClassID"
-                                class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Add</a>
-                                <a asp-controller="Student" asp-action="Info" asp-route-id="@obj.StudentID" 
-                       class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Details</a>
-                            </div>
-                            </div>
-                            </td>
+    <h4>@obj.ClassDescription on @obj.ClassTime.Day @obj.ClassTime.TimeStart</h4>
 
-                        </tr>
-                        <td>
-                        </td>
-                    </ul>    
-                </span>
-                </div>
-    }
 }
+<div class="row">
+    <div class="col">
+        <div class="list-group">
+            <div class="overflow-auto w-100 shadow-1-strong rounded mb-4" style="height:200px; width:100px ">
+@foreach (var obj in Model.Enrollment)
+    {
+         @if (obj.Student.timeAvailable == true)
+        {
+              <span class="badge bg-gradient text-white"
+                 style="background-color:darkslategray; border-color:antiquewhite; border-width: 5px; border-style:double;
+                        width:200px; height:70px">
+       
+
+              
+                 <h6>Name: @obj.Student.ApplicationNameFirst @obj.Student.ApplicationNameLast</h6>
+                 <a asp-controller="Section" asp-action="Add" asp-route-id="@obj.StudentID" asp-route-id="@obj.ClassID"
+                         class="btn text-white text-capitalize">Add</a>
+                            <a asp-controller="Student" asp-action="Info" asp-route-id="@obj.StudentID"
+                           class="btn text-white text-capitalize">Details</a>
+
+            </span>
+            }
+
+}
+    @foreach (var obj in Model.Enrollment)
+    {
+        @if (obj.Student.timeAvailable == true)
+        {
+                      <span class="badge bg-gradient text-white"
+                 style="background-color:darkslategray; border-color:antiquewhite; border-width: 5px; border-style:double;
+                        width:200px; height:70px">
 
 
+
+                         <h6>Name: @obj.Student.ApplicationNameFirst @obj.Student.ApplicationNameLast</h6>
+                         <a asp-controller="Section" asp-action="Add" asp-route-id="@obj.StudentID" asp-route-id="@obj.ClassID"
+                         class="btn text-white text-capitalize">Add</a>
+                                    <a asp-controller="Student" asp-action="Info" asp-route-id="@obj.StudentID"
+                           class="btn text-white text-capitalize">Details</a>
+
+                    </span>
+        }
+
+    }
+    @foreach (var obj in Model.Enrollment)
+    {
+        @if (obj.Student.timeAvailable == true)
+        {
+                      <span class="badge bg-gradient text-white"
+                 style="background-color:darkslategray; border-color:antiquewhite; border-width: 5px; border-style:double;
+                        width:200px; height:70px">
+
+
+
+                         <h6>Name: @obj.Student.ApplicationNameFirst @obj.Student.ApplicationNameLast</h6>
+                         <a asp-controller="Section" asp-action="Add" asp-route-id="@obj.StudentID" asp-route-id="@obj.ClassID"
+                         class="btn text-white text-capitalize">Add</a>
+                                    <a asp-controller="Student" asp-action="Info" asp-route-id="@obj.StudentID"
+                           class="btn text-white text-capitalize">Details</a>
+
+                    </span>
+        }
+
+    }
+    @foreach (var obj in Model.Enrollment)
+    {
+         @if (obj.Student.timeAvailable == true)
+        {
+              <span class="badge bg-gradient text-white"
+                 style="background-color:darkslategray; border-color:antiquewhite; border-width: 5px; border-style:double;
+                        width:200px; height:70px">
+       
+
+              
+                 <h6>Name: @obj.Student.ApplicationNameFirst @obj.Student.ApplicationNameLast</h6>
+                 <a asp-controller="Section" asp-action="Add" asp-route-id="@obj.StudentID" asp-route-id="@obj.ClassID"
+                         class="btn text-white text-capitalize">Add</a>
+                            <a asp-controller="Student" asp-action="Info" asp-route-id="@obj.StudentID"
+                           class="btn text-white text-capitalize">Details</a>
+
+            </span>
+            }
+
+}
+    @foreach (var obj in Model.Enrollment)
+    {
+        @if (obj.Student.timeAvailable == true)
+        {
+                      <span class="badge bg-gradient text-white"
+                 style="background-color:darkslategray; border-color:antiquewhite; border-width: 5px; border-style:double;
+                        width:200px; height:70px">
+
+
+
+                         <h6>Name: @obj.Student.ApplicationNameFirst @obj.Student.ApplicationNameLast</h6>
+                         <a asp-controller="Section" asp-action="Add" asp-route-id="@obj.StudentID" asp-route-id="@obj.ClassID"
+                         class="btn text-white text-capitalize">Add</a>
+                                    <a asp-controller="Student" asp-action="Info" asp-route-id="@obj.StudentID"
+                           class="btn text-white text-capitalize">Details</a>
+
+                    </span>
+        }
+
+    }
+    @foreach (var obj in Model.Enrollment)
+    {
+        @if (obj.Student.timeAvailable == true)
+        {
+                      <span class="badge bg-gradient text-white"
+                 style="background-color:darkslategray; border-color:antiquewhite; border-width: 5px; border-style:double;
+                        width:200px; height:70px">
+
+
+
+                         <h6>Name: @obj.Student.ApplicationNameFirst @obj.Student.ApplicationNameLast</h6>
+                         <a asp-controller="Section" asp-action="Add" asp-route-id="@obj.StudentID" asp-route-id="@obj.ClassID"
+                         class="btn text-white text-capitalize">Add</a>
+                                    <a asp-controller="Student" asp-action="Info" asp-route-id="@obj.StudentID"
+                           class="btn text-white text-capitalize">Details</a>
+
+                    </span>
+        }
+
+    }
+    @foreach (var obj in Model.Enrollment)
+    {
+         @if (obj.Student.timeAvailable == true)
+        {
+              <span class="badge bg-gradient text-white"
+                 style="background-color:darkslategray; border-color:antiquewhite; border-width: 5px; border-style:double;
+                        width:200px; height:70px">
+       
+
+              
+                 <h6>Name: @obj.Student.ApplicationNameFirst @obj.Student.ApplicationNameLast</h6>
+                 <a asp-controller="Section" asp-action="Add" asp-route-id="@obj.StudentID" asp-route-id="@obj.ClassID"
+                         class="btn text-white text-capitalize">Add</a>
+                            <a asp-controller="Student" asp-action="Info" asp-route-id="@obj.StudentID"
+                           class="btn text-white text-capitalize">Details</a>
+
+            </span>
+            }
+
+}
+    @foreach (var obj in Model.Enrollment)
+    {
+        @if (obj.Student.timeAvailable == true)
+        {
+            <span class="badge bg-gradient text-white"
+          style="background-color:darkslategray; border-color:antiquewhite; border-width: 5px; border-style:double;
+                        width:200px; height:70px">
+
+
+
+                <h6>Name: @obj.Student.ApplicationNameFirst @obj.Student.ApplicationNameLast</h6>
+                <a asp-controller="Section" asp-action="Add" asp-route-id="@obj.StudentID" asp-route-id="@obj.ClassID"
+           class="btn text-white text-capitalize">Add</a>
+                <a asp-controller="Student" asp-action="Info" asp-route-id="@obj.StudentID"
+           class="btn text-white text-capitalize">Details</a>
+
+            </span>
+        }
+
+    }
+    </div>
+
+    </div>
+
+</div>
+</div>
+</div>
+</body>
 

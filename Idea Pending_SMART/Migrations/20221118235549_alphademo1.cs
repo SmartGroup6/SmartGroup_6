@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Idea_Pending_SMART.Migrations
 {
-    public partial class _1 : Migration
+    public partial class alphademo1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -418,7 +418,8 @@ namespace Idea_Pending_SMART.Migrations
                 name: "Enrollments",
                 columns: table => new
                 {
-                    EnrollmentID = table.Column<int>(type: "int", nullable: false),
+                    EnrollmentID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ClassID = table.Column<int>(type: "int", nullable: false),
                     StudentID = table.Column<int>(type: "int", nullable: false)
                 },
