@@ -9,22 +9,38 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Staff\Controllers\Semester\**" />
     <Compile Remove="Dev_Ben\**" />
     <Compile Remove="Dev_Dina\**" />
     <Compile Remove="Dev_Travis\**" />
     <Compile Remove="Models\ViewModels\**" />
+    <Compile Remove="Views\Application\**" />
+    <Compile Remove="Views\MeetingNotes\**" />
+    <Compile Remove="Views\Student\**" />
+    <Content Remove="Areas\Staff\Controllers\Semester\**" />
     <Content Remove="Dev_Ben\**" />
     <Content Remove="Dev_Dina\**" />
     <Content Remove="Dev_Travis\**" />
     <Content Remove="Models\ViewModels\**" />
+    <Content Remove="Views\Application\**" />
+    <Content Remove="Views\MeetingNotes\**" />
+    <Content Remove="Views\Student\**" />
+    <EmbeddedResource Remove="Areas\Staff\Controllers\Semester\**" />
     <EmbeddedResource Remove="Dev_Ben\**" />
     <EmbeddedResource Remove="Dev_Dina\**" />
     <EmbeddedResource Remove="Dev_Travis\**" />
     <EmbeddedResource Remove="Models\ViewModels\**" />
+    <EmbeddedResource Remove="Views\Application\**" />
+    <EmbeddedResource Remove="Views\MeetingNotes\**" />
+    <EmbeddedResource Remove="Views\Student\**" />
+    <None Remove="Areas\Staff\Controllers\Semester\**" />
     <None Remove="Dev_Ben\**" />
     <None Remove="Dev_Dina\**" />
     <None Remove="Dev_Travis\**" />
     <None Remove="Models\ViewModels\**" />
+    <None Remove="Views\Application\**" />
+    <None Remove="Views\MeetingNotes\**" />
+    <None Remove="Views\Student\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,21 +53,20 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Areas\SchoolManagement\Controllers\Semester\" />
     <Folder Include="Areas\SchoolManagement\Views\Shared\" />
     <Folder Include="Migrations\" />
-    <Folder Include="Views\MeetingNotes\" />
-    <Folder Include="Views\Application\" />
-    <Folder Include="Views\Student\" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Areas\Admin\Views\Admin\Index.cshtml" />
-    <None Include="Areas\Admin\Views\_ViewImports.cshtml" />
-    <None Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <None Include="Areas\Staff\Pages\Roles\Index.cshtml" />
+    <None Include="Areas\Staff\Pages\Roles\Update.cshtml" />
+    <None Include="Areas\Staff\Pages\Users\Index.cshtml" />
+    <None Include="Areas\Staff\Pages\Users\Update.cshtml" />
     <None Include="Areas\Application\Views\Application\Index.cshtml" />
     <None Include="Areas\Application\Views\_ViewImports.cshtml" />
     <None Include="Areas\Application\Views\_ViewStart.cshtml" />

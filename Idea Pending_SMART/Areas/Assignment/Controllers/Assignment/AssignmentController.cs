@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 public class AssignmentController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
-    private string defaultAction = "Index";
 
     /*
         +CreateAssignment(AssignN,Due,Score)

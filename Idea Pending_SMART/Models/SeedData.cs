@@ -96,26 +96,26 @@ namespace Idea_Pending_SMART.Models
                     }
                     ); context.SaveChanges();
             }
-            if (!context.User.Any())
-            {
-                context.User.AddRange(
-                    new User
-                    {
-                        EmailAddress = "abc@gmail.com",
-                        Password = "password",
-                        PersonID = 6,
-                        RoleID = 2,
-                    },
-                    new User
-                    {
-                        EmailAddress = "abc@gmail.com",
-                        Password = "12345678",
-                        PersonID = 7,
-                        RoleID = 1,
-                    }
+            //if (!context.User.Any())
+            //{
+            //    context.User.AddRange(
+            //        new User
+            //        {
+            //            EmailAddress = "abc@gmail.com",
+            //            Password = "password",
+            //            PersonID = 6,
+            //            RoleID = 2,
+            //        },
+            //        new User
+            //        {
+            //            EmailAddress = "abc@gmail.com",
+            //            Password = "12345678",
+            //            PersonID = 7,
+            //            RoleID = 1,
+            //        }
 
-                    ); context.SaveChanges();
-            }
+            //        ); context.SaveChanges();
+            //}
             if (!context.Person.Any())
             {
                 context.Person.AddRange(

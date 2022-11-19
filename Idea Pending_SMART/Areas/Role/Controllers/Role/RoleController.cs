@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 public class RoleController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
-    private string defaultAction = "Index";
 /*
     +CreateGrade(GradeID, StudentID, LetterGrade, Percent, Pass)
     +UpdateGrade(StudentID,LetterGrade)

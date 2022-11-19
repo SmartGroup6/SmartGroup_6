@@ -38,7 +38,7 @@ public class SchoolManagementController : Controller
     }
 
     /////////Upsert stuff
-    private readonly IWebHostEnvironment _hostEnvironment;
+    //private readonly IWebHostEnvironment _hostEnvironment;
 
     //Bind apparently solves some headaches by binding the model to our forum
     [BindProperty]
