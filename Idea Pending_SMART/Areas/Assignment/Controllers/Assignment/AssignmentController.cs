@@ -68,6 +68,8 @@ public class AssignmentController : Controller
         {
             return View();
         }
+        return RedirectToAction("Index");
+    }
 
     //[HttpPost]
     //[ValidateAntiForgeryToken]
@@ -115,8 +117,6 @@ public class AssignmentController : Controller
     //    TempData["success"] = "Semester was deleted Successfully";
     //    return RedirectToAction("Index");
     //}
-}
 
-        return RedirectToAction("Index");
-    }
+
 }

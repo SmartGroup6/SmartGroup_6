@@ -24,6 +24,16 @@ namespace Idea_Pending_SMART.Data
         private IRepository<Assignment> _Assignment;
         private IRepository<ApplicationUser> _ApplicationUser;
 
+        public IRepository<Assignment> Assignment
+        {
+            get
+            {
+
+                _Assignment ??= new Repository<Assignment>(_dbContext);
+                return _Assignment;
+            }
+        }
+
         public IRepository<ApplicationUser> ApplicationUser
         {
             get
