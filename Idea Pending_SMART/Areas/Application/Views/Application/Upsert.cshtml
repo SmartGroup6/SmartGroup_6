@@ -7,7 +7,7 @@
             @* All for Model validation and HTML validation *@
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="col-12 px-3" style="border-bottom:1px solid #325d88">
-                <h2 class="text-primary">@(Model.ApplicationID != 0 ? "Update" : "Create") Application</h2>
+                <h2 class="text-primary">@(Model.ApplicationID != 0 ? "Details" : "Create") Application</h2>
              <!-- ^^ there's a lambda here for an if-then-else. If Application id is not = 0, update. Otherwise, create -->
             </div>
             <div class="col-8 pt-3">
