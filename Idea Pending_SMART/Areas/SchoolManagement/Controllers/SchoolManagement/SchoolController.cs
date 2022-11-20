@@ -7,13 +7,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 public class SchoolController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
-    /*
-        +CreateGrade(GradeID, StudentID, LetterGrade, Percent, Pass)
-        +UpdateGrade(StudentID,LetterGrade)
-        +AddAttendance
-        +AddNotes
-        +Meals
-        * */
+    //private readonly IWebHostEnvironment _hostEnvironment;
+
+    [BindProperty]
+    public School SchoolObj { get; set; }
 
     public SchoolController(IUnitOfWork unitOfWork)
     {
@@ -23,58 +20,43 @@ public class SchoolController : Controller
     //ctrl+k+c to comment, ctrl+k+u to uncomment
     public ViewResult Index()
     {
-        IEnumerable<Semester> objSemesterList = _unitOfWork.Semester.GetAll();
+        IEnumerable<School> obList = _unitOfWork.School.GetAll();
 
-        return View(objSemesterList);
+        return View(obList);
 
     }
 
-    /////////Upsert stuff
-    private readonly IWebHostEnvironment _hostEnvironment;
-
-    //Bind apparently solves some headaches by binding the model to our forum
-    [BindProperty]
-    public Semester SemesterObj { get; set; }
-
-
-    /*
-     * We aren't going to have a separate edit/delete mode. Just upsert.
-     * The id is optional, as you either pass it an id that gets edited, or you dont give it an id so it creates a new one.
-     * */
     [HttpGet]
     public IActionResult Upsert(int? id) //optional, indicates editing or creating
     {
-        Semester SemesterObj = new Semester();
-
-        //Get the semester we're editing, if it exists.
+        School SchoolObj = new School();
         if (id != null)
         {
-            SemesterObj = _unitOfWork.Semester.Get(s => s.SemesterID == id);
-            if (SemesterObj == null)
+            SchoolObj = _unitOfWork.School.Get(s => s.SchoolID == id);
+            if (SchoolObj == null)
             {
                 return NotFound();
             }
         }
 
-        return View(SemesterObj);
+        return View(SchoolObj);
     }
 
-
     [HttpPost]
-    public IActionResult Upsert() //note the lack of paramters. The menu item from the form comes from the [BindProperty] declaration.
+    public IActionResult Upsert()
     {
         if (!ModelState.IsValid)
         {
             return View();
         }
 
-        if (SemesterObj.SemesterID == 0) //New semester
+        if (SchoolObj.SchoolID == 0)
         {
-            _unitOfWork.Semester.Add(SemesterObj);
+            _unitOfWork.School.Add(SchoolObj);
         }
-        else //Edit semester
+        else 
         {
-            _unitOfWork.Semester.Update(SemesterObj);
+            _unitOfWork.School.Update(SchoolObj);
         }
 
         _unitOfWork.Commit();
@@ -89,7 +71,7 @@ public class SchoolController : Controller
             return NotFound();
         }
 
-        var objFromDb = _unitOfWork.Semester.Get(m => m.SemesterID == id);
+        var objFromDb = _unitOfWork.School.Get(m => m.SchoolID == id);
 
         if (objFromDb == null)
         {
@@ -103,12 +85,12 @@ public class SchoolController : Controller
     [HttpPost, ActionName("Delete")]
     public IActionResult DeletePost(int? id)
     {
-        var objFromDB = _unitOfWork.Semester.Get(m => m.SemesterID == id);
+        var objFromDB = _unitOfWork.School.Get(m => m.SchoolID == id);
         if (objFromDB == null)
         {
             return NotFound();
         }
-        _unitOfWork.Semester.Delete(objFromDB);
+        _unitOfWork.School.Delete(objFromDB);
         _unitOfWork.Commit();
 
         return RedirectToAction("Index", "SchoolManagement");

@@ -8,6 +8,7 @@
     var enrollmentCount = 0;
     var maxStudentsInClass = 0;
     var holdClassID = 0;
+    var holdClasstimeID = 0;
 
 }
 <!DOCTYPE html>
@@ -21,11 +22,14 @@
 <body>
     <div class="row">
         <div class="col">
-            <h6 class="bg-opacity-50 border-warning p-2 border-top border-bottom">Students in Class</h6>
+            <h6 class="bg-opacity-50 border-warning p-2 border-top border-bottom">Students in Class (Click for Details)</h6>
             <div class="list-group">
+                
                 @foreach (var obj in Model)
             {
-                    <a href="#" class="list-group-item bg-gradient bg-opacity-50 bg-warning list-group-item-action px-3 border-dark">
+                //lists students in classrooms
+                    <a asp-controller="Student" asp-action="Info" asp-route-id="@obj.Student.StudentID" 
+                    class="list-group-item bg-gradient bg-opacity-50 bg-warning list-group-item-action px-3 border-dark">
                          <td>
                     <h5>
                      Enrollment ID: @obj.EnrollmentID
@@ -35,14 +39,17 @@
                      <h5>
                      Name: @obj.Student.ApplicationNameFirst @obj.Student.ApplicationNameLast
             </h5>
+                            
         </td>
                     </a>
-                maxStudentsInClass = @obj.Class.Studentcount;
-                
-        enrollmentCount++;
-        holdClassID = obj.ClassID;
-        }
+                    maxStudentsInClass = @obj.Class.Studentcount;
+
+                    enrollmentCount++;
+                    holdClassID = obj.ClassID;
+                    holdClasstimeID = obj.Class.ClassTimeID;
+                }
             </div>
+           
             </div>
         <div class="col">
             <h6 class="bg-opacity-50 border-warning p-2 border-top border-bottom"> Enrolled Count: @enrollmentCount/@maxStudentsInClass</h6>
@@ -78,7 +85,7 @@
                 }
                 @if (enrollmentCount < maxStudentsInClass)
                 {
-                    <a asp-controller="Section" asp-action="Index" asp-route-id=""
+                    <a asp-controller="Section" asp-action="ListStudentsAdd" asp-route-id="@holdClassID" 
                    class="btn" style="background-color:transparent" role="button">
                         <span class="badge bg-gradient text-white  .rounded-lg mb-xxl-2" style="background-color:darkslategray; 
                                 border-color:antiquewhite; border-width: 10px; border-style:double;">

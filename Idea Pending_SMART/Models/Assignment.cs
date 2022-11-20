@@ -20,9 +20,9 @@ namespace Idea_Pending_SMART.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime? AssignmentDueDate { get; set; } = DateTime.Now;
 
-        
 
-      
+
+
         public int? AssignmentTotalMarks { get; set; } = 100;
 
     }

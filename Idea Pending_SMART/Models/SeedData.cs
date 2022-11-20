@@ -1,6 +1,7 @@
 using Idea_Pending_SMART.Data;
 
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace Idea_Pending_SMART.Models
 {
@@ -26,6 +27,12 @@ namespace Idea_Pending_SMART.Models
                     {
                         Phone = "",
                         SchoolName = "School Two"
+                    },
+                    new School
+                    {
+                        Phone = "",
+                        SchoolName = "Public School"
+
                     }
 
                     ); context.SaveChanges();
@@ -89,26 +96,26 @@ namespace Idea_Pending_SMART.Models
                     }
                     ); context.SaveChanges();
             }
-            if (!context.User.Any())
-            {
-                context.User.AddRange(
-                    new User
-                    {
-                        EmailAddress = "abc@gmail.com",
-                        Password = "password",
-                        PersonID = 6,
-                        RoleID = 2,
-                    },
-                    new User
-                    {
-                        EmailAddress = "abc@gmail.com",
-                        Password = "12345678",
-                        PersonID = 7,
-                        RoleID = 1,
-                    }
+            //if (!context.User.Any())
+            //{
+            //    context.User.AddRange(
+            //        new User
+            //        {
+            //            EmailAddress = "abc@gmail.com",
+            //            Password = "password",
+            //            PersonID = 6,
+            //            RoleID = 2,
+            //        },
+            //        new User
+            //        {
+            //            EmailAddress = "abc@gmail.com",
+            //            Password = "12345678",
+            //            PersonID = 7,
+            //            RoleID = 1,
+            //        }
 
-                    ); context.SaveChanges();
-            }
+            //        ); context.SaveChanges();
+            //}
             if (!context.Person.Any())
             {
                 context.Person.AddRange(
@@ -333,9 +340,10 @@ namespace Idea_Pending_SMART.Models
                         //SponsorID = 1,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "One",
+                        GPA = 20,
                         AcademicScore = 25,
-                        DateOfBirth = "04/01/2008",
-                        Financials = "500",
+                        DateOfBirth = "2008-04-01",
+                        Financials = "Less than 10,200 MZN",
                         DeterminationNote = "very determined",
                         DistanceNote = "lives far",
                         AdminScore = 25,
@@ -345,7 +353,8 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = true,
                         MealsNeeded = true,
-                        ApplicantID = 1
+                        IsActive = true,
+                        //ApplicantID = 1
                     },
                     new Application
                     {
@@ -353,9 +362,10 @@ namespace Idea_Pending_SMART.Models
                         //SponsorID = 1,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Two",
+                        GPA = 20,
                         AcademicScore = 25,
                         DateOfBirth = "04/01/2009",
-                        Financials = "5000",
+                        Financials = "Less than 10,200 MZN",
                         DeterminationNote = "",
                         DistanceNote = "Lives close",
                         AdminScore = 25,
@@ -365,16 +375,18 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = false,
                         MealsNeeded = true,
-                        ApplicantID = 2
+                        IsActive= false,
+                        //ApplicantID = 2
                     },
                     new Application
                     {
                        // SponsorID = 0,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Three",
+                        GPA = 20,
                         AcademicScore = 0,
                         DateOfBirth = "04/01/2002",
-                        Financials = "800",
+                        Financials = "Less than 10,200 MZN",
                         DeterminationNote = "",
                         DistanceNote = "",
                         AdminScore = 0,
@@ -384,7 +396,8 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = true,
                         MealsNeeded = true,
-                        ApplicantID = 3
+                        IsActive = false,
+                       // ApplicantID = 3
                     },
                     new Application
                     {
@@ -392,9 +405,10 @@ namespace Idea_Pending_SMART.Models
                         //SponsorID = 0,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Four",
+                        GPA = 20,
                         AcademicScore = 5,
                         DateOfBirth = "04/01/2008",
-                        Financials = "500",
+                        Financials = "Less than 10,200 MZN",
                         DeterminationNote = "",
                         DistanceNote = "",
                         AdminScore = 20,
@@ -404,7 +418,8 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = true,
                         MealsNeeded = true,
-                        ApplicantID = 4
+                        IsActive=false,
+                       // ApplicantID = 4
                     },
                     new Application
                     {
@@ -412,9 +427,10 @@ namespace Idea_Pending_SMART.Models
                         //SponsorID = 3,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Five",
+                        GPA = 20,
                         AcademicScore = 20,
                         DateOfBirth = "04/01/2008",
-                        Financials = "500",
+                        Financials = "Less than 10,200 MZN",
                         DeterminationNote = "",
                         DistanceNote = "",
                         AdminScore = 20,
@@ -424,7 +440,8 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = false,
                         MealsNeeded = false,
-                        ApplicantID = 5
+                        IsActive=true
+                        //ApplicantID = 5
                     }
 
                     ); context.SaveChanges();
@@ -493,6 +510,12 @@ namespace Idea_Pending_SMART.Models
                         SchoolId = 2,
                         CourseName = "Intermediate English"
 
+                    },
+                    new Course
+                    {
+                        CourseDescription = "Public school, hours unavailable for student",
+                        SchoolId = 3,
+                        CourseName = "Public Class Block"
                     }
                     ); context.SaveChanges();
             }
@@ -535,45 +558,20 @@ namespace Idea_Pending_SMART.Models
                         SemesterID = 2,
                         Studentcount = 20,
                         UserID = 2
+                    },
+                    new Class
+                    {
+                        ClassDescription = "Public School",
+                        ClassTimeID = 3,
+                        CourseID = 6,
+                        SemesterID = 2,
+                        Studentcount = 200,
+                        UserID = null
                     }
 
                     ); context.SaveChanges();
             }
-            if (!context.Enrollments.Any())
-            {
-                context.Enrollments.AddRange(
-                    new Enrollment
-                    {
-                        ClassID = 1,
-                        StudentID = 1
-                    },
-                    new Enrollment
-                    {
-                        ClassID = 2,
-                        StudentID = 2
-                    },
-                    new Enrollment
-                    {
-                        ClassID = 3,
-                        StudentID = 3
-                    },
-                    new Enrollment
-                    {
-                        ClassID = 2,
-                        StudentID = 1
-                    },
-                   new Enrollment
-                   {
-                       ClassID = 3,
-                       StudentID = 3
-                   },
-                   new Enrollment
-                   {
-                       ClassID = 3,
-                       StudentID = 4
-                   }
-                    ); context.SaveChanges();
-            }
+ 
             if (!context.Attendance.Any())
             {
                 context.Attendance.AddRange(
@@ -645,7 +643,18 @@ namespace Idea_Pending_SMART.Models
 
                     ); context.SaveChanges();
             }
- 
+            if(!context.Assignment.Any())
+            {
+                context.Assignment.AddRange(
+                    new Assignment
+                    {
+                        AssignmentName = "Quiz Week 1",
+                        AssignmentIssuetDate = DateTime.Now,
+                        AssignmentDueDate = DateTime.Today,
+                        AssignmentTotalMarks = 100,
+                    }
+                    ); context.SaveChanges() ;
+            }
 
             if (!context.Role.Any())
             {
@@ -726,7 +735,49 @@ namespace Idea_Pending_SMART.Models
                     }
 
                     ); context.SaveChanges();
+
+            }
+            if (!context.Enrollments.Any())
+            {
+                context.Enrollments.AddRange(
+                    new Enrollment
+                    {
+                        ClassID = 4,
+                        StudentID = 3
+                    },
+                    new Enrollment
+                    {
+                        ClassID = 2,
+                        StudentID = 2
+                    },
+                    new Enrollment
+                    {
+                        ClassID = 3,
+                        StudentID = 3
+                    },
+                    new Enrollment
+                    {
+                        ClassID = 3,
+                        StudentID = 1
+                    },
+                   new Enrollment
+                   {
+                       ClassID = 2,
+                       StudentID = 3
+                   },
+                   new Enrollment
+                   {
+                       ClassID = 3,
+                       StudentID = 4
+                   },
+                   new Enrollment
+                   {
+                       ClassID = 5,
+                       StudentID = 5
+                   }
+                    ); context.SaveChanges();
             }  */
+
 
         }
 

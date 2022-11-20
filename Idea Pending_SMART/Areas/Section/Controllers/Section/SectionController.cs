@@ -1,10 +1,8 @@
 ﻿using Idea_Pending_SMART.Areas.Section.ViewModels;
 using Idea_Pending_SMART.Interfaces;
 using Idea_Pending_SMART.Models;
-using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
+
 
 [Area("Section")]
 public class SectionController : Controller
@@ -12,20 +10,6 @@ public class SectionController : Controller
     private readonly IUnitOfWork _unitOfWork;
     private string defaultAction = "Index";
 
-    /*
-        +getClassDetails(ClassID)
-        +checkClassSpace(ClassID)
-        +canClassChangeTime : bool
-        +canStudentAttend :bool
-        +openAddStudentPage()
-        +RemoveStudent(StudentID)
-        +checkClassTimes(ClassID)
-        +checkStudentAvailable(StudentID)
-        +changeTime(ClassID, ClassTime)
-        +changeDetail(ClassID, ClassDetails)
-        +changeStudentMax(ClassID, StudentCount)
-        +getCourseDetails(CourseID)
-    */
 
     public SectionController(IUnitOfWork unitOfWork)
     {
@@ -63,9 +47,45 @@ public class SectionController : Controller
         return View(ClassObj);
     }
 
+    [HttpGet]
+    public IActionResult ListStudentsAdd(int? id)
+    {
+
+        
+        ListStudentsAdd lsa = new ListStudentsAdd();
+        lsa.Class = _unitOfWork.Class.GetAll();
+
+         lsa.Enrollment = _unitOfWork.Enrollment.GetAll(e => e.ClassID != id && e.Class.ClassTimeID != 2);
+
+        lsa.Student = _unitOfWork.Student.GetAll();
+        lsa.ClassTime = _unitOfWork.ClassTime.GetAll();
+
+        return View(lsa);
+    }
 
 
 
+    [HttpGet]
+    public ViewResult Add(int? sid, int? cid)
+    {
+        ViewBag.cid = cid;
+        ViewBag.sid = sid;
+        return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Add(Enrollment obj)
+    {
+       if (ModelState.IsValid)
+        {
+            _unitOfWork.Enrollment.Add(obj); //internal add
+            _unitOfWork.Commit(); //physical commit to DB table
+            TempData["success"] = "Student added to database Successfully";
+            return RedirectToAction(defaultAction);
+        }
+       return View(obj);
+   }
 
 
 

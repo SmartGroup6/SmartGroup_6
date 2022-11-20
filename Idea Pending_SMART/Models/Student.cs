@@ -71,7 +71,7 @@ namespace Idea_Pending_SMART.Models
 
 
         //testing
-        public List<Enrollment> Enrollments { get; set; }
+    //   public List<Enrollment> Enrollments { get; set; }
 
 
     }

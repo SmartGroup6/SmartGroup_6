@@ -34,12 +34,92 @@ namespace Idea_Pending_SMART.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ApplicationID")
-                        .HasColumnType("int");
-
                     b.HasKey("ApplicantID");
 
                     b.ToTable("Applicant");
+                });
+
+            modelBuilder.Entity("Idea_Pending_SMART.Models.Application", b =>
+                {
+                    b.Property<int>("ApplicationID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ApplicationID"), 1L, 1);
+
+                    b.Property<float>("AcademicScore")
+                        .HasColumnType("real");
+
+                    b.Property<int?>("AdminScore")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ApplicationNameFirst")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ApplicationNameLast")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("ChoppaTransportNeeded")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("DateOfBirth")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DeterminationNote")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DistanceNote")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Financials")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("InstructorScore")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("MealsNeeded")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("SocialWorkerScore")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SubmissionDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TotalScore")
+                        .HasColumnType("int");
+
+                    b.HasKey("ApplicationID");
+
+                    b.ToTable("Applications");
+                });
+
+            modelBuilder.Entity("Idea_Pending_SMART.Models.Assignment", b =>
+                {
+                    b.Property<int>("AssignmentID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AssignmentID"), 1L, 1);
+
+                    b.Property<DateTime?>("AssignmentDueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("AssignmentIssuetDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("AssignmentName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("AssignmentTotalMarks")
+                        .HasColumnType("int");
+
+                    b.HasKey("AssignmentID");
+
+                    b.ToTable("Assignment");
                 });
 
             modelBuilder.Entity("Idea_Pending_SMART.Models.Attendance", b =>
@@ -101,6 +181,10 @@ namespace Idea_Pending_SMART.Migrations
 
                     b.HasIndex("ClassTimeID");
 
+                    b.HasIndex("CourseID");
+
+                    b.HasIndex("SemesterID");
+
                     b.ToTable("Class");
                 });
 
@@ -151,23 +235,21 @@ namespace Idea_Pending_SMART.Migrations
 
             modelBuilder.Entity("Idea_Pending_SMART.Models.Enrollment", b =>
                 {
+                    b.Property<int>("StudentID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClassID")
+                        .HasColumnType("int");
+
                     b.Property<int>("EnrollmentID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EnrollmentID"), 1L, 1);
 
-                    b.Property<int>("ClassID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StudentID")
-                        .HasColumnType("int");
-
-                    b.HasKey("EnrollmentID");
+                    b.HasKey("StudentID", "ClassID");
 
                     b.HasIndex("ClassID");
-
-                    b.HasIndex("StudentID");
 
                     b.ToTable("Enrollments");
                 });
@@ -445,34 +527,6 @@ namespace Idea_Pending_SMART.Migrations
                     b.ToTable("StudentNote");
                 });
 
-            modelBuilder.Entity("Idea_Pending_SMART.Models.User", b =>
-                {
-                    b.Property<int>("UserID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserID"), 1L, 1);
-
-                    b.Property<string>("EmailAddress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PersonID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("RoleID")
-                        .IsRequired()
-                        .HasColumnType("int");
-
-                    b.HasKey("UserID");
-
-                    b.ToTable("User");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -498,6 +552,29 @@ namespace Idea_Pending_SMART.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "2c5e174e-3b0e-446f-86af-483d56fd7210",
+                            ConcurrencyStamp = "b891609d-8b0c-45bb-a388-281db222f7d4",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "2c5e174e-3b0e-446f-86af-483d56fd7211",
+                            ConcurrencyStamp = "f18654c0-ebaf-4421-9dc5-c1f1f4a3ae28",
+                            Name = "SocialWorker",
+                            NormalizedName = "SOCIALWORKER"
+                        },
+                        new
+                        {
+                            Id = "2c5e174e-3b0e-446f-86af-483d56fd7212",
+                            ConcurrencyStamp = "1c4a55d9-03a9-488a-9f84-a5d14caa2407",
+                            Name = "Instructor",
+                            NormalizedName = "INSTRUCTOR"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -535,6 +612,10 @@ namespace Idea_Pending_SMART.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -588,6 +669,8 @@ namespace Idea_Pending_SMART.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -618,12 +701,10 @@ namespace Idea_Pending_SMART.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -652,6 +733,33 @@ namespace Idea_Pending_SMART.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "8e445865-a24d-4543-a6c6-9443d048cdb9",
+                            RoleId = "2c5e174e-3b0e-446f-86af-483d56fd7210"
+                        },
+                        new
+                        {
+                            UserId = "8e445865-a24d-4543-a6c6-9443d048cdb8",
+                            RoleId = "2c5e174e-3b0e-446f-86af-483d56fd7211"
+                        },
+                        new
+                        {
+                            UserId = "8e445865-a24d-4543-a6c6-9443d048cdb7",
+                            RoleId = "2c5e174e-3b0e-446f-86af-483d56fd7211"
+                        },
+                        new
+                        {
+                            UserId = "8e445865-a24d-4543-a6c6-9443d048cdb6",
+                            RoleId = "2c5e174e-3b0e-446f-86af-483d56fd7212"
+                        },
+                        new
+                        {
+                            UserId = "8e445865-a24d-4543-a6c6-9443d048cdb5",
+                            RoleId = "2c5e174e-3b0e-446f-86af-483d56fd7212"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -660,12 +768,10 @@ namespace Idea_Pending_SMART.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -673,6 +779,252 @@ namespace Idea_Pending_SMART.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("Idea_Pending_SMART.Models.ApplicationUser", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("County")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Education")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Income")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Military")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Race")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Residence")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StreetAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Zip")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("ApplicationUser");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "8e445865-a24d-4543-a6c6-9443d048cdb9",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1f07cc76-cfbe-4e3c-b4e6-6350a9606bd2",
+                            Email = "Admin@Admin.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@ADMIN.COM",
+                            NormalizedUserName = "ADMIN@ADMIN.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEP+WgGZEZ5YJ0sEakrro3Ce2BNyZfoGWRHcg0jwtDjvI2jxYJutaPpM7C6wdsU9Mvw==",
+                            PhoneNumber = "800calladmin",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "6d4fb098-23b1-4219-8b4c-c146830ede28",
+                            TwoFactorEnabled = false,
+                            UserName = "Admin@Admin.com",
+                            Address = "123 Flicka Flacka Way",
+                            ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb9",
+                            BirthDate = new DateTime(2022, 11, 19, 12, 18, 36, 130, DateTimeKind.Local).AddTicks(2174),
+                            City = "Jonestown",
+                            County = "Davis",
+                            Education = "",
+                            FirstName = "Hank",
+                            Gender = "",
+                            Income = "",
+                            LastName = "Hill",
+                            Military = "",
+                            PostalCode = "84040",
+                            Race = "",
+                            Residence = "",
+                            State = "Texas",
+                            StreetAddress = "123 Flicka Flacka Way",
+                            Zip = "84040"
+                        },
+                        new
+                        {
+                            Id = "8e445865-a24d-4543-a6c6-9443d048cdb8",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1115bd64-1fbb-4fec-a88f-77bcdfcc2f43",
+                            Email = "SocialWorker1@SocialWorker1.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "SOCIALWORKER1@SOCIALWORKER1.COM",
+                            NormalizedUserName = "SocialWorker1SocialWorker1.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGPATsaVsXlof5BDP2BkdipYOhKxN0uq3PBWu/P1TPNmhpF4cUnZSASYZdNdIBzT9w==",
+                            PhoneNumber = "800calladmin",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "6d4fb098-23b1-4219-8b4c-c146830ede28",
+                            TwoFactorEnabled = false,
+                            UserName = "SocialWorker1SocialWorker1.com",
+                            Address = "1234423312 Flicka Flacka Way",
+                            ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb8",
+                            BirthDate = new DateTime(2022, 11, 19, 12, 18, 36, 135, DateTimeKind.Local).AddTicks(8531),
+                            City = "Jonestown22",
+                            County = "111111Davis",
+                            Education = "",
+                            FirstName = "Bob",
+                            Gender = "",
+                            Income = "",
+                            LastName = "Propane",
+                            Military = "",
+                            PostalCode = "84040",
+                            Race = "",
+                            Residence = "",
+                            State = "Texas",
+                            StreetAddress = "123 Flicka Flacka Way",
+                            Zip = "84040"
+                        },
+                        new
+                        {
+                            Id = "8e445865-a24d-4543-a6c6-9443d048cdb7",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "ce7a621d-bb50-4f7a-8005-2f89e7729501",
+                            Email = "SocialWorker2@SocialWorker2.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "SocialWorker2@SocialWorker2.COM",
+                            NormalizedUserName = "SocialWorker2@SocialWorker2.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAEwMI7WXQ/Q6U1dsM24WXNDITvwxfI9DscRJZIC9TfOKE66DscYtk0o8nPNqcmDrQ==",
+                            PhoneNumber = "800calladmin",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "6d4fb098-23b1-4219-8b4c-c146830ede28",
+                            TwoFactorEnabled = false,
+                            UserName = "SocialWorker2@SocialWorker2.com",
+                            Address = "123 Flicka Flacka Way",
+                            ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb7",
+                            BirthDate = new DateTime(2022, 11, 19, 12, 18, 36, 141, DateTimeKind.Local).AddTicks(3049),
+                            City = "Jonestown",
+                            County = "Davis",
+                            Education = "",
+                            FirstName = "Miachael",
+                            Gender = "",
+                            Income = "",
+                            LastName = "Bluth",
+                            Military = "",
+                            PostalCode = "84040",
+                            Race = "",
+                            Residence = "",
+                            State = "Texas",
+                            StreetAddress = "123 Flicka Flacka Way",
+                            Zip = "84040"
+                        },
+                        new
+                        {
+                            Id = "8e445865-a24d-4543-a6c6-9443d048cdb6",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "f57d3766-ceb2-4fb9-bbd3-c7080e147700",
+                            Email = "Instructor1@Instructor1.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "Instructor1@Instructor1.COM",
+                            NormalizedUserName = "Instructor1@Instructor1.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIw4twkL9qZD0gQP2Qaws0PgI+knT0ZbO5WsOoY84MSdPiOFVMcf26wEFqZwCkZp2g==",
+                            PhoneNumber = "800calladmin",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "6d4fb098-23b1-4219-8b4c-c146830ede28",
+                            TwoFactorEnabled = false,
+                            UserName = "Instructor1@Instructor1.com",
+                            Address = "123 Flicka Flacka Way",
+                            ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb6",
+                            BirthDate = new DateTime(2022, 11, 19, 12, 18, 36, 146, DateTimeKind.Local).AddTicks(7407),
+                            City = "Jonestown",
+                            County = "Davis",
+                            Education = "",
+                            FirstName = "Gob",
+                            Gender = "",
+                            Income = "",
+                            LastName = "Gobbo",
+                            Military = "",
+                            PostalCode = "84040",
+                            Race = "",
+                            Residence = "",
+                            State = "Texas",
+                            StreetAddress = "123 Flicka Flacka Way",
+                            Zip = "84040"
+                        },
+                        new
+                        {
+                            Id = "8e445865-a24d-4543-a6c6-9443d048cdb5",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "d77eb279-8287-4fe1-a914-2684f3d7615b",
+                            Email = "Instructor2@Instructor2.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "Instructor2@Instructor2.COM",
+                            NormalizedUserName = "Instructor2@Instructor2.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAELrbIn4c5hd1N/sPa83XenB/qJS3JSuZ0IsyIP26RPK/bkje8Q6CL63cdsnt0DPd6Q==",
+                            PhoneNumber = "800calladmin",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "6d4fb098-23b1-4219-8b4c-c146830ede28",
+                            TwoFactorEnabled = false,
+                            UserName = "Instructor2@Instructor2.com",
+                            Address = "123 Flicka Flacka Way",
+                            ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb5",
+                            BirthDate = new DateTime(2022, 11, 19, 12, 18, 36, 152, DateTimeKind.Local).AddTicks(3130),
+                            City = "Jonestown",
+                            County = "Davis",
+                            Education = "",
+                            FirstName = "MrTeacher",
+                            Gender = "",
+                            Income = "",
+                            LastName = "MrTeacher",
+                            Military = "",
+                            PostalCode = "84040",
+                            Race = "",
+                            Residence = "",
+                            State = "Texas",
+                            StreetAddress = "123 Flicka Flacka Way",
+                            Zip = "84040"
+                        });
                 });
 
             modelBuilder.Entity("Idea_Pending_SMART.Models.Class", b =>
@@ -683,19 +1035,35 @@ namespace Idea_Pending_SMART.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Idea_Pending_SMART.Models.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Idea_Pending_SMART.Models.Semester", "Semester")
+                        .WithMany()
+                        .HasForeignKey("SemesterID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("ClassTime");
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Semester");
                 });
 
             modelBuilder.Entity("Idea_Pending_SMART.Models.Enrollment", b =>
                 {
                     b.HasOne("Idea_Pending_SMART.Models.Class", "Class")
-                        .WithMany("Enrollments")
+                        .WithMany()
                         .HasForeignKey("ClassID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Idea_Pending_SMART.Models.Student", "Student")
-                        .WithMany("Enrollments")
+                        .WithMany()
                         .HasForeignKey("StudentID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -765,16 +1133,6 @@ namespace Idea_Pending_SMART.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Idea_Pending_SMART.Models.Class", b =>
-                {
-                    b.Navigation("Enrollments");
-                });
-
-            modelBuilder.Entity("Idea_Pending_SMART.Models.Student", b =>
-                {
-                    b.Navigation("Enrollments");
                 });
 #pragma warning restore 612, 618
         }

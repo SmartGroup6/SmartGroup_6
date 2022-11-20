@@ -15,7 +15,8 @@ namespace Idea_Pending_SMART.Interfaces
         public IRepository<School> School { get; }
 
         public IRepository<Course> Course { get; }
-        public IRepository<ClassTime> ClassTime { get; }    
+        public IRepository<ClassTime> ClassTime { get; }
+        public IRepository<ApplicationUser> ApplicationUser { get; }
 
         //save changes to data source
         void Commit();

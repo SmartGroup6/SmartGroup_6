@@ -5,6 +5,7 @@ namespace Idea_Pending_SMART.Models
 {
     public class Enrollment
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         [Display(Name = "EnrollmentID")]
         public int EnrollmentID { get; set; }

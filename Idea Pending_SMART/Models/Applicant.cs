@@ -12,12 +12,12 @@ namespace Idea_Pending_SMART.Models
         [Required]
         public string? AppStatus { get; set; }
 
-
+/*
         [Required]
-        [ForeignKey("Application")]
+        [ForeignKey("Applications")]
         public int ApplicationID { get; set; }
 
-
+        */
     }
 
 }

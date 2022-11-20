@@ -15,7 +15,6 @@
                 <div class="form-group row">
 
                     <div class="col-3">
-                        <label > Assignment Name</label>
                     </div>
 
                     <div class="col-9">
@@ -32,11 +31,10 @@
 
                 <div class="form-group row mt-2">
                     <div class="col-3">
-                        <label  class="control-label"> Assignment Start Date</label>
                     </div>
                     <div class="col-9">
                         <div class="form-group">
-                            
+
                             <input asp-for="AssignmentIssuetDate" id="datepicker" type="text" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")" />
                             <span asp-validation-for="AssignmentIssuetDate" class="text-danger"></span>
                         </div>
@@ -44,13 +42,13 @@
                     </div>
                 </div>
 
-               <div class="form-group row">
+                <div class="form-group row">
                     <div class="col-3">
                         <label class="control-label"> Assignment Due Date</label>
                     </div>
                     <div class="col-9">
                         <div class="form-group">
-                            
+
                             <input asp-for="AssignmentDueDate" id="datepicker2" type="text" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")" />
                             <span asp-validation-for="AssignmentDueDate" class="text-danger"></span>
                         </div>
@@ -60,7 +58,6 @@
 
                 <div class="form-group row">
                     <div class="col-3">
-                        <label >Assignment Grade</label>
                     </div>
                     <div class="col-9">
                         <input id="AssignmentTotalMarks" class="form-control" asp-for="AssignmentTotalMarks" />
@@ -68,7 +65,7 @@
                     </div>
                 </div>
 
-              
+
 
 
                 <div class="form-group row">
@@ -93,13 +90,13 @@
                 </div>
 
 
-    </div>
+            </div>
 </form>
 
 
 
 @section Scripts
-{
+    {
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
