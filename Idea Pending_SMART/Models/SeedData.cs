@@ -340,9 +340,10 @@ namespace Idea_Pending_SMART.Models
                         //SponsorID = 1,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "One",
+                        GPA = 20,
                         AcademicScore = 25,
-                        DateOfBirth = "04/01/2008",
-                        Financials = "500",
+                        DateOfBirth = "2008-04-01",
+                        Financials = "Less than 10,200 MZN",
                         DeterminationNote = "very determined",
                         DistanceNote = "lives far",
                         AdminScore = 25,
@@ -352,6 +353,7 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = true,
                         MealsNeeded = true,
+                        IsActive = true,
                         //ApplicantID = 1
                     },
                     new Application
@@ -360,9 +362,10 @@ namespace Idea_Pending_SMART.Models
                         //SponsorID = 1,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Two",
+                        GPA = 20,
                         AcademicScore = 25,
                         DateOfBirth = "04/01/2009",
-                        Financials = "5000",
+                        Financials = "Less than 10,200 MZN",
                         DeterminationNote = "",
                         DistanceNote = "Lives close",
                         AdminScore = 25,
@@ -372,6 +375,7 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = false,
                         MealsNeeded = true,
+                        IsActive= false,
                         //ApplicantID = 2
                     },
                     new Application
@@ -379,9 +383,10 @@ namespace Idea_Pending_SMART.Models
                        // SponsorID = 0,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Three",
+                        GPA = 20,
                         AcademicScore = 0,
                         DateOfBirth = "04/01/2002",
-                        Financials = "800",
+                        Financials = "Less than 10,200 MZN",
                         DeterminationNote = "",
                         DistanceNote = "",
                         AdminScore = 0,
@@ -391,6 +396,7 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = true,
                         MealsNeeded = true,
+                        IsActive = false,
                        // ApplicantID = 3
                     },
                     new Application
@@ -399,9 +405,10 @@ namespace Idea_Pending_SMART.Models
                         //SponsorID = 0,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Four",
+                        GPA = 20,
                         AcademicScore = 5,
                         DateOfBirth = "04/01/2008",
-                        Financials = "500",
+                        Financials = "Less than 10,200 MZN",
                         DeterminationNote = "",
                         DistanceNote = "",
                         AdminScore = 20,
@@ -411,6 +418,7 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = true,
                         MealsNeeded = true,
+                        IsActive=false,
                        // ApplicantID = 4
                     },
                     new Application
@@ -419,9 +427,10 @@ namespace Idea_Pending_SMART.Models
                         //SponsorID = 3,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Five",
+                        GPA = 20,
                         AcademicScore = 20,
                         DateOfBirth = "04/01/2008",
-                        Financials = "500",
+                        Financials = "Less than 10,200 MZN",
                         DeterminationNote = "",
                         DistanceNote = "",
                         AdminScore = 20,
@@ -431,6 +440,7 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = false,
                         MealsNeeded = false,
+                        IsActive=true
                         //ApplicantID = 5
                     }
 
