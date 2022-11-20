@@ -15,7 +15,7 @@ namespace Idea_Pending_SMART.Models
             {
                 context.Database.Migrate();
             }
-        /*    if (!context.School.Any())
+            if (!context.School.Any())
             {
                 context.School.AddRange(
                     new School
@@ -571,7 +571,7 @@ namespace Idea_Pending_SMART.Models
 
                     ); context.SaveChanges();
             }
- 
+
             if (!context.Attendance.Any())
             {
                 context.Attendance.AddRange(
@@ -737,46 +737,46 @@ namespace Idea_Pending_SMART.Models
                     ); context.SaveChanges();
 
             }
-            if (!context.Enrollments.Any())
-            {
-                context.Enrollments.AddRange(
-                    new Enrollment
-                    {
-                        ClassID = 4,
-                        StudentID = 3
-                    },
-                    new Enrollment
-                    {
-                        ClassID = 2,
-                        StudentID = 2
-                    },
-                    new Enrollment
-                    {
-                        ClassID = 3,
-                        StudentID = 3
-                    },
-                    new Enrollment
-                    {
-                        ClassID = 3,
-                        StudentID = 1
-                    },
-                   new Enrollment
-                   {
-                       ClassID = 2,
-                       StudentID = 3
-                   },
-                   new Enrollment
-                   {
-                       ClassID = 3,
-                       StudentID = 4
-                   },
-                   new Enrollment
-                   {
-                       ClassID = 5,
-                       StudentID = 5
-                   }
-                    ); context.SaveChanges();
-            }  */
+            //if (!context.Enrollments.Any())
+            //{
+            //    context.Enrollments.AddRange(
+            //        new Enrollment
+            //        {
+            //            ClassID = 4,
+            //            StudentID = 3
+            //        },
+            //        new Enrollment
+            //        {
+            //            ClassID = 2,
+            //            StudentID = 2
+            //        },
+            //        new Enrollment
+            //        {
+            //            ClassID = 3,
+            //            StudentID = 3
+            //        },
+            //        new Enrollment
+            //        {
+            //            ClassID = 3,
+            //            StudentID = 1
+            //        },
+            //       new Enrollment
+            //       {
+            //           ClassID = 2,
+            //           StudentID = 3
+            //       },
+            //       new Enrollment
+            //       {
+            //           ClassID = 3,
+            //           StudentID = 4
+            //       },
+            //       new Enrollment
+            //       {
+            //           ClassID = 5,
+            //           StudentID = 5
+            //       }
+            //        ); context.SaveChanges();
+            //}
 
 
         }
