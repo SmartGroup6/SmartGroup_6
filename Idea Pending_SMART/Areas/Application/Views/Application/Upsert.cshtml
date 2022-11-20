@@ -1,0 +1,170 @@
+﻿@model Application
+@{
+}
+<form method="post" asp-controller="Application" asp-action="Upsert" enctype="multipart/form-data">
+    <div class="container">
+        <div class="row px-2 mx-2 backgroundWhite border">
+            @* All for Model validation and HTML validation *@
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="col-12 px-3" style="border-bottom:1px solid #325d88">
+                <h2 class="text-primary">@(Model.ApplicationID != 0 ? "Details" : "Create") Application</h2>
+             <!-- ^^ there's a lambda here for an if-then-else. If Application id is not = 0, update. Otherwise, create -->
+            </div>
+            <div class="col-8 pt-3">
+                <div class="form-group row">
+
+                    <div class="col-3">
+                        <label> Student's First Name</label>
+                    </div>
+                    <div class="col-9">
+                        <input id="ApplicationNameFirst" class="form-control" asp-for="ApplicationNameFirst" />
+                        <span class="text-danger" asp-validation-for="ApplicationNameFirst"></span>
+                    </div>        
+                    <div class="col-3">
+                        <label> Student's Last Name</label>
+                    </div>
+                    <div class="col-9">
+                        <input id="ApplicationNameLast" class="form-control" asp-for="ApplicationNameLast" />
+                        <span class="text-danger" asp-validation-for="ApplicationNameLast"></span>
+                    </div>
+                    @if (Model.ApplicationID != 0)
+                    {
+                        <input type="hidden" asp-for="ApplicationID" />
+                        <!-- very important to hide the Application id. the id needs to be on the form,
+                        but the user doesn't need to see it. -->
+                    }
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label class="control-label"> DOB</label>
+                    </div>
+                    <div class="col-9">
+                        <div class="form-group">
+                            <input asp-for="DateOfBirth" id="datepicker2" type="text" class="form-control"/>  @*value="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")"*@                 
+                            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label>GPA</label>
+                    </div>
+                    <div class="col-9">
+                        <div class="form-group">
+                            <input asp-for="GPA" type="text" class="form-control"/>               
+                            <span class="text-danger" asp-validation-for="GPA"></span>
+                        </div>  
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label>Household Income</label>
+                    </div>
+                    <div class="col-9">
+                        <select id="Financials" class="form-select" asp-for="Financials">
+                            <option value="Less than 10,200 MZN">Less than 10,200 MZN</option>
+                            <option value="Between 10,200 MZN and 38,600 MZN">Between 10,200 MZN and 38,600 MZN</option>
+                            <option value="More than 38,600 MZN">More than 38,600 MZN</option>
+                        </select>
+                        <span class="text-danger" asp-validation-for="Financials"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label>Choppa Assistance?</label>
+                    </div>
+                    <div class="col-9">
+                        <select asp-for="ChoppaTransportNeeded" class="form-select">
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                         </select>
+                        <span class="text-danger" asp-validation-for="ChoppaTransportNeeded"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label>Meals Assistance?</label>
+                    </div>
+                    <div class="col-9">
+                        <select asp-for="MealsNeeded" class="form-select">
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                         </select>
+                        <span class="text-danger" asp-validation-for="MealsNeeded"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label>Determination Note</label>
+                    </div>
+                    <div class="col-9">
+                        <textarea asp-for="DeterminationNote" class="form-control" rows="4"></textarea>
+                        <span class="text-danger" asp-validation-for="DeterminationNote"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row mt-2">
+                    <div class="col-3">
+                        <label class="control-label"> Submission Date</label>
+                    </div>
+                    <div class="col-9">
+                        <div class="form-group">
+                            <input asp-for="SubmissionDate" id="datepicker" type="text" class="form-control" value="@DateTime.Today.ToString("MM/dd/yyyy")"/> @*value="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")"*@
+                            <span asp-validation-for="SubmissionDate" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-9 offset-3">
+                        <div class="row">
+                            <div class="col-6">
+                                @if (Model.ApplicationID != 0)
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Update</button>
+                                }
+                                else
+                                {
+                                    <!-- we will need to write some javascript to validate the input at some point. -->
+                                    <button type="submit" class="btn btn-primary form-control" onclick="return ValidateInput()">Create</button>
+                                }
+                            </div>
+                            <div class="col-6">
+                                <a asp-controller="Application" asp-action="Index" class="btn btn-success form-control">Back to List</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+@section Scripts
+    {
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker();
+            $("#datepicker2").datepicker();
+        });
+    </script>
+    function ValidateInput() {
+            if (document.getElementById("name").value == "") {
+                swal('Error', 'Please enter a Name', 'error')
+                return false;
+            }
+    }
+}

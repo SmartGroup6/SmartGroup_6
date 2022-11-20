@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 public class SchoolController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IWebHostEnvironment _hostEnvironment;
+    //private readonly IWebHostEnvironment _hostEnvironment;
 
     [BindProperty]
     public School SchoolObj { get; set; }

@@ -8,58 +8,103 @@ namespace Idea_Pending_SMART.Models
     {
         [Key]
         public int ApplicationID { get; set; }
-
-        [Required]
         public float AcademicScore { get; set; }
 
+        public String DateOfBirth { get; set; }
+        
+        [Display(Name = "Application")]
         [Required]
-        public string? DateOfBirth { get; set; }
-
         public string? ApplicationNameFirst { get; set; }
-
         [Required]
         public string? ApplicationNameLast { get; set; }
 
-        [Required]
+        public float GPA { get; set; }
         public string? Financials { get; set; }
         
-        [Required]
+
         public string? DeterminationNote { get; set; }
         
-        [Required]
+       
         public string? DistanceNote { get; set; }
 
-        [Required]
+       
         public int? InstructorScore { get; set; }
 
-        [Required]
         public int? SocialWorkerScore { get; set; } //Social Worker Score
 
-        [Required]
         public int? AdminScore { get; set; }
 
-        [Required]
+
         public int? TotalScore { get; set; }
+        
+        //calculate Age
+        public int Age (DateTime DateOfBirth)
+        {
+            int age = 0;
+            age = DateTime.Now.Subtract(DateOfBirth).Days;
+            age = age / 365;
+            return age;
+        }
+       
+        // [DataType(DataType.Date)]
+       // [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+        //public DateTime? SubmissionDate { get; set; } = DateTime.Now;
 
-        [Required]
-        public string? SubmissionDate { get; set; }
+        public String? SubmissionDate { get; set; }
+        public bool ChoppaTransportNeeded { get; set; }
+
+        public bool MealsNeeded { get; set; }
+        public bool? IsActive { get; set; }
+        /*
+                [ForeignKey("Applicant")]
+                public int ApplicantID { get; set; }
+
+                [ForeignKey("Person")] //required for the guardian if applicable and gets address from guardian
+                public int PersonID { get; set; }
 
 
-        [Required]
-        public bool? ChoppaTransportNeeded { get; set; }
+        */
 
-        [Required]
-        public bool? MealsNeeded { get; set; }
+        public float initialScore(float gpa, String income, bool choppa, bool meal)
+        {
+            float score = 0;
 
-        [Required]
-        [ForeignKey("Applicant")]
-        public int ApplicantID { get; set; }
+            //GPA
+            score += gpa;
+            
+            //income
+            if (String.Equals(income, "Less than 10,200 MZN"))
+            {
+                score += 8;
+            } 
+            else if (String.Equals(income, "More than 38,600 MZN"))
+            {
+                score += 5;
+            }
+            else
+            {
+                score += 7;
+            }
 
-        [ForeignKey("Person")] //required for the guardian if applicable and gets address from guardian
-        public int PersonID { get; set; }
+            //choppa
+            if(choppa == false)
+            {
+                score += 5;
+            } else
+            {
+                score += 3;
+            }
 
-
-
+            //meal
+            if (meal == false)
+            {
+                score += 5;
+            }else
+            {
+                score += 3;
+            }
+            return score;
+        }
     }
 
 }

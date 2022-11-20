@@ -43,6 +43,5 @@ namespace Idea_Pending_SMART.Interfaces
 
         // Updates all changes to an object
         void Update(T entity);
-
     }
 }

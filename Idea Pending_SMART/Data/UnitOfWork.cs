@@ -13,8 +13,6 @@ namespace Idea_Pending_SMART.Data
         {
             _dbContext = dbContext;
         }
-        //private IRepository<Assignment> _Assignment;
-
         private IRepository<Semester> _Semester;
         private IRepository<Class> _Class;
         private IRepository<Enrollment> _Enrollment;
@@ -23,7 +21,28 @@ namespace Idea_Pending_SMART.Data
         private IRepository<School> _School;
         private IRepository<Course> _Course;
         private IRepository<ClassTime> _ClassTime;
+        private IRepository<Assignment> _Assignment;
+        private IRepository<ApplicationUser> _ApplicationUser;
 
+        public IRepository<Assignment> Assignment
+        {
+            get
+            {
+
+                _Assignment ??= new Repository<Assignment>(_dbContext);
+                return _Assignment;
+            }
+        }
+
+        public IRepository<ApplicationUser> ApplicationUser
+        {
+            get
+            {
+
+                _ApplicationUser ??= new Repository<ApplicationUser>(_dbContext);
+                return _ApplicationUser;
+            }
+        }
         public IRepository<Course> Course
         {
             get
@@ -43,16 +62,6 @@ namespace Idea_Pending_SMART.Data
                 return _School;
             }
         }
-        //public IRepository<Assignment> Assignment
-        //{
-        //    get
-        //    {
-
-        //        _Assignment ??= new Repository<Assignment>(_dbContext);
-        //        return _Assignment;
-        //    }
-        //}
-
         public IRepository<Semester> Semester
         {
             get
