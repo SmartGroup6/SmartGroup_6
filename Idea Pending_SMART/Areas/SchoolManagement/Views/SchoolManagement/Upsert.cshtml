@@ -1,42 +1,58 @@
-﻿@model Idea_Pending_SMART.Models.Assignment
+﻿@model Idea_Pending_SMART.Models.Semester
 @{
 }
 <!-- anytime a form takes file uploads, you need the enctype to avoid security issues -->
-<form method="post" asp-controller="Assignment" asp-action="Upsert" enctype="multipart/form-data">
+<form method="post" asp-controller="Semester" asp-action="Upsert" enctype="multipart/form-data">
     <div class="container">
         <div class="row px-2 mx-2 backgroundWhite border">
             @* All for Model validation and HTML validation *@
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="col-12 px-3" style="border-bottom:1px solid #325d88">
-                <h2 class="text-primary">@(Model.AssignmentID != 0 ? "Update" : "Create") Assignment</h2>
-                <!-- ^^ there's a lambda here for an if-then-else. If Assignment id is not = 0, update. Otherwise, create -->
+                <h2 class="text-primary">@(Model.SemesterID != 0 ? "Update" : "Create") Semester</h2>
+                <!-- ^^ there's a lambda here for an if-then-else. If semester id is not = 0, update. Otherwise, create -->
             </div>
             <div class="col-8 pt-3">
                 <div class="form-group row">
 
                     <div class="col-3">
+                        <label asp-for="SemesterName"></label>
                     </div>
 
                     <div class="col-9">
-                        <input id="AssignmentName" class="form-control" asp-for="AssignmentName" />
-                        <span class="text-danger" asp-validation-for="AssignmentName"></span>
+                        <input id="SemesterName" class="form-control" asp-for="SemesterName" />
+                        <span class="text-danger" asp-validation-for="SemesterName"></span>
                     </div>
-                    @if (Model.AssignmentID != 0)
+                    @if (Model.SemesterID != 0)
                     {
-                        <input type="hidden" asp-for="AssignmentID" />
-                        <!-- very important to hide the Assignment id. the id needs to be on the form,
+                        <input type="hidden" asp-for="SemesterID" />
+                        <!-- very important to hide the semester id. the id needs to be on the form,
                         but the user doesn't need to see it. -->
                     }
                 </div>
 
-                <div class="form-group row mt-2">
+                <div class="form-group row">
                     <div class="col-3">
+                        <label asp-for="StartDate" class="control-label"></label>
                     </div>
                     <div class="col-9">
                         <div class="form-group">
+                            
+                            <input asp-for="StartDate" id="datepicker" type="text" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")" />
+                            <span asp-validation-for="StartDate" class="text-danger"></span>
+                        </div>
 
-                            <input asp-for="AssignmentIssuetDate" id="datepicker" type="text" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")" />
-                            <span asp-validation-for="AssignmentIssuetDate" class="text-danger"></span>
+                    </div>
+                </div>
+
+               <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="EndDate" class="control-label"></label>
+                    </div>
+                    <div class="col-9">
+                        <div class="form-group">
+                            
+                            <input asp-for="EndDate" id="datepicker2" type="text" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")" />
+                            <span asp-validation-for="EndDate" class="text-danger"></span>
                         </div>
 
                     </div>
@@ -44,35 +60,31 @@
 
                 <div class="form-group row">
                     <div class="col-3">
-                        <label class="control-label"> Assignment Due Date</label>
+                        <label asp-for="MaxStudentCount"></label>
                     </div>
                     <div class="col-9">
-                        <div class="form-group">
-
-                            <input asp-for="AssignmentDueDate" id="datepicker2" type="text" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")" />
-                            <span asp-validation-for="AssignmentDueDate" class="text-danger"></span>
-                        </div>
-
+                        <input id="MaxStudentCount" class="form-control" asp-for="MaxStudentCount" />
+                        <span class="text-danger" asp-validation-for="MaxStudentCount"></span>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <div class="col-3">
+                            <label asp-for="SchoolId"></label>
                     </div>
                     <div class="col-9">
-                        <input id="AssignmentTotalMarks" class="form-control" asp-for="AssignmentTotalMarks" />
-                        <span class="text-danger" asp-validation-for="AssignmentTotalMarks"></span>
+                            <input id="SchoolId" class="form-control" asp-for="SchoolId" Text="1"/>
+                            <span class="text-danger" asp-validation-for="SchoolId"></span>
+                            <p>This should probably be a combobox</p>
                     </div>
                 </div>
-
-
 
 
                 <div class="form-group row">
                     <div class="col-9 offset-3">
                         <div class="row">
                             <div class="col-6">
-                                @if (Model.AssignmentID != 0)
+                                @if (Model.SemesterID != 0)
                                 {
                                     <button type="submit" class="btn btn-primary form-control">Update</button>
                                 }
@@ -83,20 +95,20 @@
                                 }
                             </div>
                             <div class="col-6">
-                                <a asp-controller="Assignment" asp-action="Index" class="btn btn-success form-control">Back to List</a>
+                                <a asp-controller="Semester" asp-action="Index" class="btn btn-success form-control">Back to List</a>
                             </div>
                         </div>
                     </div>
                 </div>
 
 
-            </div>
+    </div>
 </form>
 
 
 
 @section Scripts
-    {
+{
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

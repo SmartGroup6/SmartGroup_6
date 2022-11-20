@@ -7,13 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 public class AssignmentController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
-
-    /*
-        +CreateAssignment(AssignN,Due,Score)
-        +UpdateAssignment(AssignN,Score)
-        +RemoveAssignment(AssignN)
-        +getAssignmentDetlais(assignmentID)
-    */
+    private string defaultAction = "Index";
+    
+        /*
+            +CreateAssignment(AssignN,Due,Score)
+            +UpdateAssignment(AssignN,Score)
+            +RemoveAssignment(AssignN)
+            +getAssignmentDetlais(assignmentID)
+        */
 
     public AssignmentController(IUnitOfWork unitOfWork)
     {
@@ -68,48 +69,53 @@ public class AssignmentController : Controller
             return View();
         }
 
-        if (AssignmenObj.AssignmentID == 0) //New semester
-        {
-            _unitOfWork.Assignment.Add(AssignmenObj);
-        }
-        else //Edit semester
-        {
-            _unitOfWork.Assignment.Update(AssignmenObj);
-        }
-
-        _unitOfWork.Commit();
-        return RedirectToAction("Index");
-    }
-
-    [HttpGet]
-    public IActionResult Delete(int? id)
-    {
-        if (id == null || id == 0)
-        {
-            return NotFound();
-        }
-
-        var objFromDb = _unitOfWork.Assignment.Get(m => m.AssignmentID == id);
-
-        if (objFromDb == null)
-        {
-            return NotFound();
-        }
-
-        return View(objFromDb);
-    }
+    //[HttpPost]
+    //[ValidateAntiForgeryToken]
+    //public IActionResult Edit(Semester obj)
+    //{
+    //    if (ModelState.IsValid)
+    //    {
+    //        _unitOfWork.Semester.Update(obj);
+    //        _unitOfWork.Commit();
+    //        TempData["success"] = "Semester updated successfully";
+    //        return RedirectToAction(defaultAction);
+    //    }
+    //    return View(obj);
+    //}
 
 
-    [HttpPost, ActionName("Delete")]
-    public IActionResult DeletePost(int? id)
-    {
-        var objFromDB = _unitOfWork.Assignment.Get(m => m.AssignmentID == id);
-        if (objFromDB == null)
-        {
-            return NotFound();
-        }
-        _unitOfWork.Assignment.Delete(objFromDB);
-        _unitOfWork.Commit();
+    //[HttpGet]
+    //public IActionResult Delete(int? id)
+    //{
+    //    if (id == null || id == 0)
+    //    {
+    //        return NotFound();
+    //    }
+
+    //    var objFromDb = _unitOfWork.Semester.Get(c => c.SemesterID == id);
+
+    //    if (objFromDb == null)
+    //    {
+    //        return NotFound();
+    //    }
+
+    //    return View(objFromDb);
+    //}
+
+    //[HttpPost, ActionName("Delete")]     //can change the method name and just map the button on the html page to this ActionName
+
+    //public IActionResult DeletePost(int? id)
+    //{
+    //    var obj = _unitOfWork.Semester.Get(c => c.SemesterID == id);
+    //    if (obj == null)
+    //    { return NotFound(); }
+
+    //    _unitOfWork.Semester.Delete(obj);
+    //    _unitOfWork.Commit();
+    //    TempData["success"] = "Semester was deleted Successfully";
+    //    return RedirectToAction("Index");
+    //}
+}
 
         return RedirectToAction("Index");
     }
