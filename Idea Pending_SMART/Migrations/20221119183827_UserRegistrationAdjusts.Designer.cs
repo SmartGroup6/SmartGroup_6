@@ -4,6 +4,7 @@ using Idea_Pending_SMART.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Idea_Pending_SMART.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221119183827_UserRegistrationAdjusts")]
+    partial class UserRegistrationAdjusts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,9 +106,6 @@ namespace Idea_Pending_SMART.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AssignmentID"), 1L, 1);
 
-                    b.Property<string>("AssignmentDescription")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("AssignmentDueDate")
                         .HasColumnType("datetime2");
 
@@ -120,12 +119,7 @@ namespace Idea_Pending_SMART.Migrations
                     b.Property<int?>("AssignmentTotalMarks")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ClassID")
-                        .HasColumnType("int");
-
                     b.HasKey("AssignmentID");
-
-                    b.HasIndex("ClassID");
 
                     b.ToTable("Assignment");
                 });
@@ -560,29 +554,6 @@ namespace Idea_Pending_SMART.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "2c5e174e-3b0e-446f-86af-483d56fd7210",
-                            ConcurrencyStamp = "0a3728b4-0d87-4ae0-8494-a76254ea8484",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = "2c5e174e-3b0e-446f-86af-483d56fd7211",
-                            ConcurrencyStamp = "00fc14c4-2d9b-4570-92cd-a20709c45043",
-                            Name = "SocialWorker",
-                            NormalizedName = "SOCIALWORKER"
-                        },
-                        new
-                        {
-                            Id = "2c5e174e-3b0e-446f-86af-483d56fd7212",
-                            ConcurrencyStamp = "f22c3d52-d887-45c1-9820-8f6ca78485ea",
-                            Name = "Instructor",
-                            NormalizedName = "INSTRUCTOR"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -741,33 +712,6 @@ namespace Idea_Pending_SMART.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "8e445865-a24d-4543-a6c6-9443d048cdb9",
-                            RoleId = "2c5e174e-3b0e-446f-86af-483d56fd7210"
-                        },
-                        new
-                        {
-                            UserId = "8e445865-a24d-4543-a6c6-9443d048cdb8",
-                            RoleId = "2c5e174e-3b0e-446f-86af-483d56fd7211"
-                        },
-                        new
-                        {
-                            UserId = "8e445865-a24d-4543-a6c6-9443d048cdb7",
-                            RoleId = "2c5e174e-3b0e-446f-86af-483d56fd7211"
-                        },
-                        new
-                        {
-                            UserId = "8e445865-a24d-4543-a6c6-9443d048cdb6",
-                            RoleId = "2c5e174e-3b0e-446f-86af-483d56fd7212"
-                        },
-                        new
-                        {
-                            UserId = "8e445865-a24d-4543-a6c6-9443d048cdb5",
-                            RoleId = "2c5e174e-3b0e-446f-86af-483d56fd7212"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -793,26 +737,7 @@ namespace Idea_Pending_SMART.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ApplicationUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("BirthDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("County")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Education")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -820,31 +745,11 @@ namespace Idea_Pending_SMART.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Gender")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Income")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Military")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PostalCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Race")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Residence")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -856,192 +761,7 @@ namespace Idea_Pending_SMART.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Zip")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasDiscriminator().HasValue("ApplicationUser");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "8e445865-a24d-4543-a6c6-9443d048cdb9",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "bb24a57d-3e81-4a39-be3a-dd5dd62c33d6",
-                            Email = "Admin@Admin.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@ADMIN.COM",
-                            NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOmbBo+AbSN+WQnLS1lVMsV188+q4dErennOyc4vwFP6an/vqiAFysvKwTbOkVnpFQ==",
-                            PhoneNumber = "800calladmin",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "6d4fb098-23b1-4219-8b4c-c146830ede28",
-                            TwoFactorEnabled = false,
-                            UserName = "Admin@Admin.com",
-                            Address = "123 Flicka Flacka Way",
-                            ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb9",
-                            BirthDate = new DateTime(2022, 11, 20, 22, 22, 15, 78, DateTimeKind.Local).AddTicks(709),
-                            City = "Jonestown",
-                            County = "Davis",
-                            Education = "",
-                            FirstName = "Hank",
-                            Gender = "",
-                            Income = "",
-                            LastName = "Hill",
-                            Military = "",
-                            PostalCode = "84040",
-                            Race = "",
-                            Residence = "",
-                            State = "Texas",
-                            StreetAddress = "123 Flicka Flacka Way",
-                            Zip = "84040"
-                        },
-                        new
-                        {
-                            Id = "8e445865-a24d-4543-a6c6-9443d048cdb8",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "6a113602-9ef1-4f4e-aade-770ed2f71c10",
-                            Email = "SocialWorker1@SocialWorker1.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "SOCIALWORKER1@SOCIALWORKER1.COM",
-                            NormalizedUserName = "SocialWorker1SocialWorker1.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAENNudrAlt2OpL/FPIS4QEBe818EUF577xTqhMkmIN4x9LGE7gP2RUMzaS+8ZVTQ8og==",
-                            PhoneNumber = "800calladmin",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "6d4fb098-23b1-4219-8b4c-c146830ede28",
-                            TwoFactorEnabled = false,
-                            UserName = "SocialWorker1SocialWorker1.com",
-                            Address = "1234423312 Flicka Flacka Way",
-                            ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb8",
-                            BirthDate = new DateTime(2022, 11, 20, 22, 22, 15, 85, DateTimeKind.Local).AddTicks(1101),
-                            City = "Jonestown22",
-                            County = "111111Davis",
-                            Education = "",
-                            FirstName = "Bob",
-                            Gender = "",
-                            Income = "",
-                            LastName = "Propane",
-                            Military = "",
-                            PostalCode = "84040",
-                            Race = "",
-                            Residence = "",
-                            State = "Texas",
-                            StreetAddress = "123 Flicka Flacka Way",
-                            Zip = "84040"
-                        },
-                        new
-                        {
-                            Id = "8e445865-a24d-4543-a6c6-9443d048cdb7",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "6802442a-caa1-48b9-a469-dfc146c7b9e6",
-                            Email = "SocialWorker2@SocialWorker2.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "SocialWorker2@SocialWorker2.COM",
-                            NormalizedUserName = "SocialWorker2@SocialWorker2.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEItsLAn0Lcp2OW1igksijUqQtFUV4OBlEq7RjqQqYaegEoj2j0sQyjwRBwGIVcJUew==",
-                            PhoneNumber = "800calladmin",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "6d4fb098-23b1-4219-8b4c-c146830ede28",
-                            TwoFactorEnabled = false,
-                            UserName = "SocialWorker2@SocialWorker2.com",
-                            Address = "123 Flicka Flacka Way",
-                            ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb7",
-                            BirthDate = new DateTime(2022, 11, 20, 22, 22, 15, 92, DateTimeKind.Local).AddTicks(1745),
-                            City = "Jonestown",
-                            County = "Davis",
-                            Education = "",
-                            FirstName = "Miachael",
-                            Gender = "",
-                            Income = "",
-                            LastName = "Bluth",
-                            Military = "",
-                            PostalCode = "84040",
-                            Race = "",
-                            Residence = "",
-                            State = "Texas",
-                            StreetAddress = "123 Flicka Flacka Way",
-                            Zip = "84040"
-                        },
-                        new
-                        {
-                            Id = "8e445865-a24d-4543-a6c6-9443d048cdb6",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "5a5ea17a-7b14-48dd-8d44-ad38efec10c4",
-                            Email = "Instructor1@Instructor1.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "Instructor1@Instructor1.COM",
-                            NormalizedUserName = "Instructor1@Instructor1.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAED9kBv1aq8zZot2LNuIEuJQ7n2MAOPAU0XqCRC7P9bG+fPTcUibQUdH6vKOIFvpuNQ==",
-                            PhoneNumber = "800calladmin",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "6d4fb098-23b1-4219-8b4c-c146830ede28",
-                            TwoFactorEnabled = false,
-                            UserName = "Instructor1@Instructor1.com",
-                            Address = "123 Flicka Flacka Way",
-                            ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb6",
-                            BirthDate = new DateTime(2022, 11, 20, 22, 22, 15, 98, DateTimeKind.Local).AddTicks(8259),
-                            City = "Jonestown",
-                            County = "Davis",
-                            Education = "",
-                            FirstName = "Gob",
-                            Gender = "",
-                            Income = "",
-                            LastName = "Gobbo",
-                            Military = "",
-                            PostalCode = "84040",
-                            Race = "",
-                            Residence = "",
-                            State = "Texas",
-                            StreetAddress = "123 Flicka Flacka Way",
-                            Zip = "84040"
-                        },
-                        new
-                        {
-                            Id = "8e445865-a24d-4543-a6c6-9443d048cdb5",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "6873e960-b1fe-44a2-9d57-9d933d0724ec",
-                            Email = "Instructor2@Instructor2.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "Instructor2@Instructor2.COM",
-                            NormalizedUserName = "Instructor2@Instructor2.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEClvz2fKzTPviLc8opX6jFU2sALljv4QyGNjVs/FIFxwgFk7AiLTRc1SrmpVoN90HA==",
-                            PhoneNumber = "800calladmin",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "6d4fb098-23b1-4219-8b4c-c146830ede28",
-                            TwoFactorEnabled = false,
-                            UserName = "Instructor2@Instructor2.com",
-                            Address = "123 Flicka Flacka Way",
-                            ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb5",
-                            BirthDate = new DateTime(2022, 11, 20, 22, 22, 15, 106, DateTimeKind.Local).AddTicks(5853),
-                            City = "Jonestown",
-                            County = "Davis",
-                            Education = "",
-                            FirstName = "MrTeacher",
-                            Gender = "",
-                            Income = "",
-                            LastName = "MrTeacher",
-                            Military = "",
-                            PostalCode = "84040",
-                            Race = "",
-                            Residence = "",
-                            State = "Texas",
-                            StreetAddress = "123 Flicka Flacka Way",
-                            Zip = "84040"
-                        });
-                });
-
-            modelBuilder.Entity("Idea_Pending_SMART.Models.Assignment", b =>
-                {
-                    b.HasOne("Idea_Pending_SMART.Models.Class", "Class")
-                        .WithMany()
-                        .HasForeignKey("ClassID");
-
-                    b.Navigation("Class");
                 });
 
             modelBuilder.Entity("Idea_Pending_SMART.Models.Class", b =>

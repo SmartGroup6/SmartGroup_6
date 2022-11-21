@@ -10,7 +10,6 @@ namespace Idea_Pending_SMART.Interfaces
         public IRepository<Application> Application { get; }
 
         public IRepository<Assignment> Assignment { get; }
-
         public IRepository<Enrollment> Enrollment { get; }
         public IRepository<Student> Student { get; }
         public IRepository<School> School { get; }

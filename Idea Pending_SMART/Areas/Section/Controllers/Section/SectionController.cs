@@ -31,7 +31,7 @@ public class SectionController : Controller
     [HttpGet]
     public IActionResult Open(int? id)
     {
-        IEnumerable<Enrollment> obj = _unitOfWork.Enrollment.List(c => c.ClassID == id, orderBy: c=>c.StudentID, "Class,Student");
+        IEnumerable<Enrollment> obj = _unitOfWork.Enrollment.List(c => c.ClassID == id, orderBy: c => c.ClassID, "Class,Student");
         return View(obj);
     }
 
@@ -48,15 +48,12 @@ public class SectionController : Controller
     }
 
     [HttpGet]
-    public IActionResult ListStudentsAdd(int? id, int? classtime)
+    public IActionResult ListStudentsAdd(int? id)
     {
-        
+
         
         ListStudentsAdd lsa = new ListStudentsAdd();
-        lsa.Class = _unitOfWork.Class.GetAll(c=>c.ClassID == id);
-        //maybe use this to remove and enrollments with class times at 2
-         lsa.Enrollment = _unitOfWork.Enrollment.GetAll(e => e.ClassID != id && e.Class.ClassTimeID != classtime);
-
+        lsa.Class = _unitOfWork.Class.GetAll();
 
          lsa.Enrollment = _unitOfWork.Enrollment.GetAll(e => e.ClassID != id && e.Class.ClassTimeID != 2);
 
