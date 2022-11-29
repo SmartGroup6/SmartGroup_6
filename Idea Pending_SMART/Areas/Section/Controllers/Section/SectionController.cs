@@ -50,19 +50,13 @@ public class SectionController : Controller
     [HttpGet]
     public IActionResult ListStudentsAdd(int? id, int? classtime)
     {
-        
-        
         ListStudentsAdd lsa = new ListStudentsAdd();
         lsa.Class = _unitOfWork.Class.GetAll(c=>c.ClassID == id);
-        //maybe use this to remove and enrollments with class times at 2
-         lsa.Enrollment = _unitOfWork.Enrollment.GetAll(e => e.ClassID != id && e.Class.ClassTimeID != classtime);
-
-
-         lsa.Enrollment = _unitOfWork.Enrollment.GetAll(e => e.ClassID != id && e.Class.ClassTimeID != 2);
-
+        //Two enrollments, using second because I need the class ID in order to exclude already enrolled students
+        //         lsa.Enrollment = _unitOfWork.Enrollment.GetAll(e => e.ClassID != id && e.Class.ClassTimeID != classtime);
+        lsa.Enrollment = _unitOfWork.Enrollment.GetAll();
         lsa.Student = _unitOfWork.Student.GetAll();
         lsa.ClassTime = _unitOfWork.ClassTime.GetAll();
-
         return View(lsa);
     }
 
@@ -71,8 +65,8 @@ public class SectionController : Controller
     [HttpGet]
     public ViewResult Add(int? sid, int? cid)
     {
-        ViewBag.cid = cid;
         ViewBag.sid = sid;
+        ViewBag.cid = cid;
         return View();
     }
 

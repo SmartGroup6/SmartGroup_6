@@ -1,0 +1,36 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SMART System</title>
+    <link href="/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+ 
+        @foreach (var obj in Model)
+        {
+        <h4>Name: @obj.Student.ApplicationNameFirst @obj.Student.ApplicationNameLast</h4>
+        <h5>Meal Requirement: </h5>
+            @if(@obj.Student.MealsNeeded == false)
+            {
+                <h6>
+                    Not Required
+                </h6>
+            }
+            else
+            {
+                <h6>
+                   Required
+                </h6>
+            }
+        }
+
+<h4>Class List:</h4>
+    @foreach(var obj2 in Model)
+    {
+        <h5>@obj2.Class.ClassDescription</h5>
+    }
+
+
+</body>

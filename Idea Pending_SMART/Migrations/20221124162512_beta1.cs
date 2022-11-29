@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Idea_Pending_SMART.Migrations
 {
-    public partial class alphademo1 : Migration
+    public partial class beta1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,12 +15,39 @@ namespace Idea_Pending_SMART.Migrations
                 {
                     ApplicantID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AppStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ApplicationID = table.Column<int>(type: "int", nullable: false)
+                    AppStatus = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Applicant", x => x.ApplicantID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Applications",
+                columns: table => new
+                {
+                    ApplicationID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AcademicScore = table.Column<float>(type: "real", nullable: false),
+                    DateOfBirth = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ApplicationNameFirst = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ApplicationNameLast = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    GPA = table.Column<float>(type: "real", nullable: false),
+                    Financials = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeterminationNote = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DistanceNote = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InstructorScore = table.Column<int>(type: "int", nullable: true),
+                    SocialWorkerScore = table.Column<int>(type: "int", nullable: true),
+                    AdminScore = table.Column<int>(type: "int", nullable: true),
+                    TotalScore = table.Column<int>(type: "int", nullable: true),
+                    SubmissionDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ChoppaTransportNeeded = table.Column<bool>(type: "bit", nullable: false),
+                    MealsNeeded = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Applications", x => x.ApplicationID);
                 });
 
             migrationBuilder.CreateTable(
@@ -42,6 +69,24 @@ namespace Idea_Pending_SMART.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    County = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Zip = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Race = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Income = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Education = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Residence = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Military = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StreetAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    State = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -60,6 +105,22 @@ namespace Idea_Pending_SMART.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Assignment",
+                columns: table => new
+                {
+                    AssignmentID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AssignmentName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AssignmentIssuetDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    AssignmentDueDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    AssignmentTotalMarks = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Assignment", x => x.AssignmentID);
                 });
 
             migrationBuilder.CreateTable(
@@ -232,22 +293,6 @@ namespace Idea_Pending_SMART.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "User",
-                columns: table => new
-                {
-                    UserID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EmailAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RoleID = table.Column<int>(type: "int", nullable: false),
-                    PersonID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_User", x => x.UserID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -293,8 +338,8 @@ namespace Idea_Pending_SMART.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -338,8 +383,8 @@ namespace Idea_Pending_SMART.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -418,14 +463,14 @@ namespace Idea_Pending_SMART.Migrations
                 name: "Enrollments",
                 columns: table => new
                 {
-                    EnrollmentID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     ClassID = table.Column<int>(type: "int", nullable: false),
-                    StudentID = table.Column<int>(type: "int", nullable: false)
+                    StudentID = table.Column<int>(type: "int", nullable: false),
+                    EnrollmentID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Enrollments", x => x.EnrollmentID);
+                    table.PrimaryKey("PK_Enrollments", x => new { x.StudentID, x.ClassID });
                     table.ForeignKey(
                         name: "FK_Enrollments_Class_ClassID",
                         column: x => x.ClassID,
@@ -438,6 +483,40 @@ namespace Idea_Pending_SMART.Migrations
                         principalTable: "Students",
                         principalColumn: "StudentID",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "2c5e174e-3b0e-446f-86af-483d56fd7210", "04f6f841-88d5-4689-8986-e4bdd4a409b7", "Admin", "ADMIN" },
+                    { "2c5e174e-3b0e-446f-86af-483d56fd7211", "385c1491-40a3-4067-a07f-fbb3e6519ad8", "SocialWorker", "SOCIALWORKER" },
+                    { "2c5e174e-3b0e-446f-86af-483d56fd7212", "00053a8c-4a6c-4418-99f9-01f686ac5e99", "Instructor", "INSTRUCTOR" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "Address", "ApplicationUserId", "BirthDate", "City", "ConcurrencyStamp", "County", "Discriminator", "Education", "Email", "EmailConfirmed", "FirstName", "Gender", "Income", "LastName", "LockoutEnabled", "LockoutEnd", "Military", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PostalCode", "Race", "Residence", "SecurityStamp", "State", "StreetAddress", "TwoFactorEnabled", "UserName", "Zip" },
+                values: new object[,]
+                {
+                    { "8e445865-a24d-4543-a6c6-9443d048cdb5", 0, "123 Flicka Flacka Way", "8e445865-a24d-4543-a6c6-9443d048cdb5", new DateTime(2022, 11, 24, 9, 25, 12, 374, DateTimeKind.Local).AddTicks(213), "Jonestown", "e3314fac-bae2-4d4b-a7a7-2658c13ca697", "Davis", "ApplicationUser", "", "Instructor2@Instructor2.com", false, "MrTeacher", "", "", "MrTeacher", false, null, "", "Instructor2@Instructor2.COM", "Instructor2@Instructor2.COM", "AQAAAAEAACcQAAAAEE54Qyfg6rv5r9rjltt+7vRq71gKjKH1yTQO0q0agX/lTx3JQ8F/sRqfyze0dM4GbQ==", "800calladmin", false, "84040", "", "", "6d4fb098-23b1-4219-8b4c-c146830ede28", "Texas", "123 Flicka Flacka Way", false, "Instructor2@Instructor2.com", "84040" },
+                    { "8e445865-a24d-4543-a6c6-9443d048cdb6", 0, "123 Flicka Flacka Way", "8e445865-a24d-4543-a6c6-9443d048cdb6", new DateTime(2022, 11, 24, 9, 25, 12, 372, DateTimeKind.Local).AddTicks(8020), "Jonestown", "b81d235d-5e20-4146-812c-3d9f48089063", "Davis", "ApplicationUser", "", "Instructor1@Instructor1.com", false, "Gob", "", "", "Gobbo", false, null, "", "Instructor1@Instructor1.COM", "Instructor1@Instructor1.COM", "AQAAAAEAACcQAAAAEMvrkxX1/3DcVzlWrPYQZ+z6AdE6B/7IGzGJORohU9DXeQv3dGjnJt4fJVkOP5nMlg==", "800calladmin", false, "84040", "", "", "6d4fb098-23b1-4219-8b4c-c146830ede28", "Texas", "123 Flicka Flacka Way", false, "Instructor1@Instructor1.com", "84040" },
+                    { "8e445865-a24d-4543-a6c6-9443d048cdb7", 0, "123 Flicka Flacka Way", "8e445865-a24d-4543-a6c6-9443d048cdb7", new DateTime(2022, 11, 24, 9, 25, 12, 371, DateTimeKind.Local).AddTicks(4222), "Jonestown", "a69b90ec-3087-437e-8431-5fb3fbc443a4", "Davis", "ApplicationUser", "", "SocialWorker2@SocialWorker2.com", false, "Miachael", "", "", "Bluth", false, null, "", "SocialWorker2@SocialWorker2.COM", "SocialWorker2@SocialWorker2.COM", "AQAAAAEAACcQAAAAEG/lSEychE+mL3O/ixJ+ZD0ayEhU60Gxq/c1gGPzSgeXNSfeHvVd5eL7bSUR5hZamQ==", "800calladmin", false, "84040", "", "", "6d4fb098-23b1-4219-8b4c-c146830ede28", "Texas", "123 Flicka Flacka Way", false, "SocialWorker2@SocialWorker2.com", "84040" },
+                    { "8e445865-a24d-4543-a6c6-9443d048cdb8", 0, "1234423312 Flicka Flacka Way", "8e445865-a24d-4543-a6c6-9443d048cdb8", new DateTime(2022, 11, 24, 9, 25, 12, 370, DateTimeKind.Local).AddTicks(1775), "Jonestown22", "8ea7ddf9-873b-4549-9a40-b8a6d2f22e23", "111111Davis", "ApplicationUser", "", "SocialWorker1@SocialWorker1.com", false, "Bob", "", "", "Propane", false, null, "", "SOCIALWORKER1@SOCIALWORKER1.COM", "SocialWorker1SocialWorker1.com", "AQAAAAEAACcQAAAAEJigxo/eQNyePPPpcM64FZewl8fyXVPC8jjbcct9fInuQSVCBCWsukNr7M8LokM4Tg==", "800calladmin", false, "84040", "", "", "6d4fb098-23b1-4219-8b4c-c146830ede28", "Texas", "123 Flicka Flacka Way", false, "SocialWorker1SocialWorker1.com", "84040" },
+                    { "8e445865-a24d-4543-a6c6-9443d048cdb9", 0, "123 Flicka Flacka Way", "8e445865-a24d-4543-a6c6-9443d048cdb9", new DateTime(2022, 11, 24, 9, 25, 12, 368, DateTimeKind.Local).AddTicks(9252), "Jonestown", "8128a32d-eb49-4ec9-a90d-2bc52b5b62ad", "Davis", "ApplicationUser", "", "Admin@Admin.com", false, "Hank", "", "", "Hill", false, null, "", "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEEQLWdcDpmAhW9vZFzIhGxeFNBPDqPBsuTUGxy14LKDKQlkeUW2hDD2N6XB8TF0uvA==", "800calladmin", false, "84040", "", "", "6d4fb098-23b1-4219-8b4c-c146830ede28", "Texas", "123 Flicka Flacka Way", false, "Admin@Admin.com", "84040" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[,]
+                {
+                    { "2c5e174e-3b0e-446f-86af-483d56fd7212", "8e445865-a24d-4543-a6c6-9443d048cdb5" },
+                    { "2c5e174e-3b0e-446f-86af-483d56fd7212", "8e445865-a24d-4543-a6c6-9443d048cdb6" },
+                    { "2c5e174e-3b0e-446f-86af-483d56fd7211", "8e445865-a24d-4543-a6c6-9443d048cdb7" },
+                    { "2c5e174e-3b0e-446f-86af-483d56fd7211", "8e445865-a24d-4543-a6c6-9443d048cdb8" },
+                    { "2c5e174e-3b0e-446f-86af-483d56fd7210", "8e445865-a24d-4543-a6c6-9443d048cdb9" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -500,11 +579,6 @@ namespace Idea_Pending_SMART.Migrations
                 column: "ClassID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Enrollments_StudentID",
-                table: "Enrollments",
-                column: "StudentID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Semester_SchoolId",
                 table: "Semester",
                 column: "SchoolId");
@@ -514,6 +588,9 @@ namespace Idea_Pending_SMART.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Applicant");
+
+            migrationBuilder.DropTable(
+                name: "Applications");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
@@ -529,6 +606,9 @@ namespace Idea_Pending_SMART.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Assignment");
 
             migrationBuilder.DropTable(
                 name: "Attendance");
@@ -550,9 +630,6 @@ namespace Idea_Pending_SMART.Migrations
 
             migrationBuilder.DropTable(
                 name: "StudentNote");
-
-            migrationBuilder.DropTable(
-                name: "User");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
