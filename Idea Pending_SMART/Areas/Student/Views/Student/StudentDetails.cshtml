@@ -1,4 +1,8 @@
-﻿
+﻿@model Idea_Pending_SMART.Areas.Student.ViewModels.StudentDetailsVM
+@{
+    var sponsorholder = 0;
+    var personholder = 0;
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,11 +12,11 @@
 </head>
 <body>
  
-        @foreach (var obj in Model)
+        @foreach (var obj in Model.Student)
         {
-        <h4>Name: @obj.Student.ApplicationNameFirst @obj.Student.ApplicationNameLast</h4>
+        <h4>Name: @obj.ApplicationNameFirst @obj.ApplicationNameLast</h4>
         <h5>Meal Requirement: </h5>
-            @if(@obj.Student.MealsNeeded == false)
+            @if(@obj.MealsNeeded == false)
             {
                 <h6>
                     Not Required
@@ -24,13 +28,55 @@
                    Required
                 </h6>
             }
+        <h5>Choppa Requirement: </h5>
+        @if (@obj.ChoppaTransportNeeded == false)
+        {
+            <h6>
+                Not Required
+            </h6>
         }
-
-<h4>Class List:</h4>
-    @foreach(var obj2 in Model)
-    {
-        <h5>@obj2.Class.ClassDescription</h5>
+        else
+        {
+            <h6>
+                Required
+            </h6>
+        }
+        @if(obj.SponsorID != null)
+        {
+        sponsorholder = (int)@obj.SponsorID;
+        }
+        @if(obj.PersonID != null)
+        {
+            personholder = (int)obj.PersonID;
+        }
     }
 
-
+<h4>Class List:</h4>
+    @foreach(var obj2 in Model.Enrollment)
+    {
+        <h5>@obj2.Class.ClassDescription</h5>
+        <h5>@obj2.Class.ClassTime.TimeStart @obj2.Class.ClassTime.Day</h5>
+    }
+<h4>Student Notes</h4>
+    @foreach(var obj3 in Model.StudentNotes)
+    {
+        <h5>@obj3.DateCreated</h5>
+        <h5>@obj3.Text</h5>
+    }
+<h4>Student Sponsor:</h4>
+    @foreach(var obj4 in Model.Sponsors)
+    {
+        @if (obj4.SponsorID == sponsorholder)
+        {
+            <h6>@obj4.CompanyName</h6>
+        }
+    }
+    <h4>Student Guardian List:</h4>
+    @foreach (var obj4 in Model.Person)
+    {
+        @if (obj4.PersonID == personholder)
+        {
+                    <h6>@obj4.FirstName</h6>
+        }
+    }
 </body>

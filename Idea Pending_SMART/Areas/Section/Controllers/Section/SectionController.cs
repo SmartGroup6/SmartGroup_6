@@ -52,8 +52,6 @@ public class SectionController : Controller
     {
         ListStudentsAdd lsa = new ListStudentsAdd();
         lsa.Class = _unitOfWork.Class.GetAll(c=>c.ClassID == id);
-        //Two enrollments, using second because I need the class ID in order to exclude already enrolled students
-        //         lsa.Enrollment = _unitOfWork.Enrollment.GetAll(e => e.ClassID != id && e.Class.ClassTimeID != classtime);
         lsa.Enrollment = _unitOfWork.Enrollment.GetAll();
         lsa.Student = _unitOfWork.Student.GetAll();
         lsa.ClassTime = _unitOfWork.ClassTime.GetAll();

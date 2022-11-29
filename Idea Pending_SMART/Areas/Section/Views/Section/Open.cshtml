@@ -28,7 +28,7 @@
 @foreach (var obj in Model.OrderBy(obj=>obj.Student.ApplicationNameFirst))
             {
                 //lists students in classrooms
-                    <a asp-controller="Student" asp-action="Info" asp-route-id="@obj.Student.StudentID" 
+                    <a asp-area="Student" asp-controller="Student" asp-action="StudentDetails" asp-route-sid="@obj.StudentID" 
                     class="list-group-item bg-gradient bg-opacity-50 bg-warning list-group-item-action px-3 border-dark">
                          <td>
                     <h6> <u> Name: @obj.Student.ApplicationNameFirst @obj.Student.ApplicationNameLast</u>

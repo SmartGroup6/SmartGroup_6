@@ -1,4 +1,5 @@
-﻿using Idea_Pending_SMART.Interfaces;
+﻿using Idea_Pending_SMART.Areas.Student.ViewModels;
+using Idea_Pending_SMART.Interfaces;
 using Idea_Pending_SMART.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,11 +17,19 @@ public class StudentController : Controller
     }
 
 
-    public ViewResult StudentDetails(int? sid)
+    public ViewResult StudentDetails(int sid)
     {
-        IEnumerable<Enrollment> obj = _unitOfWork.Enrollment.List(c => c.StudentID == sid, orderBy: c => c.StudentID, "Class,Student");
-        return View(obj);
+        StudentDetailsVM sdvm = new StudentDetailsVM();
+        sdvm.Class = _unitOfWork.Class.GetAll();
+        sdvm.ClassTime = _unitOfWork.ClassTime.GetAll();
+        sdvm.Student = (IEnumerable<Student>?)_unitOfWork.Student.GetAll(s => s.StudentID == sid);
+        sdvm.Person = _unitOfWork.Person.GetAll();
+        sdvm.Sponsors = _unitOfWork.Sponsor.GetAll();
+        sdvm.StudentNotes = _unitOfWork.StudentNote.GetAll(sn => sn.StudentID == sid);
+        sdvm.Enrollment = _unitOfWork.Enrollment.GetAll(e => e.StudentID == sid);
 
+
+        return View(sdvm);
     }
 
 
