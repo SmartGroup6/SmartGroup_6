@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Enrollment>
+@{
+    ViewData["Title"] = "EnrollmentID";
+    ViewData["Title"] = "ClassTime";
+    ViewData["Title"] = "FirstName";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SMART System</title>
+    <link href="/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="row">
+        <div class="col">
+            <h6 class="bg-opacity-50 border-warning p-2 border-top border-bottom">Students in Class (Click to Remove)</h6>
+            <div class="list-group">
+                <div class="overflow-auto w-100 shadow-1-strong rounded mb-4" style="height:400px; width:300px ">
+                    @foreach (var obj in Model.OrderBy(obj => obj.Student.ApplicationNameFirst))
+                    {
+                        //lists students in classrooms
+                        <a asp-area="Section" asp-controller="Section" asp-action="RemoveStudent" asp-route-sid="@obj.StudentID" asp-route-cid="@obj.ClassID"
+                       class="list-group-item bg-gradient bg-opacity-50 bg-warning list-group-item-action px-3 border-dark">
+                            <td>
+                                <h6>
+                                    <u> Name: @obj.Student.ApplicationNameFirst @obj.Student.ApplicationNameLast</u>
+                                    <h7> Grade: (@obj.Student.CurrentGrade) </h7>
+                                </h6>
+                            </td>
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
