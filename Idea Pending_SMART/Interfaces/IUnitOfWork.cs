@@ -18,6 +18,8 @@ namespace Idea_Pending_SMART.Interfaces
         public IRepository<ClassTime> ClassTime { get; }
         public IRepository<ApplicationUser> ApplicationUser { get; }
 
+
+        public IRepository<Attendance> Attendance { get; }
         //save changes to data source
         void Commit();
         //same but an Asynchronous Commit

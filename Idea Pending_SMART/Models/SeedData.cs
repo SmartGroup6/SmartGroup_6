@@ -13,7 +13,7 @@ namespace Idea_Pending_SMART.Models
                 .CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>();
             if (context.Database.GetPendingMigrations().Any())
             {
-                context.Database.Migrate();
+               // context.Database.Migrate();
             }
             if (!context.School.Any())
             {

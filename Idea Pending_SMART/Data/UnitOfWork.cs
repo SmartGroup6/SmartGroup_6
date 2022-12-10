@@ -25,6 +25,17 @@ namespace Idea_Pending_SMART.Data
         private IRepository<ClassTime> _ClassTime;
         private IRepository<Assignment> _Assignment;
         private IRepository<ApplicationUser> _ApplicationUser;
+        private IRepository<Attendance> _Attendance;
+
+        public IRepository<Attendance> Attendance
+        {
+            get
+            {
+
+                _Attendance ??= new Repository<Attendance>(_dbContext);
+                return _Attendance;
+            }
+        }
 
         public IRepository<ApplicationUser> ApplicationUser
         {
