@@ -23,6 +23,9 @@ namespace Idea_Pending_SMART.Data
         private IRepository<ClassTime> _ClassTime;
         private IRepository<Assignment> _Assignment;
         private IRepository<ApplicationUser> _ApplicationUser;
+        private IRepository<Sponsor> _Sponsor;
+        private IRepository<StudentNote> _StudentNote;
+        private IRepository<Person> _Person;
 
         public IRepository<Assignment> Assignment
         {
@@ -116,6 +119,33 @@ namespace Idea_Pending_SMART.Data
 
                 _Application ??= new Repository<Application>(_dbContext);
                 return _Application;
+            }
+        }
+        public IRepository<Sponsor> Sponsor
+        {
+            get
+            {
+
+                _Sponsor ??= new Repository<Sponsor>(_dbContext);
+                return _Sponsor;
+            }
+        }
+        public IRepository<StudentNote> StudentNote
+        {
+            get
+            {
+
+                _StudentNote ??= new Repository<StudentNote>(_dbContext);
+                return _StudentNote;
+            }
+        }
+        public IRepository<Person> Person
+        {
+            get
+            {
+
+                _Person ??= new Repository<Person>(_dbContext);
+                return _Person;
             }
         }
 

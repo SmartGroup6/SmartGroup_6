@@ -1,15 +1,15 @@
 ﻿@model Idea_Pending_SMART.Models.Enrollment
- 
+
 <!-- working on adding students -->
-<form asp-action="Add" method="post" class="m-2">
+<form asp-action="RemoveStudent" method="post" class="m-2">
       <div class="form-group">
-       <label asp-for="StudentID" class="form-label">StudentID to add: </label>
+       <label asp-for="StudentID" class="form-label">StudentID to Remove: </label>
        <input asp-for="StudentID" value="@ViewBag.sid" class="form-control"/>
         </div>
          <div class="form-group">
-         <label asp-for="ClassID" class="form-label">Student to add to ClassID: </label>
+         <label asp-for="ClassID" class="form-label">Student to Remove from ClassID: </label>
          <input asp-for="ClassID" value="@ViewBag.cid" class="form-control"/>
          </div>
 
-         <button type="submit" class="btn btn-primary mt-3">Submit Student</button>
+         <button type="submit" class="btn btn-primary mt-3">Remove Student</button>
 </form>

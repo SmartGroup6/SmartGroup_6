@@ -1,8 +1,5 @@
-﻿@{
-    ViewData["Title"] = "Class Description";
-    ViewData["Title"] = "Student Count";
-    ViewData["Title"] = "UserID";
-}
+﻿@model Idea_Pending_SMART.Areas.Section.ViewModels.ClasslistVM
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,33 +11,31 @@
 <body>
            <h4 class="bg-opacity-50 border-warning p-2 border-top border-bottom">Classes Available</h4>
     <div class="overflow-auto w-100 shadow-1-strong rounded mb-4" style="max-width: 1200px; max-height:400px; ">
-
-        @foreach (var obj in Model.Class)
-        {
-            //need to grab user ID from login
-            @if (obj.UserID == 2) 
+            @foreach(var obj in Model.Class)
             {
-                <a asp-controller="Section" asp-action="Open" asp-route-id="@obj.ClassID"
+               <a asp-controller="Section" asp-action="Open" asp-route-id="@obj.ClassID"
                class="btn" style="background-color:transparent; vertical-align:top; role="button">
 
 
-                    <span class="badge bg-gradient bg-opacity-50 bg-warning list-group-item-action px-3 border-warning">
-                        <tr>
-                            <th width="80%">
-                            <td>
-                                <h3>@obj.ClassDescription</h3>
-                                <h4>@obj.ClassTime.Day @obj.ClassTime.TimeStart</h4>
-                            </td>
+                                    <span class="badge bg-gradient bg-opacity-50 bg-warning list-group-item-action px-3 border-warning">
+                                            <tr>
+                                            <th width="80%">
+                                            <td>
+                                                <h3>@obj.ClassDescription</h3>
+                                                @obj.ClassTime.Day
+                                                @obj.ClassTime.TimeStart
+ 
+                                    
+                                </td>
 
-                        </tr>
-                        <td>
-                        </td>
-                    </span>
-                </a>
+                                        </tr>
+                                        <td>
+                                        </td>
+                                    </span>
+                                </a>
 
             }
-        }
-        
+
         </div>
 
 </body>
