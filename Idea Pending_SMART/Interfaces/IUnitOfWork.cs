@@ -22,6 +22,8 @@ namespace Idea_Pending_SMART.Interfaces
         public IRepository<StudentNote> StudentNote { get; }
         public IRepository<Person> Person { get; }
 
+        public IRepository<Attendance> Attendance { get; }
+
         //save changes to data source
         void Commit();
         //same but an Asynchronous Commit

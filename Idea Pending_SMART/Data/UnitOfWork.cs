@@ -26,6 +26,16 @@ namespace Idea_Pending_SMART.Data
         private IRepository<Sponsor> _Sponsor;
         private IRepository<StudentNote> _StudentNote;
         private IRepository<Person> _Person;
+        private IRepository<Attendance> _Attendance;
+        public IRepository<Attendance> Attendance
+        {
+            get
+            {
+
+                _Attendance ??= new Repository<Attendance>(_dbContext);
+                return _Attendance;
+            }
+        }
 
         public IRepository<Assignment> Assignment
         {
