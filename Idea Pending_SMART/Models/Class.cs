@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using Microsoft.Extensions.Configuration.UserSecrets;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Idea_Pending_SMART.Models
@@ -30,13 +27,10 @@ namespace Idea_Pending_SMART.Models
 
         [ForeignKey("Semester")]
         public int SemesterID { get; set; }
-        public string ApplicationUserId { get; set; }
-        [ForeignKey("ApplicationUserId")]
 
-        [ValidateNever]
-        public ApplicationUser ApplicationUser { get; set; }
-
-
+        [Display(Name = "UserID")]
+        [ForeignKey("User")]
+        public int? UserID { get; set; }
         [ForeignKey("ClassTimeID")]
         public virtual ClassTime? ClassTime { get; set; }
         [ForeignKey("SemesterID")]

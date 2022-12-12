@@ -47,8 +47,13 @@
         </div>
         <div class="mb-3">
             <label asp-for="DeterminationNote">Determination Note</label>
-            <textarea asp-for="DeterminationNote" class="form-control" rows="4"></textarea>
+            <input asp-for="DeterminationNote" class="form-control" rows="3" />
             <span asp-validation-for="DeterminationNote" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="TotalScore">Application Score</label>
+            <input asp-for="TotalScore" class="form-control" />
+            <span asp-validation-for="TotalScore" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="SubmissionDate">Submission Date</label>

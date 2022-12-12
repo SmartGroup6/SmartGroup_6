@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -57,14 +57,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Attendance\" />
     <Folder Include="Areas\SchoolManagement\Controllers\Semester\" />
     <Folder Include="Areas\SchoolManagement\Views\Shared\" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Areas\Assignment\Views\Assignment\Delete.cshtml" />
-    <None Include="Areas\Assignment\Views\Assignment\Index.cshtml" />
-    <None Include="Areas\Assignment\Views\Assignment\Upsert.cshtml" />
     <None Include="Areas\Staff\Pages\Roles\Index.cshtml" />
     <None Include="Areas\Staff\Pages\Roles\Update.cshtml" />
     <None Include="Areas\Staff\Pages\Users\Index.cshtml" />
@@ -90,13 +88,31 @@
     <None Include="Areas\Sponsor\Views\Sponsor\Index.cshtml" />
     <None Include="Areas\Sponsor\Views\_ViewImports.cshtml" />
     <None Include="Areas\Sponsor\Views\_ViewStart.cshtml" />
+    <None Include="Areas\Student\Views\Student\AddStudent.cshtml" />
     <None Include="Areas\Student\Views\Student\Index.cshtml" />
     <None Include="Areas\Student\Views\_ViewImports.cshtml" />
     <None Include="Areas\Student\Views\_ViewStart.cshtml" />
     <None Include="Areas\User\Views\User\Index.cshtml" />
     <None Include="Areas\User\Views\_ViewImports.cshtml" />
     <None Include="Areas\User\Views\_ViewStart.cshtml" />
-    <None Include="Idea Pending_SMART.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Areas\Student\Views\Student\Create.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Areas\Student\Views\Student\Create.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\Student\Views\Student\Delete.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\Student\Views\Student\Edit.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Areas\Student\Views\Student\Delete.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Areas\Student\Views\Student\Edit.cshtml" />
   </ItemGroup>
 
 </Project>
