@@ -70,6 +70,10 @@ namespace Idea_Pending_SMART.Models
         public int PersonID { get; set; }
 
 
+        //testing
+    //   public List<Enrollment> Enrollments { get; set; }
+
+
     }
 
 }
