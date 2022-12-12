@@ -13,7 +13,7 @@ namespace Idea_Pending_SMART.Models
                 .CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>();
             if (context.Database.GetPendingMigrations().Any())
             {
-               // context.Database.Migrate();
+                context.Database.Migrate();
             }
             if (!context.School.Any())
             {
@@ -331,7 +331,7 @@ namespace Idea_Pending_SMART.Models
                     ); context.SaveChanges();
             }
             // test application seed data (for demonstration, same as student)
-            if (!context.Applications.Any())
+         /*   if (!context.Applications.Any())
             {
                 context.Applications.AddRange(
                     new Application
@@ -340,9 +340,10 @@ namespace Idea_Pending_SMART.Models
                         //SponsorID = 1,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "One",
+                        GPA = 20,
                         AcademicScore = 25,
-                        DateOfBirth = "04/01/2008",
-                        Financials = "500",
+                        DateOfBirth = "2008-04-01",
+                        Financials = "Less than 10,200 MZN",
                         DeterminationNote = "very determined",
                         DistanceNote = "lives far",
                         AdminScore = 25,
@@ -352,6 +353,7 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = true,
                         MealsNeeded = true,
+                        IsActive = true,
                         //ApplicantID = 1
                     },
                     new Application
@@ -360,9 +362,10 @@ namespace Idea_Pending_SMART.Models
                         //SponsorID = 1,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Two",
+                        GPA = 20,
                         AcademicScore = 25,
                         DateOfBirth = "04/01/2009",
-                        Financials = "5000",
+                        Financials = "Less than 10,200 MZN",
                         DeterminationNote = "",
                         DistanceNote = "Lives close",
                         AdminScore = 25,
@@ -372,6 +375,7 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = false,
                         MealsNeeded = true,
+                        IsActive= false,
                         //ApplicantID = 2
                     },
                     new Application
@@ -379,9 +383,10 @@ namespace Idea_Pending_SMART.Models
                        // SponsorID = 0,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Three",
+                        GPA = 20,
                         AcademicScore = 0,
                         DateOfBirth = "04/01/2002",
-                        Financials = "800",
+                        Financials = "Less than 10,200 MZN",
                         DeterminationNote = "",
                         DistanceNote = "",
                         AdminScore = 0,
@@ -391,6 +396,7 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = true,
                         MealsNeeded = true,
+                        IsActive = false,
                        // ApplicantID = 3
                     },
                     new Application
@@ -399,9 +405,10 @@ namespace Idea_Pending_SMART.Models
                         //SponsorID = 0,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Four",
+                        GPA = 20,
                         AcademicScore = 5,
                         DateOfBirth = "04/01/2008",
-                        Financials = "500",
+                        Financials = "Less than 10,200 MZN",
                         DeterminationNote = "",
                         DistanceNote = "",
                         AdminScore = 20,
@@ -411,6 +418,7 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = true,
                         MealsNeeded = true,
+                        IsActive=false,
                        // ApplicantID = 4
                     },
                     new Application
@@ -419,9 +427,10 @@ namespace Idea_Pending_SMART.Models
                         //SponsorID = 3,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Five",
+                        GPA = 20,
                         AcademicScore = 20,
                         DateOfBirth = "04/01/2008",
-                        Financials = "500",
+                        Financials = "Less than 10,200 MZN",
                         DeterminationNote = "",
                         DistanceNote = "",
                         AdminScore = 20,
@@ -431,11 +440,12 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = false,
                         MealsNeeded = false,
+                        IsActive=true
                         //ApplicantID = 5
                     }
 
                     ); context.SaveChanges();
-            }
+            }*/
             if (!context.Applicant.Any())
             {
                 context.Applicant.AddRange(
@@ -515,39 +525,43 @@ namespace Idea_Pending_SMART.Models
                 context.Class.AddRange(
                     new Class
                     {
-                        ClassDescription = "Instructor 1 Morning English",
+                        ClassDescription = "Morning English Level 2",
                         ClassTimeID = 1,
                         CourseID = 4,
                         SemesterID = 1,
                         Studentcount = 15,
-                        UserID = 1
+                        //UserID = 1
+                        ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb6"
                     },
                     new Class
                     {
-                        ClassDescription = "Instructor 2 Afternoon IT",
+                        ClassDescription = "Afternoon IT Level 2",
                         ClassTimeID = 2,
                         CourseID = 2,
                         SemesterID = 1,
                         Studentcount = 10,
-                        UserID = 2
+                       // UserID = 2
+                       ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb5"
                     },
                     new Class
                     {
-                        ClassDescription = "Instructor 2 Morning IT",
+                        ClassDescription = "Morning IT Level 1",
                         ClassTimeID = 3,
                         CourseID = 1,
                         SemesterID = 2,
                         Studentcount = 12,
-                        UserID = 1
+                        //  UserID = 1
+                        ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb6"
                     },
                     new Class
                     {
-                        ClassDescription = "Instructor 1 Late English",
+                        ClassDescription = "Late English Level 2",
                         ClassTimeID = 4,
                         CourseID = 5,
                         SemesterID = 2,
                         Studentcount = 20,
-                        UserID = 2
+                        // UserID = 2
+                        ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb5"
                     },
                     new Class
                     {
@@ -556,12 +570,13 @@ namespace Idea_Pending_SMART.Models
                         CourseID = 6,
                         SemesterID = 2,
                         Studentcount = 200,
-                        UserID = null
+                        // UserID = null
+                        ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb9"
                     }
 
                     ); context.SaveChanges();
             }
- 
+
             if (!context.Attendance.Any())
             {
                 context.Attendance.AddRange(

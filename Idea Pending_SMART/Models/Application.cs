@@ -10,7 +10,7 @@ namespace Idea_Pending_SMART.Models
         public int ApplicationID { get; set; }
         public float AcademicScore { get; set; }
 
-        public string? DateOfBirth { get; set; }
+        public String DateOfBirth { get; set; }
         
         [Display(Name = "Application")]
         [Required]
@@ -18,7 +18,7 @@ namespace Idea_Pending_SMART.Models
         [Required]
         public string? ApplicationNameLast { get; set; }
 
-        
+        public float GPA { get; set; }
         public string? Financials { get; set; }
         
 
@@ -35,16 +35,26 @@ namespace Idea_Pending_SMART.Models
         public int? AdminScore { get; set; }
 
 
-        public int? TotalScore { get; set; } = 100;
-
-       // [DataType(DataType.Date)]
+        public int? TotalScore { get; set; }
+        
+        //calculate Age
+        public int Age (DateTime DateOfBirth)
+        {
+            int age = 0;
+            age = DateTime.Now.Subtract(DateOfBirth).Days;
+            age = age / 365;
+            return age;
+        }
+       
+        // [DataType(DataType.Date)]
        // [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         //public DateTime? SubmissionDate { get; set; } = DateTime.Now;
 
         public String? SubmissionDate { get; set; }
-        public bool? ChoppaTransportNeeded { get; set; }
+        public bool ChoppaTransportNeeded { get; set; }
 
-        public bool? MealsNeeded { get; set; }
+        public bool MealsNeeded { get; set; }
+        public bool? IsActive { get; set; }
         /*
                 [ForeignKey("Applicant")]
                 public int ApplicantID { get; set; }
@@ -54,6 +64,47 @@ namespace Idea_Pending_SMART.Models
 
 
         */
+
+        public float initialScore(float gpa, String income, bool choppa, bool meal)
+        {
+            float score = 0;
+
+            //GPA
+            score += gpa;
+            
+            //income
+            if (String.Equals(income, "Less than 10,200 MZN"))
+            {
+                score += 8;
+            } 
+            else if (String.Equals(income, "More than 38,600 MZN"))
+            {
+                score += 5;
+            }
+            else
+            {
+                score += 7;
+            }
+
+            //choppa
+            if(choppa == false)
+            {
+                score += 5;
+            } else
+            {
+                score += 3;
+            }
+
+            //meal
+            if (meal == false)
+            {
+                score += 5;
+            }else
+            {
+                score += 3;
+            }
+            return score;
+        }
     }
 
 }
