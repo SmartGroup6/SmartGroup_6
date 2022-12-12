@@ -22,12 +22,9 @@
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>Age</th>
-                <th>GPA</th>
                 <th>Income</th>
-                <th>Initial Application Score</th>
+                <th>Score</th>
                 <th>Submission Date</th>
-                <th>Application Status</th>
             </tr>
         </thead>
         <tbody>
@@ -41,33 +38,17 @@
                         @Html.DisplayFor(modelItem => obj.ApplicationNameLast)
                     </td>
                     <td>
-                        @{
-                            int age = obj.Age(DateTime.Parse(obj.DateOfBirth));
-                         }
-                        @Html.DisplayFor(modelItem => age)
-                    </td>
-                     <td>
-                        @Html.DisplayFor(modelItem => obj.GPA)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => obj.Financials)
                     </td>
                     <td>
-                        @{float initialScore = obj.initialScore(obj.GPA, obj.Financials, obj.ChoppaTransportNeeded, obj.MealsNeeded);}
-                        @Html.DisplayFor(modelItem => initialScore)
+                        @Html.DisplayFor(modelItem => obj.TotalScore)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => obj.SubmissionDate)
-                    </td>
-                    <td>
-                        @{string applicationStatus = obj.IsActive == true ? "Pending" : "Waitlisted";}
-                        @Html.DisplayFor(modelItem => applicationStatus)
-                    </td>
+                    <td width="50%">@Html.DisplayFor(modelItem => obj.SubmissionDate)</td>
                     <td>
                         <div class="w-75 btn-group" role="group">
                             <!-- asp-route-id is parameter, named id, that is passed to the action method, Upsert, with the value of item.AssignmentName -->
                             <a asp-controller="Application" asp-action="Upsert" asp-route-id="@obj.ApplicationID"
-                           class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Details / Edit</a>
+                           class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>
                             <a asp-controller="Application" asp-action="Delete" asp-route-id="@obj.ApplicationID"
                            class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
                         </div>

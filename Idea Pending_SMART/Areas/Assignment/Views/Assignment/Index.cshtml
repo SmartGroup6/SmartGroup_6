@@ -27,35 +27,39 @@
               Assignment Grade 
             </th>
 
-
+             <th>
+            Class Id
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var DBItem in Model)
         {
                 <tr>
                     <td>
-                    @Html.DisplayFor(modelItem => item.AssignmentName)
+                    @Html.DisplayFor(modelDBItem => DBItem.AssignmentName)
                     </td>
                     <td>
-                    @Html.DisplayFor(modelItem => item.AssignmentIssuetDate)
+                    @Html.DisplayFor(modelDBItem => DBItem.AssignmentIssuetDate)
                     </td>
                     <td>
-                    @Html.DisplayFor(modelItem => item.AssignmentDueDate)
+                    @Html.DisplayFor(modelDBItem => DBItem.AssignmentDueDate)
                     </td>
                     <td>
-                    @Html.DisplayFor(modelItem => item.AssignmentTotalMarks)
+                    @Html.DisplayFor(modelDBItem => DBItem.AssignmentTotalMarks)
                     </td>
-
+                <td>
+                    @Html.DisplayFor(modelDBItem => DBItem.ClassID)
+                </td>
 
 
                     <td>
                         <div class="w-75 btn-group" role="group">
-                            <!-- asp-route-id is parameter, named id, that is passed to the action method, Upsert, with the value of item.AssignmentName -->
-                            <a asp-controller="Assignment" asp-action="Upsert" asp-route-id="@item.AssignmentID"
+                            <!-- asp-route-id is parameter, named id, that is passed to the action method, Upsert, with the value of DBItem.AssignmentName -->
+                            <a asp-controller="Assignment" asp-action="Upsert" asp-route-id="@DBItem.AssignmentID"
                        class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>
-                            <a asp-controller="Assignment" asp-action="Delete" asp-route-id="@item.AssignmentID"
+                            <a asp-controller="Assignment" asp-action="Delete" asp-route-id="@DBItem.AssignmentID"
                        class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
                         </div>
                     </td>

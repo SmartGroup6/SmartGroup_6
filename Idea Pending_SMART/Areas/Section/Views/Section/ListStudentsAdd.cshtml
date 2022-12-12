@@ -3,16 +3,13 @@
     ViewBag.Title = "Classtime";
     var time = ViewBag.classtimes;
     var classID = ViewBag.classID;
+
     var holdCID =0;
     var newSID = 0;
     var sendStudent = 0;
     var studentCount = 0;
 
-
 }
-<body>
-@foreach(var obj in Model.Class)
-{
 
     <h4>@obj.ClassDescription on @obj.ClassTime.Day @obj.ClassTime.TimeStart</h4>
     holdCID = obj.ClassID;
@@ -63,10 +60,6 @@
 
     </div>
 
-    </div>
 
-</div>
-</div>
-</div>
-</body>
+
 

@@ -13,7 +13,7 @@ namespace Idea_Pending_SMART.Models
                 .CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>();
             if (context.Database.GetPendingMigrations().Any())
             {
-                context.Database.Migrate();
+               // context.Database.Migrate();
             }
             if (!context.School.Any())
             {
@@ -340,10 +340,9 @@ namespace Idea_Pending_SMART.Models
                         //SponsorID = 1,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "One",
-                        GPA = 20,
                         AcademicScore = 25,
-                        DateOfBirth = "2008-04-01",
-                        Financials = "Less than 10,200 MZN",
+                        DateOfBirth = "04/01/2008",
+                        Financials = "500",
                         DeterminationNote = "very determined",
                         DistanceNote = "lives far",
                         AdminScore = 25,
@@ -353,7 +352,6 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = true,
                         MealsNeeded = true,
-                        IsActive = true,
                         //ApplicantID = 1
                     },
                     new Application
@@ -362,10 +360,9 @@ namespace Idea_Pending_SMART.Models
                         //SponsorID = 1,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Two",
-                        GPA = 20,
                         AcademicScore = 25,
                         DateOfBirth = "04/01/2009",
-                        Financials = "Less than 10,200 MZN",
+                        Financials = "5000",
                         DeterminationNote = "",
                         DistanceNote = "Lives close",
                         AdminScore = 25,
@@ -375,7 +372,6 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = false,
                         MealsNeeded = true,
-                        IsActive= false,
                         //ApplicantID = 2
                     },
                     new Application
@@ -383,10 +379,9 @@ namespace Idea_Pending_SMART.Models
                        // SponsorID = 0,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Three",
-                        GPA = 20,
                         AcademicScore = 0,
                         DateOfBirth = "04/01/2002",
-                        Financials = "Less than 10,200 MZN",
+                        Financials = "800",
                         DeterminationNote = "",
                         DistanceNote = "",
                         AdminScore = 0,
@@ -396,7 +391,6 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = true,
                         MealsNeeded = true,
-                        IsActive = false,
                        // ApplicantID = 3
                     },
                     new Application
@@ -405,10 +399,9 @@ namespace Idea_Pending_SMART.Models
                         //SponsorID = 0,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Four",
-                        GPA = 20,
                         AcademicScore = 5,
                         DateOfBirth = "04/01/2008",
-                        Financials = "Less than 10,200 MZN",
+                        Financials = "500",
                         DeterminationNote = "",
                         DistanceNote = "",
                         AdminScore = 20,
@@ -418,7 +411,6 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = true,
                         MealsNeeded = true,
-                        IsActive=false,
                        // ApplicantID = 4
                     },
                     new Application
@@ -427,10 +419,9 @@ namespace Idea_Pending_SMART.Models
                         //SponsorID = 3,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Five",
-                        GPA = 20,
                         AcademicScore = 20,
                         DateOfBirth = "04/01/2008",
-                        Financials = "Less than 10,200 MZN",
+                        Financials = "500",
                         DeterminationNote = "",
                         DistanceNote = "",
                         AdminScore = 20,
@@ -440,7 +431,6 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = false,
                         MealsNeeded = false,
-                        IsActive=true
                         //ApplicantID = 5
                     }
 
@@ -525,7 +515,7 @@ namespace Idea_Pending_SMART.Models
                 context.Class.AddRange(
                     new Class
                     {
-                        ClassDescription = "Morning English Level 2",
+                        ClassDescription = "Instructor 1 Morning English",
                         ClassTimeID = 1,
                         CourseID = 4,
                         SemesterID = 1,
@@ -535,7 +525,7 @@ namespace Idea_Pending_SMART.Models
                     },
                     new Class
                     {
-                        ClassDescription = "Afternoon IT Level 2",
+                        ClassDescription = "Instructor 2 Afternoon IT",
                         ClassTimeID = 2,
                         CourseID = 2,
                         SemesterID = 1,
@@ -545,7 +535,7 @@ namespace Idea_Pending_SMART.Models
                     },
                     new Class
                     {
-                        ClassDescription = "Morning IT Level 1",
+                        ClassDescription = "Instructor 2 Morning IT",
                         ClassTimeID = 3,
                         CourseID = 1,
                         SemesterID = 2,
@@ -555,7 +545,7 @@ namespace Idea_Pending_SMART.Models
                     },
                     new Class
                     {
-                        ClassDescription = "Late English Level 2",
+                        ClassDescription = "Instructor 1 Late English",
                         ClassTimeID = 4,
                         CourseID = 5,
                         SemesterID = 2,
@@ -576,7 +566,7 @@ namespace Idea_Pending_SMART.Models
 
                     ); context.SaveChanges();
             }
-
+ 
             if (!context.Attendance.Any())
             {
                 context.Attendance.AddRange(

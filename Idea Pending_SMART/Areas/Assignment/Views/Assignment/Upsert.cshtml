@@ -1,20 +1,21 @@
 ﻿@model Idea_Pending_SMART.Models.Assignment
 @{
 }
-<!-- anytime a form takes file uploads, you need the enctype to avoid security issues -->
+
 <form method="post" asp-controller="Assignment" asp-action="Upsert" enctype="multipart/form-data">
     <div class="container">
         <div class="row px-2 mx-2 backgroundWhite border">
-            @* All for Model validation and HTML validation *@
+            
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="col-12 px-3" style="border-bottom:1px solid #325d88">
                 <h2 class="text-primary">@(Model.AssignmentID != 0 ? "Update" : "Create") Assignment</h2>
-                <!-- ^^ there's a lambda here for an if-then-else. If Assignment id is not = 0, update. Otherwise, create -->
+             
             </div>
             <div class="col-8 pt-3">
                 <div class="form-group row">
 
                     <div class="col-3">
+                        <label> Assignment Name</label>
                     </div>
 
                     <div class="col-9">
@@ -24,13 +25,13 @@
                     @if (Model.AssignmentID != 0)
                     {
                         <input type="hidden" asp-for="AssignmentID" />
-                        <!-- very important to hide the Assignment id. the id needs to be on the form,
-                        but the user doesn't need to see it. -->
+                 
                     }
                 </div>
 
                 <div class="form-group row mt-2">
                     <div class="col-3">
+                        <label class="control-label"> Assignment Start Date</label>
                     </div>
                     <div class="col-9">
                         <div class="form-group">
@@ -58,10 +59,22 @@
 
                 <div class="form-group row">
                     <div class="col-3">
+                        <label>Assignment Grade</label>
                     </div>
                     <div class="col-9">
                         <input id="AssignmentTotalMarks" class="form-control" asp-for="AssignmentTotalMarks" />
                         <span class="text-danger" asp-validation-for="AssignmentTotalMarks"></span>
+                    </div>
+                </div>
+
+             
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label>Class ID</label>
+                    </div>
+                    <div class="col-9">
+                        <input id="ClassID" class="form-control" asp-for="ClassID" />
+                        <span class="text-danger" asp-validation-for="ClassID"></span>
                     </div>
                 </div>
 
@@ -78,7 +91,7 @@
                                 }
                                 else
                                 {
-                                    <!-- we will need to write some javascript to validate the input at some point. -->
+                                
                                     <button type="submit" class="btn btn-primary form-control" onclick="return ValidateInput()">Create</button>
                                 }
                             </div>
