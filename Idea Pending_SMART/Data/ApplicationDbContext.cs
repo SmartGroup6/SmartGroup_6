@@ -5,8 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Idea_Pending_SMART.Data
 {
-    //added application user parameter to identitydbcontext changed from app user to ident user
-    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -28,7 +27,6 @@ namespace Idea_Pending_SMART.Data
         public DbSet<Permissions> Permissions { get; set; }
         public DbSet<Role> Role { get; set; }
         public DbSet<StudentNote> StudentNote { get; set; }
-
 
 
 

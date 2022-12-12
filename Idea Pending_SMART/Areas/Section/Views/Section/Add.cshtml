@@ -1,15 +1,33 @@
 ﻿@model Idea_Pending_SMART.Models.Enrollment
- 
+@{
+    ViewBag.Title = "Classtime";
+    var cid = ViewBag.cid;
+    var sid = ViewBag.sid;
+
+}
 <!-- working on adding students -->
-<form asp-action="Add" method="post" class="m-2">
-      <div class="form-group">
-       <label asp-for="StudentID" class="form-label">StudentID to add: </label>
-       <input asp-for="StudentID" value="@ViewBag.sid" class="form-control"/>
-        </div>
-         <div class="form-group">
-         <label asp-for="ClassID" class="form-label">Student to add to ClassID: </label>
-         <input asp-for="ClassID" value="@ViewBag.cid" class="form-control"/>
-         </div>
+
+            info passed: @sid @cid
+                                <form asp-action="Add" method="post" class="m-2">
+                                    <div class="form-group">
+                                        <label asp-for="StudentID" class="form-label">Your StudentID:</label>
+                                        <input asp-for="StudentID" class="form-control" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="ClassID" class="form-label">Your ClassID: </label>
+                                        <input asp-for="ClassID"  class="form-control" />
+                                    </div>
 
          <button type="submit" class="btn btn-primary mt-3">Submit Student</button>
 </form>
+
+
+
+@section Scripts
+    {
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+    </script>
+}
