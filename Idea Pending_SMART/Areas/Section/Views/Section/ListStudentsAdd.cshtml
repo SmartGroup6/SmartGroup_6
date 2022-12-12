@@ -3,44 +3,63 @@
     ViewBag.Title = "Classtime";
     var time = ViewBag.classtimes;
     var classID = ViewBag.classID;
-    var holder = 0;
+
+    var holdCID =0;
+    var newSID = 0;
+    var sendStudent = 0;
+    var studentCount = 0;
 
 }
 
-<h3> classs time passed: @time</h3>
-@foreach (var obj in Model.Enrollment)
-{
-    //gets students not in the class ID passed 
-    if(obj.Student.timeAvailable == true )
-    {
-
-        <div class="col-md-10">
-            <span class="badge bg-gradient text-white  .rounded-lg mb-xxl-2" input-type="radio"
-                style="background-color:darkslategray; border-color:antiquewhite; border-width: 10px; border-style:double;">
-                    <ul>
-                        <tr>
-                            <th width="80%">
-                            <td>
-                             <div class="col-md-10">
-                              <h3>Student ID: @obj.StudentID</h3>
-                             <h3>Student Name: @obj.Student.ApplicationNameFirst @obj.Student.ApplicationNameLast</h3>
-                          <div class="w-75 btn-group" role="group">
-                         <a asp-controller="Section" asp-action="Add" asp-route-id="@obj.StudentID" asp-route-id="@obj.ClassID"
-                                class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Add</a>
-                                <a asp-controller="Student" asp-action="Info" asp-route-id="@obj.StudentID" 
-                       class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Details</a>
-                            </div>
-                            </div>
-                            </td>
-
-                        </tr>
-                        <td>
-                        </td>
-                    </ul>    
-                </span>
-                </div>
-    }
+    <h4>@obj.ClassDescription on @obj.ClassTime.Day @obj.ClassTime.TimeStart</h4>
+    holdCID = obj.ClassID;
 }
+<div class="row">
+    <div class="col">
+        <div class="list-group">
+            <div class="overflow-auto w-100 shadow-1-strong rounded mb-4" style="height:250px; width:120px ">
+        <!--This orders by student ID because we need to find the students in the class and exclude them-->
+                @foreach (var obj in Model.Enrollment.OrderBy(obj=>obj.StudentID))
+                {
+                        <!--This holds the current class ID and if the student is in the class it puts in a variable-->
+                        if(obj.ClassID == holdCID)
+                        {
+                            newSID = obj.StudentID;
+                        }
+                        <!--If studentID is in the variable, it will not display a student already in the class-->
+                        if(obj.StudentID != newSID)
+                        {
+                            @if (obj.Student.timeAvailable == true)
+                            {
+                                <span class="badge bg-gradient text-white"
+                          style="background-color:darkslategray; border-color:antiquewhite; border-width: 5px; border-style:double;
+                        width:200px; height:70">
+
+
+
+                        <h6>Name: @obj.Student.ApplicationNameFirst @obj.Student.ApplicationNameLast</h6>
+                         <a asp-controller="Section" asp-action="Add" asp-route-sid="@obj.StudentID" asp-route-cid="@holdCID"
+                           class="btn text-white text-capitalize">Add</a>
+                        <a  asp-area="Student" asp-controller="Student" asp-action="StudentDetails" asp-route-sid="@obj.StudentID"
+                           class="btn text-white text-capitalize">Details</a>
+ 
+
+                                </span>
+                                studentCount++;
+                            }
+
+                        }
+
+                     
+                        
+     }
+                    @if(studentCount == 0)
+                    {
+                        <h2>There are no students available to add.</h2>
+                    }
+
+    </div>
+
 
 
 

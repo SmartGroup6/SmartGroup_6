@@ -331,7 +331,7 @@ namespace Idea_Pending_SMART.Models
                     ); context.SaveChanges();
             }
             // test application seed data (for demonstration, same as student)
-            if (!context.Applications.Any())
+         /*   if (!context.Applications.Any())
             {
                 context.Applications.AddRange(
                     new Application
@@ -435,7 +435,7 @@ namespace Idea_Pending_SMART.Models
                     }
 
                     ); context.SaveChanges();
-            }
+            }*/
             if (!context.Applicant.Any())
             {
                 context.Applicant.AddRange(
@@ -520,7 +520,8 @@ namespace Idea_Pending_SMART.Models
                         CourseID = 4,
                         SemesterID = 1,
                         Studentcount = 15,
-                        UserID = 1
+                        //UserID = 1
+                        ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb6"
                     },
                     new Class
                     {
@@ -529,7 +530,8 @@ namespace Idea_Pending_SMART.Models
                         CourseID = 2,
                         SemesterID = 1,
                         Studentcount = 10,
-                        UserID = 2
+                       // UserID = 2
+                       ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb5"
                     },
                     new Class
                     {
@@ -538,7 +540,8 @@ namespace Idea_Pending_SMART.Models
                         CourseID = 1,
                         SemesterID = 2,
                         Studentcount = 12,
-                        UserID = 1
+                        //  UserID = 1
+                        ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb6"
                     },
                     new Class
                     {
@@ -547,7 +550,8 @@ namespace Idea_Pending_SMART.Models
                         CourseID = 5,
                         SemesterID = 2,
                         Studentcount = 20,
-                        UserID = 2
+                        // UserID = 2
+                        ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb5"
                     },
                     new Class
                     {
@@ -556,7 +560,8 @@ namespace Idea_Pending_SMART.Models
                         CourseID = 6,
                         SemesterID = 2,
                         Studentcount = 200,
-                        UserID = null
+                        // UserID = null
+                        ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb9"
                     }
 
                     ); context.SaveChanges();
