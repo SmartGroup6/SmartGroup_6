@@ -24,6 +24,8 @@ namespace Idea_Pending_SMART.Models
         [ForeignKey("Enrollment")]
         public int EnrollmentID { get; set; }
 
+
+  
     }
 
 }

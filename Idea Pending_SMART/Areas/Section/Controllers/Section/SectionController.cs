@@ -41,7 +41,7 @@ public class SectionController : Controller
     [HttpGet]
     public IActionResult Open(int? id)
     {
-        IEnumerable<Enrollment> obj = _unitOfWork.Enrollment.List(c => c.ClassID == id, orderBy: c => c.ClassID, "Class,Student");
+        IEnumerable<Enrollment> obj = _unitOfWork.Enrollment.List(c => c.ClassID == id, orderBy: c=>c.StudentID, "Class,Student");
         return View(obj);
     }
 
@@ -58,12 +58,11 @@ public class SectionController : Controller
     }
 
     [HttpGet]
-    public IActionResult ListStudentsAdd(int? id)
+    public IActionResult ListStudentsAdd(int? id, int? classtime)
     {
         ListStudentsAdd lsa = new ListStudentsAdd();
         lsa.Class = _unitOfWork.Class.GetAll(c=>c.ClassID == id);
         lsa.Enrollment = _unitOfWork.Enrollment.GetAll();
-
         lsa.Student = _unitOfWork.Student.GetAll();
         lsa.ClassTime = _unitOfWork.ClassTime.GetAll();
         return View(lsa);
