@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Idea_Pending_SMART.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221206204439_betatester1")]
-    partial class betatester1
+    [Migration("20221212112703_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -569,21 +569,21 @@ namespace Idea_Pending_SMART.Migrations
                         new
                         {
                             Id = "2c5e174e-3b0e-446f-86af-483d56fd7210",
-                            ConcurrencyStamp = "3fdb15af-4d88-4615-b1ed-5809005cba76",
+                            ConcurrencyStamp = "28014820-584c-4ab3-a643-c37d5c8ca2c5",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "2c5e174e-3b0e-446f-86af-483d56fd7211",
-                            ConcurrencyStamp = "6cf67d61-67b9-4007-a4d9-b9c7fc2cf9c1",
+                            ConcurrencyStamp = "8282e399-de6c-4963-8551-550825918dab",
                             Name = "SocialWorker",
                             NormalizedName = "SOCIALWORKER"
                         },
                         new
                         {
                             Id = "2c5e174e-3b0e-446f-86af-483d56fd7212",
-                            ConcurrencyStamp = "bcdf1fcb-aa33-48cf-9c23-36fcbe96d7ee",
+                            ConcurrencyStamp = "d8fc0ff8-9be9-427f-b8ea-35343cfec924",
                             Name = "Instructor",
                             NormalizedName = "INSTRUCTOR"
                         });
@@ -871,13 +871,13 @@ namespace Idea_Pending_SMART.Migrations
                         {
                             Id = "8e445865-a24d-4543-a6c6-9443d048cdb9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7c30b340-8f56-4c84-8049-9685db448986",
+                            ConcurrencyStamp = "bbae3660-7d0b-4963-8226-c2f1a6712e7d",
                             Email = "Admin@Admin.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGjTzHy3wvI6mmBJxSzjb43OHoCRwrqsGqcOkbGPkyblri0EW8ZjM2f1aHeaA9m+3w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJhamjzZ0DBgXlwDhINlr+T6yeKrWtLkooOOe6/nqxR+WqEa6oDRzamaDjYA8X5lFg==",
                             PhoneNumber = "800calladmin",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "6d4fb098-23b1-4219-8b4c-c146830ede28",
@@ -885,7 +885,7 @@ namespace Idea_Pending_SMART.Migrations
                             UserName = "Admin@Admin.com",
                             Address = "123 Flicka Flacka Way",
                             ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb9",
-                            BirthDate = new DateTime(2022, 12, 6, 13, 44, 38, 832, DateTimeKind.Local).AddTicks(8895),
+                            BirthDate = new DateTime(2022, 12, 12, 4, 27, 3, 311, DateTimeKind.Local).AddTicks(5865),
                             City = "Jonestown",
                             County = "Davis",
                             Education = "",
@@ -905,13 +905,13 @@ namespace Idea_Pending_SMART.Migrations
                         {
                             Id = "8e445865-a24d-4543-a6c6-9443d048cdb8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1ec72abf-97c1-43d5-be8b-b10f74bcca77",
+                            ConcurrencyStamp = "e723c5f7-a448-4ae7-9976-2423448852c2",
                             Email = "SocialWorker1@SocialWorker1.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "SOCIALWORKER1@SOCIALWORKER1.COM",
                             NormalizedUserName = "SocialWorker1SocialWorker1.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGtsdbz5SKtLSamB96PPpjQ1yNnh/6VCUr7NbyJx5nEjkKdqpZG2LNvf7V3d6EcKBg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKKMAdqQbaRjFcNLRX1325Q1Y8JbC7YDbOmr3kuSJ6Mg6bqLzqEVLMYC5vRojUwIVw==",
                             PhoneNumber = "800calladmin",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "6d4fb098-23b1-4219-8b4c-c146830ede28",
@@ -919,7 +919,7 @@ namespace Idea_Pending_SMART.Migrations
                             UserName = "SocialWorker1SocialWorker1.com",
                             Address = "1234423312 Flicka Flacka Way",
                             ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb8",
-                            BirthDate = new DateTime(2022, 12, 6, 13, 44, 38, 834, DateTimeKind.Local).AddTicks(8275),
+                            BirthDate = new DateTime(2022, 12, 12, 4, 27, 3, 317, DateTimeKind.Local).AddTicks(3089),
                             City = "Jonestown22",
                             County = "111111Davis",
                             Education = "",
@@ -939,13 +939,13 @@ namespace Idea_Pending_SMART.Migrations
                         {
                             Id = "8e445865-a24d-4543-a6c6-9443d048cdb7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "afb2c044-69fa-42d1-ae5a-4b8c5dde42a5",
+                            ConcurrencyStamp = "ebd0f0d3-1d3b-44de-b9d2-3b883fcf2b7a",
                             Email = "SocialWorker2@SocialWorker2.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "SocialWorker2@SocialWorker2.COM",
                             NormalizedUserName = "SocialWorker2@SocialWorker2.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJ4XmRsyrGl6gZaQOWYp/5wTHNU01rYXGZGXYBJERVzRqSckBXJeNr57Eqt7bWyoJA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPsySyzHoti+oYv8PxowzdpHc2M9uTUhj30jdkpYQe6ULB5yu1Jg2OLgh3wvNF5cFw==",
                             PhoneNumber = "800calladmin",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "6d4fb098-23b1-4219-8b4c-c146830ede28",
@@ -953,7 +953,7 @@ namespace Idea_Pending_SMART.Migrations
                             UserName = "SocialWorker2@SocialWorker2.com",
                             Address = "123 Flicka Flacka Way",
                             ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb7",
-                            BirthDate = new DateTime(2022, 12, 6, 13, 44, 38, 836, DateTimeKind.Local).AddTicks(8398),
+                            BirthDate = new DateTime(2022, 12, 12, 4, 27, 3, 322, DateTimeKind.Local).AddTicks(8931),
                             City = "Jonestown",
                             County = "Davis",
                             Education = "",
@@ -973,13 +973,13 @@ namespace Idea_Pending_SMART.Migrations
                         {
                             Id = "8e445865-a24d-4543-a6c6-9443d048cdb6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "469cbaca-40e0-4c3d-be7c-b53e44ca2f15",
+                            ConcurrencyStamp = "50b949a9-62cc-46af-a205-072c76b74e05",
                             Email = "Instructor1@Instructor1.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "Instructor1@Instructor1.COM",
                             NormalizedUserName = "Instructor1@Instructor1.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDPoyFgrWRJ89nNgy/lBAn1Hq6rqNgxMGeieAQ4M++3yutEuNYGN9QBF/G0lwqGLmw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMgOq/GUTVV023hlgQdl7otmbIHkcuVAbGDAoaTexjc5bjcKzI6K45W5JVBzD7dgaw==",
                             PhoneNumber = "800calladmin",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "6d4fb098-23b1-4219-8b4c-c146830ede28",
@@ -987,7 +987,7 @@ namespace Idea_Pending_SMART.Migrations
                             UserName = "Instructor1@Instructor1.com",
                             Address = "123 Flicka Flacka Way",
                             ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb6",
-                            BirthDate = new DateTime(2022, 12, 6, 13, 44, 38, 838, DateTimeKind.Local).AddTicks(8157),
+                            BirthDate = new DateTime(2022, 12, 12, 4, 27, 3, 328, DateTimeKind.Local).AddTicks(4854),
                             City = "Jonestown",
                             County = "Davis",
                             Education = "",
@@ -1007,13 +1007,13 @@ namespace Idea_Pending_SMART.Migrations
                         {
                             Id = "8e445865-a24d-4543-a6c6-9443d048cdb5",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "db4e1eda-6afd-478a-b62c-6bff457a1dd9",
+                            ConcurrencyStamp = "8753fa66-f001-4c65-86da-832eb65d9fe1",
                             Email = "Instructor2@Instructor2.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "Instructor2@Instructor2.COM",
                             NormalizedUserName = "Instructor2@Instructor2.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOODs5KuL7Y7jqZwSwXDXEkM0OqAfeNqTauf2qqbOfXGR1jWUP1R+2/aSOFdC+58eQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEA0jSG7QxXq6u8yonPkz1n3T9lFSDhDrfZEMNAqdJwtVOBq2O3fXl9zezhTzZD2+nw==",
                             PhoneNumber = "800calladmin",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "6d4fb098-23b1-4219-8b4c-c146830ede28",
@@ -1021,7 +1021,7 @@ namespace Idea_Pending_SMART.Migrations
                             UserName = "Instructor2@Instructor2.com",
                             Address = "123 Flicka Flacka Way",
                             ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb5",
-                            BirthDate = new DateTime(2022, 12, 6, 13, 44, 38, 840, DateTimeKind.Local).AddTicks(8976),
+                            BirthDate = new DateTime(2022, 12, 12, 4, 27, 3, 334, DateTimeKind.Local).AddTicks(1852),
                             City = "Jonestown",
                             County = "Davis",
                             Education = "",
