@@ -6,7 +6,8 @@ using static Idea_Pending_SMART.Data.DbContextSeeder;
 
 namespace Idea_Pending_SMART.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    //added application user parameter to identitydbcontext changed from app user to ident user
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

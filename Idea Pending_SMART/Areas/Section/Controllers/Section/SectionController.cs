@@ -2,7 +2,7 @@
 using Idea_Pending_SMART.Interfaces;
 using Idea_Pending_SMART.Models;
 using Microsoft.AspNetCore.Mvc;
-
+using System.Security.Claims;
 
 [Area("Section")]
 public class SectionController : Controller
@@ -16,13 +16,23 @@ public class SectionController : Controller
         _unitOfWork = unitOfWork;
     }
 
+
     public ViewResult Index()
     {
-        IEnumerable<Class> objClasses = _unitOfWork.Class.GetAll();
-        ClasslistVM cvm = new ClasslistVM();
+        var claimsIdentity = User.Identity as ClaimsIdentity;
+        var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+        ClasslistVM cvm = new ClasslistVM()
+        {
+            Class = _unitOfWork.Class.GetAll(u => u.ApplicationUserId == claim.Value),
+            ClassTime = _unitOfWork.ClassTime.GetAll()
+        };
+       
+      //  ApplicationUser applicationUser = _unitOfWork.ApplicationUser.Get(u => u.Id == claim.Value);
+     //   IEnumerable<Class> objClasses = _unitOfWork.Class.GetAll(c => c.ApplicationUserId == claim.Value);
+    //    ClasslistVM cvm = new ClasslistVM();
 
-        cvm.Class = _unitOfWork.Class.GetAll();
-        cvm.ClassTime = _unitOfWork.ClassTime.GetAll();
+    //    cvm.Class = _unitOfWork.Class.GetAll();
+     //   cvm.ClassTime = _unitOfWork.ClassTime.GetAll();
 
         return View(cvm);
     }
@@ -58,6 +68,19 @@ public class SectionController : Controller
         return View(lsa);
     }
 
+    [HttpGet]
+    public IActionResult ListStudentsRemove(int? id)
+    {
+        IEnumerable<Enrollment> obj = _unitOfWork.Enrollment.List(c => c.ClassID == id, orderBy: c => c.StudentID, "Class,Student");
+        return View(obj);
+    }
+    [HttpGet]
+    public ViewResult RemoveStudent(int? sid, int? cid)
+    {
+        ViewBag.sid = sid;
+        ViewBag.cid = cid;
+        return View();
+    }
 
 
     [HttpGet]
@@ -82,6 +105,19 @@ public class SectionController : Controller
        return View(obj);
    }
 
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult RemoveStudent(Enrollment obj)
+    {
+        if (ModelState.IsValid)
+        {
+            _unitOfWork.Enrollment.Delete(obj); //internal add
+            _unitOfWork.Commit(); //physical commit to DB table
+            TempData["success"] = "Student removed from database successfully";
+            return RedirectToAction(defaultAction);
+        }
+        return View(obj);
+    }
 
 
 
