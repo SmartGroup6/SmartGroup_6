@@ -8,7 +8,6 @@ namespace Idea_Pending_SMART.Models
     {
         [Key]
         public int ApplicationID { get; set; }
-        public float AcademicScore { get; set; }
 
         public String? DateOfBirth { get; set; }
         
@@ -19,26 +18,21 @@ namespace Idea_Pending_SMART.Models
         public string? ApplicationNameLast { get; set; }
 
         public float GPA { get; set; }
-        public string? Financials { get; set; }
-        
 
-        public string? DeterminationNote { get; set; }
-        
-       
+        public string? Financials { get; set; }
+
+        public string? DeterminationNote { get; set; }     
+
         public string? DistanceNote { get; set; }
+
+        public float? InitialScore { get; set; }
+
+        public float? AdminScore { get; set; }
+
+        public float? TotalScore { get; set; }
 
         public string? ApplicationStatus { get; set; }
 
-        //public int? InstructorScore { get; set; }
-
-        //public int? SocialWorkerScore { get; set; } //Social Worker Score
-
-        public int? InitialScore { get; set; }
-        public int? AdminScore { get; set; }
-
-
-        public int? TotalScore { get; set; }
-        
         //calculate Age
         public int Age (DateTime DateOfBirth)
         {
@@ -70,11 +64,17 @@ namespace Idea_Pending_SMART.Models
         public String ageCheck(DateTime dob)
         {
             int age = Age(dob);
-            
-            if (age >= 18)
-                return this.ApplicationStatus = "Rejected";
+            String status =  "";
 
-            return this.ApplicationStatus = "Pending";
+            if (age >= 18)
+            {
+                status = "Rejected";
+            }
+            else
+            {
+                status = "Pending";
+            }
+            return status;
      
         }
 
@@ -120,9 +120,11 @@ namespace Idea_Pending_SMART.Models
             }
             return score;
         }
-        public String ApplicationRating()
+        public void RateApplication(DateTime dob, float gpa, String income, bool choppa, bool meal)
         {
-            return this.ApplicationStatus;
+            this.ApplicationStatus = ageCheck(dob);
+            this.InitialScore = initialScore(gpa, income, choppa, meal);
+            this.TotalScore = this.AdminScore + this.InitialScore;
         }
 
 
