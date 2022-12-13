@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+
+  
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-controller="Staff" asp-action="Index" class="btn btn-dark">Role Management</a>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+        </tr>
+        <tc>
+            <th>
+                <a asp-controller="Role" asp-action="Upsert" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> &nbsp;New Role
+                </a>
+            </th>
+        </tc>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                        <!-- asp-route-id is parameter, named id, that is passed to the action method, Upsert, with the value of item.SemesterName -->
+                        <a asp-controller="Role" asp-action="Upsert" asp-route-id="@item.Id"
+                        class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>
+                        <a asp-controller="Role" asp-action="Permissions" asp-route-id="@item.Id"
+                       class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i>Change Permissions</a>
+                        <a asp-controller="Role" asp-action="Delete" asp-route-id="@item.Id"
+                        class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

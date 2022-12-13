@@ -1,4 +1,5 @@
 using Idea_Pending_SMART.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Idea_Pending_SMART.Interfaces
 {
@@ -21,6 +22,10 @@ namespace Idea_Pending_SMART.Interfaces
         public IRepository<Sponsor> Sponsor { get; }
         public IRepository<StudentNote> StudentNote { get; }
         public IRepository<Person> Person { get; }
+        public IRepository<RolePermission> RolePermission { get; }
+        public IRepository<Permissions> Permissions { get; }
+        public IRepository<IdentityRole> IdentityRole { get; }
+        public IRepository<IdentityUserRole<string>> IdentityUserRole { get; }
 
         //save changes to data source
         void Commit();

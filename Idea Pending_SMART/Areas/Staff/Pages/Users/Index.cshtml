@@ -46,42 +46,39 @@
                                 }
                                 else
                                 {
-                                                    <ul>
+                                      <ul>
                                         @{
                                             foreach (var r in Model.UserRoles[user.Id])
                                             {
-                                                                        <li>
+                                                <li>
                                                     @r
-                                                                        </li>
+                                                </li>
                                             }
                                         }
-                                                    </ul>
+                                      </ul>
                                 }
                             }
-
                                 </td>
                                 <td>
                                     <form method="post">
                                 @{
                                     if (user.LockoutEnd > DateTime.Now)
                                     {
-                                                        <button type="submit" class="btn btn-outline-warning" asp-page-handler="LockUnlock" asp-route-id="@user.Id"><i class="bi bi-unlock"></i> Unlock</button>
+                                         <button type="submit" class="btn btn-outline-warning" asp-page-handler="LockUnlock" asp-route-id="@user.Id"><i class="bi bi-unlock"></i> Unlock</button>
                                     }
                                     else
                                     {
-                                                        <button type="submit" class="btn btn-outline-warning" asp-page-handler="LockUnlock" asp-route-id="@user.Id"><i class="bi bi-lock"></i> Lock</button>
+                                         <button type="submit" class="btn btn-outline-warning" asp-page-handler="LockUnlock" asp-route-id="@user.Id"><i class="bi bi-lock"></i> Lock</button>
                                     }
                                 }
                                     </form>
                                 </td>
                                 <td>
                                     <a class="btn btn-outline-success" asp-page="/Users/Update" asp-route-id="@user.Id">Update</a>
-
                                 </td>
                             </tr>
                 }
             }
-
         </tbody>
     </table>
 </div>

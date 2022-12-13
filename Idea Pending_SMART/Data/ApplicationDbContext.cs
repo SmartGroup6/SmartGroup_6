@@ -1,12 +1,13 @@
+
 using Idea_Pending_SMART.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using static Idea_Pending_SMART.Data.DbContextSeeder;
 
 namespace Idea_Pending_SMART.Data
 {
-    //added application user parameter to identitydbcontext changed from app user to ident user
-    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -26,10 +27,9 @@ namespace Idea_Pending_SMART.Data
         public DbSet<Attendance> Attendance { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<Permissions> Permissions { get; set; }
-        public DbSet<Role> Role { get; set; }
+        //public DbSet<Role> Role { get; set; }
         public DbSet<StudentNote> StudentNote { get; set; }
-
-
+        public DbSet<RolePermission> RolePermissions { get; set; }
 
 
         /// <summary>
@@ -38,254 +38,24 @@ namespace Idea_Pending_SMART.Data
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+           
             modelBuilder.Entity<Enrollment>().HasKey(sc => new { sc.StudentID, sc.ClassID });
             base.OnModelCreating(modelBuilder);
 
+            DbContextSeeder dbcs = new DbContextSeeder();
 
-            //Seeding Roles to AspNetRoles table
-
-            //admin
-            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
-            {
-                Id = "2c5e174e-3b0e-446f-86af-483d56fd7210",
-                Name = "Admin",
-                NormalizedName = "ADMIN"
-            });
-            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
-            {
-                Id = "2c5e174e-3b0e-446f-86af-483d56fd7211", //note this needs to be unique
-                Name = "SocialWorker",
-                NormalizedName = "SOCIALWORKER"
-            });
-            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
-            {
-                Id = "2c5e174e-3b0e-446f-86af-483d56fd7212",
-                Name = "Instructor",
-                NormalizedName = "INSTRUCTOR"
-            });
-
-            //a hasher to hash the password before seeding the user to the db
-            var hasher = new PasswordHasher<ApplicationUser>();
-            //Seeding the User to AspNetUsers table
-            modelBuilder.Entity<ApplicationUser>().HasData(
-
-                //Admin
-                new ApplicationUser
-                {
-                    Id = "8e445865-a24d-4543-a6c6-9443d048cdb9", // UNIQUE primary key
-                    ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb9",  //duplicated here
-                    UserName = "Admin@Admin.com",
-                    Email = "Admin@Admin.com",
-                    NormalizedEmail = "ADMIN@ADMIN.COM",
-                    FirstName = "Hank",  //note specific fields may vary depending on how you extended the Identity model with your own user properties and fiels
-                    LastName = "Hill",
-                    Address = "123 Flicka Flacka Way",
-                    StreetAddress = "123 Flicka Flacka Way",
-                    City = "Jonestown",
-                    County = "Davis",
-                    Zip = "84040",
-                    PostalCode = "84040",
-                    PhoneNumber = "800calladmin",
-                    PhoneNumberConfirmed = false,
-                    Gender = "",
-                    Race = "",
-                    BirthDate = DateTime.Now,
-                    Income = "",
-                    Education = "",
-                    Residence = "",
-                    Military = "",
-                    NormalizedUserName = "ADMIN@ADMIN.COM",
-                    PasswordHash = hasher.HashPassword(null, "Temp1234$"),
-                    EmailConfirmed = false,
-                    SecurityStamp = "6d4fb098-23b1-4219-8b4c-c146830ede28",  //make anything up
-                    TwoFactorEnabled = false,
-                    LockoutEnd = null,
-                    LockoutEnabled = false,
-                    State = "Texas",
-                   
-                    AccessFailedCount = 0
-                },
-
-                //SocialWorker1
-                new ApplicationUser
-                {
-                    Id = "8e445865-a24d-4543-a6c6-9443d048cdb8", 
-                    ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb8", 
-                    UserName = "SocialWorker1SocialWorker1.com",
-                    Email = "SocialWorker1@SocialWorker1.com",
-                    NormalizedEmail = "SOCIALWORKER1@SOCIALWORKER1.COM",
-                    FirstName = "Bob",  
-                    LastName = "Propane",
-                    Address = "1234423312 Flicka Flacka Way",
-                    StreetAddress = "123 Flicka Flacka Way",
-                    City = "Jonestown22",
-                    County = "111111Davis",
-                    Zip = "84040",
-                    PostalCode = "84040",
-                    PhoneNumber = "800calladmin",
-                    PhoneNumberConfirmed = false,
-                    Gender = "",
-                    Race = "",
-                    BirthDate = DateTime.Now,
-                    Income = "",
-                    Education = "",
-                    Residence = "",
-                    Military = "",
-                    NormalizedUserName = "SocialWorker1SocialWorker1.com",
-                    PasswordHash = hasher.HashPassword(null, "Temp1234$"),
-                    EmailConfirmed = false,
-                    SecurityStamp = "6d4fb098-23b1-4219-8b4c-c146830ede28", 
-                    TwoFactorEnabled = false,
-                    LockoutEnd = null,
-                    LockoutEnabled = false,
-                    State = "Texas",
-
-                    AccessFailedCount = 0
-                },
-
-                //SocialWorker2
-                new ApplicationUser
-                {
-                    Id = "8e445865-a24d-4543-a6c6-9443d048cdb7",
-                    ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb7",
-                    UserName = "SocialWorker2@SocialWorker2.com",
-                    Email = "SocialWorker2@SocialWorker2.com",
-                    NormalizedEmail = "SocialWorker2@SocialWorker2.COM",
-                    FirstName = "Miachael",
-                    LastName = "Bluth",
-                    Address = "123 Flicka Flacka Way",
-                    StreetAddress = "123 Flicka Flacka Way",
-                    City = "Jonestown",
-                    County = "Davis",
-                    Zip = "84040",
-                    PostalCode = "84040",
-                    PhoneNumber = "800calladmin",
-                    PhoneNumberConfirmed = false,
-                    Gender = "",
-                    Race = "",
-                    BirthDate = DateTime.Now,
-                    Income = "",
-                    Education = "",
-                    Residence = "",
-                    Military = "",
-                    NormalizedUserName = "SocialWorker2@SocialWorker2.COM",
-                    PasswordHash = hasher.HashPassword(null, "Temp1234$"),
-                    EmailConfirmed = false,
-                    SecurityStamp = "6d4fb098-23b1-4219-8b4c-c146830ede28",
-                    TwoFactorEnabled = false,
-                    LockoutEnd = null,
-                    LockoutEnabled = false,
-                    State = "Texas",
-
-                    AccessFailedCount = 0
-                },
-
-                //Instructor1
-                new ApplicationUser
-                {
-                    Id = "8e445865-a24d-4543-a6c6-9443d048cdb6",
-                    ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb6",
-                    UserName = "Instructor1@Instructor1.com",
-                    Email = "Instructor1@Instructor1.com",
-                    NormalizedEmail = "Instructor1@Instructor1.COM",
-                    FirstName = "Gob",
-                    LastName = "Gobbo",
-                    Address = "123 Flicka Flacka Way",
-                    StreetAddress = "123 Flicka Flacka Way",
-                    City = "Jonestown",
-                    County = "Davis",
-                    Zip = "84040",
-                    PostalCode = "84040",
-                    PhoneNumber = "800calladmin",
-                    PhoneNumberConfirmed = false,
-                    Gender = "",
-                    Race = "",
-                    BirthDate = DateTime.Now,
-                    Income = "",
-                    Education = "",
-                    Residence = "",
-                    Military = "",
-                    NormalizedUserName = "Instructor1@Instructor1.COM",
-                    PasswordHash = hasher.HashPassword(null, "Temp1234$"),
-                    EmailConfirmed = false,
-                    SecurityStamp = "6d4fb098-23b1-4219-8b4c-c146830ede28",
-                    TwoFactorEnabled = false,
-                    LockoutEnd = null,
-                    LockoutEnabled = false,
-                    State = "Texas",
-
-                    AccessFailedCount = 0
-                },
-
-                //Instructor2
-                new ApplicationUser
-                {
-                    Id = "8e445865-a24d-4543-a6c6-9443d048cdb5",
-                    ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb5",
-                    UserName = "Instructor2@Instructor2.com",
-                    Email = "Instructor2@Instructor2.com",
-                    NormalizedEmail = "Instructor2@Instructor2.COM",
-                    FirstName = "MrTeacher",
-                    LastName = "MrTeacher",
-                    Address = "123 Flicka Flacka Way",
-                    StreetAddress = "123 Flicka Flacka Way",
-                    City = "Jonestown",
-                    County = "Davis",
-                    Zip = "84040",
-                    PostalCode = "84040",
-                    PhoneNumber = "800calladmin",
-                    PhoneNumberConfirmed = false,
-                    Gender = "",
-                    Race = "",
-                    BirthDate = DateTime.Now,
-                    Income = "",
-                    Education = "",
-                    Residence = "",
-                    Military = "",
-                    NormalizedUserName = "Instructor2@Instructor2.COM",
-                    PasswordHash = hasher.HashPassword(null, "Temp1234$"),
-                    EmailConfirmed = false,
-                    SecurityStamp = "6d4fb098-23b1-4219-8b4c-c146830ede28",
-                    TwoFactorEnabled = false,
-                    LockoutEnd = null,
-                    LockoutEnabled = false,
-                    State = "Texas",
-
-                    AccessFailedCount = 0
-                }
-            );
-
-
-            //Seeding the relation between our MANY users and and their MANY roles to AspNetUserRoles table
-            modelBuilder.Entity<IdentityUserRole<string>>().HasData(
-
-                new IdentityUserRole<string>
-                {
-                    RoleId = "2c5e174e-3b0e-446f-86af-483d56fd7210",  //ADMIN
-                    UserId = "8e445865-a24d-4543-a6c6-9443d048cdb9"   //Catherine
-                },
-                new IdentityUserRole<string>
-                {
-                    RoleId = "2c5e174e-3b0e-446f-86af-483d56fd7211",  //SocialWorker
-                    UserId = "8e445865-a24d-4543-a6c6-9443d048cdb8"   //SocialWorker1
-                },                                                                               
-                new IdentityUserRole<string>
-                {
-                    RoleId = "2c5e174e-3b0e-446f-86af-483d56fd7211", //SocialWorker
-                    UserId = "8e445865-a24d-4543-a6c6-9443d048cdb7"  //SocialWorker2
-                },
-                new IdentityUserRole<string>
-                {
-                    RoleId = "2c5e174e-3b0e-446f-86af-483d56fd7212", //Instructor
-                    UserId = "8e445865-a24d-4543-a6c6-9443d048cdb6"  //Instructor1
-                },
-                new IdentityUserRole<string>
-                {
-                    RoleId = "2c5e174e-3b0e-446f-86af-483d56fd7212", //Instructor
-                    UserId = "8e445865-a24d-4543-a6c6-9443d048cdb5" //Instructor2
-                }
-            );
-
+            //So, role permissions can be a bit complicated.
+            //ApplicationUser are the users. IdentityRole is their role.
+            //Matching IndentityRole Id on RolePermission's RoleId will give all the roles that use that permission.
+            //Matching RolePermission's PermissionId will give all the permissions, tied to that rolePermission, and therefore the Role that has that permission.
+            //  Essentially, there is a unique RolePermission for every Role's permission. Ex, if 5 roles have 'CanEditApplicatons',
+            //      there are 5 separate RolePermissions, each with a RoleId that links them to one of those 5 roles, but 
+            //      their PermissionId will all be the same one for 'CanEditApplicatons''s Id.
+            dbcs.UserSeeder(modelBuilder);
+            dbcs.RolesSeeder(modelBuilder);
+            dbcs.PermissionsSeeder(modelBuilder);
+            dbcs.RolePermissionsSeeder(modelBuilder);
         }
     }
+
 }

@@ -1,5 +1,6 @@
 ﻿using Idea_Pending_SMART.Interfaces;
 using Idea_Pending_SMART.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Idea_Pending_SMART.Data
 {
@@ -26,6 +27,52 @@ namespace Idea_Pending_SMART.Data
         private IRepository<Sponsor> _Sponsor;
         private IRepository<StudentNote> _StudentNote;
         private IRepository<Person> _Person;
+        private IRepository<RolePermission> _RolePermission;
+        private IRepository<IdentityRole> _IdentityRole;
+        private IRepository<Permissions> _Permissions;
+        private IRepository<IdentityUserRole<string>> _IdentityUserRole;
+
+        public IRepository<IdentityUserRole<string>> IdentityUserRole
+        {
+            get
+            {
+
+                _IdentityUserRole ??= new Repository<IdentityUserRole<string>>(_dbContext);
+                return _IdentityUserRole;
+            }
+        }
+
+        public IRepository<Permissions> Permissions
+        {
+            get
+            {
+
+                _Permissions ??= new Repository<Permissions>(_dbContext);
+                return _Permissions;
+            }
+        }
+
+        public IRepository<IdentityRole> IdentityRole
+        {
+            get
+            {
+
+                _IdentityRole ??= new Repository<IdentityRole>(_dbContext);
+                return _IdentityRole;
+            }
+        }
+
+
+        public IRepository<RolePermission> RolePermission
+        {
+            get
+            {
+
+                _RolePermission ??= new Repository<RolePermission>(_dbContext);
+                return _RolePermission;
+            }
+        }
+
 
         public IRepository<Assignment> Assignment
         {
