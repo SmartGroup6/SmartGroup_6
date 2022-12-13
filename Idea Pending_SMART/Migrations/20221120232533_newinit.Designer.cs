@@ -85,8 +85,8 @@ namespace Idea_Pending_SMART.Migrations
                     b.Property<int?>("InstructorScore")
                         .HasColumnType("int");
 
-                    b.Property<bool?>("IsActive")
-                        .HasColumnType("bit");
+                    //b.Property<bool?>("IsActive")
+                      //  .HasColumnType("bit");
 
                     b.Property<bool>("MealsNeeded")
                         .HasColumnType("bit");
@@ -458,7 +458,7 @@ namespace Idea_Pending_SMART.Migrations
                         .IsRequired()
                         .HasColumnType("bit");
 
-                    b.Property<string>("CurrentGrade")
+                    b.Property<string>("GPA")
                         .IsRequired()
                         .HasColumnType("nvarchar(1)");
 

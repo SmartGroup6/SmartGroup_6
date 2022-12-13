@@ -10,7 +10,7 @@ namespace Idea_Pending_SMART.Models
         public int ApplicationID { get; set; }
         public float AcademicScore { get; set; }
 
-        public String DateOfBirth { get; set; }
+        public String? DateOfBirth { get; set; }
         
         [Display(Name = "Application")]
         [Required]
@@ -27,11 +27,13 @@ namespace Idea_Pending_SMART.Models
        
         public string? DistanceNote { get; set; }
 
-       
-        public int? InstructorScore { get; set; }
+        public string? ApplicationStatus { get; set; }
 
-        public int? SocialWorkerScore { get; set; } //Social Worker Score
+        //public int? InstructorScore { get; set; }
 
+        //public int? SocialWorkerScore { get; set; } //Social Worker Score
+
+        public int? InitialScore { get; set; }
         public int? AdminScore { get; set; }
 
 
@@ -54,17 +56,30 @@ namespace Idea_Pending_SMART.Models
         public bool ChoppaTransportNeeded { get; set; }
 
         public bool MealsNeeded { get; set; }
-        public bool? IsActive { get; set; }
+        // public bool? IsActive { get; set; }
+        
         /*
                 [ForeignKey("Applicant")]
                 public int ApplicantID { get; set; }
 
                 [ForeignKey("Person")] //required for the guardian if applicable and gets address from guardian
                 public int PersonID { get; set; }
-
-
         */
 
+        //check if student's age is valid
+        public String ageCheck(DateTime dob)
+        {
+            int age = Age(dob);
+            
+            if (age >= 18)
+                return this.ApplicationStatus = "Rejected";
+
+            return this.ApplicationStatus = "Pending";
+     
+        }
+
+
+        //calculate initial score
         public float initialScore(float gpa, String income, bool choppa, bool meal)
         {
             float score = 0;
@@ -105,6 +120,12 @@ namespace Idea_Pending_SMART.Models
             }
             return score;
         }
+        public String ApplicationRating()
+        {
+            return this.ApplicationStatus;
+        }
+
+
     }
 
 }

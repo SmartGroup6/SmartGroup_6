@@ -43,7 +43,7 @@ namespace Idea_Pending_SMART.Migrations
                     SubmissionDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ChoppaTransportNeeded = table.Column<bool>(type: "bit", nullable: false),
                     MealsNeeded = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: true)
+                    //IsActive = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -268,7 +268,7 @@ namespace Idea_Pending_SMART.Migrations
                     StudentID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     timeAvailable = table.Column<bool>(type: "bit", nullable: false),
-                    CurrentGrade = table.Column<string>(type: "nvarchar(1)", nullable: false),
+                    GPA = table.Column<string>(type: "nvarchar(1)", nullable: false),
                     SponsorID = table.Column<int>(type: "int", nullable: true),
                     AcademicScore = table.Column<float>(type: "real", nullable: false),
                     DateOfBirth = table.Column<string>(type: "nvarchar(max)", nullable: false),

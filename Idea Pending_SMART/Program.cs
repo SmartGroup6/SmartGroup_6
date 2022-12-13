@@ -52,5 +52,5 @@ app.MapControllerRoute(
     pattern: "{area=Home}/{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
-SeedData.EnsurePopulated(app);
+//SeedData.EnsurePopulated(app);
 app.Run();

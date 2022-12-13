@@ -1,20 +1,36 @@
 ﻿using Idea_Pending_SMART.Interfaces;
 using Idea_Pending_SMART.Models;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.EntityFrameworkCore;
 
 [Area("Student")]
 public class StudentController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
-    private string defaultAction = "Index";
     /*
-        +CreateGrade(GradeID, StudentID, LetterGrade, Percent, Pass)
-        +UpdateGrade(StudentID,LetterGrade)
-        +AddAttendance
-        +AddNotes
-        +Meals
-     * */
+        +Float:academicScore
+        +Date:DOB
+        +String:DeterminationNote
+        +String:DistanceNote
+        +int:InstructorScore
+        +int:SocWorkSCore
+        +int:AdminSCore
+        +int:TotalScore
+        +Date:SubmissionDate
+        +Bool:ChoppaTransport
+        +Bool:MealNeeded
+     */
+
+    /*
+        +rateStudent()
+        +changeStudentStatus()
+        +checkGPA() 
+        +checkAge() 
+        +checkFinancials()
+        +checkDistance()
+        +isAppComplete()
+        +checkStatus() 
+     */
 
     public StudentController(IUnitOfWork unitOfWork)
     {
@@ -24,98 +40,90 @@ public class StudentController : Controller
     //ctrl+k+c to comment, ctrl+k+u to uncomment
     public ViewResult Index()
     {
-        //IEnumerable<Semester> objList = _unitOfWork.Semester.GetAll();
-        //return View(objList);
-        return View();
+        IEnumerable<Student> objStudentList = _unitOfWork.Student.GetAll();
+        return View(objStudentList);
+    }
+
+    /////////Upsert stuff
+    //private readonly IWebHostEnvironment _hostEnvironment;
+    //Bind apparently solves some headaches by binding the model to our forum
+    [BindProperty]
+    public Student StudentObj { get; set; }
+
+    /*
+     * We aren't going to have a separate edit/delete mode. Just upsert.
+     * The id is optional, as you either pass it an id that gets edited, or you dont give it an id so it creates a new one.
+     * */
+    [HttpGet]
+    public IActionResult Upsert(int? id) //optional, indicates editing or creating
+    {
+        Student StudentObj = new Student();
+
+        //Get the semester we're editing, if it exists.
+        if (id != null)
+        {
+            StudentObj = _unitOfWork.Student.Get(s => s.StudentID == id);
+            if (StudentObj == null)
+            {
+                return NotFound();
+            }
+        }
+
+        return View(StudentObj);
     }
 
 
-    ////Unsure of usage
-    //[HttpGet]
-    //public ViewResult Create()
-    //{
-    //    return View();
-    //}
+    [HttpPost]
+    public IActionResult Upsert() //note the lack of paramters. The Student from the form comes from the [BindProperty] declaration.
+    {
+        if (!ModelState.IsValid)
+        {
+            return View();
+        }
 
-    //[HttpPost]
-    //[ValidateAntiForgeryToken]
-    //public IActionResult Create(Semester obj)
-    //{
-        
-    //    if (ModelState.IsValid)
-    //    {
-    //        _unitOfWork.Semester.Add(obj); //internal add
-    //        _unitOfWork.Commit(); //physical commit to DB table
-    //        TempData["success"] = "Semester added to database Successfully";
-    //        return RedirectToAction(defaultAction);
-    //    }
-    //    return View(obj);
-    //}
+        if (StudentObj.StudentID == 0) //New semester
+        {
+            _unitOfWork.Student.Add(StudentObj);
+        }
+        else //Edit semester
+        {
+            _unitOfWork.Student.Update(StudentObj);
+        }
 
-    //[HttpGet]
-    //public IActionResult Edit(int? id)
-    //{
-    //    if (id == null || id == 0)
-    //        return NotFound();
-
-    //    //grab that Category from the DB itself
-
-    //    var objFromDb = _unitOfWork.Semester.Get(c => c.SemesterID == id);
-
-    //    if (objFromDb == null)
-    //    {
-    //        return NotFound();
-    //    }
-
-    //    return View(objFromDb);
-    //}
+        _unitOfWork.Commit();
+        return RedirectToAction("Index");
+    }
 
 
-    //[HttpPost]
-    //[ValidateAntiForgeryToken]
-    //public IActionResult Edit(Semester obj)
-    //{
-    //    if (ModelState.IsValid)
-    //    {
-    //        _unitOfWork.Semester.Update(obj);
-    //        _unitOfWork.Commit();
-    //        TempData["success"] = "Semester updated successfully";
-    //        return RedirectToAction(defaultAction);
-    //    }
-    //    return View(obj);
-    //}
+    [HttpGet]
+    public IActionResult Delete(int? id)
+    {
+        if (id == null || id == 0)
+        {
+            return NotFound();
+        }
 
+        var objFromDb = _unitOfWork.Student.Get(a => a.StudentID == id);
 
-    //[HttpGet]
-    //public IActionResult Delete(int? id)
-    //{
-    //    if (id == null || id == 0)
-    //    {
-    //        return NotFound();
-    //    }
+        if (objFromDb == null)
+        {
+            return NotFound();
+        }
 
-    //    var objFromDb = _unitOfWork.Semester.Get(c => c.SemesterID == id);
+        return View(objFromDb);
+    }
 
-    //    if (objFromDb == null)
-    //    {
-    //        return NotFound();
-    //    }
+    [HttpPost, ActionName("Delete")]     //can change the method name and just map the button on the html page to this ActionName
 
-    //    return View(objFromDb);
-    //}
+    public IActionResult DeletePost(int? id)
+    {
+        var obj = _unitOfWork.Student.Get(a => a.StudentID == id);
+        if (obj == null)
+        { return NotFound(); }
 
-    //[HttpPost, ActionName("Delete")]     //can change the method name and just map the button on the html page to this ActionName
-
-    //public IActionResult DeletePost(int? id)
-    //{
-    //    var obj = _unitOfWork.Semester.Get(c => c.SemesterID == id);
-    //    if (obj == null)
-    //    { return NotFound(); }
-
-    //    _unitOfWork.Semester.Delete(obj);
-    //    _unitOfWork.Commit();
-    //    TempData["success"] = "Semester was deleted Successfully";
-    //    return RedirectToAction("Index");
-    //}
+        _unitOfWork.Student.Delete(obj);
+        _unitOfWork.Commit();
+        //TempData["success"] = "Student was deleted Successfully";
+        return RedirectToAction("Index");
+    }
 }
-
