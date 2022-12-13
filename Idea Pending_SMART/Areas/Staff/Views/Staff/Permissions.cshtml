@@ -1,0 +1,27 @@
+﻿@model Idea_Pending_SMART.Areas.Staff.ViewModels.StaffVM
+
+<tbody>
+    @foreach (var item in Model.IdentityRole)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NormalizedName)
+            </td>
+            <td>
+                <div class="w-75 btn-group" role="group">
+                    <!-- asp-route-id is parameter, named id, that is passed to the action method, Upsert, with the value of item.SemesterName -->
+                    <a asp-controller="School" asp-action="Upsert" asp-route-id="@item.Id"
+                   class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>
+                    <a asp-controller="School" asp-action="Delete" asp-route-id="@item.Name"
+                   class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
+                </div>
+            </td>
+        </tr>
+    }
+</tbody>

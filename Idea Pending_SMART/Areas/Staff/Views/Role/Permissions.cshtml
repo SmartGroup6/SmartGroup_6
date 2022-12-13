@@ -1,0 +1,45 @@
+﻿@model Idea_Pending_SMART.Areas.Staff.ViewModels.StaffVM
+@{
+}
+<div><h1>Editing permissions for @(Model.IdentityRole.First().Name)</h1></div>
+@using (Html.BeginForm()){
+    <table class="table">
+        @Html.HiddenFor(model => model.IdentityRole.First().Id) <!-- Return the identyrole's id as a hidden value -->
+        @foreach (var item in Model.Permission)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PermissionsName)
+
+                </td>
+                <td>
+                    @if (Model.RolePermission.Count() > 0) {
+                        
+                            bool hasrp = false;
+                        
+                        @foreach (var rp in Model.RolePermission) {
+                            if (rp.PermissionsId.Equals(item.PermissionsID))
+                            {
+                                <input name="permission_select" type="checkbox" checked="true" class="check" value="@item.PermissionsID" />
+                                  <!-- any value in checked=true, anything at all, will check the box. -->
+                                    hasrp = true;
+                                
+                            }
+                        }
+                        if(!hasrp){
+                            <input name="permission_select" type="checkbox" class="check" value="@item.PermissionsID" />
+                        }
+                    }
+                    else {
+                        <input name="permission_select" type="checkbox" class="check" value="@item.PermissionsID" />
+                    }
+                </td>
+
+            </tr>
+        }
+
+    </table>
+    <button type="submit" class="btn btn-primary form-control">Update</button>
+    <a asp-controller="Staff" asp-action="Roles" class="btn btn-success form-control">Back to List</a>
+}
+

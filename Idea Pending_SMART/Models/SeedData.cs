@@ -656,26 +656,7 @@ namespace Idea_Pending_SMART.Models
                     ); context.SaveChanges() ;
             }
 
-            if (!context.Role.Any())
-            {
-                context.Role.AddRange(
-                    new Role
-                    {
-                        PermissionsID = 1,
-                        RoleName = "Staff Admin"
-                    },
-                    new Role
-                    {
-                        PermissionsID = 2,
-                        RoleName = "Staff Instruct"
-                    },
-                    new Role
-                    {
-                        PermissionsID = 3,
-                        RoleName = "Staff SW"
-                    }
-                    ); context.SaveChanges();
-            }
+            
 
  
             if (!context.Sponsor.Any())

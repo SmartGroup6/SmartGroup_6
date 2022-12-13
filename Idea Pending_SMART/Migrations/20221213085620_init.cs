@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Idea_Pending_SMART.Migrations
 {
-    public partial class beta1 : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -174,7 +174,7 @@ namespace Idea_Pending_SMART.Migrations
                 {
                     PermissionsID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PermissionsName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    PermissionsName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -200,20 +200,6 @@ namespace Idea_Pending_SMART.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Person", x => x.PersonID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Role",
-                columns: table => new
-                {
-                    RoleID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PermissionsID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Role", x => x.RoleID);
                 });
 
             migrationBuilder.CreateTable(
@@ -399,6 +385,32 @@ namespace Idea_Pending_SMART.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RolePermissions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdentityRoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PermissionsId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RolePermissions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RolePermissions_AspNetRoles_IdentityRoleId",
+                        column: x => x.IdentityRoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RolePermissions_Permissions_PermissionsId",
+                        column: x => x.PermissionsId,
+                        principalTable: "Permissions",
+                        principalColumn: "PermissionsID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Semester",
                 columns: table => new
                 {
@@ -490,9 +502,9 @@ namespace Idea_Pending_SMART.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "2c5e174e-3b0e-446f-86af-483d56fd7210", "04f6f841-88d5-4689-8986-e4bdd4a409b7", "Admin", "ADMIN" },
-                    { "2c5e174e-3b0e-446f-86af-483d56fd7211", "385c1491-40a3-4067-a07f-fbb3e6519ad8", "SocialWorker", "SOCIALWORKER" },
-                    { "2c5e174e-3b0e-446f-86af-483d56fd7212", "00053a8c-4a6c-4418-99f9-01f686ac5e99", "Instructor", "INSTRUCTOR" }
+                    { "2c5e174e-3b0e-446f-86af-483d56fd7210", "1c519ece-b223-4cb4-b910-aa8854859a35", "Admin", "ADMIN" },
+                    { "2c5e174e-3b0e-446f-86af-483d56fd7211", "26790427-5e04-41e8-8576-0a6a02bf634a", "SocialWorker", "SOCIALWORKER" },
+                    { "2c5e174e-3b0e-446f-86af-483d56fd7212", "715193c2-f2d1-4728-bca7-ca6f28e719d9", "Instructor", "INSTRUCTOR" }
                 });
 
             migrationBuilder.InsertData(
@@ -500,11 +512,28 @@ namespace Idea_Pending_SMART.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "Address", "ApplicationUserId", "BirthDate", "City", "ConcurrencyStamp", "County", "Discriminator", "Education", "Email", "EmailConfirmed", "FirstName", "Gender", "Income", "LastName", "LockoutEnabled", "LockoutEnd", "Military", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PostalCode", "Race", "Residence", "SecurityStamp", "State", "StreetAddress", "TwoFactorEnabled", "UserName", "Zip" },
                 values: new object[,]
                 {
-                    { "8e445865-a24d-4543-a6c6-9443d048cdb5", 0, "123 Flicka Flacka Way", "8e445865-a24d-4543-a6c6-9443d048cdb5", new DateTime(2022, 11, 24, 9, 25, 12, 374, DateTimeKind.Local).AddTicks(213), "Jonestown", "e3314fac-bae2-4d4b-a7a7-2658c13ca697", "Davis", "ApplicationUser", "", "Instructor2@Instructor2.com", false, "MrTeacher", "", "", "MrTeacher", false, null, "", "Instructor2@Instructor2.COM", "Instructor2@Instructor2.COM", "AQAAAAEAACcQAAAAEE54Qyfg6rv5r9rjltt+7vRq71gKjKH1yTQO0q0agX/lTx3JQ8F/sRqfyze0dM4GbQ==", "800calladmin", false, "84040", "", "", "6d4fb098-23b1-4219-8b4c-c146830ede28", "Texas", "123 Flicka Flacka Way", false, "Instructor2@Instructor2.com", "84040" },
-                    { "8e445865-a24d-4543-a6c6-9443d048cdb6", 0, "123 Flicka Flacka Way", "8e445865-a24d-4543-a6c6-9443d048cdb6", new DateTime(2022, 11, 24, 9, 25, 12, 372, DateTimeKind.Local).AddTicks(8020), "Jonestown", "b81d235d-5e20-4146-812c-3d9f48089063", "Davis", "ApplicationUser", "", "Instructor1@Instructor1.com", false, "Gob", "", "", "Gobbo", false, null, "", "Instructor1@Instructor1.COM", "Instructor1@Instructor1.COM", "AQAAAAEAACcQAAAAEMvrkxX1/3DcVzlWrPYQZ+z6AdE6B/7IGzGJORohU9DXeQv3dGjnJt4fJVkOP5nMlg==", "800calladmin", false, "84040", "", "", "6d4fb098-23b1-4219-8b4c-c146830ede28", "Texas", "123 Flicka Flacka Way", false, "Instructor1@Instructor1.com", "84040" },
-                    { "8e445865-a24d-4543-a6c6-9443d048cdb7", 0, "123 Flicka Flacka Way", "8e445865-a24d-4543-a6c6-9443d048cdb7", new DateTime(2022, 11, 24, 9, 25, 12, 371, DateTimeKind.Local).AddTicks(4222), "Jonestown", "a69b90ec-3087-437e-8431-5fb3fbc443a4", "Davis", "ApplicationUser", "", "SocialWorker2@SocialWorker2.com", false, "Miachael", "", "", "Bluth", false, null, "", "SocialWorker2@SocialWorker2.COM", "SocialWorker2@SocialWorker2.COM", "AQAAAAEAACcQAAAAEG/lSEychE+mL3O/ixJ+ZD0ayEhU60Gxq/c1gGPzSgeXNSfeHvVd5eL7bSUR5hZamQ==", "800calladmin", false, "84040", "", "", "6d4fb098-23b1-4219-8b4c-c146830ede28", "Texas", "123 Flicka Flacka Way", false, "SocialWorker2@SocialWorker2.com", "84040" },
-                    { "8e445865-a24d-4543-a6c6-9443d048cdb8", 0, "1234423312 Flicka Flacka Way", "8e445865-a24d-4543-a6c6-9443d048cdb8", new DateTime(2022, 11, 24, 9, 25, 12, 370, DateTimeKind.Local).AddTicks(1775), "Jonestown22", "8ea7ddf9-873b-4549-9a40-b8a6d2f22e23", "111111Davis", "ApplicationUser", "", "SocialWorker1@SocialWorker1.com", false, "Bob", "", "", "Propane", false, null, "", "SOCIALWORKER1@SOCIALWORKER1.COM", "SocialWorker1SocialWorker1.com", "AQAAAAEAACcQAAAAEJigxo/eQNyePPPpcM64FZewl8fyXVPC8jjbcct9fInuQSVCBCWsukNr7M8LokM4Tg==", "800calladmin", false, "84040", "", "", "6d4fb098-23b1-4219-8b4c-c146830ede28", "Texas", "123 Flicka Flacka Way", false, "SocialWorker1SocialWorker1.com", "84040" },
-                    { "8e445865-a24d-4543-a6c6-9443d048cdb9", 0, "123 Flicka Flacka Way", "8e445865-a24d-4543-a6c6-9443d048cdb9", new DateTime(2022, 11, 24, 9, 25, 12, 368, DateTimeKind.Local).AddTicks(9252), "Jonestown", "8128a32d-eb49-4ec9-a90d-2bc52b5b62ad", "Davis", "ApplicationUser", "", "Admin@Admin.com", false, "Hank", "", "", "Hill", false, null, "", "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEEQLWdcDpmAhW9vZFzIhGxeFNBPDqPBsuTUGxy14LKDKQlkeUW2hDD2N6XB8TF0uvA==", "800calladmin", false, "84040", "", "", "6d4fb098-23b1-4219-8b4c-c146830ede28", "Texas", "123 Flicka Flacka Way", false, "Admin@Admin.com", "84040" }
+                    { "8e445865-a24d-4543-a6c6-9443d048cdb5", 0, "123 Flicka Flacka Way", "8e445865-a24d-4543-a6c6-9443d048cdb5", new DateTime(2022, 12, 13, 1, 56, 20, 550, DateTimeKind.Local).AddTicks(2597), "Jonestown", "2372d0af-222e-4191-ab17-d23665a05d1a", "Davis", "ApplicationUser", "", "Instructor2@Instructor2.com", false, "MrTeacher", "", "", "MrTeacher", false, null, "", "Instructor2@Instructor2.COM", "Instructor2@Instructor2.COM", "AQAAAAEAACcQAAAAEKk8RUOP532GHbM/Dh05uL3rVpG0qV9CyiorhtIWXByfp2nEUF1GvB95E33Y14CE2g==", "800calladmin", false, "84040", "", "", "6d4fb098-23b1-4219-8b4c-c146830ede28", "Texas", "123 Flicka Flacka Way", false, "Instructor2@Instructor2.com", "84040" },
+                    { "8e445865-a24d-4543-a6c6-9443d048cdb6", 0, "123 Flicka Flacka Way", "8e445865-a24d-4543-a6c6-9443d048cdb6", new DateTime(2022, 12, 13, 1, 56, 20, 544, DateTimeKind.Local).AddTicks(6736), "Jonestown", "3c328b58-40a0-4970-8314-0a7c1404dfec", "Davis", "ApplicationUser", "", "Instructor1@Instructor1.com", false, "Gob", "", "", "Gobbo", false, null, "", "Instructor1@Instructor1.COM", "Instructor1@Instructor1.COM", "AQAAAAEAACcQAAAAENjN4ngMwTRQsfyDOhHbHByXUR+ZcwGe36iDKajad0L5jKFSRcKhhg1aqgP90HzN4g==", "800calladmin", false, "84040", "", "", "6d4fb098-23b1-4219-8b4c-c146830ede28", "Texas", "123 Flicka Flacka Way", false, "Instructor1@Instructor1.com", "84040" },
+                    { "8e445865-a24d-4543-a6c6-9443d048cdb7", 0, "123 Flicka Flacka Way", "8e445865-a24d-4543-a6c6-9443d048cdb7", new DateTime(2022, 12, 13, 1, 56, 20, 539, DateTimeKind.Local).AddTicks(77), "Jonestown", "d852de99-c5d6-4e37-839a-55beb389e9c2", "Davis", "ApplicationUser", "", "SocialWorker2@SocialWorker2.com", false, "Miachael", "", "", "Bluth", false, null, "", "SocialWorker2@SocialWorker2.COM", "SocialWorker2@SocialWorker2.COM", "AQAAAAEAACcQAAAAEHTJxEltvDy8x23g158i3+MYmDVJwWTuPI9RkxOCaWeMPk/JFm6eXgXaS+VqZpg1PA==", "800calladmin", false, "84040", "", "", "6d4fb098-23b1-4219-8b4c-c146830ede28", "Texas", "123 Flicka Flacka Way", false, "SocialWorker2@SocialWorker2.com", "84040" },
+                    { "8e445865-a24d-4543-a6c6-9443d048cdb8", 0, "1234423312 Flicka Flacka Way", "8e445865-a24d-4543-a6c6-9443d048cdb8", new DateTime(2022, 12, 13, 1, 56, 20, 533, DateTimeKind.Local).AddTicks(4122), "Jonestown22", "248ff114-497c-46e2-8d12-5ed9e0f045fa", "111111Davis", "ApplicationUser", "", "SocialWorker1@SocialWorker1.com", false, "Bob", "", "", "Propane", false, null, "", "SOCIALWORKER1@SOCIALWORKER1.COM", "SocialWorker1SocialWorker1.com", "AQAAAAEAACcQAAAAEB9TmxLYHg1MNeKBc6wd+6nwHTMQflv4V7GYbaVT7vKpptnbYAtVKGNMCWV0qGfHQg==", "800calladmin", false, "84040", "", "", "6d4fb098-23b1-4219-8b4c-c146830ede28", "Texas", "123 Flicka Flacka Way", false, "SocialWorker1SocialWorker1.com", "84040" },
+                    { "8e445865-a24d-4543-a6c6-9443d048cdb9", 0, "123 Flicka Flacka Way", "8e445865-a24d-4543-a6c6-9443d048cdb9", new DateTime(2022, 12, 13, 1, 56, 20, 527, DateTimeKind.Local).AddTicks(7988), "Jonestown", "4aa59e6a-c168-4608-b869-78c64d2775ba", "Davis", "ApplicationUser", "", "Admin@Admin.com", false, "Hank", "", "", "Hill", false, null, "", "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAELNS3uStvrBEZCcXymj7w0s/BbQrrmQXr8DMLspD6KV/EVKzqlhQjeOaF6yzjWXqsg==", "800calladmin", false, "84040", "", "", "6d4fb098-23b1-4219-8b4c-c146830ede28", "Texas", "123 Flicka Flacka Way", false, "Admin@Admin.com", "84040" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Permissions",
+                columns: new[] { "PermissionsID", "PermissionsName" },
+                values: new object[,]
+                {
+                    { 1, "CanEditUsers" },
+                    { 2, "CanViewApplications" },
+                    { 3, "CanEditApplications" },
+                    { 4, "CanReviewApplications" },
+                    { 5, "CanEditRoles" },
+                    { 6, "CanViewSemesters" },
+                    { 7, "CanEditSemesters" },
+                    { 8, "CanCreateSemesters" },
+                    { 9, "CanSocialworkerStuff" },
+                    { 10, "CanInstructorStuff" }
                 });
 
             migrationBuilder.InsertData(
@@ -517,6 +546,31 @@ namespace Idea_Pending_SMART.Migrations
                     { "2c5e174e-3b0e-446f-86af-483d56fd7211", "8e445865-a24d-4543-a6c6-9443d048cdb7" },
                     { "2c5e174e-3b0e-446f-86af-483d56fd7211", "8e445865-a24d-4543-a6c6-9443d048cdb8" },
                     { "2c5e174e-3b0e-446f-86af-483d56fd7210", "8e445865-a24d-4543-a6c6-9443d048cdb9" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "RolePermissions",
+                columns: new[] { "Id", "IdentityRoleId", "PermissionsId" },
+                values: new object[,]
+                {
+                    { 1, "2c5e174e-3b0e-446f-86af-483d56fd7210", 1 },
+                    { 2, "2c5e174e-3b0e-446f-86af-483d56fd7210", 2 },
+                    { 3, "2c5e174e-3b0e-446f-86af-483d56fd7210", 3 },
+                    { 4, "2c5e174e-3b0e-446f-86af-483d56fd7210", 4 },
+                    { 5, "2c5e174e-3b0e-446f-86af-483d56fd7211", 1 },
+                    { 6, "2c5e174e-3b0e-446f-86af-483d56fd7211", 2 },
+                    { 7, "2c5e174e-3b0e-446f-86af-483d56fd7211", 3 },
+                    { 8, "2c5e174e-3b0e-446f-86af-483d56fd7211", 4 },
+                    { 9, "2c5e174e-3b0e-446f-86af-483d56fd7212", 1 },
+                    { 10, "2c5e174e-3b0e-446f-86af-483d56fd7212", 2 },
+                    { 11, "2c5e174e-3b0e-446f-86af-483d56fd7212", 3 },
+                    { 12, "2c5e174e-3b0e-446f-86af-483d56fd7212", 4 },
+                    { 13, "2c5e174e-3b0e-446f-86af-483d56fd7210", 5 },
+                    { 14, "2c5e174e-3b0e-446f-86af-483d56fd7210", 6 },
+                    { 15, "2c5e174e-3b0e-446f-86af-483d56fd7210", 7 },
+                    { 16, "2c5e174e-3b0e-446f-86af-483d56fd7210", 8 },
+                    { 17, "2c5e174e-3b0e-446f-86af-483d56fd7211", 9 },
+                    { 18, "2c5e174e-3b0e-446f-86af-483d56fd7212", 10 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -579,6 +633,16 @@ namespace Idea_Pending_SMART.Migrations
                 column: "ClassID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_RolePermissions_IdentityRoleId",
+                table: "RolePermissions",
+                column: "IdentityRoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RolePermissions_PermissionsId",
+                table: "RolePermissions",
+                column: "PermissionsId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Semester_SchoolId",
                 table: "Semester",
                 column: "SchoolId");
@@ -617,22 +681,16 @@ namespace Idea_Pending_SMART.Migrations
                 name: "Enrollments");
 
             migrationBuilder.DropTable(
-                name: "Permissions");
-
-            migrationBuilder.DropTable(
                 name: "Person");
 
             migrationBuilder.DropTable(
-                name: "Role");
+                name: "RolePermissions");
 
             migrationBuilder.DropTable(
                 name: "Sponsor");
 
             migrationBuilder.DropTable(
                 name: "StudentNote");
-
-            migrationBuilder.DropTable(
-                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
@@ -642,6 +700,12 @@ namespace Idea_Pending_SMART.Migrations
 
             migrationBuilder.DropTable(
                 name: "Students");
+
+            migrationBuilder.DropTable(
+                name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Permissions");
 
             migrationBuilder.DropTable(
                 name: "ClassTimes");

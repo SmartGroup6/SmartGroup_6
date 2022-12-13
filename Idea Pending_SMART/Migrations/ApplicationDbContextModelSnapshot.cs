@@ -270,12 +270,63 @@ namespace Idea_Pending_SMART.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PermissionsID"), 1L, 1);
 
                     b.Property<string>("PermissionsName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PermissionsID");
 
                     b.ToTable("Permissions");
+
+                    b.HasData(
+                        new
+                        {
+                            PermissionsID = 1,
+                            PermissionsName = "CanEditUsers"
+                        },
+                        new
+                        {
+                            PermissionsID = 2,
+                            PermissionsName = "CanViewApplications"
+                        },
+                        new
+                        {
+                            PermissionsID = 3,
+                            PermissionsName = "CanEditApplications"
+                        },
+                        new
+                        {
+                            PermissionsID = 4,
+                            PermissionsName = "CanReviewApplications"
+                        },
+                        new
+                        {
+                            PermissionsID = 5,
+                            PermissionsName = "CanEditRoles"
+                        },
+                        new
+                        {
+                            PermissionsID = 6,
+                            PermissionsName = "CanViewSemesters"
+                        },
+                        new
+                        {
+                            PermissionsID = 7,
+                            PermissionsName = "CanEditSemesters"
+                        },
+                        new
+                        {
+                            PermissionsID = 8,
+                            PermissionsName = "CanCreateSemesters"
+                        },
+                        new
+                        {
+                            PermissionsID = 9,
+                            PermissionsName = "CanSocialworkerStuff"
+                        },
+                        new
+                        {
+                            PermissionsID = 10,
+                            PermissionsName = "CanInstructorStuff"
+                        });
                 });
 
             modelBuilder.Entity("Idea_Pending_SMART.Models.Person", b =>
@@ -324,25 +375,138 @@ namespace Idea_Pending_SMART.Migrations
                     b.ToTable("Person");
                 });
 
-            modelBuilder.Entity("Idea_Pending_SMART.Models.Role", b =>
+            modelBuilder.Entity("Idea_Pending_SMART.Models.RolePermission", b =>
                 {
-                    b.Property<int>("RoleID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("PermissionsID")
+                    b.Property<string>("IdentityRoleId")
                         .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("PermissionsId")
                         .HasColumnType("int");
 
-                    b.Property<string>("RoleName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("Id");
 
-                    b.HasKey("RoleID");
+                    b.HasIndex("IdentityRoleId");
 
-                    b.ToTable("Role");
+                    b.HasIndex("PermissionsId");
+
+                    b.ToTable("RolePermissions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            IdentityRoleId = "2c5e174e-3b0e-446f-86af-483d56fd7210",
+                            PermissionsId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            IdentityRoleId = "2c5e174e-3b0e-446f-86af-483d56fd7210",
+                            PermissionsId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            IdentityRoleId = "2c5e174e-3b0e-446f-86af-483d56fd7210",
+                            PermissionsId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            IdentityRoleId = "2c5e174e-3b0e-446f-86af-483d56fd7210",
+                            PermissionsId = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            IdentityRoleId = "2c5e174e-3b0e-446f-86af-483d56fd7211",
+                            PermissionsId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            IdentityRoleId = "2c5e174e-3b0e-446f-86af-483d56fd7211",
+                            PermissionsId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            IdentityRoleId = "2c5e174e-3b0e-446f-86af-483d56fd7211",
+                            PermissionsId = 3
+                        },
+                        new
+                        {
+                            Id = 8,
+                            IdentityRoleId = "2c5e174e-3b0e-446f-86af-483d56fd7211",
+                            PermissionsId = 4
+                        },
+                        new
+                        {
+                            Id = 9,
+                            IdentityRoleId = "2c5e174e-3b0e-446f-86af-483d56fd7212",
+                            PermissionsId = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            IdentityRoleId = "2c5e174e-3b0e-446f-86af-483d56fd7212",
+                            PermissionsId = 2
+                        },
+                        new
+                        {
+                            Id = 11,
+                            IdentityRoleId = "2c5e174e-3b0e-446f-86af-483d56fd7212",
+                            PermissionsId = 3
+                        },
+                        new
+                        {
+                            Id = 12,
+                            IdentityRoleId = "2c5e174e-3b0e-446f-86af-483d56fd7212",
+                            PermissionsId = 4
+                        },
+                        new
+                        {
+                            Id = 13,
+                            IdentityRoleId = "2c5e174e-3b0e-446f-86af-483d56fd7210",
+                            PermissionsId = 5
+                        },
+                        new
+                        {
+                            Id = 14,
+                            IdentityRoleId = "2c5e174e-3b0e-446f-86af-483d56fd7210",
+                            PermissionsId = 6
+                        },
+                        new
+                        {
+                            Id = 15,
+                            IdentityRoleId = "2c5e174e-3b0e-446f-86af-483d56fd7210",
+                            PermissionsId = 7
+                        },
+                        new
+                        {
+                            Id = 16,
+                            IdentityRoleId = "2c5e174e-3b0e-446f-86af-483d56fd7210",
+                            PermissionsId = 8
+                        },
+                        new
+                        {
+                            Id = 17,
+                            IdentityRoleId = "2c5e174e-3b0e-446f-86af-483d56fd7211",
+                            PermissionsId = 9
+                        },
+                        new
+                        {
+                            Id = 18,
+                            IdentityRoleId = "2c5e174e-3b0e-446f-86af-483d56fd7212",
+                            PermissionsId = 10
+                        });
                 });
 
             modelBuilder.Entity("Idea_Pending_SMART.Models.School", b =>
@@ -564,21 +728,21 @@ namespace Idea_Pending_SMART.Migrations
                         new
                         {
                             Id = "2c5e174e-3b0e-446f-86af-483d56fd7210",
-                            ConcurrencyStamp = "04f6f841-88d5-4689-8986-e4bdd4a409b7",
+                            ConcurrencyStamp = "1c519ece-b223-4cb4-b910-aa8854859a35",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "2c5e174e-3b0e-446f-86af-483d56fd7211",
-                            ConcurrencyStamp = "385c1491-40a3-4067-a07f-fbb3e6519ad8",
+                            ConcurrencyStamp = "26790427-5e04-41e8-8576-0a6a02bf634a",
                             Name = "SocialWorker",
                             NormalizedName = "SOCIALWORKER"
                         },
                         new
                         {
                             Id = "2c5e174e-3b0e-446f-86af-483d56fd7212",
-                            ConcurrencyStamp = "00053a8c-4a6c-4418-99f9-01f686ac5e99",
+                            ConcurrencyStamp = "715193c2-f2d1-4728-bca7-ca6f28e719d9",
                             Name = "Instructor",
                             NormalizedName = "INSTRUCTOR"
                         });
@@ -866,13 +1030,13 @@ namespace Idea_Pending_SMART.Migrations
                         {
                             Id = "8e445865-a24d-4543-a6c6-9443d048cdb9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8128a32d-eb49-4ec9-a90d-2bc52b5b62ad",
+                            ConcurrencyStamp = "4aa59e6a-c168-4608-b869-78c64d2775ba",
                             Email = "Admin@Admin.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEQLWdcDpmAhW9vZFzIhGxeFNBPDqPBsuTUGxy14LKDKQlkeUW2hDD2N6XB8TF0uvA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELNS3uStvrBEZCcXymj7w0s/BbQrrmQXr8DMLspD6KV/EVKzqlhQjeOaF6yzjWXqsg==",
                             PhoneNumber = "800calladmin",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "6d4fb098-23b1-4219-8b4c-c146830ede28",
@@ -880,7 +1044,7 @@ namespace Idea_Pending_SMART.Migrations
                             UserName = "Admin@Admin.com",
                             Address = "123 Flicka Flacka Way",
                             ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb9",
-                            BirthDate = new DateTime(2022, 11, 24, 9, 25, 12, 368, DateTimeKind.Local).AddTicks(9252),
+                            BirthDate = new DateTime(2022, 12, 13, 1, 56, 20, 527, DateTimeKind.Local).AddTicks(7988),
                             City = "Jonestown",
                             County = "Davis",
                             Education = "",
@@ -900,13 +1064,13 @@ namespace Idea_Pending_SMART.Migrations
                         {
                             Id = "8e445865-a24d-4543-a6c6-9443d048cdb8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8ea7ddf9-873b-4549-9a40-b8a6d2f22e23",
+                            ConcurrencyStamp = "248ff114-497c-46e2-8d12-5ed9e0f045fa",
                             Email = "SocialWorker1@SocialWorker1.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "SOCIALWORKER1@SOCIALWORKER1.COM",
                             NormalizedUserName = "SocialWorker1SocialWorker1.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJigxo/eQNyePPPpcM64FZewl8fyXVPC8jjbcct9fInuQSVCBCWsukNr7M8LokM4Tg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEB9TmxLYHg1MNeKBc6wd+6nwHTMQflv4V7GYbaVT7vKpptnbYAtVKGNMCWV0qGfHQg==",
                             PhoneNumber = "800calladmin",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "6d4fb098-23b1-4219-8b4c-c146830ede28",
@@ -914,7 +1078,7 @@ namespace Idea_Pending_SMART.Migrations
                             UserName = "SocialWorker1SocialWorker1.com",
                             Address = "1234423312 Flicka Flacka Way",
                             ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb8",
-                            BirthDate = new DateTime(2022, 11, 24, 9, 25, 12, 370, DateTimeKind.Local).AddTicks(1775),
+                            BirthDate = new DateTime(2022, 12, 13, 1, 56, 20, 533, DateTimeKind.Local).AddTicks(4122),
                             City = "Jonestown22",
                             County = "111111Davis",
                             Education = "",
@@ -934,13 +1098,13 @@ namespace Idea_Pending_SMART.Migrations
                         {
                             Id = "8e445865-a24d-4543-a6c6-9443d048cdb7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a69b90ec-3087-437e-8431-5fb3fbc443a4",
+                            ConcurrencyStamp = "d852de99-c5d6-4e37-839a-55beb389e9c2",
                             Email = "SocialWorker2@SocialWorker2.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "SocialWorker2@SocialWorker2.COM",
                             NormalizedUserName = "SocialWorker2@SocialWorker2.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEG/lSEychE+mL3O/ixJ+ZD0ayEhU60Gxq/c1gGPzSgeXNSfeHvVd5eL7bSUR5hZamQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHTJxEltvDy8x23g158i3+MYmDVJwWTuPI9RkxOCaWeMPk/JFm6eXgXaS+VqZpg1PA==",
                             PhoneNumber = "800calladmin",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "6d4fb098-23b1-4219-8b4c-c146830ede28",
@@ -948,7 +1112,7 @@ namespace Idea_Pending_SMART.Migrations
                             UserName = "SocialWorker2@SocialWorker2.com",
                             Address = "123 Flicka Flacka Way",
                             ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb7",
-                            BirthDate = new DateTime(2022, 11, 24, 9, 25, 12, 371, DateTimeKind.Local).AddTicks(4222),
+                            BirthDate = new DateTime(2022, 12, 13, 1, 56, 20, 539, DateTimeKind.Local).AddTicks(77),
                             City = "Jonestown",
                             County = "Davis",
                             Education = "",
@@ -968,13 +1132,13 @@ namespace Idea_Pending_SMART.Migrations
                         {
                             Id = "8e445865-a24d-4543-a6c6-9443d048cdb6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b81d235d-5e20-4146-812c-3d9f48089063",
+                            ConcurrencyStamp = "3c328b58-40a0-4970-8314-0a7c1404dfec",
                             Email = "Instructor1@Instructor1.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "Instructor1@Instructor1.COM",
                             NormalizedUserName = "Instructor1@Instructor1.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMvrkxX1/3DcVzlWrPYQZ+z6AdE6B/7IGzGJORohU9DXeQv3dGjnJt4fJVkOP5nMlg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENjN4ngMwTRQsfyDOhHbHByXUR+ZcwGe36iDKajad0L5jKFSRcKhhg1aqgP90HzN4g==",
                             PhoneNumber = "800calladmin",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "6d4fb098-23b1-4219-8b4c-c146830ede28",
@@ -982,7 +1146,7 @@ namespace Idea_Pending_SMART.Migrations
                             UserName = "Instructor1@Instructor1.com",
                             Address = "123 Flicka Flacka Way",
                             ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb6",
-                            BirthDate = new DateTime(2022, 11, 24, 9, 25, 12, 372, DateTimeKind.Local).AddTicks(8020),
+                            BirthDate = new DateTime(2022, 12, 13, 1, 56, 20, 544, DateTimeKind.Local).AddTicks(6736),
                             City = "Jonestown",
                             County = "Davis",
                             Education = "",
@@ -1002,13 +1166,13 @@ namespace Idea_Pending_SMART.Migrations
                         {
                             Id = "8e445865-a24d-4543-a6c6-9443d048cdb5",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e3314fac-bae2-4d4b-a7a7-2658c13ca697",
+                            ConcurrencyStamp = "2372d0af-222e-4191-ab17-d23665a05d1a",
                             Email = "Instructor2@Instructor2.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "Instructor2@Instructor2.COM",
                             NormalizedUserName = "Instructor2@Instructor2.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEE54Qyfg6rv5r9rjltt+7vRq71gKjKH1yTQO0q0agX/lTx3JQ8F/sRqfyze0dM4GbQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKk8RUOP532GHbM/Dh05uL3rVpG0qV9CyiorhtIWXByfp2nEUF1GvB95E33Y14CE2g==",
                             PhoneNumber = "800calladmin",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "6d4fb098-23b1-4219-8b4c-c146830ede28",
@@ -1016,7 +1180,7 @@ namespace Idea_Pending_SMART.Migrations
                             UserName = "Instructor2@Instructor2.com",
                             Address = "123 Flicka Flacka Way",
                             ApplicationUserId = "8e445865-a24d-4543-a6c6-9443d048cdb5",
-                            BirthDate = new DateTime(2022, 11, 24, 9, 25, 12, 374, DateTimeKind.Local).AddTicks(213),
+                            BirthDate = new DateTime(2022, 12, 13, 1, 56, 20, 550, DateTimeKind.Local).AddTicks(2597),
                             City = "Jonestown",
                             County = "Davis",
                             Education = "",
@@ -1078,6 +1242,25 @@ namespace Idea_Pending_SMART.Migrations
                     b.Navigation("Class");
 
                     b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("Idea_Pending_SMART.Models.RolePermission", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", "IdentityRole")
+                        .WithMany()
+                        .HasForeignKey("IdentityRoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Idea_Pending_SMART.Models.Permissions", "Permissions")
+                        .WithMany()
+                        .HasForeignKey("PermissionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("IdentityRole");
+
+                    b.Navigation("Permissions");
                 });
 
             modelBuilder.Entity("Idea_Pending_SMART.Models.Semester", b =>

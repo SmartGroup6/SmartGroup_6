@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Idea_Pending_SMART.Models.Permissions>
+
+  
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-controller="Staff" asp-action="Index" class="btn btn-dark">Role Management</a>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PermissionsName)
+            </th>
+        </tr>
+        <tc>
+            <th>
+                <a asp-controller="Permissions" asp-action="Upsert" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> &nbsp;New Permission
+                </a>
+            </th>
+        </tc>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PermissionsName)
+                </td>
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                        <!-- asp-route-id is parameter, named id, that is passed to the action method, Upsert, with the value of item.SemesterName -->
+                        <a asp-controller="Permissions" asp-action="Upsert" asp-route-id="@item.PermissionsID"
+                        class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>
+                        <a asp-controller="Permissions" asp-action="Delete" asp-route-id="@item.PermissionsID"
+                        class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
