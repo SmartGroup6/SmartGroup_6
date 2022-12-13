@@ -17,14 +17,14 @@
                         <label> Student's First Name</label>
                     </div>
                     <div class="col-9">
-                        <input id="ApplicationNameFirst" class="form-control" asp-for="ApplicationNameFirst" />
+                        <input id="ApplicationNameFirst" class="form-control" asp-for="ApplicationNameFirst"/>
                         <span class="text-danger" asp-validation-for="ApplicationNameFirst"></span>
                     </div>        
                     <div class="col-3">
                         <label> Student's Last Name</label>
                     </div>
                     <div class="col-9">
-                        <input id="ApplicationNameLast" class="form-control" asp-for="ApplicationNameLast" />
+                        <input id="ApplicationNameLast" class="form-control" asp-for="ApplicationNameLast"/>
                         <span class="text-danger" asp-validation-for="ApplicationNameLast"></span>
                     </div>
                     @if (Model.ApplicationID != 0)
@@ -53,7 +53,7 @@
                     </div>
                     <div class="col-9">
                         <div class="form-group">
-                            <input asp-for="GPA" type="text" class="form-control"/>               
+                            <input id ="GPA" asp-for="GPA" type="text" class="form-control"/>               
                             <span class="text-danger" asp-validation-for="GPA"></span>
                         </div>  
                     </div>
@@ -64,7 +64,7 @@
                         <label>Household Income</label>
                     </div>
                     <div class="col-9">
-                        <select id="Financials" class="form-select" asp-for="Financials">
+                        <select id="Financials" class="form-select" asp-for="Financials" >
                             <option value="Less than 10,200 MZN">Less than 10,200 MZN</option>
                             <option value="Between 10,200 MZN and 38,600 MZN">Between 10,200 MZN and 38,600 MZN</option>
                             <option value="More than 38,600 MZN">More than 38,600 MZN</option>
@@ -78,7 +78,7 @@
                         <label>Choppa Assistance?</label>
                     </div>
                     <div class="col-9">
-                        <select asp-for="ChoppaTransportNeeded" class="form-select">
+                        <select id="ChoppaTransportNeeded" asp-for="ChoppaTransportNeeded" class="form-select">
                             <option value="true">Yes</option>
                             <option value="false">No</option>
                          </select>
@@ -91,7 +91,7 @@
                         <label>Meals Assistance?</label>
                     </div>
                     <div class="col-9">
-                        <select asp-for="MealsNeeded" class="form-select">
+                        <select id = "MealsNeeded" asp-for="MealsNeeded" class="form-select" >
                             <option value="true">Yes</option>
                             <option value="false">No</option>
                          </select>
@@ -104,8 +104,35 @@
                         <label>Determination Note</label>
                     </div>
                     <div class="col-9">
-                        <textarea asp-for="DeterminationNote" class="form-control" rows="4"></textarea>
+                        <textarea id="DeterminationNote" asp-for="DeterminationNote" class="form-control" rows="4"></textarea>
                         <span class="text-danger" asp-validation-for="DeterminationNote"></span>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label>Admin Score</label>
+                    </div>
+                    <div class="col-9">
+                        <div class="form-group">
+                            <input id ="score" asp-for="AdminScore" type="text" class="form-control"/>               
+                            <span class="text-danger" asp-validation-for="AdminScore"></span>
+                        </div>  
+                    </div>
+                </div>
+
+                 <div class="form-group row">
+                    <div class="col-3">
+                        <label>Application Status</label>
+                    </div>
+                    <div class="col-9">
+                        <select id = "ApplicationStatus" asp-for="ApplicationStatus" class="form-select">
+                            <option value="Pending">Pending</option>
+                            <option value="Rejected">Rejected</option>
+                            <option value="Waitlisted">Waitlisted</option>
+                            <option value="Approved">Approved</option>
+                         </select>
+                        <span class="text-danger" asp-validation-for="ApplicationStatus"></span>
                     </div>
                 </div>
 
@@ -115,7 +142,7 @@
                     </div>
                     <div class="col-9">
                         <div class="form-group">
-                            <input asp-for="SubmissionDate" id="datepicker" type="text" class="form-control" value="@DateTime.Today.ToString("MM/dd/yyyy")"/> @*value="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")"*@
+                            <input id="SubmissionDate" asp-for="SubmissionDate" id="datepicker" type="text" class="form-control" value="@DateTime.Today.ToString("MM/dd/yyyy")"/> @*value="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")"*@
                             <span asp-validation-for="SubmissionDate" class="text-danger"></span>
                         </div>
 
@@ -160,11 +187,17 @@
             $("#datepicker").datepicker();
             $("#datepicker2").datepicker();
         });
-    </script>
+   
     function ValidateInput() {
-            if (document.getElementById("name").value == "") {
-                swal('Error', 'Please enter a Name', 'error')
+            if (document.getElementById("ApplicationNameFirst").value == "") {
+                swal('Error', 'Please enter a First Name', 'error')
                 return false;
             }
-    }
+            if (document.getElementById("ApplicationNameLast").value == "") {
+                swal('Error', 'Please enter a Last Name', 'error')
+                return false;
+            }
+        }
+    
+    </script>
 }

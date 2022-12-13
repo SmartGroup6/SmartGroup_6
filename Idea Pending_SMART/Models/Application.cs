@@ -60,29 +60,14 @@ namespace Idea_Pending_SMART.Models
                 public int PersonID { get; set; }
         */
 
-        //check if student's age is valid
-        public String ageCheck(DateTime dob)
-        {
-            int age = Age(dob);
-            String status =  "";
+        
 
-            if (age >= 18)
-            {
-                status = "Rejected";
-            }
-            else
-            {
-                status = "Pending";
-            }
-            return status;
-     
-        }
 
 
         //calculate initial score
-        public float initialScore(float gpa, String income, bool choppa, bool meal)
+        public float? initialScore(float gpa, String income, bool choppa, bool meal)
         {
-            float score = 0;
+            float? score = 0;
 
             //GPA
             score += gpa;
@@ -90,11 +75,11 @@ namespace Idea_Pending_SMART.Models
             //income
             if (String.Equals(income, "Less than 10,200 MZN"))
             {
-                score += 8;
+                score += 12;
             } 
             else if (String.Equals(income, "More than 38,600 MZN"))
             {
-                score += 5;
+                score += 9;
             }
             else
             {
@@ -104,28 +89,42 @@ namespace Idea_Pending_SMART.Models
             //choppa
             if(choppa == false)
             {
-                score += 5;
+                score += 10;
             } else
             {
-                score += 3;
+                score += 5;
             }
 
             //meal
             if (meal == false)
             {
-                score += 5;
+                score += 10;
             }else
             {
-                score += 3;
+                score += 5;
             }
             return score;
         }
-        public void RateApplication(DateTime dob, float gpa, String income, bool choppa, bool meal)
+
+        
+        public Application rateApplication(DateTime dob, float? score)
         {
-            this.ApplicationStatus = ageCheck(dob);
-            this.InitialScore = initialScore(gpa, income, choppa, meal);
-            this.TotalScore = this.AdminScore + this.InitialScore;
+            //check if student's age is valid
+            int age = Age(dob);
+
+            if (age >= 18)
+            {
+                this.ApplicationStatus = "Rejected";
+                return this;
+            }
+            else
+            {
+                this.InitialScore = score;
+                this.TotalScore = this.AdminScore + this.InitialScore;
+            }
+            return this;
         }
+        
 
 
     }

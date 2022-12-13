@@ -26,8 +26,10 @@
                 <th>GPA</th>
                 <th>Income</th>
                 <th>Initial Application Score</th>
-                <th>Submission Date</th>
+                <th>Admin Score</th>
+                <th>Total Application Score</th>
                 <th>Application Status</th>
+                <th>Submission Date</th>
             </tr>
         </thead>
         <tbody>
@@ -53,16 +55,22 @@
                         @Html.DisplayFor(modelItem => obj.Financials)
                     </td>
                     <td>
-                        @{float initialScore = obj.initialScore(obj.GPA, obj.Financials, obj.ChoppaTransportNeeded, obj.MealsNeeded);}
-                        @Html.DisplayFor(modelItem => initialScore)
+                        @{obj.InitialScore = obj.initialScore(obj.GPA, obj.Financials, obj.ChoppaTransportNeeded, obj.MealsNeeded);}
+                        @Html.DisplayFor(modelItem => obj.InitialScore)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => obj.AdminScore)
+                    </td>
+                    <td>
+                        @{obj.TotalScore = obj.InitialScore + obj.AdminScore;}
+                        @Html.DisplayFor(modelItem => obj.TotalScore)
+                    </td>
+                    <td>
+                        @{obj.rateApplication(DateTime.Parse(obj.DateOfBirth), obj.InitialScore);}
+                        @Html.DisplayFor(modelItem => obj.ApplicationStatus)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => obj.SubmissionDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => obj.ApplicationStatus)
-                       @* @{string applicationStatus = obj.IsActive == true ? "Pending" : "Waitlisted";}
-                        @Html.DisplayFor(modelItem => applicationStatus)*@
                     </td>
                     <td>
                         <div class="w-75 btn-group" role="group">

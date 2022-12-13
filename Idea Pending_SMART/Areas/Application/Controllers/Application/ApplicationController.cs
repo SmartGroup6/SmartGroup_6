@@ -59,7 +59,7 @@ public class ApplicationController : Controller
     {
         Application ApplicationObj = new Application();
 
-        //Get the semester we're editing, if it exists.
+        //Get the Application we're editing, if it exists.
         if (id != null)
         {
             ApplicationObj = _unitOfWork.Application.Get(s => s.ApplicationID == id);
@@ -81,11 +81,11 @@ public class ApplicationController : Controller
             return View();
         }
 
-        if (ApplicationObj.ApplicationID == 0) //New semester
+        if (ApplicationObj.ApplicationID == 0) //New Application
         {
             _unitOfWork.Application.Add(ApplicationObj);
         }
-        else //Edit semester
+        else //Edit Application
         {
             _unitOfWork.Application.Update(ApplicationObj);
         }
