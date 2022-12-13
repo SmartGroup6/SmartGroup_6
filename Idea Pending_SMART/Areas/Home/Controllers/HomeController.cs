@@ -32,5 +32,6 @@ namespace Idea_Pending_SMART.Areas.Landing.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }
