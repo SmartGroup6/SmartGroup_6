@@ -54,10 +54,6 @@ namespace Idea_Pending_SMART.Data
             dbcs.RolesSeeder(modelBuilder);
             dbcs.PermissionsSeeder(modelBuilder);
             dbcs.RolePermissionsSeeder(modelBuilder);
-            
-            
-
-
         }
     }
 }
