@@ -5,11 +5,11 @@
 <form method="post" asp-controller="Attendance" asp-action="Upsert" enctype="multipart/form-data">
     <div class="container">
         <div class="row px-2 mx-2 backgroundWhite border">
-            
+
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="col-12 px-3" style="border-bottom:1px solid #325d88">
                 <h2 class="text-primary">@(Model.AttendanceID != 0 ? "Update" : "Create") Attendance</h2>
-             
+
             </div>
             <div class="col-8 pt-3">
                 <div class="form-group row">
@@ -25,11 +25,11 @@
                     @if (Model.AttendanceID != 0)
                     {
                         <input type="hidden" asp-for="AttendanceID" />
-                 
+
                     }
                 </div>
 
-              
+
 
                 <div class="form-group row">
                     <div class="col-3">
@@ -55,8 +55,27 @@
                     </div>
                 </div>
 
-             
-              
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label>Student Name</label>
+                    </div>
+                    <div class="col-9">
+                        <input id="student_name" class="form-control" asp-for="student_name" />
+                        <span class="text-danger" asp-validation-for="student_name"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label>Class Name</label>
+                    </div>
+                    <div class="col-9">
+                        <input id="class_name" class="form-control" asp-for="class_name" />
+                        <span class="text-danger" asp-validation-for="class_name"></span>
+                    </div>
+                </div>
+
+
 
 
 
@@ -70,7 +89,7 @@
                                 }
                                 else
                                 {
-                                
+
                                     <button type="submit" class="btn btn-primary form-control" onclick="return ValidateInput()">Create</button>
                                 }
                             </div>

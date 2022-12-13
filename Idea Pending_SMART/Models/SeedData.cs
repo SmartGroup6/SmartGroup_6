@@ -562,59 +562,7 @@ namespace Idea_Pending_SMART.Models
                     ); context.SaveChanges();
             }
  
-            if (!context.Attendance.Any())
-            {
-                context.Attendance.AddRange(
-                    new Attendance
-                    {
-                        EnrollmentID = 1,
-                        Date = DateTime.Now,
-                        MealProvided = true,
-                        MealEaten = 'Y'
-
-                    },
-                    new Attendance
-                    {
-                        EnrollmentID = 1,
-                        Date = DateTime.Now,
-                        MealProvided = false,
-                        MealEaten = 'N'
-
-                    },
-                    new Attendance
-                    {
-                        EnrollmentID = 2,
-                        Date = DateTime.Now,
-                        MealProvided = false,
-                        MealEaten = 'N'
-
-                    },
-                    new Attendance
-                    {
-                        EnrollmentID = 3,
-                        Date = DateTime.Now,
-                        MealProvided = true,
-                        MealEaten = 'N'
-                    },
-                    new Attendance
-                    {
-                        EnrollmentID = 4,
-                        Date = DateTime.Now,
-                        MealProvided = true,
-                        MealEaten = 'Y'
-
-                    },
-                    new Attendance
-                    {
-                        EnrollmentID = 5,
-                        Date = DateTime.Now,
-                        MealProvided = true,
-                        MealEaten = 'N'
-                    }
-
-                    ); context.SaveChanges();
-            }
-
+      
             if (!context.Permissions.Any())
             {
                 context.Permissions.AddRange(
