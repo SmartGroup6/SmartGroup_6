@@ -30,7 +30,19 @@ namespace Idea_Pending_SMART.Data
         private IRepository<RolePermission> _RolePermission;
         private IRepository<IdentityRole> _IdentityRole;
         private IRepository<Permissions> _Permissions;
+        private IRepository<Attendance> _Attendance;
         private IRepository<IdentityUserRole<string>> _IdentityUserRole;
+
+
+        public IRepository<Attendance> Attendance
+        {
+            get
+            {
+
+                _Attendance ??= new Repository<Attendance>(_dbContext);
+                return _Attendance;
+            }
+        }
 
         public IRepository<IdentityUserRole<string>> IdentityUserRole
         {

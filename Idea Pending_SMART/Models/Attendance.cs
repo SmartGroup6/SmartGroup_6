@@ -21,11 +21,14 @@ namespace Idea_Pending_SMART.Models
         public char? MealEaten { get; set; }
 
         [Required]
+        public string? student_name { get; set; }
+        [Required]
+        public string? class_name { get; set; }
+
+        [Required]
         [ForeignKey("Enrollment")]
         public int EnrollmentID { get; set; }
 
-
-  
     }
 
 }

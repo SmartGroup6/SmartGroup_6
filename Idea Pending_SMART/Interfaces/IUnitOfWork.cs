@@ -25,6 +25,7 @@ namespace Idea_Pending_SMART.Interfaces
         public IRepository<RolePermission> RolePermission { get; }
         public IRepository<Permissions> Permissions { get; }
         public IRepository<IdentityRole> IdentityRole { get; }
+        public IRepository<Attendance> Attendance { get; }
         public IRepository<IdentityUserRole<string>> IdentityUserRole { get; }
 
         //save changes to data source

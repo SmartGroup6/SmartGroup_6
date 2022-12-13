@@ -585,7 +585,9 @@ namespace Idea_Pending_SMART.Models
                         EnrollmentID = 1,
                         Date = DateTime.Now,
                         MealProvided = true,
-                        MealEaten = 'Y'
+                        MealEaten = 'Y',
+                        student_name = "Student",
+                        class_name = "Class"
 
                     },
                     new Attendance
@@ -593,7 +595,9 @@ namespace Idea_Pending_SMART.Models
                         EnrollmentID = 1,
                         Date = DateTime.Now,
                         MealProvided = false,
-                        MealEaten = 'N'
+                        MealEaten = 'N',
+                        student_name = "Student",
+                        class_name = "Class"
 
                     },
                     new Attendance
@@ -601,7 +605,9 @@ namespace Idea_Pending_SMART.Models
                         EnrollmentID = 2,
                         Date = DateTime.Now,
                         MealProvided = false,
-                        MealEaten = 'N'
+                        MealEaten = 'N',
+                        student_name = "Student",
+                        class_name = "Class"
 
                     },
                     new Attendance
@@ -609,14 +615,18 @@ namespace Idea_Pending_SMART.Models
                         EnrollmentID = 3,
                         Date = DateTime.Now,
                         MealProvided = true,
-                        MealEaten = 'N'
+                        MealEaten = 'N',
+                        student_name = "Student",
+                        class_name = "Class"
                     },
                     new Attendance
                     {
                         EnrollmentID = 4,
                         Date = DateTime.Now,
                         MealProvided = true,
-                        MealEaten = 'Y'
+                        MealEaten = 'Y',
+                        student_name = "Student",
+                        class_name = "Class"
 
                     },
                     new Attendance
@@ -624,7 +634,9 @@ namespace Idea_Pending_SMART.Models
                         EnrollmentID = 5,
                         Date = DateTime.Now,
                         MealProvided = true,
-                        MealEaten = 'N'
+                        MealEaten = 'N',
+                        student_name = "Student",
+                        class_name = "Class"
                     }
 
                     ); context.SaveChanges();
