@@ -60,6 +60,7 @@
   <ItemGroup>
     <Folder Include="Areas\SchoolManagement\Controllers\Semester\" />
     <Folder Include="Areas\SchoolManagement\Views\Shared\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>

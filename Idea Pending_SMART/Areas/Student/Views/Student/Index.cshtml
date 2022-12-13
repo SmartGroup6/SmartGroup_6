@@ -1,82 +1,58 @@
-﻿@model IEnumerable<Idea_Pending_SMART.Models.Student>
-
+﻿@model IEnumerable<Enrollment>
 @{
-    ViewData["Title"] = "Students";
+    ViewData["Title"] = "EnrollmentID";
+    ViewData["Title"] = "ClassTime";
+    ViewData["Title"] = "FirstName";
+    var id = 0;
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SMART System</title>
+    <link href="/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+</head>
 
-<div class="container p-3">
-    <div class="row pt-4">
-        <div class="col-6">
-            <h2 class="text-primary">Student List</h2>
+<body>
+    <div class="row">
+        <div class="col">
+            <h6 class="bg-opacity-50 border-warning p-2 border-top border-bottom">Students in Class (Click to Remove)</h6>
+            <div class="list-group">
+                <div class="overflow-auto w-100 shadow-1-strong rounded mb-4" style="height:400px; width:300px ">
+                    @foreach (var obj in Model.OrderBy(obj => obj.Student.ApplicationNameFirst))
+                    {
+                        //lists students in classrooms
+                        <a asp-area="Section" asp-controller="Section" asp-action="RemoveStudent" asp-route-sid="@obj.StudentID" asp-route-cid="@obj.ClassID"
+                       class="list-group-item bg-gradient bg-opacity-50 bg-warning list-group-item-action px-3 border-dark">
+                            <td>
+                                <h6>
+                                    <u> Name: @obj.Student.ApplicationNameFirst @obj.Student.ApplicationNameLast</u>
+                                    <h7> Grade: (@obj.Student.CurrentGrade) </h7>
+                                </h6>
+                            </td>
+                        </a>
+                        id = obj.ClassID;
+                    }
+                </div>
+            </div>
         </div>
-        <div class="col-6 text-end">
-            <a asp-controller="Student" asp-action="Upsert" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i> &nbsp; Create New Student
-            </a>
+        <div class="col">
+            <div class="list-group" style="align-content:center">
+                <a asp-controller="Section" asp-action="Open" asp-route-id="@id"
+                   class="btn" style="background-color:transparent" role="button">
+                    <span class="badge bg-gradient text-white .rounded-lg mb-xxl-2" style="background-color:darkslategray;
+                                border-color:antiquewhite; border-width: 10px; border-style:double; max-height:200px;width:400px">
+                        <tr>
+                            <td>
+                                <h6>Go Back</h6>
+                            </td>
+                        </tr>
+                        <td>
+                </a>
+            </div>
+
         </div>
     </div>
-    <br /><br />
 
-    <table class="table table-bordered table-striped" style="width:100%">
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Age</th>
-                <th>GPA</th>
-                <th>Income</th>
-                <th>Initial Student Score</th>
-                <th>Submission Date</th>
-                <th>Student Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var obj in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => obj.ApplicationNameFirst)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => obj.ApplicationNameLast)
-                    </td>
-                    <td>
-                        @{
-                            int age = obj.Age(DateTime.Parse(obj.DateOfBirth));
-                        }
-                        @Html.DisplayFor(modelItem => age)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => obj.GPA)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => obj.Financials)
-                    </td>
-                    <td>
-                        @{
-                            float initialScore = obj.initialScore(obj.GPA, obj.Financials, obj.ChoppaTransportNeeded, obj.MealsNeeded);
-                        }
-                        @Html.DisplayFor(modelItem => initialScore)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => obj.SubmissionDate)
-                    </td>
-                    <td>
-                        @* @{string StudentStatus = obj.IsActive == true ? "Pending" : "Waitlisted";}
-                    // @Html.DisplayFor(modelItem => StudentStatus)*@
-                    </td>
-                    <td>
-                        <div class="w-75 btn-group" role="group">
-                            <!-- asp-route-id is parameter, named id, that is passed to the action method, Upsert, with the value of item.AssignmentName -->
-                            <a asp-controller="Student" asp-action="Upsert" asp-route-id="@obj.StudentID"
-                           class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Details / Edit</a>
-                            <a asp-controller="Student" asp-action="Delete" asp-route-id="@obj.StudentID"
-                           class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
-                        </div>
-                    </td>
-                </tr>
-            }
-        </tbody>
-
-    </table>
-</div>
+</body>
+</html>
