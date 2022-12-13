@@ -1,13 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Linq;
 
 namespace Idea_Pending_SMART.Models
 {
     public class Student
     {
         [Key]
-        [Display(Name = "StudentID")]
         public int StudentID { get; set; }
+        public float? AcademicScore { get; set; }
 
         [Required]
         public bool? timeAvailable { get; set; }
@@ -15,54 +16,41 @@ namespace Idea_Pending_SMART.Models
         [Required]
         public char? CurrentGrade { get; set; }
 
-        //NOT required
         [ForeignKey("Sponsor")]
         public int? SponsorID { get; set; }
 
-        [Required]
-        public float AcademicScore { get; set; }
+        public String? DateOfBirth { get; set; }
 
+        [Display(Name = "Student")]
         [Required]
-        public string? DateOfBirth { get; set; }
-
-        [Display(Name = "FirstName")]
         public string? ApplicationNameFirst { get; set; }
-
         [Required]
         public string? ApplicationNameLast { get; set; }
 
-        [Required]
+        public float GPA { get; set; }
         public string? Financials { get; set; }
 
-        [Required]
+
         public string? DeterminationNote { get; set; }
 
-        [Required]
+
         public string? DistanceNote { get; set; }
 
-        [Required]
+
         public int? InstructorScore { get; set; }
 
-        [Required]
         public int? SocialWorkerScore { get; set; } //Social Worker Score
 
-        [Required]
         public int? AdminScore { get; set; }
 
-        [Required]
+
         public int? TotalScore { get; set; }
 
-        [Required]
-        public string? SubmissionDate { get; set; }
+        public String? SubmissionDate { get; set; }
+        public bool ChoppaTransportNeeded { get; set; }
 
+        public bool MealsNeeded { get; set; }
 
-        [Required]
-        public bool? ChoppaTransportNeeded { get; set; }
-
-        [Required]
-        public bool? MealsNeeded { get; set; }
-
-        [Required]
         [ForeignKey("Applicant")]
         public int ApplicantID { get; set; }
 
@@ -70,6 +58,60 @@ namespace Idea_Pending_SMART.Models
         public int PersonID { get; set; }
 
 
+        //calculate Age
+        public int Age(DateTime DateOfBirth)
+        {
+            int age = 0;
+            age = DateTime.Now.Subtract(DateOfBirth).Days;
+            age = age / 365;
+            return age;
+        }
+
+
+
+
+        public float initialScore(float gpa, String income, bool choppa, bool meal)
+        {
+            float score = 0;
+
+            //GPA
+            score += gpa;
+
+            //income
+            if (String.Equals(income, "Less than 10,200 MZN"))
+            {
+                score += 8;
+            }
+            else if (String.Equals(income, "More than 38,600 MZN"))
+            {
+                score += 5;
+            }
+            else
+            {
+                score += 7;
+            }
+
+            //choppa
+            if (choppa == false)
+            {
+                score += 5;
+            }
+            else
+            {
+                score += 3;
+            }
+
+            //meal
+            if (meal == false)
+            {
+                score += 5;
+            }
+            else
+            {
+                score += 3;
+            }
+            return score;
+        }
     }
 
 }

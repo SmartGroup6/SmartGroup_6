@@ -1,24 +1,82 @@
-﻿
+﻿@model IEnumerable<Idea_Pending_SMART.Models.Student>
+
 @{
-    ViewData["Title"] = "Student";
+    ViewData["Title"] = "Students";
 }
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>SMART System</title>
-    <link href="/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
-</head>
-<body>
-@foreach (var obj in Model.Student)
-{
-    //need to grab user ID from login
-    <span class="badge bg-gradient text-white"
-      style="background-color:darkslategray; border-color:antiquewhite; border-width: 5px; border-style:double;
-                        width:200px; height:70">
-        <h6>Name: @obj.Student.ApplicationNameFirst @obj.Student.ApplicationNameLast</h6>
-        <a asp-controller="Section" asp-action="Add" asp-route-sid="@obj.StudentID" 
-       class="btn text-white text-capitalize">Open</a>
-    </span>
-}
-</body>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Student List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Student" asp-action="Upsert" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> &nbsp; Create New Student
+            </a>
+        </div>
+    </div>
+    <br /><br />
+
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+                <th>GPA</th>
+                <th>Income</th>
+                <th>Initial Student Score</th>
+                <th>Submission Date</th>
+                <th>Student Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => obj.ApplicationNameFirst)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => obj.ApplicationNameLast)
+                    </td>
+                    <td>
+                        @{
+                            int age = obj.Age(DateTime.Parse(obj.DateOfBirth));
+                        }
+                        @Html.DisplayFor(modelItem => age)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => obj.GPA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => obj.Financials)
+                    </td>
+                    <td>
+                        @{
+                            float initialScore = obj.initialScore(obj.GPA, obj.Financials, obj.ChoppaTransportNeeded, obj.MealsNeeded);
+                        }
+                        @Html.DisplayFor(modelItem => initialScore)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => obj.SubmissionDate)
+                    </td>
+                    <td>
+                        @* @{string StudentStatus = obj.IsActive == true ? "Pending" : "Waitlisted";}
+                    // @Html.DisplayFor(modelItem => StudentStatus)*@
+                    </td>
+                    <td>
+                        <div class="w-75 btn-group" role="group">
+                            <!-- asp-route-id is parameter, named id, that is passed to the action method, Upsert, with the value of item.AssignmentName -->
+                            <a asp-controller="Student" asp-action="Upsert" asp-route-id="@obj.StudentID"
+                           class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Details / Edit</a>
+                            <a asp-controller="Student" asp-action="Delete" asp-route-id="@obj.StudentID"
+                           class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>

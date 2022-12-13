@@ -1,14 +1,14 @@
-﻿@model Application
+﻿@model Student
 @{
 }
-<form method="post" asp-controller="Application" asp-action="Upsert" enctype="multipart/form-data">
+<form method="post" asp-controller="Student" asp-action="Upsert" enctype="multipart/form-data">
     <div class="container">
         <div class="row px-2 mx-2 backgroundWhite border">
             @* All for Model validation and HTML validation *@
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="col-12 px-3" style="border-bottom:1px solid #325d88">
-                <h2 class="text-primary">@(Model.ApplicationID != 0 ? "Details" : "Create") Application</h2>
-             <!-- ^^ there's a lambda here for an if-then-else. If Application id is not = 0, update. Otherwise, create -->
+                <h2 class="text-primary">@(Model.StudentID != 0 ? "Details" : "Create") Student</h2>
+                <!-- ^^ there's a lambda here for an if-then-else. If Student id is not = 0, update. Otherwise, create -->
             </div>
             <div class="col-8 pt-3">
                 <div class="form-group row">
@@ -17,20 +17,20 @@
                         <label> Student's First Name</label>
                     </div>
                     <div class="col-9">
-                        <input id="ApplicationNameFirst" class="form-control" asp-for="ApplicationNameFirst"/>
+                        <input id="ApplicationNameFirst" class="form-control" asp-for="ApplicationNameFirst" />
                         <span class="text-danger" asp-validation-for="ApplicationNameFirst"></span>
-                    </div>        
+                    </div>
                     <div class="col-3">
                         <label> Student's Last Name</label>
                     </div>
                     <div class="col-9">
-                        <input id="ApplicationNameLast" class="form-control" asp-for="ApplicationNameLast"/>
+                        <input id="ApplicationNameLast" class="form-control" asp-for="ApplicationNameLast" />
                         <span class="text-danger" asp-validation-for="ApplicationNameLast"></span>
                     </div>
-                    @if (Model.ApplicationID != 0)
+                    @if (Model.StudentID != 0)
                     {
-                        <input type="hidden" asp-for="ApplicationID" />
-                        <!-- very important to hide the Application id. the id needs to be on the form,
+                        <input type="hidden" asp-for="StudentID" />
+                        <!-- very important to hide the Student id. the id needs to be on the form,
                         but the user doesn't need to see it. -->
                     }
                 </div>
@@ -41,7 +41,7 @@
                     </div>
                     <div class="col-9">
                         <div class="form-group">
-                            <input asp-for="DateOfBirth" id="datepicker2" type="text" class="form-control"/>  @*value="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")"*@                 
+                            <input asp-for="DateOfBirth" id="datepicker2" type="text" class="form-control" />  @*value="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")"*@
                             <span asp-validation-for="DateOfBirth" class="text-danger"></span>
                         </div>
                     </div>
@@ -53,9 +53,9 @@
                     </div>
                     <div class="col-9">
                         <div class="form-group">
-                            <input id ="GPA" asp-for="GPA" type="text" class="form-control"/>               
+                            <input asp-for="GPA" type="text" class="form-control" />
                             <span class="text-danger" asp-validation-for="GPA"></span>
-                        </div>  
+                        </div>
                     </div>
                 </div>
 
@@ -64,7 +64,7 @@
                         <label>Household Income</label>
                     </div>
                     <div class="col-9">
-                        <select id="Financials" class="form-select" asp-for="Financials" >
+                        <select id="Financials" class="form-select" asp-for="Financials">
                             <option value="Less than 10,200 MZN">Less than 10,200 MZN</option>
                             <option value="Between 10,200 MZN and 38,600 MZN">Between 10,200 MZN and 38,600 MZN</option>
                             <option value="More than 38,600 MZN">More than 38,600 MZN</option>
@@ -78,10 +78,10 @@
                         <label>Choppa Assistance?</label>
                     </div>
                     <div class="col-9">
-                        <select id="ChoppaTransportNeeded" asp-for="ChoppaTransportNeeded" class="form-select">
+                        <select asp-for="ChoppaTransportNeeded" class="form-select">
                             <option value="true">Yes</option>
                             <option value="false">No</option>
-                         </select>
+                        </select>
                         <span class="text-danger" asp-validation-for="ChoppaTransportNeeded"></span>
                     </div>
                 </div>
@@ -91,10 +91,10 @@
                         <label>Meals Assistance?</label>
                     </div>
                     <div class="col-9">
-                        <select id = "MealsNeeded" asp-for="MealsNeeded" class="form-select" >
+                        <select asp-for="MealsNeeded" class="form-select">
                             <option value="true">Yes</option>
                             <option value="false">No</option>
-                         </select>
+                        </select>
                         <span class="text-danger" asp-validation-for="MealsNeeded"></span>
                     </div>
                 </div>
@@ -104,35 +104,8 @@
                         <label>Determination Note</label>
                     </div>
                     <div class="col-9">
-                        <textarea id="DeterminationNote" asp-for="DeterminationNote" class="form-control" rows="4"></textarea>
+                        <textarea asp-for="DeterminationNote" class="form-control" rows="4"></textarea>
                         <span class="text-danger" asp-validation-for="DeterminationNote"></span>
-                    </div>
-                </div>
-                
-                <div class="form-group row">
-                    <div class="col-3">
-                        <label>Admin Score</label>
-                    </div>
-                    <div class="col-9">
-                        <div class="form-group">
-                            <input id ="score" asp-for="AdminScore" type="text" class="form-control"/>               
-                            <span class="text-danger" asp-validation-for="AdminScore"></span>
-                        </div>  
-                    </div>
-                </div>
-
-                 <div class="form-group row">
-                    <div class="col-3">
-                        <label>Application Status</label>
-                    </div>
-                    <div class="col-9">
-                        <select id = "ApplicationStatus" asp-for="ApplicationStatus" class="form-select">
-                            <option value="Pending">Pending</option>
-                            <option value="Rejected">Rejected</option>
-                            <option value="Waitlisted">Waitlisted</option>
-                            <option value="Approved">Approved</option>
-                         </select>
-                        <span class="text-danger" asp-validation-for="ApplicationStatus"></span>
                     </div>
                 </div>
 
@@ -142,7 +115,7 @@
                     </div>
                     <div class="col-9">
                         <div class="form-group">
-                            <input id="SubmissionDate" asp-for="SubmissionDate" id="datepicker" type="text" class="form-control" value="@DateTime.Today.ToString("MM/dd/yyyy")"/> @*value="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")"*@
+                            <input asp-for="SubmissionDate" id="datepicker" type="text" class="form-control" value="@DateTime.Today.ToString("MM/dd/yyyy")" /> @*value="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")"*@
                             <span asp-validation-for="SubmissionDate" class="text-danger"></span>
                         </div>
 
@@ -154,7 +127,7 @@
                     <div class="col-9 offset-3">
                         <div class="row">
                             <div class="col-6">
-                                @if (Model.ApplicationID != 0)
+                                @if (Model.StudentID != 0)
                                 {
                                     <button type="submit" class="btn btn-primary form-control">Update</button>
                                 }
@@ -165,7 +138,7 @@
                                 }
                             </div>
                             <div class="col-6">
-                                <a asp-controller="Application" asp-action="Index" class="btn btn-success form-control">Back to List</a>
+                                <a asp-controller="Student" asp-action="Index" class="btn btn-success form-control">Back to List</a>
                             </div>
                         </div>
                     </div>
@@ -187,17 +160,11 @@
             $("#datepicker").datepicker();
             $("#datepicker2").datepicker();
         });
-   
-    function ValidateInput() {
-            if (document.getElementById("ApplicationNameFirst").value == "") {
-                swal('Error', 'Please enter a First Name', 'error')
-                return false;
-            }
-            if (document.getElementById("ApplicationNameLast").value == "") {
-                swal('Error', 'Please enter a Last Name', 'error')
-                return false;
-            }
-        }
-    
     </script>
+    function ValidateInput() {
+            if (document.getElementById("name").value == "") {
+                swal('Error', 'Please enter a Name', 'error')
+                return false;
+            }
+    }
 }

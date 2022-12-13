@@ -213,130 +213,14 @@ namespace Idea_Pending_SMART.Models
 
                     ); context.SaveChanges();
             }
-
+            /*
             if (!context.Students.Any())
             {
                 context.Students.AddRange(
                     new Student
                     {
 
-                        timeAvailable = true,
-                        CurrentGrade = 'B',
-                        SponsorID = 1,
-                        ApplicationNameFirst = "Student",
-                        ApplicationNameLast = "One",
-                        AcademicScore = 25,
-                        DateOfBirth = "04/01/2008",
-                        Financials = "500",
-                        DeterminationNote = "very determined",
-                        DistanceNote = "lives far",
-                        AdminScore = 25,
-                        InstructorScore = 25,
-                        SocialWorkerScore = 25,
-                        TotalScore = 100,
-                        SubmissionDate = "11/06/2022",
-                        ChoppaTransportNeeded = true,
-                        MealsNeeded = true,
-                        ApplicantID = 1
-                    },
-                    new Student
-                    {
-
-                        timeAvailable = true,
-                        CurrentGrade = 'A',
-                        SponsorID = 1,
-                        ApplicationNameFirst = "Student",
-                        ApplicationNameLast = "Two",
-                        AcademicScore = 25,
-                        DateOfBirth = "04/01/2009",
-                        Financials = "5000",
-                        DeterminationNote = "",
-                        DistanceNote = "Lives close",
-                        AdminScore = 25,
-                        InstructorScore = 25,
-                        SocialWorkerScore = 25,
-                        TotalScore = 100,
-                        SubmissionDate = "11/06/2022",
-                        ChoppaTransportNeeded = false,
-                        MealsNeeded = true,
-                        ApplicantID = 2
-                    },
-                    new Student
-                    {
-
-                        timeAvailable = false,
-                        CurrentGrade = 'B',
-                        SponsorID = 0,
-                        ApplicationNameFirst = "Student",
-                        ApplicationNameLast = "Three",
-                        AcademicScore = 0,
-                        DateOfBirth = "04/01/2002",
-                        Financials = "800",
-                        DeterminationNote = "",
-                        DistanceNote = "",
-                        AdminScore = 0,
-                        InstructorScore = 0,
-                        SocialWorkerScore = 0,
-                        TotalScore = 0,
-                        SubmissionDate = "11/06/2022",
-                        ChoppaTransportNeeded = true,
-                        MealsNeeded = true,
-                        ApplicantID = 3
-                    },
-                    new Student
-                    {
-
-                        timeAvailable = false,
-                        CurrentGrade = 'C',
-                        SponsorID = 0,
-                        ApplicationNameFirst = "Student",
-                        ApplicationNameLast = "Four",
-                        AcademicScore = 5,
-                        DateOfBirth = "04/01/2008",
-                        Financials = "500",
-                        DeterminationNote = "",
-                        DistanceNote = "",
-                        AdminScore = 20,
-                        InstructorScore = 20,
-                        SocialWorkerScore = 20,
-                        TotalScore = 65,
-                        SubmissionDate = "11/06/2022",
-                        ChoppaTransportNeeded = true,
-                        MealsNeeded = true,
-                        ApplicantID = 4
-                    },
-                    new Student
-                    {
-
-                        timeAvailable = true,
-                        CurrentGrade = 'B',
-                        SponsorID = 3,
-                        ApplicationNameFirst = "Student",
-                        ApplicationNameLast = "Five",
-                        AcademicScore = 20,
-                        DateOfBirth = "04/01/2008",
-                        Financials = "500",
-                        DeterminationNote = "",
-                        DistanceNote = "",
-                        AdminScore = 20,
-                        InstructorScore = 20,
-                        SocialWorkerScore = 20,
-                        TotalScore = 80,
-                        SubmissionDate = "11/06/2022",
-                        ChoppaTransportNeeded = false,
-                        MealsNeeded = false,
-                        ApplicantID = 5
-                    }
-
-                    ); context.SaveChanges();
-            }
-            // test application seed data (for demonstration, same as student)
-         /*   if (!context.Applications.Any())
-            {
-                context.Applications.AddRange(
-                    new Application
-                    {
-
+                        //timeAvailable = true,
                         //SponsorID = 1,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "One",
@@ -353,12 +237,13 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = true,
                         MealsNeeded = true,
-                        IsActive = true,
+                        // IsActive = true,
                         //ApplicantID = 1
                     },
-                    new Application
+                    new Student
                     {
 
+                        //timeAvailable = true,
                         //SponsorID = 1,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Two",
@@ -375,12 +260,14 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = false,
                         MealsNeeded = true,
-                        IsActive= false,
+                        //IsActive = false,
                         //ApplicantID = 2
                     },
-                    new Application
+                    new Student
                     {
-                       // SponsorID = 0,
+
+                        //timeAvailable = false,
+                        // SponsorID = 0,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Three",
                         GPA = 20,
@@ -396,12 +283,13 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = true,
                         MealsNeeded = true,
-                        IsActive = false,
-                       // ApplicantID = 3
+                        //IsActive = false,
+                        // ApplicantID = 3
                     },
-                    new Application
+                    new Student
                     {
 
+                        //timeAvailable = false,
                         //SponsorID = 0,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Four",
@@ -418,12 +306,13 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = true,
                         MealsNeeded = true,
-                        IsActive=false,
-                       // ApplicantID = 4
+                        // IsActive = false,
+                        // ApplicantID = 4
                     },
-                    new Application
+                    new Student
                     {
 
+                        //timeAvailable = true,
                         //SponsorID = 3,
                         ApplicationNameFirst = "Student",
                         ApplicationNameLast = "Five",
@@ -440,12 +329,118 @@ namespace Idea_Pending_SMART.Models
                         SubmissionDate = "11/06/2022",
                         ChoppaTransportNeeded = false,
                         MealsNeeded = false,
-                        IsActive=true
+                        // IsActive = true
                         //ApplicantID = 5
                     }
 
                     ); context.SaveChanges();
             }*/
+            // test application seed data (for demonstration, same as student)
+            if (!context.Applications.Any())
+            {
+                context.Applications.AddRange(
+                    new Application
+                    {
+
+                        //SponsorID = 1,
+                        ApplicationNameFirst = "Student",
+                        ApplicationNameLast = "One",
+                        GPA = 20,
+                       // AcademicScore = 25,
+                        DateOfBirth = "2008-04-01",
+                        Financials = "Less than 10,200 MZN",
+                        DeterminationNote = "very determined",
+                        DistanceNote = "lives far",
+                        AdminScore = 25,
+                        TotalScore = 100,
+                        SubmissionDate = "11/06/2022",
+                        ChoppaTransportNeeded = true,
+                        MealsNeeded = true,
+                        // IsActive = true,
+                        //ApplicantID = 1
+                    },
+                    new Application
+                    {
+
+                        //SponsorID = 1,
+                        ApplicationNameFirst = "Student",
+                        ApplicationNameLast = "Two",
+                        GPA = 20,
+                        //AcademicScore = 25,
+                        DateOfBirth = "04/01/2009",
+                        Financials = "Less than 10,200 MZN",
+                        DeterminationNote = "",
+                        DistanceNote = "Lives close",
+                        AdminScore = 25,
+                        TotalScore = 100,
+                        SubmissionDate = "11/06/2022",
+                        ChoppaTransportNeeded = false,
+                        MealsNeeded = true,
+                        // IsActive= false,
+                        //ApplicantID = 2
+                    },
+                    new Application
+                    {
+                        // SponsorID = 0,
+                        ApplicationNameFirst = "Student",
+                        ApplicationNameLast = "Three",
+                        GPA = 20,
+                        //AcademicScore = 0,
+                        DateOfBirth = "04/01/2002",
+                        Financials = "Less than 10,200 MZN",
+                        DeterminationNote = "",
+                        DistanceNote = "",
+                        AdminScore = 0,
+                        TotalScore = 0,
+                        SubmissionDate = "11/06/2022",
+                        ChoppaTransportNeeded = true,
+                        MealsNeeded = true,
+                        // IsActive = false,
+                        // ApplicantID = 3
+                    },
+                    new Application
+                    {
+
+                        //SponsorID = 0,
+                        ApplicationNameFirst = "Student",
+                        ApplicationNameLast = "Four",
+                        GPA = 20,
+                        //AcademicScore = 5,
+                        DateOfBirth = "04/01/2008",
+                        Financials = "Less than 10,200 MZN",
+                        DeterminationNote = "",
+                        DistanceNote = "",
+                        AdminScore = 20,
+                        TotalScore = 65,
+                        SubmissionDate = "11/06/2022",
+                        ChoppaTransportNeeded = true,
+                        MealsNeeded = true,
+                        // IsActive=false,
+                        // ApplicantID = 4
+                    },
+                    new Application
+                    {
+
+                        //SponsorID = 3,
+                        ApplicationNameFirst = "Student",
+                        ApplicationNameLast = "Five",
+                        GPA = 20,
+                        //AcademicScore = 20,
+                        DateOfBirth = "04/01/2008",
+                        Financials = "Less than 10,200 MZN",
+                        DeterminationNote = "",
+                        DistanceNote = "",
+                        AdminScore = 20,
+                        TotalScore = 80,
+                        SubmissionDate = "11/06/2022",
+                        ChoppaTransportNeeded = false,
+                        MealsNeeded = false,
+                        // IsActive=true
+                        //ApplicantID = 5
+                    }
+
+                    ); context.SaveChanges();
+            }
             if (!context.Applicant.Any())
             {
                 context.Applicant.AddRange(
@@ -734,7 +729,7 @@ namespace Idea_Pending_SMART.Models
 
                     ); context.SaveChanges();
 
-            }
+            }/*
             if (!context.Enrollments.Any())
             {
                 context.Enrollments.AddRange(
@@ -774,7 +769,7 @@ namespace Idea_Pending_SMART.Models
                        StudentID = 5
                    }
                     ); context.SaveChanges();
-            }
+            }*/
 
 
         }
